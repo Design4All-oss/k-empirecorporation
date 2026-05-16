@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.agents/
+.qoder/
+Docs/
+
+*.env
+.env.development
+.env.production
+anitigravity.md
+content.md
+
