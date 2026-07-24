@@ -99,7 +99,7 @@ const HomeHero = () => {
               className="text-h1-m md:text-h1-d text-primary font-semibold"
             >
               Votre succès <br />
-              <span className="text-primary">Structurez</span>{' '}
+              <span className="text-primary">Structure</span>{' '}
               <br /> l'avenir.
             </motion.h1>
 
