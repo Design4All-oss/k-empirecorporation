@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import AboutNewsletter from '../components/about/AboutNewsletter';
 import Button from '../components/ui/Button';
-import { Scale, ArrowRight, CheckCircle, Shield, FileText, Calculator, Briefcase, Building, UserCheck, Stamp, Globe, AlertTriangle, Lock, Award, ChevronRight, PenTool, FileCheck, Microscope, BriefcaseIcon, Gavel, Users, Clock, Heart, PhoneCall, Mail, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Calculator, Building, AlertTriangle, Lock, Award, Users, Clock, Heart, PhoneCall, Mail, MessageCircle } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
 
 const ServiceJuridique = () => {
@@ -72,6 +72,23 @@ const ServiceJuridique = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFCFA]">
+      <SEO
+        title="Assistance Juridique, Comptable & Fiscale"
+        description="K-EMPIRE Corporation sécurise vos opérations juridiques, comptables et fiscales. Assistance juridique et fiscale pour entreprises au Togo."
+        url="/services/assistance-juridique"
+        image="/assets/images/services/coverImage.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Assistance Juridique, Comptable & Fiscale",
+          "description": "Sécurisation des opérations juridiques, comptables et fiscales au Togo.",
+          "url": "https://kempirecorporation.com/services/assistance-juridique",
+          "provider": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          }
+        }}
+      />
       <PageBanner
         title="Assistance Juridique, Comptable & Fiscale"
         description="La complexité juridique, comptable et fiscale ne doit pas être un obstacle. Nos experts vous accompagnent pour sécuriser votre activité et optimiser votre performance."
@@ -81,7 +98,7 @@ const ServiceJuridique = () => {
 
       {/* Story Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
               <h2 className="text-h2-m md:text-h2-d text-primary mt-4">
@@ -100,7 +117,7 @@ const ServiceJuridique = () => {
 
       {/* Commitments - 4 columns */}
       <section className="py-24 bg-bg-alt">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-h2-m md:text-h2-d text-primary mt-4">Ce que nous faisons pour vous</h2>
           </motion.div>
@@ -120,7 +137,7 @@ const ServiceJuridique = () => {
 
       {/* Stats */}
       <section className="py-20 bg-primary">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((item, index) => (
               <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.1 }} className="text-center">
@@ -137,7 +154,7 @@ const ServiceJuridique = () => {
 
       {/* Domains of Expertise */}
       <section className="py-24 bg-white">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
             <h2 className="text-h2-m md:text-h2-d text-primary mt-4">Nos domaines d'intervention</h2>
           </motion.div>
@@ -159,7 +176,7 @@ const ServiceJuridique = () => {
 
       {/* When to contact us */}
       <section className="py-24 bg-bg-alt">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <h2 className="text-3xl md:text-4xl font-bold text-primary mt-4 mb-6">Quand nous contacter ?</h2>
@@ -204,7 +221,7 @@ const ServiceJuridique = () => {
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="max-w-container mx-auto px-4 relative z-10">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -263,11 +280,11 @@ const ServiceJuridique = () => {
                     </div>
                     <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
                   </a>
-                  <a href="tel:+228XXXXXXXX" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
+                  <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                       <PhoneCall size={18} className="text-accent" />
                     </div>
-                    <span className="text-body-sm font-medium">+228 XX XX XX XX</span>
+                    <span className="text-body-sm font-medium">+228 92 66 45 50</span>
                   </a>
                 </div>
 

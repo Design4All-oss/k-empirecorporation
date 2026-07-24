@@ -88,7 +88,7 @@ const HomeStats = () => {
 
   return (
     <section className="py-16 md:py-24 bg-white relative">
-      <div className="max-w-container mx-auto px-4">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
            variants={containerVariants}
            initial="hidden"

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Home } from 'lucide-react';
+import SEO from '../components/ui/SEO';
 import Button from '../components/ui/Button';
 import { useBookingModal } from '../context/BookingModalContext';
 
@@ -46,6 +47,11 @@ function NotFound() {
   const { openBookingModal } = useBookingModal();
   return (
     <div className="min-h-screen flex items-center justify-center bg-bg-alt relative overflow-hidden">
+      <SEO
+        title="Page non trouvée"
+        description="La page que vous recherchez n'existe pas ou a été déplacée."
+        url="/404"
+      />
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-3xl" />

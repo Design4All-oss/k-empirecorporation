@@ -31,7 +31,7 @@ const AboutHero = () => {
         }}
       />
 
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
           {/* Text Content */}
           <motion.div

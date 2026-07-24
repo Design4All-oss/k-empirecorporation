@@ -40,7 +40,7 @@ const ServicesProcess = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-[#E5A81A]/5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-container mx-auto px-4">
+      <div className="relative z-10 max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"

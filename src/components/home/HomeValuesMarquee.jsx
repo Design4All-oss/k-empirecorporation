@@ -26,7 +26,7 @@ const HomeValuesMarquee = () => {
       </div>
 
       {/* Marquee container with fade edges */}
-      <div className="relative max-w-container mx-auto px-4">
+      <div className="relative max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Fade edges - inside the container */}
         <div className="absolute inset-y-0 left-0 w-12 md:w-20 bg-gradient-to-r from-primary to-transparent pointer-events-none z-20" />
         <div className="absolute inset-y-0 right-0 w-12 md:w-20 bg-gradient-to-l from-primary to-transparent pointer-events-none z-20" />

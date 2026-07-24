@@ -13,7 +13,7 @@ const BlogHero = ({ featuredEvent }) => {
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
       </div>
       
-      <div className="max-w-container mx-auto px-4 py-12 md:py-16 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -30 }}

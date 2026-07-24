@@ -84,7 +84,7 @@ const AboutStats = () => {
 
   return (
     <section className="py-16 md:py-24 bg-[#F5F7FA] relative overflow-hidden">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Stats Grid - 4 columns avec séparateurs */}
         <motion.div
           variants={containerVariants}

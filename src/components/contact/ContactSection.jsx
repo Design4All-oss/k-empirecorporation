@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2, Mail, Phone, MapPin, AlertCircle } from 'lucide-react';
 import Button from '../ui/Button';
+import { submitDevis } from '../../api/forms';
+import { useToast } from '../../context/ToastContext';
 
 const subjects = [
   { value: '', label: 'Sélectionnez un objet' },
@@ -26,6 +28,8 @@ const ContactSection = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const toast = useToast();
 
   const validateForm = () => {
     const newErrors = {};
@@ -48,7 +52,7 @@ const ContactSection = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
@@ -56,8 +60,25 @@ const ContactSection = () => {
       setSubmitStatus('error');
       return;
     }
-    setSubmitStatus('success');
-    setIsSubmitted(true);
+    setSubmitting(true);
+    try {
+      await submitDevis({
+        nom: formData.fullName,
+        email: formData.email,
+        telephone: formData.phone,
+        entreprise: formData.organization,
+        sujet: formData.subject,
+        message: formData.message,
+      });
+      setSubmitStatus('success');
+      setIsSubmitted(true);
+      toast('Message envoyé avec succès ! Notre équipe vous répondra sous 24h.');
+    } catch (err) {
+      toast(err.message, 'error');
+      setSubmitStatus('error');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const itemVariants = {
@@ -71,7 +92,7 @@ const ContactSection = () => {
 
   return (
     <section className="py-16 md:py-24 bg-[#F5F7FA] relative overflow-hidden !mb-0">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 xl:gap-12 items-center">
           {/* Left Side - Info Section */}
           <motion.div
@@ -106,14 +127,14 @@ const ContactSection = () => {
                 <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-primary">+228 90 00 00 00</span>
+                <span className="text-sm font-medium text-primary">+228 92 66 45 50</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-primary">Kara, Togo</span>
+                <span className="text-sm font-medium text-primary">Agoè-Kossigan, Lomé-Togo</span>
               </div>
 
               <div className="flex items-center gap-3">
@@ -284,7 +305,7 @@ const ContactSection = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+228 90 00 00 00"
+                        placeholder="+228 92 66 45 50"
                         className="w-full px-4 py-3 rounded-2xl bg-white/35 border-none h-14 text-white placeholder:text-white/50 focus:outline-none focus:bg-white/45 transition-all"
                       />
                     </div>
@@ -379,7 +400,8 @@ const ContactSection = () => {
                   <div className="mt-5">
                     <button 
                       type="submit"
-                      className="group relative inline-flex items-center h-14 pl-3 pr-6 font-semibold rounded-full bg-white text-primary"
+                      disabled={submitting}
+                      className="group relative inline-flex items-center h-14 pl-3 pr-6 font-semibold rounded-full bg-white text-primary disabled:opacity-50"
                     >
                       {/* Gradient overlay that spreads on click */}
                       <span className="absolute inset-0 bg-gradient-to-r from-[#1E3A5F] via-[#2d5a8a] to-[#1E3A5F] opacity-0 group-active:opacity-100 transition-opacity duration-500 rounded-full" />
@@ -390,7 +412,7 @@ const ContactSection = () => {
                       </span>
                       
                       {/* Text */}
-                      <span className="relative z-10 transition-all duration-300 group-hover:text-white">Envoyer</span>
+                      <span className="relative z-10 transition-all duration-300 group-hover:text-white">{submitting ? 'Envoi...' : 'Envoyer'}</span>
                     </button>
                   </div>
                 </div>

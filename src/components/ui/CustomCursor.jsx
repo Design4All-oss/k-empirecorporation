@@ -1,60 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
+
+const SELECTOR = 'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const trackedElements = useRef(new WeakSet());
+
+  const handleHoverStart = useCallback(() => setIsHovering(true), []);
+  const handleHoverEnd = useCallback(() => setIsHovering(false), []);
+
+  const attachListeners = useCallback((el) => {
+    if (trackedElements.current.has(el)) return;
+    trackedElements.current.add(el);
+    el.addEventListener('mouseenter', handleHoverStart);
+    el.addEventListener('mouseleave', handleHoverEnd);
+  }, [handleHoverStart, handleHoverEnd]);
 
   useEffect(() => {
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(isTouchDevice);
+    if (isTouchDevice) return;
+
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
-    const handleMouseEnter = () => setIsVisible(true);
-    const handleMouseLeave = () => setIsVisible(false);
-
-    const handleHoverStart = () => setIsHovering(true);
-    const handleHoverEnd = () => setIsHovering(false);
-
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
 
-    const interactiveElements = document.querySelectorAll(
-      'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-    );
+    document.querySelectorAll(SELECTOR).forEach(attachListeners);
 
-    interactiveElements.forEach((el) => {
-      el.addEventListener('mouseenter', handleHoverStart);
-      el.addEventListener('mouseleave', handleHoverEnd);
-    });
-
-    const observer = new MutationObserver(() => {
-      const elements = document.querySelectorAll(
-        'a, button, [role="button"], input, textarea, select, [tabindex]:not([tabindex="-1"])'
-      );
-      elements.forEach((el) => {
-        el.addEventListener('mouseenter', handleHoverStart);
-        el.addEventListener('mouseleave', handleHoverEnd);
-      });
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType !== 1) continue;
+          if (node.matches(SELECTOR)) attachListeners(node);
+          node.querySelectorAll?.(SELECTOR).forEach(attachListeners);
+        }
+      }
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener('mouseenter', handleHoverStart);
-        el.removeEventListener('mouseleave', handleHoverEnd);
-      });
       observer.disconnect();
     };
-  }, [isVisible]);
+  }, [attachListeners]);
 
-  if (!isVisible) return null;
+  if (!isVisible || isTouchDevice) return null;
 
   return (
     <div
@@ -70,4 +67,4 @@ const CustomCursor = () => {
   );
 };
 
-export default CustomCursor;
+export default React.memo(CustomCursor);

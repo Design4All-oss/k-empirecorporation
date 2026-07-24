@@ -23,7 +23,7 @@ const AboutContactCta = () => {
 
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -83,17 +83,17 @@ const AboutContactCta = () => {
                   </div>
                   <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
                 </a>
-                <a href="tel:+228XXXXXXXX" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
+                <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
                   <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                     <PhoneCall size={18} className="text-accent" />
                   </div>
-                  <span className="text-body-sm font-medium">+228 XX XX XX XX</span>
+                  <span className="text-body-sm font-medium">+228 92 66 45 50</span>
                 </a>
                 <div className="flex items-center gap-3 text-primary">
                   <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
                     <MapPin size={18} className="text-accent" />
                   </div>
-                  <span className="text-body-sm font-medium">Kara, Togo</span>
+                  <span className="text-body-sm font-medium">Agoè-Kossigan, Lomé-Togo</span>
                 </div>
               </div>
 

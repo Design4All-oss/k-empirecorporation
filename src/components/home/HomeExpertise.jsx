@@ -30,7 +30,7 @@ const HomeExpertise = () => {
       </div>
       <div className="absolute -bottom-32 -right-80 w-[600px] h-[700px] pointer-events-none" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'rotate(-90deg)', background: 'linear-gradient(to left, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 50%, transparent 100%)' }} />
 
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="lg:flex lg:gap-24 items-stretch">
           {/* Left Column */}
           <div className="lg:w-1/2 lg:flex-1 mb-12 lg:mb-0 flex flex-col">

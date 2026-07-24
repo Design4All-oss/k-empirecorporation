@@ -22,12 +22,6 @@ const XIcon = () => (
   </svg>
 );
 
-const InstagramIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor">
-    <path d="M10.202,2.098c-1.49,.07-2.507,.308-3.396,.657-.92,.359-1.7,.84-2.477,1.619-.776,.779-1.254,1.56-1.61,2.481-.345,.891-.578,1.909-.644,3.4-.066,1.49-.08,1.97-.073,5.771s.024,4.278,.096,5.772c.071,1.489,.308,2.506,.657,3.396,.359,.92,.84,1.7,1.619,2.477,.779,.776,1.559,1.253,2.483,1.61,.89,.344,1.909,.579,3.399,.644,1.49,.065,1.97,.08,5.771,.073,3.801-.007,4.279-.024,5.773-.095s2.505-.309,3.395-.657c.92-.36,1.701-.84,2.477-1.62s1.254-1.561,1.609-2.483c.345-.89,.579-1.909,.644-3.398,.065-1.494,.081-1.971,.073-5.773s-.024-4.278-.095-5.771-.308-2.507-.657-3.397c-.36-.92-.84-1.7-1.619-2.477s-1.561-1.254-2.483-1.609c-.891-.345-1.909-.58-3.399-.644s-1.97-.081-5.772-.074-4.278,.024-5.771,.096m.164,25.309c-1.365-.059-2.106-.286-2.6-.476-.654-.252-1.12-.557-1.612-1.044s-.795-.955-1.05-1.608c-.192-.494-.423-1.234-.487-2.599-.069-1.475-.084-1.918-.092-5.656s.006-4.18,.071-5.656c.058-1.364,.286-2.106,.476-2.6,.252-.655,.556-1.12,1.044-1.612s.955-.795,1.608-1.05c.493-.193,1.234-.422,2.598-.487,1.476-.07,1.919-.084,5.656-.092,3.737-.008,4.181,.006,5.658,.071,1.364,.059,2.106,.285,2.599,.476,.654,.252,1.12,.555,1.612,1.044s.795,.954,1.051,1.609c.193,.492,.422,1.232,.486,2.597,.07,1.476,.086,1.919,.093,5.656,.007,3.737-.006,4.181-.071,5.656-.06,1.365-.286,2.106-.476,2.601-.252,.654-.556,1.12-1.045,1.612s-.955,.795-1.608,1.05c-.493,.192-1.234,.422-2.597,.487-1.476,.069-1.919,.084-5.657,.092s-4.18-.007-5.656-.071M21.779,8.517c.002,.928,.755,1.679,1.683,1.677s1.679-.755,1.677-1.683c-.002-.928-.755-1.679-1.683-1.677,0,0,0,0,0,0-.928,.002-1.678,.755-1.677,1.683m-12.967,7.496c.008,3.97,3.232,7.182,7.202,7.174s7.183-3.232,7.176-7.202c-.008-3.97-3.233-7.183-7.203-7.175s-7.182,3.233-7.174,7.203m2.522-.005c-.005-2.577,2.08-4.671,4.658-4.676,2.577-.005,4.671,2.08,4.676,4.658,.005,2.577-2.08,4.671-4.658,4.676-2.577,.005-4.671-2.079-4.676-4.656h0"/>
-  </svg>
-);
-
 const HeartIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-accent animate-pulse">
     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -60,7 +54,7 @@ const Footer = () => {
 
   return (
     <footer className="pt-8 md:pt-12 bg-primary relative overflow-hidden border-t border-white/10">
-      <div className="max-w-container mx-auto px-4 relative z-10 pt-20 pb-4">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-4">
         <motion.div
            variants={containerVariants}
            initial="hidden"
@@ -81,20 +75,19 @@ const Footer = () => {
               Structure, Excellence et Innovation pour une croissance durable au cœur de l'Afrique.
             </p>
             <div className="flex gap-3">
-              {[
-                { Icon: LinkedInIcon, label: 'LinkedIn' },
-                { Icon: FacebookIcon, label: 'Facebook' },
-                { Icon: XIcon, label: 'X' },
-                { Icon: InstagramIcon, label: 'Instagram' }
-              ].map(({ Icon, label }, idx) => (
+              {socialLinks?.map((link) => (
                 <motion.a
-                  key={idx}
-                  href="#"
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -2 }}
                   className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-accent hover:text-white transition-all"
-                  aria-label={label}
+                  aria-label={link.label}
                 >
-                  <Icon />
+                  {link.name === "X" && <XIcon />}
+                  {link.name === "LinkedIn" && <LinkedInIcon />}
+                  {link.name === "Facebook" && <FacebookIcon />}
                 </motion.a>
               ))}
             </div>
@@ -129,15 +122,15 @@ const Footer = () => {
             <div className="flex flex-col gap-4">
               <div className="flex items-start gap-3">
                 <MapPin className="text-accent mt-1 shrink-0" size={20} />
-                <p className="text-body text-white">Lomé, Togo Centre d'Affaires</p>
+                <p className="text-body text-white">Agoè-Kossigan, Lomé-Togo</p>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-accent shrink-0" size={20} />
-                <p className="text-body text-white">+228 XX XX XX XX</p>
+                <p className="text-body text-white">+228 92 66 45 50</p>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="text-accent shrink-0" size={20} />
-                <p className="text-body text-white">contact@k-empire.com</p>
+                <p className="text-body text-white">contact@k-empirecorporation.com</p>
               </div>
             </div>
           </motion.div>
@@ -166,4 +159,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);

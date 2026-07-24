@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, MessageSquare, CheckCircle, ChevronLeft, ChevronRight, X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import Button from '../ui/Button';
 import { useBookingModal } from '../../context/BookingModalContext';
+import { submitRdv } from '../../api/forms';
+import { useToast } from '../../context/ToastContext';
 
 const timeSlots = [
   { value: '09:00', label: '09:00 - 10:00' },
@@ -27,7 +29,9 @@ const BookingModal = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
+  const toast = useToast();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [showTimeDropdown, setShowTimeDropdown] = useState(false);
 
@@ -46,14 +50,30 @@ const BookingModal = () => {
     setShowTimeDropdown(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setBookingData({ name: '', email: '', phone: '', date: '', time: '', message: '' });
-      closeBookingModal();
-    }, 3000);
+    setSubmitting(true);
+    try {
+      await submitRdv({
+        nom: bookingData.name,
+        email: bookingData.email,
+        telephone: bookingData.phone,
+        service: '',
+        message: bookingData.message,
+        date_rdv: bookingData.date ? `${bookingData.date}T${bookingData.time || '10:00'}:00` : '',
+      });
+      setIsSubmitted(true);
+      toast('Rendez-vous demandé ! Nous vous contacterons pour confirmer.');
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setBookingData({ name: '', email: '', phone: '', date: '', time: '', message: '' });
+        closeBookingModal();
+      }, 3000);
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const getDaysInMonth = (date) => {
@@ -255,8 +275,8 @@ const BookingModal = () => {
                 </div>
 
                 <div className="flex items-center gap-3 pt-2">
-                  <Button type="submit" variant="primary" size="md" className="justify-center flex-1">
-                    Réserver
+                  <Button type="submit" variant="primary" size="md" className="justify-center flex-1" disabled={submitting}>
+                    {submitting ? 'Envoi...' : 'Réserver'}
                     <ArrowRight className="ml-2" size={16} strokeWidth={3} />
                   </Button>
                   <motion.button

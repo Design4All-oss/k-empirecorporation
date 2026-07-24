@@ -119,7 +119,7 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[800px] bg-white rounded-3xl shadow-2xl p-6"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[90vw] max-w-[800px] bg-white rounded-3xl shadow-2xl p-6"
                     >
                       <div className="grid grid-cols-2 gap-6">
                         {servicesItems.map((service) => (

@@ -140,11 +140,28 @@ export const COMMON_CONTENT = {
     cta: "Contact"
   },
   footer: {
-    about: "K-EMPIRE CORPORATION est un cabinet d’études, de conseil et de formation au service de votre performance.",
+    about: "K-EMPIRE CORPORATION est un cabinet d'études, de conseil et de formation au service de votre performance.",
     contact: {
-      address: "Kara, Togo",
-      phone: "+228 XX XX XX XX",
+      address: "Agoè-Kossigan, Lomé-Togo",
+      phone: "+228 92 66 45 50",
       email: "contact@k-empirecorporation.com"
-    }
+    },
+    socialLinks: [
+      {
+        name: "X",
+        url: "https://x.com/K_E_CORPORATION",
+        label: "Suivez-nous sur X"
+      },
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/company/kempirecorporation-tg/",
+        label: "Suivez-nous sur LinkedIn"
+      },
+      {
+        name: "Facebook",
+        url: "https://www.facebook.com/AideJuridique7.0",
+        label: "Suivez-nous sur Facebook"
+      }
+    ]
   }
 };

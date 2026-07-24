@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import ServiceConseil from './pages/ServiceConseil';
-import ServiceAudit from './pages/ServiceAudit';
-import ServiceJuridique from './pages/ServiceJuridique';
-import Formations from './pages/Formations';
-import FormationSingle from './pages/FormationSingle';
-import EvenementSingle from './pages/EvenementSingle';
-import Contact from './pages/Contact';
-import LegalNotices from './pages/LegalNotices';
-import Blog from './pages/Blog';
-import BlogSingle from './pages/BlogSingle';
-import NotFound from './pages/NotFound';
 import ErrorBoundary from './components/ErrorBoundary';
 import CustomCursor from './components/ui/CustomCursor';
 import BookingModal from './components/ui/BookingModal';
 import { BookingModalProvider } from './context/BookingModalContext';
+import { ToastProvider } from './context/ToastContext';
+
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const ServiceConseil = lazy(() => import('./pages/ServiceConseil'));
+const ServiceAudit = lazy(() => import('./pages/ServiceAudit'));
+const ServiceJuridique = lazy(() => import('./pages/ServiceJuridique'));
+const Formations = lazy(() => import('./pages/Formations'));
+const FormationSingle = lazy(() => import('./pages/FormationSingle'));
+const EvenementSingle = lazy(() => import('./pages/EvenementSingle'));
+const Contact = lazy(() => import('./pages/Contact'));
+const LegalNotices = lazy(() => import('./pages/LegalNotices'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogSingle = lazy(() => import('./pages/BlogSingle'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Configuration React Query
 const queryClient = new QueryClient({
@@ -53,22 +56,24 @@ function AppContent() {
     <>
       {!is404 && <Header />}
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/a-propos" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/conseil-strategie" element={<ServiceConseil />} />
-          <Route path="/services/audit-diagnostic" element={<ServiceAudit />} />
-          <Route path="/services/assistance-juridique" element={<ServiceJuridique />} />
-          <Route path="/formations" element={<Formations />} />
-          <Route path="/formations/:slug" element={<FormationSingle />} />
-          <Route path="/event/:slug" element={<EvenementSingle />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/mentions-legales" element={<LegalNotices />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogSingle />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" /></div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/a-propos" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/conseil-strategie" element={<ServiceConseil />} />
+            <Route path="/services/audit-diagnostic" element={<ServiceAudit />} />
+            <Route path="/services/assistance-juridique" element={<ServiceJuridique />} />
+            <Route path="/formations" element={<Formations />} />
+            <Route path="/formations/:slug" element={<FormationSingle />} />
+            <Route path="/event/:slug" element={<EvenementSingle />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/mentions-legales" element={<LegalNotices />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogSingle />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       {!shouldHideFooter && <Footer />}
     </>
@@ -77,17 +82,21 @@ function AppContent() {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <BookingModalProvider>
-          <Router>
-            <CustomCursor />
-            <BookingModal />
-            <AppContent />
-          </Router>
-        </BookingModalProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
+          <BookingModalProvider>
+            <ToastProvider>
+              <Router>
+                <CustomCursor />
+                <BookingModal />
+                <AppContent />
+              </Router>
+            </ToastProvider>
+          </BookingModalProvider>
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 

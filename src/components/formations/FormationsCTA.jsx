@@ -9,7 +9,7 @@ const FormationsCTA = () => {
   const { openBookingModal } = useBookingModal();
   return (
     <section className="py-24 md:py-32 bg-white">
-      <div className="max-w-container mx-auto px-4">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main CTA Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import HomeNewsletter from '../components/home/HomeNewsletter';
 import BlogHero from '../components/blog/BlogHero';
@@ -99,21 +100,14 @@ const Blog = () => {
   })) : [];
   
   // Combiner et trier par dateTimestamp (plus récent en premier)
-  // Tout est mélangé - tri uniquement par date
   const allNews = [...allEvents, ...allPosts].sort((a, b) => {
     const aTime = a.dateTimestamp || 0;
     const bTime = b.dateTimestamp || 0;
-    console.log(`Sorting: ${a.title} (${aTime}) vs ${b.title} (${bTime}) = ${bTime - aTime}`);
     return bTime - aTime;
   });
   
-  // Debug - retirer après tests
-  console.log('All news (sorted):', allNews.map(n => ({ title: n.title, date: n.date, timestamp: n.dateTimestamp, type: n.type })));
-  
   // Prendre les 4 premières nouvelles pour le slider
   const recentNews = allNews.slice(0, 4);
-  
-  console.log('Recent news (top 4):', recentNews.map(n => ({ title: n.title, date: n.date, timestamp: n.dateTimestamp, type: n.type })));
 
   const itemsPerSlide = 5;
   const totalSlides = recentNews.length > 0 ? Math.max(1, Math.ceil(recentNews.length / itemsPerSlide)) : 1;
@@ -128,6 +122,19 @@ const Blog = () => {
 
   return (
     <>
+      <SEO
+        title="Blog & Événements"
+        description="Actualités, analyses et événements de K-EMPIRE Corporation. Restez informé des dernières tendances en business, droit et management au Togo."
+        url="/blog"
+        image="/assets/images/services/coverImage.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "Blog K-EMPIRE Corporation",
+          "description": "Actualités, analyses et événements au Togo.",
+          "url": "https://kempirecorporation.com/blog"
+        }}
+      />
       <PageBanner
         title="Blog & Événements"
         description="Actualités, analyses et événements pour rester informé"

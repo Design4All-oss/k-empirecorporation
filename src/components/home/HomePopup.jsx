@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, Calendar, MapPin, Users, Mail, User, Briefcase, Globe } from 'lucide-react';
+import { X, ArrowRight, Calendar, MapPin, MessageCircle, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
-import { useBookingModal } from '../../context/BookingModalContext';
 import { useFeaturedFormations } from '../../hooks';
 
+const TelegramIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+  </svg>
+);
+
 const HomePopup = () => {
-  const { openBookingModal } = useBookingModal();
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    profession: '',
-    email: '',
-    country: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { data: featuredFormations, isLoading } = useFeaturedFormations();
 
@@ -34,19 +30,6 @@ const HomePopup = () => {
 
   const handleClose = () => {
     setIsVisible(false);
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Newsletter signup:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      handleClose();
-    }, 2000);
   };
 
   const featuredEvent = featuredFormations && featuredFormations.length > 0 ? featuredFormations[0] : null;
@@ -117,9 +100,6 @@ const HomePopup = () => {
                     <p className="text-text-muted mb-4 text-sm">
                       Formation a la une - Ne manquez pas cette opportunite !
                     </p>
-                    <p className="text-text-muted mb-6">
-                      Vous souhaitez developper les competences de vos equipes ou beneficier d'un accompagnement personnalise ? Parlons de vos besoins.
-                    </p>
 
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Link to={`/formations/${featuredEvent.slug}`} onClick={handleClose}>
@@ -134,6 +114,32 @@ const HomePopup = () => {
                         </button>
                       </Link>
                     </div>
+
+                    <div className="mt-6 pt-6 border-t border-gray-100">
+                      <p className="text-center text-sm text-text-muted mb-4">
+                        Rejoignez notre communauté
+                      </p>
+                      <div className="flex justify-center gap-4">
+                        <a
+                          href="https://t.me/kempirecorporation"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-6 py-3 bg-[#0088cc] text-white rounded-full hover:bg-[#0077b5] transition-colors"
+                        >
+                          <TelegramIcon />
+                          <span className="font-medium text-sm">Telegram</span>
+                        </a>
+                        <a
+                          href="https://wa.me/228"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
+                        >
+                          <MessageCircle size={20} />
+                          <span className="font-medium text-sm">WhatsApp</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </>
               ) : (
@@ -145,117 +151,46 @@ const HomePopup = () => {
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
-                        <Users className="w-8 h-8 text-accent" />
+                        <Send className="w-8 h-8 text-accent" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-6">
-                    {isSubmitted ? (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="text-center py-8"
+                  <div className="p-6 text-center">
+                    <span className="inline-block px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full mb-3">
+                      COMMUNAUTE K-EMPIRE
+                    </span>
+                    <h3 className="text-xl font-bold text-primary font-display mb-2">
+                      Rejoignez 5 000+ Professionnels
+                    </h3>
+                    <p className="text-text-muted text-sm mb-6">
+                      Accedez a nos ressources gratuites, formations exclusives et reseau d'experts sur Telegram et WhatsApp.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row justify-center gap-3">
+                      <a
+                        href="https://t.me/kempirecorporation"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-[#0088cc] text-white rounded-full hover:bg-[#0077b5] transition-colors"
                       >
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <Users className="w-8 h-8 text-green-600" />
-                        </div>
-                        <h3 className="text-xl font-bold text-primary mb-2">Bienvenue dans la communaute !</h3>
-                        <p className="text-text-muted">Vous recevrez nos actualites et opportunities par email.</p>
-                      </motion.div>
-                    ) : (
-                      <>
-                        <div className="text-center mb-6">
-                          <span className="inline-block px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full mb-3">
-                            COMMUNAUTE K-EMPIRE
-                          </span>
-                          <h3 className="text-xl font-bold text-primary font-display mb-2">
-                            Rejoignez 5 000+ Professionnels
-                          </h3>
-                          <p className="text-text-muted text-sm">
-                            Accedez a nos ressources gratuites, formations exclusives et reseau d'experts.
-                          </p>
-                        </div>
+                        <TelegramIcon />
+                        <span className="font-medium text-sm">Rejoindre Telegram</span>
+                      </a>
+                      <a
+                        href="https://wa.me/228"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
+                      >
+                        <MessageCircle size={20} />
+                        <span className="font-medium text-sm">Rejoindre WhatsApp</span>
+                      </a>
+                    </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-3">
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="relative">
-                              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                              <input
-                                type="text"
-                                name="firstName"
-                                value={formData.firstName}
-                                onChange={handleChange}
-                                placeholder="Prenom"
-                                required
-                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-sm"
-                              />
-                            </div>
-                            <div className="relative">
-                              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                              <input
-                                type="text"
-                                name="lastName"
-                                value={formData.lastName}
-                                onChange={handleChange}
-                                placeholder="Nom"
-                                required
-                                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-sm"
-                              />
-                            </div>
-                          </div>
-                          <div className="relative">
-                            <Briefcase className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                            <input
-                              type="text"
-                              name="profession"
-                              value={formData.profession}
-                              onChange={handleChange}
-                              placeholder="Profession / Fonction"
-                              required
-                              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-sm"
-                            />
-                          </div>
-                          <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                            <input
-                              type="email"
-                              name="email"
-                              value={formData.email}
-                              onChange={handleChange}
-                              placeholder="Email professionnel"
-                              required
-                              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-sm"
-                            />
-                          </div>
-                          <div className="relative">
-                            <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-                            <input
-                              type="text"
-                              name="country"
-                              value={formData.country}
-                              onChange={handleChange}
-                              placeholder="Pays"
-                              required
-                              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-accent focus:ring-2 focus:ring-accent/20 outline-none transition-all text-sm"
-                            />
-                          </div>
-
-                          <Button
-                            type="submit"
-                            variant="primary"
-                            className="w-full justify-center mt-4"
-                          >
-                            Rejoindre la communaute
-                            <ArrowRight size={18} className="ml-2" />
-                          </Button>
-                        </form>
-
-                        <p className="text-xs text-text-muted text-center mt-4">
-                          Gratuit. Sans spam. Des opportunites reelles.
-                        </p>
-                      </>
-                    )}
+                    <p className="text-xs text-text-muted mt-6">
+                      Gratuit. Sans spam. Des opportunites reelles.
+                    </p>
                   </div>
                 </>
               )}

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import FormationsHero from '../components/formations/FormationsHero';
 import FormationsTypes from '../components/formations/FormationsTypes';
@@ -24,6 +25,19 @@ const Formations = () => {
 
   return (
     <>
+      <SEO
+        title="Formations"
+        description="K-EMPIRE Corporation propose des formations certifiantes et programmes sur mesure pour renforcer les compétences de vos équipes au Togo."
+        url="/formations"
+        image="/assets/images/services/coverImage.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Formations K-EMPIRE Corporation",
+          "description": "Formations certifiantes et programmes sur mesure au Togo.",
+          "url": "https://kempirecorporation.com/formations"
+        }}
+      />
       <PageBanner
         title="Formations"
         description="Des programmes certifiants pratiques et orientés résultats pour propulser votre carrière vers l'excellence professionnelle."

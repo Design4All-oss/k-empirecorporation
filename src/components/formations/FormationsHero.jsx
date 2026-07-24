@@ -11,7 +11,7 @@ const FormationsHero = () => {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

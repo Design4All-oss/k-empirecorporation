@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, MapPin, Video, Users, Target, FileText, CheckCircle, ArrowRight, GraduationCap, X, MessageCircle } from 'lucide-react';
-import { useFormation, useFormations, useRecentPosts } from '../hooks';
+import SEO from '../components/ui/SEO';
+import { useFormation, useFormations } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 import Button from '../components/ui/Button';
+import { submitNewsletter, submitFormationInscription } from '../api/forms';
+import { useToast } from '../context/ToastContext';
 
 // Icons
 const FacebookIcon = () => (
@@ -37,7 +40,6 @@ const FormationSingle = () => {
     ? allFormations.filter(f => f.slug !== slug).slice(0, 3)
     : [];
   
-  const [recentPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
@@ -53,28 +55,64 @@ const FormationSingle = () => {
     objectif: '',
     acceptContact: false
   });
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const toast = useToast();
 
   const nextStep = () => setCurrentStep(currentStep + 1);
   const prevStep = () => setCurrentStep(currentStep - 1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setShowModal(false);
-    setCurrentStep(0);
-    setFormData({ 
-      name: '', 
-      email: '', 
-      phone: '', 
-      organization: '', 
-      message: '',
-      inscriptionType: '',
-      fonction: '',
-      pays: '',
-      format: '',
-      objectif: '',
-      acceptContact: false
-    });
+    setSubmitting(true);
+    try {
+      await submitFormationInscription({
+        nom: formData.name,
+        email: formData.email,
+        telephone: formData.phone,
+        formation_slug: slug,
+        formation_id: formation?.id?.toString() || '',
+        fonction: formData.fonction,
+        entreprise: formData.organization,
+        message: `Format: ${formData.format}. Objectif: ${formData.objectif}. Type: ${formData.inscriptionType}`,
+      });
+      toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
+      setShowModal(false);
+      setCurrentStep(0);
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        organization: '', 
+        message: '',
+        inscriptionType: '',
+        fonction: '',
+        pays: '',
+        format: '',
+        objectif: '',
+        acceptContact: false
+      });
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleNewsletterSidebar = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+    setNewsletterLoading(true);
+    try {
+      await submitNewsletter({ email: newsletterEmail, nom: '', source: 'formation-sidebar' });
+      toast('Inscription à la newsletter réussie !');
+      setNewsletterEmail('');
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setNewsletterLoading(false);
+    }
   };
 
   // Loading state
@@ -102,6 +140,31 @@ const FormationSingle = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title={formation.title}
+        description={formation.hook || `Formation ${formation.title} - K-EMPIRE Corporation`}
+        url={`/formations/${slug}`}
+        image={formation.image}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": formation.title,
+          "description": formation.hook,
+          "url": `https://kempirecorporation.com/formations/${slug}`,
+          "provider": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          },
+          "hasCourseInstance": {
+            "@type": "CourseInstance",
+            "courseMode": formation.format,
+            "location": {
+              "@type": "Place",
+              "name": formation.location
+            }
+          }
+        }}
+      />
       {/* Hero Banner */}
       <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <img
@@ -112,7 +175,7 @@ const FormationSingle = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-20 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
@@ -443,16 +506,19 @@ const FormationSingle = () => {
               <div className="bg-primary rounded-3xl p-6 text-white mt-8">
                 <h3 className="text-lg font-bold mb-2">Newsletter</h3>
                 <p className="text-white/70 text-sm mb-4">Recevez nos dernières formations et actualités</p>
-                <div className="flex gap-3">
+                <form onSubmit={handleNewsletterSidebar} className="flex gap-3">
                   <input 
-                    type="email" 
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Votre email" 
+                    required
                     className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-accent"
                   />
-                  <button className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent-light transition-colors flex-shrink-0">
+                  <button type="submit" disabled={newsletterLoading} className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent-light transition-colors flex-shrink-0 disabled:opacity-50">
                     <ArrowRight size={18} />
                   </button>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -581,7 +647,7 @@ const FormationSingle = () => {
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                           className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="+228 XX XX XX XX"
+                          placeholder="+228 92 66 45 50"
                         />
                       </div>
 
@@ -732,8 +798,8 @@ const FormationSingle = () => {
                       <Button variant="outline" onClick={prevStep}>
                         Retour
                       </Button>
-                      <Button type="submit">
-                        Envoyer ma demande
+                      <Button type="submit" disabled={submitting}>
+                        {submitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                       </Button>
                     </div>
                   </form>

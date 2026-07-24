@@ -10,9 +10,9 @@ const LegalNoticesContent = () => {
       content: `K-EMPIRE CORPORATION est une structure de conseil et d'accompagnement basée au Togo, active dans les domaines du droit, de la comptabilité, de la fiscalité et du management. Le site web accessible à l'adresse www.k-empirecorporation.com est édité par :
 
 K-EMPIRE CORPORATION
-Quartier Kara Centre, Togo
+Quartier Agoè-Kossigan, Lomé-Togo
 Email : contact@k-empirecorporation.com
-Téléphone : +228 90 00 00 00
+Téléphone : +228 92 66 45 50
 
 Le directeur de la publication est le représentant légal de K-EMPIRE CORPORATION, personne morale dûment enregistrée auprès des autorités compétentes togolaises.`,
       hasList: false
@@ -134,14 +134,14 @@ K-EMPIRE CORPORATION peut presenter des références à des partenaires commerci
       title: "8. Droit Applicable & Juridiction",
       content: `Les présentes mentions légales sont régies par le droit togolais, en vigueur à la date de leur publication.
 
-En cas de litige relatif à l'interprétation ou à l'exécution des présentes, les parties s'efforceront de trouver une solution amiable. À défaut, les tribunaux de Kara (Togo) seront seuls compétents, sauf dispositions impératives contraire.
+En cas de litige relatif à l'interprétation ou à l'exécution des présentes, les parties s'efforceront de trouver une solution amiable. À défaut, les tribunaux de Lomé (Togo) seront seuls compétents, sauf dispositions impératives contraire.
 
 K-EMPIRE CORPORATION se réserve le droit de modifier les présentes mentions légales à tout moment. Les utilisateurs sont invités à consulter régulièrement cette page pour prendre connaissance des éventuelles modifications.
 
 Pour toute question concernant ces mentions légales ou pour exercer vos droits, contactez-nous :
 Email : contact@k-empirecorporation.com
-Téléphone : +228 90 00 00 00
-Adresse : Kara, Togo`,
+Téléphone : +228 92 66 45 50
+Adresse : Agoè-Kossigan, Lomé-Togo`,
       columns: false,
       hasList: false
     }
@@ -168,7 +168,7 @@ Adresse : Kara, Togo`,
       {/* Background */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent" />
       
-      <div className="max-w-4xl mx-auto px-4 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -213,7 +213,7 @@ Adresse : Kara, Togo`,
                   </div>
                   
                   {/* Content */}
-                  <div className={`text-body text-text-muted leading-relaxed pl-16 ${section.columns ? 'md:columns-2 md:gap-16' : ''}`}>
+                  <div className={`text-body text-text-muted leading-relaxed pl-0 md:pl-16 ${section.columns ? 'md:columns-2 md:gap-16' : ''}`}>
                     {section.content && (
                       <div className="text-justify whitespace-pre-wrap mb-6">{section.content}</div>
                     )}

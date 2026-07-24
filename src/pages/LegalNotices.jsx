@@ -1,10 +1,16 @@
 import React from 'react';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import LegalNoticesContent from '../components/legal/LegalNoticesContent';
 
 const LegalNotices = () => {
   return (
     <>
+      <SEO
+        title="Mentions légales"
+        description="Informations légales relatives à l'utilisation du site web de K-EMPIRE Corporation au Togo."
+        url="/legal-notices"
+      />
       <PageBanner
         title="Mentions légales"
         description="Informations légales relatives à l'utilisation de notre site web"

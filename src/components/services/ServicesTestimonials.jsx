@@ -149,7 +149,7 @@ const ServicesTestimonials = () => {
 
   return (
     <section className="py-20 md:py-28 bg-[#F8FAFC] overflow-hidden">
-      <div className="max-w-container mx-auto px-4 mb-12">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -208,7 +208,7 @@ const ServicesTestimonials = () => {
       </div>
 
       {/* Stats Counters - After testimonials */}
-      <div className="max-w-container mx-auto px-4 mt-8">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 30 }}

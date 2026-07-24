@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import AboutNewsletter from '../components/about/AboutNewsletter';
 import Button from '../components/ui/Button';
-import { Search, ArrowRight, CheckCircle, FileCheck, Shield, TrendingUp, AlertCircle, BarChart3, Microscope, PenTool, Clock, Users, Eye, Target, Zap, ChevronRight, Activity, Crosshair, Compass, ChevronDown, Plus, Minus, FileSearch, Calculator, Building2, LineChart, PhoneCall, Mail, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Clock, Users, Plus, Minus, FileSearch, Calculator, Building2, LineChart, PhoneCall, Mail, MessageCircle } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
 
 const ServiceAudit = () => {
@@ -87,6 +87,33 @@ const ServiceAudit = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Audit & Diagnostic"
+        description="K-EMPIRE Corporation réalise des audits juridiques, fiscaux et organisationnels pour identifier les risques et les leviers d'amélioration au Togo."
+        url="/services/audit-diagnostic"
+        image="/assets/images/services/coverImage.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Audit & Diagnostic",
+          "description": "Audits juridiques, fiscaux et organisationnels au Togo.",
+          "url": "https://kempirecorporation.com/services/audit-diagnostic",
+          "provider": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services d'audit",
+            "itemListElement": services.map((s, i) => ({
+              "@type": "Offer",
+              "position": i + 1,
+              "name": s.title,
+              "description": s.desc
+            }))
+          }
+        }}
+      />
       <PageBanner
         title="Audit & Diagnostic"
         description="Ce que vous ne pouvez pas voir vous coûte cher. Nous mettons la lumière sur les risques cachés et les opportunités que vous ignorez."
@@ -96,7 +123,7 @@ const ServiceAudit = () => {
 
       {/* Stats Row */}
       <section className="py-16 bg-primary">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <motion.div
@@ -117,7 +144,7 @@ const ServiceAudit = () => {
 
       {/* Services Grid */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -160,7 +187,7 @@ const ServiceAudit = () => {
 
       {/* Process Section */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -200,7 +227,7 @@ const ServiceAudit = () => {
 
       {/* FAQ Section */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -271,7 +298,7 @@ const ServiceAudit = () => {
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="max-w-container mx-auto px-4 relative z-10">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -330,11 +357,11 @@ const ServiceAudit = () => {
                     </div>
                     <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
                   </a>
-                  <a href="tel:+228XXXXXXXX" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
+                  <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                       <PhoneCall size={18} className="text-accent" />
                     </div>
-                    <span className="text-body-sm font-medium">+228 XX XX XX XX</span>
+                    <span className="text-body-sm font-medium">+228 92 66 45 50</span>
                   </a>
                 </div>
 

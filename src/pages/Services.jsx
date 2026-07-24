@@ -5,6 +5,7 @@ import {
   Scale, 
   GraduationCap
 } from 'lucide-react';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import ServicesHero from '../components/services/ServicesHero';
 import ServicesGrid from '../components/services/ServicesGrid';
@@ -85,6 +86,23 @@ const Services = () => {
 
   return (
     <>
+      <SEO
+        title="Services"
+        description="K-EMPIRE Corporation propose des services de conseil stratégique, audit, assistance juridique et formations professionnelles au Togo."
+        url="/services"
+        image="/assets/images/services/coverImage.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Services K-EMPIRE Corporation",
+          "description": "Conseil stratégique, audit, assistance juridique et formations professionnelles au Togo.",
+          "url": "https://kempirecorporation.com/services",
+          "provider": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          }
+        }}
+      />
       <PageBanner
         title="Nos services"
         description="Nous vous accompagnons dans la conception, la sécurisation et la mise en œuvre de vos projets à haute valeur ajoutée."

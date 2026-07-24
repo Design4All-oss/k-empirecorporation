@@ -80,7 +80,7 @@ const HomeHero = () => {
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-primary/[0.02] rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-8 items-center">
           
           {/* LEFT CONTENT COLUMN */}

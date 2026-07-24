@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import SEO from '../components/ui/SEO';
 import { usePost, usePosts } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 
@@ -72,6 +73,29 @@ const BlogSingle = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title={post.title}
+        description={post.excerpt || `Article ${post.title} - K-EMPIRE Corporation`}
+        url={`/blog/${slug}`}
+        image={post.image}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "description": post.excerpt,
+          "url": `https://kempirecorporation.com/blog/${slug}`,
+          "author": {
+            "@type": "Person",
+            "name": authorName
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          },
+          "datePublished": post.date,
+          "image": post.image
+        }}
+      />
       <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <img
           src={post.image || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=600&fit=crop'}
@@ -81,7 +105,7 @@ const BlogSingle = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-20 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <motion.div

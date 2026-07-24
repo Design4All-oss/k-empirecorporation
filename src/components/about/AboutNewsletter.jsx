@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 import { Inbox } from 'lucide-react';
+import { submitNewsletter } from '../../api/forms';
+import { useToast } from '../../context/ToastContext';
 
 const AboutNewsletter = () => {
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Newsletter subscription:', email);
+    setLoading(true);
+    try {
+      await submitNewsletter({ email, nom: '', source: 'about' });
+      toast('Inscription à la newsletter réussie !');
+      setEmail('');
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section className="py-8 md:py-12 -mb-32 relative z-20">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="bg-accent rounded-3xl p-8 md:p-16 shadow-md relative overflow-hidden flex flex-col items-center text-center">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/[0.03] rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-primary/[0.05] rounded-full translate-y-1/2 -translate-x-1/2" />
@@ -19,7 +32,7 @@ const AboutNewsletter = () => {
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative z-10">
             {/* Left Column - Title & Text */}
             <div className="flex-1 text-center lg:text-left">
-              <h2 className="text-h2-m md:text-h2-d font-bold text-white font-display leading-none mb-4 whitespace-nowrap">
+              <h2 className="text-h2-m md:text-h2-d font-bold text-white font-display leading-none mb-4">
                 Restez informé
               </h2>
               <p className="text-body text-white/80 max-w-sm">
@@ -43,8 +56,8 @@ const AboutNewsletter = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="px-6 py-3 bg-white text-primary font-semibold rounded-pill hover:bg-white/90 transition-colors">
-                  S'inscrire
+                <button type="submit" disabled={loading} className="px-6 py-3 bg-white text-primary font-semibold rounded-pill hover:bg-white/90 transition-colors disabled:opacity-50">
+                  {loading ? 'En cours...' : "S'inscrire"}
                 </button>
               </form>
             </div>

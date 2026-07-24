@@ -122,7 +122,7 @@ const ServicesFormationsCatalog = () => {
 
   return (
     <section className="py-20 md:py-28 bg-white">
-      <div className="max-w-container mx-auto px-4">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

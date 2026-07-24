@@ -9,7 +9,7 @@ const Section = ({ title, intro, children, variant = 'white', className = '', id
       id={id}
       className={`py-8 md:py-12 ${isAlt ? 'bg-bg-alt' : 'bg-bg'} ${className}`}
     >
-      <div className="max-w-container mx-auto px-4">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {(title || intro) && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Clock, MapPin, Users, ArrowRight, Monitor, MapPinHouse, MessageCircle, X, CheckCircle } from 'lucide-react';
+import SEO from '../components/ui/SEO';
 import { useEvenement, useEvenements } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 import Button from '../components/ui/Button';
+import { submitNewsletter, submitEvenementInscription } from '../api/forms';
+import { useToast } from '../context/ToastContext';
 
 const FacebookIcon = () => (
   <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor">
@@ -46,24 +49,59 @@ const EvenementSingle = () => {
     pays: '',
     acceptContact: false
   });
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const toast = useToast();
 
   const nextStep = () => setCurrentStep(currentStep + 1);
   const prevStep = () => setCurrentStep(currentStep - 1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setShowModal(false);
-    setCurrentStep(0);
-    setFormData({ 
-      name: '', 
-      email: '', 
-      phone: '', 
-      organisation: '',
-      fonction: '',
-      pays: '',
-      acceptContact: false
-    });
+    setSubmitting(true);
+    try {
+      await submitEvenementInscription({
+        nom: formData.name,
+        email: formData.email,
+        telephone: formData.phone,
+        evenement_slug: slug,
+        evenement_id: evenement?.id?.toString() || '',
+        fonction: formData.fonction,
+        entreprise: formData.organisation,
+      });
+      toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
+      setShowModal(false);
+      setCurrentStep(0);
+      setFormData({ 
+        name: '', 
+        email: '', 
+        phone: '', 
+        organisation: '',
+        fonction: '',
+        pays: '',
+        acceptContact: false
+      });
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleNewsletterSidebar = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+    setNewsletterLoading(true);
+    try {
+      await submitNewsletter({ email: newsletterEmail, nom: '', source: 'event-sidebar' });
+      toast('Inscription à la newsletter réussie !');
+      setNewsletterEmail('');
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setNewsletterLoading(false);
+    }
   };
 
   if (isLoading) {
@@ -89,6 +127,27 @@ const EvenementSingle = () => {
 
   return (
     <div className="min-h-screen bg-white pb-20">
+      <SEO
+        title={evenement.title}
+        description={evenement.excerpt || `Événement ${evenement.title} - K-EMPIRE Corporation`}
+        url={`/event/${slug}`}
+        image={evenement.image || defaultImage}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Event",
+          "name": evenement.title,
+          "description": evenement.excerpt,
+          "url": `https://kempirecorporation.com/event/${slug}`,
+          "location": {
+            "@type": "Place",
+            "name": evenement.location
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          }
+        }}
+      />
       <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <img
           src={evenement.image || defaultImage}
@@ -103,7 +162,7 @@ const EvenementSingle = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 -mt-20 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-10">
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <motion.div
@@ -276,12 +335,11 @@ const EvenementSingle = () => {
 
               {evenement.spots && (evenement.registered || 0) < evenement.spots ? (
                 <div className="flex items-center gap-4">
-                  <button 
+                  <Button 
                     onClick={() => setShowModal(true)}
-                    className="py-3 px-6 bg-accent text-white font-semibold rounded-full hover:bg-orange-400 transition-colors flex items-center justify-center gap-2"
                   >
-                    S'inscrire <ArrowRight size={18} />
-                  </button>
+                    S'inscrire <ArrowRight size={18} className="ml-2" />
+                  </Button>
                   <a 
                     href="https://wa.me/228"
                     target="_blank"
@@ -292,9 +350,9 @@ const EvenementSingle = () => {
                   </a>
                 </div>
               ) : (
-                <button className="py-3 px-6 bg-gray-300 text-white font-semibold rounded-full cursor-not-allowed">
+                <Button variant="outline" disabled>
                   Complet
-                </button>
+                </Button>
               )}
 
               <div className="flex items-center justify-between pt-8 border-t border-gray-100 mt-8">
@@ -360,16 +418,19 @@ const EvenementSingle = () => {
               <div className="bg-primary rounded-3xl p-6 text-white mt-8">
                 <h3 className="text-lg font-bold mb-2">Newsletter</h3>
                 <p className="text-white/70 text-sm mb-4">Recevez nos dernières invitations</p>
-                <div className="flex gap-3">
+                <form onSubmit={handleNewsletterSidebar} className="flex gap-3">
                   <input 
-                    type="email" 
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Votre email" 
+                    required
                     className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-accent"
                   />
-                  <button className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent-light transition-colors flex-shrink-0">
+                  <button type="submit" disabled={newsletterLoading} className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent-light transition-colors flex-shrink-0 disabled:opacity-50">
                     <ArrowRight size={18} />
                   </button>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -490,7 +551,7 @@ const EvenementSingle = () => {
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                           className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="+228 XX XX XX XX"
+                          placeholder="+228 92 66 45 50"
                         />
                       </div>
 
@@ -586,8 +647,8 @@ const EvenementSingle = () => {
                       <Button variant="outline" onClick={prevStep}>
                         Retour
                       </Button>
-                      <Button type="submit">
-                        Confirmer mon inscription
+                      <Button type="submit" disabled={submitting}>
+                        {submitting ? 'Envoi en cours...' : 'Confirmer mon inscription'}
                       </Button>
                     </div>
                   </form>

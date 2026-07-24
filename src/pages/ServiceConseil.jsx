@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import AboutNewsletter from '../components/about/AboutNewsletter';
 import Button from '../components/ui/Button';
-import { Compass, ArrowRight, CheckCircle, Users, TrendingUp, Target, Shield, Clock, MapPin, BookOpen, Award, Briefcase, Zap, ChevronRight, Rocket, Globe, Lightbulb, Star, Sparkles, BarChart3, Handshake, PhoneCall, Mail, MessageCircle } from 'lucide-react';
+import { ArrowRight, Users, Target, Shield, Clock, Briefcase, Star, Award, Zap, Globe, Handshake, BarChart3, Sparkles, MessageCircle, Mail, PhoneCall } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
 
 const ServiceConseil = () => {
@@ -58,6 +58,23 @@ const ServiceConseil = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Conseil & Stratégie"
+        description="K-EMPIRE Corporation vous accompagne dans la définition et la mise en œuvre de votre stratégie de développement. Conseil stratégique pour entreprises au Togo."
+        url="/services/conseil-strategie"
+        image="/assets/images/services/coverImage.png"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Conseil & Stratégie d'entreprise",
+          "description": "Accompagnement stratégique pour entreprises au Togo.",
+          "url": "https://kempirecorporation.com/services/conseil-strategie",
+          "provider": {
+            "@type": "Organization",
+            "name": "K-EMPIRE Corporation"
+          }
+        }}
+      />
       {/* Hero Banner */}
       <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <img
@@ -80,7 +97,7 @@ const ServiceConseil = () => {
 
       {/* About / Stats Section with Image Collage */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left: Image Collage */}
             <motion.div
@@ -177,7 +194,7 @@ const ServiceConseil = () => {
 
       {/* Services Grid */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -220,7 +237,7 @@ const ServiceConseil = () => {
 
       {/* Process Section */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-container mx-auto px-4">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -261,7 +278,7 @@ const ServiceConseil = () => {
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-        <div className="max-w-container mx-auto px-4 relative z-10">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -320,11 +337,11 @@ const ServiceConseil = () => {
                     </div>
                     <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
                   </a>
-                  <a href="tel:+228XXXXXXXX" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
+                  <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
                     <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                       <PhoneCall size={18} className="text-accent" />
                     </div>
-                    <span className="text-body-sm font-medium">+228 XX XX XX XX</span>
+                    <span className="text-body-sm font-medium">+228 92 66 45 50</span>
                   </a>
                 </div>
 

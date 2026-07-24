@@ -18,7 +18,7 @@ const AboutVision = () => {
 
   return (
     <section className="py-16 md:py-24 bg-transparent relative overflow-hidden z-20 -mb-64">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-0 items-stretch rounded-2xl overflow-hidden shadow-2xl">
           
           {/* Left Column - Image */}

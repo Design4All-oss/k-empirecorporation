@@ -17,7 +17,7 @@ const BlogArticles = ({ posts, currentPostsSlide, setCurrentPostsSlide, totalPos
   return (
     <div className="relative">
       <section className="py-16 md:py-24 min-h-[500px] bg-gray-50">
-        <div className="max-w-container mx-auto px-4 pb-48">
+        <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 pb-48">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

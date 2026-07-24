@@ -49,7 +49,7 @@ const HomeTestimonials = () => {
         style={{ backgroundImage: 'url(/assets/images/testamonials/pattern.png)', backgroundSize: '1200px', backgroundPosition: 'center 100px', backgroundRepeat: 'no-repeat' }}
       ></div>
 
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">
           <span className="text-small text-accent mb-6">Voix de nos Partenaires</span>
           <h2 className="text-h2-m md:text-h2-d text-primary font-semibold max-w-5xl mb-8">
@@ -75,7 +75,7 @@ const HomeTestimonials = () => {
               <div className="flex-shrink-0 w-full sm:w-[240px]">
                 <img 
                   src={`/assets/images/testamonials/${currentTestimonial.image}`}
-                  alt="Testimonial"
+                  alt={`Photo de ${currentTestimonial.name}`}
                   className="w-full h-[240px] sm:h-[280px] object-contain rounded-lg"
                 />
               </div>

@@ -18,7 +18,7 @@ const HomeWhyUs = () => {
 
   return (
     <section className="py-12 md:py-20 bg-white relative overflow-hidden">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Image */}
           <motion.div

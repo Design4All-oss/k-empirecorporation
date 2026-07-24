@@ -18,7 +18,7 @@ const AboutTeam = () => {
 
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
-      <div className="max-w-container mx-auto px-4 relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
           {/* Content Section - Left */}
           <motion.div
