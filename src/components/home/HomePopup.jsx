@@ -98,7 +98,7 @@ const HomePopup = () => {
 
                   <div className="p-6">
                     <p className="text-text-muted mb-4 text-sm">
-                      Formation a la une - Ne manquez pas cette opportunite !
+                      Formation à la une - Ne manquez pas cette opportunité !
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4">
@@ -189,7 +189,7 @@ const HomePopup = () => {
                     </div>
 
                     <p className="text-xs text-text-muted mt-6">
-                      Gratuit. Sans spam. Des opportunites reelles.
+                      Gratuit. Sans spam. Des opportunités réelles.
                     </p>
                   </div>
                 </>

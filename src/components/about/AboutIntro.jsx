@@ -20,7 +20,7 @@ const AboutIntro = () => {
           {/* Opening Paragraph - Storytelling */}
           <div className="space-y-5 text-base md:text-lg text-text-muted leading-relaxed text-justify">
             <p>
-              Tout a commencé par une conviction profonde : <span className="text-primary font-semibold">chaque organisation mérite d'exceler.</span>
+              Tout a commencé par une conviction profonde : <span className="text-primary font-semibold">chaque organisation mérite d'exceller.</span>
             </p>
             <p>
               Née à Kara, au cœur du Togo, <span className="text-primary font-medium">K-EMPIRE CORPORATION</span> est née de la rencontre d'experts passionnés : juristes, comptables, fiscalistes et spécialistes des questions sociales; unis par un même engagement : accompagner les entreprises vers leur plein potentiel.

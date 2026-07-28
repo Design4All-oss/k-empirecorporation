@@ -66,9 +66,9 @@ export const HOME_CONTENT = {
     title: "Ils nous font confiance",
     intro: "Entreprises, institutions et professionnels nous font confiance pour les accompagner dans leurs enjeux stratégiques et opérationnels.",
     citations: [
-      { id: 1, quote: "Leurs équipes sont agréables à travailler et m'ont aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Herman Miller", role: "Monday", image: "testimonials-01.png" },
-      { id: 2, quote: " Leur équipe est facile à travailler et m'a aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Leonel Mooney", role: "Logitech", image: "testimonials-02.png" },
-      { id: 3, quote: "Leurs équipes sont agréables à travailler et m'ont aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Matthew Taylor", role: "Invision", image: "testimonials-03.png" }
+      { id: 1, quote: "Leurs équipes sont agréables avec qui travailler et m'ont aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Herman Miller", role: "Monday", image: "testimonials-01.png" },
+      { id: 2, quote: "Leur équipe est facile avec qui travailler et m'a aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Leonel Mooney", role: "Logitech", image: "testimonials-02.png" },
+      { id: 3, quote: "Leurs équipes sont agréables avec qui travailler et m'ont aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Matthew Taylor", role: "Invision", image: "testimonials-03.png" }
     ]
   },
   contact: {

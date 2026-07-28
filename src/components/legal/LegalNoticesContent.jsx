@@ -43,9 +43,9 @@ Les marques K-EMPIRE CORPORATION et tous autres signes distinctifs présents sur
       title: "4. Responsabilité & Limitation",
       content: `K-EMPIRE CORPORATION s'attache à fournir des informations exactes, complètes et actuelles. Toutefois, nous ne pouvons garantir l'exactitude absolue de toutes les informations publiées.
 
-Les contenus presentés sur ce site sont fournis à titre purement informatif et ne constituent en aucun cas un conseil juridique, fiscal, comptable ou de gestion personnalisé. Les visiteurs sont invités à consulter des professionnels qualifiés pour toute décision importante.
+Les contenus présentés sur ce site sont fournis à titre purement informatif et ne constituent en aucun cas un conseil juridique, fiscal, comptable ou de gestion personnalisé. Les visiteurs sont invités à consulter des professionnels qualifiés pour toute décision importante.
 
-Nous declinons toute responsabilité pour tout dommage direct ou indirect pouvant résulter de l'utilisation des informations contenues sur ce site, y compris les décisions prises sur la base de ces informations sans consultation préalable d'un professionnel.`,
+Nous déclinons toute responsabilité pour tout dommage direct ou indirect pouvant résulter de l'utilisation des informations contenues sur ce site, y compris les décisions prises sur la base de ces informations sans consultation préalable d'un professionnel.`,
       columns: true,
       hasList: false
     },
@@ -56,7 +56,7 @@ Nous declinons toute responsabilité pour tout dommage direct ou indirect pouvan
 
 L'établissement d'un lien hypertexte vers le site K-EMPIRE CORPORATION nécessite une autorisation préalable et écrite de notre part. Les sites souhaitant créer un lien doivent soumettre leur demande à : contact@k-empirecorporation.com
 
-K-EMPIRE CORPORATION peut presenter des références à des partenaires commerciaux. Ces partenariats ne constituent pas une endorsement ou une garantie de leurs services.`,
+K-EMPIRE CORPORATION peut présenter des références à des partenaires commerciaux. Ces partenariats ne constituent pas une recommandation ou une garantie de leurs services.`,
       columns: true,
       hasList: false
     },

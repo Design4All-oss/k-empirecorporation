@@ -12,8 +12,8 @@ const HomeWhyUs = () => {
   const items = [
     { title: "Une approche globale", description: "Nous accompagnons votre organisation de manière holistique, en prenant en compte tous les aspects de votre développement." },
     { title: "Une expertise pointue", description: "Notre équipe dispose de compétences reconnues dans les domaines du droit, de la finance, du management et de la stratégie." },
-    { title: "Un partenariat durable", description: "Nous construisons des relations long terme avec nos clients, fondées sur la confiance et la résultats mesurables." },
-    { title: "Une méthodologie agile", description: "Nos méthodes s'adaptent à votre contexte et evoluent avec vos besoins pour une efficacité optimale." }
+    { title: "Un partenariat durable", description: "Nous construisons des relations long terme avec nos clients, fondées sur la confiance et des résultats mesurables." },
+    { title: "Une méthodologie agile", description: "Nos méthodes s'adaptent à votre contexte et évoluent avec vos besoins pour une efficacité optimale." }
   ];
 
   return (
@@ -49,7 +49,7 @@ const HomeWhyUs = () => {
               Votre partenaire pour l'excellence
             </h2>
             <p className="text-body text-text-muted mb-8 max-w-lg">
-              Nous accompagnons les organisations vers la réussite grâce à une expertise multidisciplinary et une approche centrée sur vos résultats.
+              Nous accompagnons les organisations vers la réussite grâce à une expertise multidisciplinaire et une approche centrée sur vos résultats.
             </p>
 
             {/* Accordion Items - 2 columns */}

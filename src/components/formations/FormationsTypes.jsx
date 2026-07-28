@@ -67,7 +67,7 @@ const FormationsTypes = () => {
             Une offre adaptée à vos besoins
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto text-lg">
-            Choisisez le format qui convient le mieux à votre organisation et à vos objectifs de développement des compétences.
+            Choisissez le format qui convient le mieux à votre organisation et à vos objectifs de développement des compétences.
           </p>
         </motion.div>
 

@@ -108,7 +108,7 @@ const HomeHero = () => {
               variants={itemVariants}
               className="text-body-lg text-text-muted leading-relaxed max-w-[480px]"
             >
-              Nous accompagne les entreprises, institutions et professionnels avec des solutions sur mesure en management, droit, comptabilité, fiscalité et disciplines connexes.
+              Nous accompagnons les entreprises, institutions et professionnels avec des solutions sur mesure en management, droit, comptabilité, fiscalité et disciplines connexes.
             </motion.p>
 
             {/* Call to Actions */}
