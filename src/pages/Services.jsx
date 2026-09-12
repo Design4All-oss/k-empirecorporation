@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Compass, 
-  Search, 
+  BrainCircuit, 
   Scale, 
   GraduationCap
 } from 'lucide-react';
@@ -19,16 +19,16 @@ import HomeNewsletter from '../components/home/HomeNewsletter';
 // Services content based on content.md
 const SERVICES_CONTENT = {
   hero: {
-    label: "Nos services",
+    label: "Nos expertises",
     title: "Développez et libérez votre potentiel",
     subtitle: "Nous vous accompagnons dans la conception, la sécurisation et la mise en œuvre de vos projets à haute valeur ajoutée.",
-    description: "K‑EMPIRE CORPORATION propose un ensemble de services structurés pour répondre aux besoins des entreprises, des administrations et des institutions, qu'il s'agisse de conseil stratégique, d'audit, d'assistance juridique ou de renforcement de capacités."
+    description: "K‑EMPIRE CORPORATION propose un ensemble de services structurés pour répondre aux besoins des entreprises, des administrations et des institutions, qu'il s'agisse de conseil stratégique, d'intelligence stratégique, d'ingénierie juridique ou de formation exécutive."
   },
   services: [
     {
       id: 1,
       icon: Compass,
-      title: "Conseil & stratégie d'entreprise",
+      title: "Conseil Stratégique",
       description: "Nous aidons les dirigeants et décideurs à prendre des décisions éclairées, à anticiper les risques et à saisir les opportunités de développement.",
       points: [
         "Élaboration, revue et mise en œuvre de plans stratégiques",
@@ -39,20 +39,20 @@ const SERVICES_CONTENT = {
     },
     {
       id: 2,
-      icon: Search,
-      title: "Audit & diagnostic",
-      description: "Nos audits vous permettent d'avoir une vision claire des forces et faiblesses de votre organisation, de vos procédures et de vos risques.",
+      icon: BrainCircuit,
+      title: "Intelligence Stratégique",
+      description: "Nous aidons vos dirigeants à anticiper les évolutions de leur environnement grâce à une veille stratégique, des analyses prospectives et des données d'aide à la décision.",
       points: [
-        "Audits juridiques et fiscaux : conformité, identification des risques",
-        "Diagnostics organisationnels et managériaux",
-        "Audits de conformité et de gouvernance",
-        "Recommandations avec plan d'actions priorisé"
+        "Veille stratégique et analyse de l'environnement",
+        "Analyses prospectives et construction de scénarios",
+        "Études de marché, sectorielles et concurrentielles",
+        "Monitoring et tableaux de bord de décision"
       ]
     },
     {
       id: 3,
       icon: Scale,
-      title: "Assistance juridique, comptable & fiscale",
+      title: "Ingénierie Juridique",
       description: "Nous sécurisons vos décisions et opérations grâce à un accompagnement juridique, comptable et fiscal adapté à votre contexte.",
       points: [
         "Assistance en droit des affaires (contrats, partenariats, restructuration)",
@@ -64,7 +64,7 @@ const SERVICES_CONTENT = {
     {
       id: 4,
       icon: GraduationCap,
-      title: "Formations & renforcement de capacités",
+      title: "Formation Exécutive",
       description: "Nous concevons des parcours de formation adaptés aux besoins des cadres, dirigeants, experts et étudiants, avec une approche résolument pratique.",
       points: [
         "Formations inter-entreprises sur des thématiques clés",
@@ -87,15 +87,15 @@ const Services = () => {
   return (
     <>
       <SEO
-        title="Services"
-        description="K-EMPIRE Corporation propose des services de conseil stratégique, audit, assistance juridique et formations professionnelles au Togo."
+        title="Nos Expertises"
+        description="K-EMPIRE Corporation propose des expertises en conseil stratégique, intelligence stratégique, ingénierie juridique et formation exécutive au Togo."
         url="/services"
         image="/assets/images/services/coverImage.png"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
-          "name": "Services K-EMPIRE Corporation",
-          "description": "Conseil stratégique, audit, assistance juridique et formations professionnelles au Togo.",
+          "name": "Expertises K-EMPIRE Corporation",
+          "description": "Conseil stratégique, intelligence stratégique, ingénierie juridique et formation exécutive au Togo.",
           "url": "https://kempirecorporation.com/services",
           "provider": {
             "@type": "Organization",
@@ -104,10 +104,10 @@ const Services = () => {
         }}
       />
       <PageBanner
-        title="Nos services"
+        title="Nos expertises"
         description="Nous vous accompagnons dans la conception, la sécurisation et la mise en œuvre de vos projets à haute valeur ajoutée."
         imageUrl="/assets/images/services/coverImage.png"
-        imageAlt="Services K-EMPIRE CORPORATION"
+        imageAlt="Expertises K-EMPIRE CORPORATION"
       />
       <ServicesHero content={hero} />
       <ServicesGrid services={services} />

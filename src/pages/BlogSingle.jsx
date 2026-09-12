@@ -62,7 +62,7 @@ const BlogSingle = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-primary mb-4">Article not found</h1>
+          <h2 className="text-2xl font-bold text-primary mb-4">Article not found</h2>
           <Link to="/blog" className="text-accent hover:underline">
             Back to blog
           </Link>

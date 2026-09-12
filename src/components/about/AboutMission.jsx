@@ -14,8 +14,8 @@ const AboutMission = () => {
     },
     {
       icon: Clock,
-      title: "Disponibilité 24/7",
-      description: "Un accompagnement continu pour répondre à vos besoins."
+      title: "Réponse sous 24h",
+      description: "Chaque demande reçoit une réponse d'un conseiller dans les 24 heures qui suivent."
     }
   ];
 

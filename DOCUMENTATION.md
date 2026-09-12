@@ -15,7 +15,10 @@ Site vitrine React pour K-EMPIRE CORPORATION, cabinet d'études, de conseil et d
 | Framer Motion | 12.38.0 | Animations |
 | GSAP | 3.14.2 | Animations avancées (marquee, curseur) |
 | Tailwind CSS v4 | 4.2.2 | Styles utilitaires |
-| Axios | 1.14.0 | HTTP client WordPress API |
+| Sanity | 6.13.0 | Headless CMS (studio + client) |
+| @sanity/client | 8.6.1 | Client GROQ |
+| @sanity/image-url | 2.1.1 | Optimisation d'images |
+| @sanity/vision | 6.13.0 | Explorateur GROQ (studio) |
 | Lucide React | 0.477.0 | Icônes |
 
 ---
@@ -26,6 +29,20 @@ Site vitrine React pour K-EMPIRE CORPORATION, cabinet d'études, de conseil et d
 kempire/
 ├── index.html
 ├── vite.config.js
+├── sanity.config.js              # Config studio Sanity
+├── sanity.cli.js                 # CLI Sanity (sanity dev / deploy)
+├── schemas/                      # Schémas Sanity (structure éditoriale)
+│   ├── index.js
+│   ├── post.js                   # Articles (posts)
+│   ├── formation.js              # Formations
+│   ├── evenement.js              # Événements
+│   ├── author.js                 # Auteurs
+│   ├── category.js               # Catégories
+│   ├── temoignage.js             # Témoignages (édition site)
+│   ├── statistiques.js           # Statistiques (singleton site)
+│   └── valeurs.js                # Bandeau valeurs (singleton site)
+├── scripts/
+│   └── seed-site-content.mjs     # Seed idempotent témoignages/statistiques/valeurs
 ├── .env.development
 ├── .env.production
 ├── DOCUMENTATION.md
@@ -34,23 +51,21 @@ kempire/
     ├── App.jsx                     # Routes, providers (Query, Toast, BookingModal)
     ├── index.css                   # Design system (@theme Tailwind v4)
     ├── config/
-    │   └── api.js                  # URL base WP + endpoints + query keys
+    │   └── sanity.js               # Client Sanity + urlFor + portableTextToHtml + query keys
     ├── constants/
-    │   └── content.js              # Contenus statiques (home, about, footer, nav)
+    │   ├── content.js              # Contenus statiques (home, about, footer, nav)
+    │   └── charte.js               # Charte officielle + fallbacks témoignages/statistiques/valeurs
     ├── context/
     │   ├── ToastContext.jsx        # Système de toasts (success/error)
     │   └── BookingModalContext.jsx # Contexte modal RDV
     ├── hooks/
     │   ├── index.js                # Re-export des hooks
-    │   ├── usePosts.js             # Articles (posts)
-    │   ├── useFormations.js        # Formations (CPT)
-    │   └── useEvenements.js        # Événements (CPT)
+    │   ├── usePosts.js             # Articles (posts) — GROQ
+    │   ├── useFormations.js        # Formations — GROQ
+    │   ├── useEvenements.js        # Événements — GROQ
+    │   └── useSiteContent.js       # Témoignages / statistiques / valeurs — GROQ
     ├── api/
-    │   ├── forms.js                # Soumission formulaires (newsletter, devis, rdv, inscriptions)
-    │   ├── posts.js                # Articles — getPosts, getPostBySlug, transformPost
-    │   ├── pages.js                # Pages WordPress
-    │   ├── formations.js           # Formations — getFormations, transformFormation
-    │   └── evenements.js           # Événements — getEvenements, transformEvenement
+    │   └── forms.js                # Soumission formulaires (newsletter, devis, rdv, inscriptions)
     ├── pages/
     │   ├── Home.jsx
     │   ├── About.jsx
@@ -73,16 +88,14 @@ kempire/
     │   │   └── Footer.jsx          # Footer visible sur toutes les routes
     │   ├── ui/
     │   │   ├── Button.jsx          # Design system (rounded-pill, px-8 py-4, variants)
-    │   │   ├── Card.jsx
     │   │   ├── Slider.jsx          # Carrousel générique avec dots + navigation
-    │   │   ├── Section.jsx
     │   │   ├── PageBanner.jsx      # Bannière de page
     │   │   ├── Loading.jsx
     │   │   ├── BookingModal.jsx    # Modal RDV (devis)
     │   │   └── CustomCursor.jsx    # Curseur personnalisé
-    │   ├── home/                   # 12 composants Home
+    │   ├── home/                   # 11 composants Home
     │   │   ├── HomeHero.jsx
-    │   │   ├── HomePopup.jsx       # Popup 8s → Telegram/WhatsApp
+    │   │   ├── HomePartners.jsx    # Partenaires (marquee)
     │   │   ├── HomeExpertise.jsx
     │   │   ├── HomeStats.jsx
     │   │   ├── HomeValuesMarquee.jsx
@@ -91,9 +104,8 @@ kempire/
     │   │   ├── HomeWhyUs.jsx
     │   │   ├── HomeTestimonials.jsx
     │   │   ├── HomeNewsletter.jsx
-    │   │   ├── HomeContactCta.jsx
-    │   │   └── HomePartners.jsx
-    │   ├── about/                  # 8 composants About
+    │   │   └── HomeContactCta.jsx
+    │   ├── about/                  # 7 composants About
     │   ├── services/               # 5 composants Services
     │   ├── formations/             # 5 composants Formations
     │   ├── blog/                   # 3 composants Blog
@@ -188,7 +200,7 @@ Pour le texte long, combinaison obligatoire :
 
 ---
 
-## 5. API WordPress
+## 5. Sanity (Headless CMS)
 
 ### 5.1 Configuration
 
@@ -196,60 +208,71 @@ Fichiers `.env` :
 
 ```
 # .env.development
-VITE_WP_API_BASE=http://localhost:8881/wp-json/wp/v2
+VITE_SANITY_PROJECT_ID=xxxxxxxx
+VITE_SANITY_DATASET=production
 
 # .env.production
-VITE_WP_API_BASE=https://admin.k-empirecorporation.com/wp-json/wp/v2
+VITE_SANITY_PROJECT_ID=xxxxxxxx
+VITE_SANITY_DATASET=production
 ```
 
-**Dev** : Vite proxy (`/wp-json` → `localhost:8881`) évite le CORS.
+**Studio** : `npm run studio` (`sanity dev`) — éditeur de contenu sur `localhost:3333`.
 
-**Prod** : CORS configuré côté WordPress — le plugin `kempire-cpt` définit les en-têtes CORS dans `rest-forms.php` :
+**Client** (`src/config/sanity.js`) : `createClient` avec `projectId`, `dataset`, `apiVersion: '2026-01-01'`, `useCdn: import.meta.env.PROD`.
 
-- `Access-Control-Allow-Origin` : domaine frontend (lu depuis l'option `kempire_frontend_url`, fallback `https://k-empirecorporation.com`)
-- `Access-Control-Allow-Credentials: true`
-- `Access-Control-Allow-Methods : POST, OPTIONS`
-- `Access-Control-Allow-Headers : Content-Type, Authorization`
+### 5.2 Schémas (`schemas/`)
 
-Les endpoints `/kempire/v1/*` utilisent `permission_callback: '__return_true'` (pas d'authentification requise).
+| Schéma | Contenu |
+|---|---|
+| `post.js` | title, slug, excerpt, coverImage, body (portable text + images), categories (réf.), author (réf.), featured, tags, readTime |
+| `formation.js` | title, slug, hook, description, content (portable text), category (réf.), level, format, duration, audience, prerequisites, featured, trainers[], program[], objectives[], practical{}, registerLink, coverImage |
+| `evenement.js` | title, slug, excerpt, description, content (portable text), programme, category (réf.), type, startDateTime (datetime), endDateTime, duration, format, lieu, intervenants[], price, capacity, registered, registerLink, coverImage |
+| `author.js` | name, slug, role, bio, image |
+| `category.js` | name, slug, description |
+| `temoignage.js` | nom, fonction, structure, texte, photo (image), consentement (boolean — filtré à `true` côté front) |
+| `statistiques.js` | singleton `site.statistiques` : items[] { value, label, text } |
+| `valeurs.js` | singleton `site.valeurs` : titreGroupe1, groupe1[] { titre, description }, titreGroupe2, groupe2[] { titre, description } |
 
-### 5.2 API base (`src/config/api.js`)
+### 5.2.1 Contenu éditable Home (seed + fallbacks)
 
-```js
-WP_API_URL = import.meta.env.VITE_WP_API_BASE || 'http://localhost:8881/wp-json/wp/v2';
+Les sections témoignages, statistiques et valeurs du site se lisent depuis Sanity avec **fallback statique** (`src/constants/charte.js`) tant que ces champs sont absents.
+
+Seed idempotent (n'écrase jamais les documents existants) :
+
+```bash
+npm run seed
 ```
 
-Endpoints : `posts`, `pages`, `formations`, `evenements`, `categories`, `tags`, `media`, `users`.
+Envs : `SANITY_PROJECT_ID` (ou `VITE_SANITY_PROJECT_ID`), `SANITY_DATASET` (défaut `production`), `SANITY_TOKEN` (ou `SANITY_API_TOKEN`). Crée `site.statistiques`, `site.valeurs` et `site.temoignage-1..3` (témoignages seedés avec `consentement: false`).
 
-### 5.3 Transformers
+### 5.3 Rendu du contenu (`portableTextToHtml`)
 
-Chaque CPT a son propre fichier API avec un `transform*()` qui nettoie les données :
+Le contenu éditeur Sanity (portable text, ex. `post.body`) est converti en HTML dans `src/config/sanity.js` via `portableTextToHtml(blocks)`, puis affiché avec `dangerouslySetInnerHTML` (classes Tailwind `[&_p]:mb-4`, `[&_ul]:list-disc`, etc.).
 
-- **formations.js** : `transformFormation(formation)` — décode HTML entities, extrait `_embedded` media, traite `kempire_trainers` (images via `getMediaUrl`), transforme le programme (ACF repeater `program` → tableau plat), champs `objectives`, `prerequisites`, `practical`.
-- **evenements.js** : `transformEvenement(evenement)` — nettoie excerpt (strip HTML), calcule `spotsLeft`, gère `event_date` (format français), `event_format`.
-- **posts.js** : `transformPost(post)` — extrait featured image, auteur, catégories, champs ACF `author_role`, `author_image`, `read_time`.
+Gère : titres h1–h6, paragraphes, blockquotes, listes ul/ol, gouttes de style (strong, em, code, souligné, barré), liens (`markDefs`) et images inline.
+
+**Pas de `prose`** : Tailwind v4 ne fournit pas `@tailwindcss/typography` par défaut.
 
 ### 5.4 Hooks React Query
 
-Hooks disponibles :
+Hooks GROQ disponibles :
 
-| Hook | Fn API | Cache key |
+| Hook | Query GROQ | Cache key |
 |---|---|---|
-| `usePosts(page, perPage)` | `getPosts()` | `['posts', page, perPage]` |
-| `usePost(slug)` | `getPostBySlug()` | `['post', slug]` |
-| `useRecentPosts(limit)` | `getRecentPosts()` | `['posts', 'recent', limit]` |
-| `usePostsByCategory(id)` | `getPostsByCategory()` | `['posts', 'category', id]` |
-| `useCategories()` | `getCategories()` | `['categories']` |
-| `useMultiplePosts(slugs)` | — | `['post', slug]` × N |
-| `useFormations(params)` | `getFormations()` | `['formations', params]` |
-| `useFormation(slug)` | `getFormationBySlug()` | `['formation', slug]` |
-| `useFeaturedFormations()` | `getFeaturedFormations()` | `['formations', 'featured']` |
-| `useFormationsByCategory(id)` | `getFormationsByCategory()` | `['formations', 'category', id]` |
-| `useMultipleFormations(slugs)` | — | `['formation', slug]` × N |
-| `useEvenements()` | `getEvenements()` | `['evenements']` |
-| `useEvenement(slug)` | `getEvenementBySlug()` | `['evenement', slug]` |
-| `useUpcomingEvenements(limit)` | `getUpcomingEvenements()` | `['evenements', 'upcoming', limit]` |
-| `useMultipleEvenements(slugs)` | — | `['evenement', slug]` × N |
+| `usePosts(page, perPage)` | posts triés par `coalesce(publishedAt, _updatedAt) desc` + slice | `['posts', page, perPage]` |
+| `usePost(slug)` | post par `slug.current` | `['post', slug]` |
+| `useFormations()` | formations triées `featured desc, title asc` | `['formations']` |
+| `useFormation(slug)` | formation par `slug.current` | `['formation', slug]` |
+| `useFeaturedFormations()` | `featured == true`, triées par title | `['formations', 'featured']` |
+| `useEvenements()` | événements triés `startDateTime asc` | `['evenements']` |
+| `useEvenement(slug)` | événement par `slug.current` | `['evenement', slug]` |
+| `useTemoignages()` | témoignages `consentement == true`, triés `_createdAt asc` | `['temoignages']` |
+| `useStatistiques()` | singleton `statistiques[0]` | `['statistiques']` |
+| `useValeurs()` | singleton `valeurs[0]` | `['valeurs']` |
+
+Les hooks `useSiteContent` alimentent Accueil/À propos avec fallback : `useTemoignages` → `TEMOIGNAGES_SEED`, `useStatistiques` → `STATISTIQUES_DEFAULT`, `useValeurs` → `CHARTE_VALEURS` (importés de `src/constants/charte.js`).
+
+Chaque hook projette via GROQ → fonction `transform*()` locale qui mappe vers la forme attendue par les composants (HTML via `portableTextToHtml`, dates, images `asset->url`).
 
 Config globale : `staleTime: 5min`, `cacheTime: 30min`, `retry: 2`, `refetchOnWindowFocus: false`.
 
@@ -259,32 +282,23 @@ Config globale : `staleTime: 5min`, `cacheTime: 30min`, `retry: 2`, `refetchOnWi
 
 ### 6.1 API (`src/api/forms.js`)
 
-Fonction générique `submitForm(endpoint, data)` → `fetch()` POST avec `Content-Type: application/json`.
-
-Construction de l'URL admin :
-
-```js
-ADMIN_API_URL = import.meta.env.VITE_WP_ADMIN_API_URL || (
-  import.meta.env.PROD
-    ? WP_BASE.replace('/wp/v2', '/kempire/v1')
-    : '/wp-json/kempire/v1'
-);
-```
-
-En dev : URL relative ⇒ Vite proxy. En prod : URL absolue.
+Fonction générique `submitForm(endpoint, data)` → `fetch()` POST vers `/api/forms` (fonction serverless Vercel, même origine, marche dev + prod).
 
 Logging : préfixe `[forms]` pour tous les logs (debug, error).
 
-Endpoints disponibles :
+Endpoints disponibles (champ `endpoint` envoyé dans le body) :
 
-| Fn | Endpoint `/kempire/v1/` | Usage |
+| Fn | `endpoint` | Usage |
 |---|---|---|
 | `submitNewsletter(data)` | `newsletter` | Inscription newsletter |
 | `submitFormationInscription(data)` | `inscription-formation` | Inscription formation |
 | `submitEvenementInscription(data)` | `inscription-evenement` | Inscription événement |
 | `submitDevis(data)` | `devis` | Demande de devis |
 | `submitRdv(data)` | `rdv` | Demande de rendez-vous |
-| `submitCommunaute(data)` | `communaute` | Rejoindre communauté |
+
+Côté serveur : `api/forms.js` (fonction Vercel) valide l'endpoint, ne garde que les champs attendus pour ce type, puis crée un document Sanity (`<:type>` — cf. §8) avec `submittedAt` et le statut par défaut. Pour `inscription`/`inscriptionEvenement`, il lie les références `formation`/`session`/`evenement` quand les IDs sont envoyés. Nécessite les env vars `SANITY_PROJECT_ID`, `SANITY_DATASET` et `SANITY_TOKEN` (token d'écriture, jamais exposé côté client).
+
+Un e-mail de notification est également envoyé via **Resend** (`fetch` natif vers l'API REST, non bloquant) si `RESEND_API_KEY`, `RESEND_FROM` et `RESEND_TO` sont définies. Un échec d'envoi e-mail n'entraîne pas l'échec de la soumission.
 
 Chaque appel vérifie `response.ok` puis `json.success`, et throw une erreur avec le message du serveur si échec.
 
@@ -349,7 +363,7 @@ URL : `/formations/:slug`
 
 Structure :
 - Hero image 400-500px avec dégradé
-- Main content (col-span-2) : catégorie + niveau → titre → description (hook) → contenu Gutenberg (content.rendered) → infos clés (2-col grid avec icônes circulaires) → objectifs → public → prérequis → formateurs → programme → modalités pratiques → CTA inscription + WhatsApp
+- Main content (col-span-2) : catégorie + niveau → titre → description (hook) → contenu portable text Sanity (content) → infos clés (2-col grid avec icônes circulaires) → objectifs → public → prérequis → formateurs → programme → modalités pratiques → CTA inscription + WhatsApp
 - Sidebar (col-span-1) : autres formations → newsletter
 
 **Règles prix** : jamais de montant. Si `formation.price` est truthy → "Formation payante" (couleur accent), sinon "Formation gratuite" (couleur green). Appliqué en 3 endroits : infos clés, CTA, récapitulatif modal.
@@ -361,8 +375,8 @@ Structure :
 URL : `/event/:slug`
 
 Structure similaire à FormationSingle mais :
-- Contenu Gutenberg affiché sous "Détails"
-- Programme (HTML) + Intervenants (ACF repeater)
+- Contenu portable text Sanity affiché sous "Détails"
+- Programme (HTML) + Intervenants (schéma)
 - Prix → block "Événement payant" (accent) ou "Événement gratuit" (vert)
 - Infos en 2-col grid : date, heure, durée, lieu, places (registered/spots), format (avec icône `MapPinHouse` si présentiel, `Monitor` si visioconférence)
 - Bouton S'inscrire désactivé si complet (registered >= spots)
@@ -402,49 +416,36 @@ Catalogue `FormationsCatalog.jsx` :
 
 ---
 
-## 8. HomePopup
+## 8. Backend Formulaires (Vercel)
 
-Déclenché après 8 secondes (`setTimeout`), une seule fois par session (`hasShown`).
+Les soumissions de formulaires (newsletter, inscriptions, devis, rdv) passent par une fonction serverless Vercel (`api/forms.js`), stockées dans Sanity et notifiées par email via Resend.
 
-2 modes :
-- **Avec formation featured** : affiche l'image + titre + lien "Voir le programme" + boutons Telegram/WhatsApp
-- **Sans formation featured** : design dégradé primary + message "Rejoignez 5000+ Professionnels" + boutons communautés
+### API (`POST /api/forms`)
 
-Liens :
-- Telegram : `https://t.me/kempirecorporation`
-- WhatsApp : `https://wa.me/228`
+Body JSON : `{ "endpoint": "<type>", ...champs }`, `endpoint` ∈ `newsletter`, `inscription-formation`, `inscription-evenement`, `devis`, `rdv`.
 
----
+Réponse : `200 {"success":true}` ou `400/500 {"success":false, "message"}`.
 
-## 9. WordPress Plugin Requis (`kempire-cpt`)
+### Stockage (Sanity)
 
-Le site dépend d'un plugin WordPress qui expose :
+La fonction mappe `endpoint → type de document` :
+- `newsletter` → `soumissionNewsletter`
+- `inscription-formation` → `inscription`
+- `inscription-evenement` → `inscriptionEvenement`
+- `devis` → `soumissionDevis`
+- `rdv` → `soumissionRdv`
 
-### CPT personnalisés
-- **`formations`** : avec ACF fields (hook, description, format, location, audience, level, price, next_session, objectives, prerequisites, program, practical_*, featured, kempire_trainers)
-- **`evenements`** : avec ACF fields (event_date, event_time, event_location, event_spots, event_registered, event_format, event_duration, event_price, event_programme, event_intervenants)
+Chaque soumission crée un document via le client `@sanity/client` (`useCdn: false`, écrire direct). Pour `inscription`, les références `formation` et `session` sont liées si leurs IDs sont envoyés. Les soumissions sont consultées/modifiées dans Sanity Studio (statuts, notes internes).
 
-### Routes API REST personnalisées (`/kempire/v1/*`)
-- `POST /kempire/v1/newsletter`
-- `POST /kempire/v1/inscription-formation`
-- `POST /kempire/v1/inscription-evenement`
-- `POST /kempire/v1/devis`
-- `POST /kempire/v1/rdv`
-- `POST /kempire/v1/communaute`
+**Env vars requises** : `SANITY_PROJECT_ID`, `SANITY_DATASET` (défaut `production`), `SANITY_TOKEN` (token d'écriture — jamais exposé au navigateur).
 
-### Filtres CORS (`rest-forms.php`)
-- Hook `allowed_http_origins` : ajoute le domaine frontend aux origines WP autorisées
-- Hook `rest_pre_serve_request` : définit `Access-Control-Allow-Origin`, `Access-Control-Allow-Credentials: true`, `Access-Control-Allow-Methods`, `Access-Control-Allow-Headers`
-- Gère les pré-requêtes OPTIONS (retour 204)
-- L'origine frontend est lue depuis l'option WP `kempire_frontend_url` ou la constante `KEMPIRE_FRONTEND_URL` (wp-config.php)
+### Notification email (Resend)
 
-### Page de réglages (`integrations.php`)
-- Menu "K-Empire Intégrations" dans Réglages WordPress
-- Champ "URL du frontend" pour configurer l'origine CORS sans modifier le code
+Appel non bloquant à l'API REST Resend (`POST https://api.resend.com/emails`) si `RESEND_API_KEY`, `RESEND_FROM` et `RESEND_TO` sont définies. Template HTML simple récapitulant les champs et le type. Un échec d'email n'échoue pas la soumission.
 
 ---
 
-## 10. Contenu Statique
+## 9. Contenu Statique
 
 `src/constants/content.js` exporte :
 
@@ -457,11 +458,11 @@ Le site dépend d'un plugin WordPress qui expose :
 
 ---
 
-## 11. Conventions et Règles
+## 10. Conventions et Règles
 
-### Gutenberg (content.rendered)
+### Gutenberg (portable text Sanity)
 
-Le contenu éditeur Gutenberg (champ `content.rendered` de l'API WP) est affiché via `dangerouslySetInnerHTML` avec des classes Tailwind `[&_p]:mb-4`, `[&_ul]:list-disc`, etc.
+Le contenu éditeur Sanity (portable text, ex. `post.body`, `formation.content`, `evenement.content`) est converti en HTML via `portableTextToHtml()` puis affiché via `dangerouslySetInnerHTML` avec des classes Tailwind `[&_p]:mb-4`, `[&_ul]:list-disc`, etc.
 
 **Pas de `prose`** : Tailwind v4 ne fournit pas `@tailwindcss/typography` par défaut.
 
@@ -481,7 +482,7 @@ Bouton cercle vert avec `MessageCircle` → `https://wa.me/228`.
 
 ### News — tri et affichage
 
-- Les événements (ACF `event_date`) et les posts (WP `date`) sont combinés en un seul tableau
+- Les événements (datetime Sanity `startDateTime`) et les posts (datetime `publishedAt`) sont combinés en un seul tableau
 - Trié par `dateTimestamp` (timestamp numérique) descendant
 - `parseDate()` gère ISO (new Date()) et dates françaises (regex `(\d{1,2})\s+(\w+)\s+(\d{4})` avec mois français)
 - Le premier item du premier slide reçoit un traitement "featured" (2 colonnes)
@@ -489,62 +490,30 @@ Bouton cercle vert avec `MessageCircle` → `https://wa.me/228`.
 
 ---
 
-## 12. Dev vs Production
+## 11. Dev vs Production
 
 | Aspect | Dev | Production |
 |---|---|---|
-| API base | `localhost:8881` | `admin.k-empirecorporation.com` |
-| CORS | Vite proxy (aucun) | WordPress plugin `kempire-cpt` |
-| Formulaires | URL relative `/wp-json/kempire/v1/...` | Absolute `https://admin.k-empire.../kempire/v1/...` |
-| Commandes | `npm run dev` | `npm run build` + déploiement statique |
-| Port | `localhost:5173` (Vite) | Domaine frontend (`k-empirecorporation.com`) |
+| CMS | Sanity studio (`sanity dev`, port 3333) | Sanity cloud (managed) |
+| Contenu | GROQ queries (client Sanity) | GROQ queries (client Sanity) |
+| Formulaires | URL relative `/api/forms` | URL relative `/api/forms` |
+| CORS formulaires | Même origine (aucun CORS nécessaire) | Vercel Functions (même domaine) |
+| Commandes | `npm run dev` / `npm run studio` | `npm run build` + déploiement statique |
+| Port | `localhost:5173` (Vite), `localhost:3333` (studio) | Domaine frontend (`k-empirecorporation.com`) |
 
 ---
 
-## 13. WordPress Idées reçues et rappels
+## 12. Sanity — rappels
 
-- Les événements utilisent la date ACF `event_date` (format français), pas `post.date`
-- Les posts utilisent `post.date` (ISO) ou `post.modified`
-- L'API REST WP trie les événements par `event_date` (futur), les posts par date de publication
-- Les endpoints `/kempire/v1/*` sont en `permission_callback: '__return_true'` (pas de cookie WP requis)
-- Le CORS avec credentials est activé pour préparer d'éventuelles routes protégées futures
-- La constante `KEMPIRE_FRONTEND_URL` dans `wp-config.php` est prioritaire sur l'option DB
+- Les événements utilisent le champ datetime Sanity `startDateTime` (pas de champ ACF)
+- Les posts utilisent `publishedAt` (SOUS forme de datetime Sanity) ou `_updatedAt`
+- GROQ trie les événements par `startDateTime` (croissant), les posts par `coalesce(publishedAt, _updatedAt)`
 
 ---
 
-## 14. Fichiers WordPress (côté plugin)
+## 13. Fichiers Backend (Vercel)
 
 ```
-wp-content/plugins/kempire-cpt/
-├── kempire-cpt.php               # Plugin header + initialisation
-├── includes/
-│   ├── cpt-formations.php        # CPT Formations + ACF fields
-│   ├── cpt-evenements.php        # CPT Evenements + ACF fields
-│   ├── rest-forms.php            # Routes API /kempire/v1/* + CORS
-│   └── integrations.php          # Page de réglages WP Admin
+api/
+└── forms.js                     # Fonction Vercel : validation + stockage KV des 5 formulaires
 ```
-
-### rest-forms.php
-
-Filtre `allowed_http_origins` → ajoute `KEMPIRE_FRONTEND_URL` aux origines autorisées.
-
-Hook `rest_pre_serve_request` :
-- OPTIONS → 204 No Content
-- `Access-Control-Allow-Origin: {frontend_url}`
-- `Access-Control-Allow-Credentials: true`
-- `Access-Control-Allow-Methods: POST, OPTIONS`
-- `Access-Control-Allow-Headers: Content-Type, Authorization`
-
-### integrations.php
-
-Menu "K-Empire Intégrations" dans Réglages WordPress.
-
-Champ : "URL du frontend" (stocké dans option `kempire_frontend_url`).
-
-### wp-config.php (alternative recommandée)
-
-```php
-define('KEMPIRE_FRONTEND_URL', 'https://k-empirecorporation.com');
-```
-
-Prioritaire sur l'option DB, plus sécurisé (pas modifiable depuis l'admin).

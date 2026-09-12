@@ -5,7 +5,7 @@ export const HOME_CONTENT = {
     primaryCta: "Découvrir nos formations",
     primaryCtaMicro: "Explorez nos programmes certifiants et nos formations sur mesure pour vos équipes.",
     secondaryCta: "Demander un rendez-vous",
-    secondaryCtaMicro: "Parlez‑nous de vos besoins en conseil, audit ou accompagnement personnalisé."
+    secondaryCtaMicro: "Parlez‑nous de vos besoins en conseil, intelligence stratégique ou accompagnement personnalisé."
   },
   stats: {
     title: "Nos résultats en chiffres",
@@ -34,10 +34,10 @@ export const HOME_CONTENT = {
     title: "Des services sur mesure pour votre organisation",
     intro: "Nous concevons des solutions adaptées aux enjeux spécifiques des entreprises, administrations et institutions, de la réflexion stratégique à la mise en œuvre opérationnelle.",
     items: [
-      { id: 1, title: "Conseil & stratégie d’entreprise", text: "Nous accompagnons les directions générales et les décideurs dans la définition, l’exécution et le suivi de leurs stratégies de développement." },
-      { id: 2, title: "Audit & diagnostic", text: "Nous réalisons des audits juridiques, fiscaux et organisationnels pour identifier les risques, les écarts et les leviers d’amélioration." },
-      { id: 3, title: "Assistance juridique, comptable & fiscale", text: "Nous sécurisons vos opérations par un accompagnement juridique, comptable et fiscal aligné sur les réglementations en vigueur." },
-      { id: 4, title: "Formations & renforcement de capacités", text: "Nous proposons des formations pratiques, certifiantes et orientées résultats, en présentiel et à distance." }
+      { id: 1, title: "Conseil Stratégique", text: "Nous accompagnons les directions générales et les décideurs dans la définition, l’exécution et le suivi de leurs stratégies de développement." },
+      { id: 2, title: "Intelligence Stratégique", text: "Nous aidons vos dirigeants à anticiper les évolutions de leur environnement grâce à une veille stratégique, des analyses prospectives et des données d’aide à la décision." },
+      { id: 3, title: "Ingénierie Juridique", text: "Nous sécurisons vos opérations par un accompagnement juridique, comptable et fiscal aligné sur les réglementations en vigueur." },
+      { id: 4, title: "Formation Exécutive", text: "Nous proposons des formations pratiques, certifiantes et orientées résultats, en présentiel et à distance." }
     ],
     cta: "Voir tous nos services"
   },
@@ -73,7 +73,7 @@ export const HOME_CONTENT = {
   },
   contact: {
     title: "Parlez‑nous de vos besoins",
-    text: "Vous avez un projet de formation, de conseil, d’audit ou d’accompagnement ? Notre équipe est à votre disposition pour analyser vos besoins et vous proposer une solution adaptée.",
+    text: "Vous avez un projet de formation, de conseil ou d’accompagnement ? Notre équipe est à votre disposition pour analyser vos besoins et vous proposer une solution adaptée.",
     primaryCta: "Demander un rendez-vous",
     primaryCtaMicro: "Remplissez le formulaire et nous reviendrons vers vous dans les plus brefs délais.",
     secondaryCta: "Nous contacter"
@@ -83,7 +83,7 @@ export const HOME_CONTENT = {
 export const ABOUT_CONTENT = {
   hero: {
     title: "À propos de K‑EMPIRE CORPORATION",
-    subtitle: "Basé à Kara au Togo, K‑EMPIRE CORPORATION est un cabinet international d’études, de conseil et de formation spécialisé dans l’accompagnement des organisations vers l’excellence managériale.",
+    subtitle: "Basé à Lomé au Togo, K‑EMPIRE CORPORATION est un cabinet international d’études, de conseil et de formation spécialisé dans l’accompagnement des organisations vers l’excellence managériale.",
     description: "Nous intervenons auprès des entreprises, administrations publiques, institutions financières, organisations internationales, PME/PMI et professionnels en quête de performance durable."
   },
   mission: {
@@ -131,9 +131,10 @@ export const COMMON_CONTENT = {
   header: {
     nav: [
       { label: "Accueil", path: "/" },
-      { label: "À propos", path: "/a-propos" },
-      { label: "Services", path: "/services" },
-      { label: "Formations", path: "/formations" },
+      { label: "Le Cabinet", path: "/a-propos" },
+      { label: "Nos Expertises", path: "/services" },
+      { label: "L'Académie Exécutive", path: "/formations" },
+      { label: "Nos Références", path: "/references-partenariats" },
       { label: "Blog", path: "/blog" },
       { label: "Contact", path: "/contact" }
     ],
@@ -142,7 +143,7 @@ export const COMMON_CONTENT = {
   footer: {
     about: "K-EMPIRE CORPORATION est un cabinet d'études, de conseil et de formation au service de votre performance.",
     contact: {
-      address: "Agoè-Kossigan, Lomé-Togo",
+      address: "Agoè-Kossigan, Lomé – République du Togo",
       phone: "+228 92 66 45 50",
       email: "contact@k-empirecorporation.com"
     },

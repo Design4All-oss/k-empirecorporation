@@ -26,20 +26,20 @@ const Formations = () => {
   return (
     <>
       <SEO
-        title="Formations"
-        description="K-EMPIRE Corporation propose des formations certifiantes et programmes sur mesure pour renforcer les compétences de vos équipes au Togo."
+        title="L'Académie Exécutive | K-EMPIRE Corporation"
+        description="L'Académie Exécutive K-EMPIRE : formations certifiantes, programmes inter-entreprises, intra-entreprise et en ligne pour développer les compétences de vos équipes au Togo."
         url="/formations"
         image="/assets/images/services/coverImage.png"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          "name": "Formations K-EMPIRE Corporation",
+          "name": "Académie Exécutive K-EMPIRE Corporation",
           "description": "Formations certifiantes et programmes sur mesure au Togo.",
           "url": "https://kempirecorporation.com/formations"
         }}
       />
       <PageBanner
-        title="Formations"
+        title="L'Académie Exécutive"
         description="Des programmes certifiants pratiques et orientés résultats pour propulser votre carrière vers l'excellence professionnelle."
         imageUrl="/assets/images/services/coverImage.png"
         imageAlt="Formations K-EMPIRE"
@@ -50,10 +50,7 @@ const Formations = () => {
       <FormationsBenefits />
       <FormationsCTA />
       
-      {/* Newsletter */}
-      <div className="relative z-50 px-4 -mt-32">
-        <HomeNewsletter />
-      </div>
+      <HomeNewsletter />
     </>
   );
 };

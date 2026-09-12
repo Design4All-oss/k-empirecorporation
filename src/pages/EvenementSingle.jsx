@@ -116,7 +116,7 @@ const EvenementSingle = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-primary mb-4">Événement non trouvé</h1>
+          <h2 className="text-2xl font-bold text-primary mb-4">Événement non trouvé</h2>
           <Link to="/blog" className="text-accent hover:underline">
             Retour au blog
           </Link>

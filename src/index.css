@@ -6,7 +6,7 @@
   /* Brand Colors */
   --color-primary: #0E4063;
   --color-primary-hover: #15517C;
-  --color-accent: #E5A81A;
+  --color-accent: #C99400;
   --color-accent-light: #F5C75D;
   --color-accent-dark: #B8860B;
   --color-bg: #FFFFFF;
@@ -42,7 +42,7 @@
   --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.10);
 
   /* Max Width */
-  --max-width-container: 1200px;
+  --max-width-container: 1440px;
 }
 
 @utility font-display {
@@ -220,8 +220,10 @@ body {
 }
 
 /* ===== CUSTOM CURSOR ===== */
-body {
-  cursor: none;
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
 }
 
 .custom-cursor {
@@ -278,9 +280,6 @@ body {
 @media (hover: none) and (pointer: coarse) {
   .custom-cursor {
     display: none;
-  }
-  body {
-    cursor: auto;
   }
 }
 

@@ -1,18 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
-
-const values = [
-  "Excellence",
-  "Intégrité",
-  "Innovation",
-  "Proximité",
-  "Résultat",
-  "Qualité",
-  "Confidentialité"
-];
+import { useValeurs } from '../../hooks';
+import { CHARTE_VALEURS } from '../../constants/charte';
 
 const HomeValuesMarquee = () => {
+  const { data } = useValeurs();
+  const charte = data && (data.groupe1 || []).length ? data : CHARTE_VALEURS;
+
+  const items = [
+    ...(charte.groupe1 || []).map((v) => ({ text: v.titre, label: false })),
+    { text: charte.titreGroupe2, label: true },
+    ...(charte.groupe2 || []).map((v) => ({ text: v.titre, label: false })),
+  ];
+
   return (
     <section className="py-6 md:py-8 bg-primary relative overflow-hidden">
       {/* Background text */}
@@ -35,7 +36,7 @@ const HomeValuesMarquee = () => {
           <motion.div
             className="flex gap-8 md:gap-12 whitespace-nowrap"
             animate={{
-              x: [0, -50 * values.length * 2],
+              x: [0, -50 * items.length * 2],
             }}
             transition={{
               x: {
@@ -47,18 +48,20 @@ const HomeValuesMarquee = () => {
             }}
           >
             {/* Double the values for seamless loop */}
-            {[...values, ...values, ...values, ...values].map((value, index) => (
+            {[...items, ...items, ...items, ...items].map((item, index) => (
               <span
                 key={index}
-                className="text-lg md:text-xl lg:text-2xl font-medium text-white flex items-center gap-6 md:gap-8"
+                className={`text-lg md:text-xl lg:text-2xl font-medium flex items-center gap-6 md:gap-8 ${item.label ? 'text-accent uppercase tracking-widest text-base md:text-lg' : 'text-white'}`}
                 style={{ fontFamily: 'Space Grotesk, sans-serif' }}
               >
-                {value}
-                <span className="flex gap-1">
-                  <Star size={14} className="text-accent fill-accent flex-shrink-0" />
-                  <Star size={14} className="text-accent fill-accent flex-shrink-0" />
-                  <Star size={14} className="text-accent fill-accent flex-shrink-0" />
-                </span>
+                {item.text}
+                {!item.label && (
+                  <span className="flex gap-1">
+                    <Star size={14} className="text-accent fill-accent flex-shrink-0" />
+                    <Star size={14} className="text-accent fill-accent flex-shrink-0" />
+                    <Star size={14} className="text-accent fill-accent flex-shrink-0" />
+                  </span>
+                )}
               </span>
             ))}
           </motion.div>

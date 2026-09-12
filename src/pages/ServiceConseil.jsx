@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
-import AboutNewsletter from '../components/about/AboutNewsletter';
+import HomeNewsletter from '../components/home/HomeNewsletter';
 import Button from '../components/ui/Button';
 import { ArrowRight, Users, Target, Shield, Clock, Briefcase, Star, Award, Zap, Globe, Handshake, BarChart3, Sparkles, MessageCircle, Mail, PhoneCall } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
@@ -368,7 +368,7 @@ const ServiceConseil = () => {
           </motion.div>
         </div>
       </section>
-      <AboutNewsletter />
+      <HomeNewsletter />
     </div>
   );
 };

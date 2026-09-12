@@ -10,20 +10,19 @@ import HomeWhyUs from '../components/home/HomeWhyUs';
 import HomeTestimonials from '../components/home/HomeTestimonials';
 import HomeNewsletter from '../components/home/HomeNewsletter';
 import HomeContactCta from '../components/home/HomeContactCta';
-import HomePopup from '../components/home/HomePopup';
 
 const Home = () => {
   return (
     <>
       <SEO
         title="Accueil"
-        description="K-EMPIRE Corporation - Cabinet de conseil, audit, assistance juridique et formations professionnelles au Togo. Accompagnement stratégique pour entreprises et institutions."
+        description="K-EMPIRE Corporation - Cabinet de conseil stratégique, d'intelligence stratégique, d'ingénierie juridique et de formation exécutive au Togo. Accompagnement stratégique pour entreprises et institutions."
         url="/"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "K-EMPIRE Corporation - Accueil",
-          "description": "Cabinet de conseil, audit, assistance juridique et formations professionnelles au Togo.",
+          "description": "Cabinet de conseil stratégique, d'intelligence stratégique, d'ingénierie juridique et de formation exécutive au Togo.",
           "url": "https://kempirecorporation.com"
         }}
       />
@@ -37,7 +36,6 @@ const Home = () => {
       <HomeTestimonials />
       <HomeContactCta />
       <HomeNewsletter />
-      <HomePopup />
     </>
   );
 };

@@ -1,0 +1,16 @@
+import author from './author.js'
+import category from './category.js'
+import evenement from './evenement.js'
+import formation from './formation.js'
+import inscription from './inscription.js'
+import inscriptionEvenement from './inscriptionEvenement.js'
+import post from './post.js'
+import session from './session.js'
+import soumissionDevis from './soumissionDevis.js'
+import soumissionNewsletter from './soumissionNewsletter.js'
+import soumissionRdv from './soumissionRdv.js'
+import statistiques from './statistiques.js'
+import temoignage from './temoignage.js'
+import valeurs from './valeurs.js'
+
+export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, statistiques, valeurs]

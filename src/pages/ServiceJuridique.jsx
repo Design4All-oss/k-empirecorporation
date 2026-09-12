@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
-import AboutNewsletter from '../components/about/AboutNewsletter';
+import HomeNewsletter from '../components/home/HomeNewsletter';
 import Button from '../components/ui/Button';
 import { ArrowRight, CheckCircle, Shield, Calculator, Building, AlertTriangle, Lock, Award, Users, Clock, Heart, PhoneCall, Mail, MessageCircle } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
@@ -58,7 +58,7 @@ const ServiceJuridique = () => {
     { number: "500+", label: "Entreprises accompagnées", icon: Building },
     { number: "15+", label: "Années d'expérience", icon: Clock },
     { number: "98%", label: "Taux de réussite", icon: Award },
-    { number: "24/7", label: "Support disponible", icon: Users }
+    { number: "24h", label: "Réponse garantie", icon: Users }
   ];
 
   const situations = [
@@ -311,7 +311,7 @@ const ServiceJuridique = () => {
           </motion.div>
         </div>
       </section>
-      <AboutNewsletter />
+      <HomeNewsletter />
     </div>
   );
 };

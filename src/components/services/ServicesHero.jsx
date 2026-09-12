@@ -113,7 +113,7 @@ const ServicesHero = ({ content }) => {
               </Link>
               <Link to="/about">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto">
-                  En savoir plus
+                  Découvrir le cabinet
                 </Button>
               </Link>
             </motion.div>

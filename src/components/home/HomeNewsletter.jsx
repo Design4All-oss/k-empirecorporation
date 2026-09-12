@@ -52,6 +52,7 @@ const HomeNewsletter = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Votre adresse email"
+                    aria-label="Adresse email"
                     className="w-full pl-12 bg-transparent border-b border-white/40 text-white placeholder:text-white/50 focus:outline-none focus:border-white pb-1"
                     required
                   />

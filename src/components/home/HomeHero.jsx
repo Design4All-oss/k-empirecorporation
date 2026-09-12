@@ -96,11 +96,10 @@ const HomeHero = () => {
             {/* Massive Title */}
             <motion.h1 
               variants={itemVariants}
-              className="text-h1-m md:text-h1-d text-primary font-semibold"
+              className="text-[3.25rem] sm:text-6xl lg:text-[5.25rem] xl:text-[5.75rem] leading-[0.95] tracking-[-0.02em] text-primary font-semibold"
             >
-              Votre succès <br />
-              <span className="text-primary">Structure</span>{' '}
-              <br /> l'avenir.
+              Votre succès
+              <br /> Structure l'avenir.
             </motion.h1>
 
             {/* Subtitle */}
@@ -108,7 +107,7 @@ const HomeHero = () => {
               variants={itemVariants}
               className="text-body-lg text-text-muted leading-relaxed max-w-[480px]"
             >
-              Nous accompagnons les entreprises, institutions et professionnels avec des solutions sur mesure en management, droit, comptabilité, fiscalité et disciplines connexes.
+              Des solutions sur mesure en management, droit, comptabilité et fiscalité.
             </motion.p>
 
             {/* Call to Actions */}

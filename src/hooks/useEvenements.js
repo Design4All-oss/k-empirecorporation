@@ -1,74 +1,73 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
-import { getEvenements, getEvenementBySlug, getUpcomingEvenements, transformEvenement } from '../api/evenements';
+import { useQuery } from '@tanstack/react-query'
+import { client, portableTextToHtml } from '../config/sanity'
 
-/**
- * Hook pour récupérer tous les événements
- */
-export const useEvenements = () => {
-  return useQuery({
+const EVENEMENT_PROJECTION = `{
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  type,
+  lieu,
+  startDateTime,
+  endDateTime,
+  duration,
+  format,
+  price,
+  "category": category->name,
+  "image": coverImage.asset->url,
+  intervenants[] { nom, fonction, "photo": photo.asset->url },
+  capacity,
+  registered,
+  registerLink,
+  content,
+  programme
+}`
+
+const dateToTime = (dateTime) => (dateTime ? dateTime.slice(11, 16) : '')
+
+const transformEvenement = (evenement) => ({
+  id: evenement._id,
+  slug: evenement.slug,
+  title: evenement.title,
+  excerpt: evenement.excerpt || '',
+  description: evenement.description || '',
+  type: evenement.type || '',
+  location: evenement.lieu || '',
+  duration: evenement.duration || '',
+  format: evenement.format || '',
+  price: evenement.price || '',
+  category: evenement.category || '',
+  image: evenement.image || '',
+  date: evenement.startDateTime || '',
+  time: dateToTime(evenement.startDateTime),
+  endTime: dateToTime(evenement.endDateTime),
+  spots: evenement.capacity,
+  registered: evenement.registered,
+  registerLink: evenement.registerLink || '',
+  intervenants: (evenement.intervenants || []).map((i) => ({
+    nom: i.nom || '',
+    fonction: i.fonction || '',
+    photo: i.photo || '',
+  })),
+  content: portableTextToHtml(evenement.content),
+  programme: portableTextToHtml(evenement.programme),
+})
+
+export const useEvenements = () =>
+  useQuery({
     queryKey: ['evenements'],
-    queryFn: async () => {
-      const result = await getEvenements();
-      if (!result || !Array.isArray(result)) return [];
-      return result.map(transformEvenement);
-    },
-    staleTime: 5 * 60 * 1000,
-    retry: 2,
-  });
-};
+    queryFn: () =>
+      client
+        .fetch(`*[_type == "evenement"] | order(startDateTime asc) ${EVENEMENT_PROJECTION}`)
+        .then((docs) => (docs || []).map(transformEvenement)),
+  })
 
-/**
- * Hook pour récupérer un événement par son slug
- * @param {string} slug - Slug de l'événement
- */
-export const useEvenement = (slug) => {
-  return useQuery({
+export const useEvenement = (slug) =>
+  useQuery({
     queryKey: ['evenement', slug],
-    queryFn: async () => {
-      const evenement = await getEvenementBySlug(slug);
-      return evenement ? transformEvenement(evenement) : null;
-    },
+    queryFn: () =>
+      client
+        .fetch(`*[_type == "evenement" && slug.current == $slug][0] ${EVENEMENT_PROJECTION}`, { slug })
+        .then((evenement) => (evenement ? transformEvenement(evenement) : null)),
     enabled: !!slug,
-    staleTime: 5 * 60 * 1000,
-  });
-};
-
-/**
- * Hook pour récupérer les événements à venir
- * @param {number} limit - Nombre d'événements
- */
-export const useUpcomingEvenements = (limit = 3) => {
-  return useQuery({
-    queryKey: ['evenements', 'upcoming', limit],
-    queryFn: async () => {
-      const evenements = await getUpcomingEvenements(limit);
-      if (!evenements || !Array.isArray(evenements)) return [];
-      return evenements.map(transformEvenement);
-    },
-    staleTime: 5 * 60 * 1000,
-  });
-};
-
-/**
- * Hook pour récupérer plusieurs événements par leurs slugs
- * @param {string[]} slugs - Tableau de slugs
- */
-export const useMultipleEvenements = (slugs = []) => {
-  const queries = useQueries({
-    queries: slugs.map(slug => ({
-      queryKey: ['evenement', slug],
-      queryFn: async () => {
-        const evenement = await getEvenementBySlug(slug);
-        return evenement ? transformEvenement(evenement) : null;
-      },
-      enabled: !!slug,
-      staleTime: 5 * 60 * 1000,
-    }))
-  });
-  
-  return {
-    evenements: queries.map(q => q.data).filter(Boolean),
-    isLoading: queries.some(q => q.isLoading),
-    isError: queries.some(q => q.isError),
-  };
-};
+  })

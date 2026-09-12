@@ -61,7 +61,7 @@ const HomeServicesPreview = () => {
               to="/services"
               className="inline-flex items-center gap-2 text-sm font-medium text-primary mt-5 group-hover:text-accent-dark transition-colors"
             >
-              En savoir plus
+              Découvrir le conseil stratégique
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -88,7 +88,7 @@ const HomeServicesPreview = () => {
               to="/services"
               className="inline-flex items-center gap-2 text-sm font-medium text-accent mt-5 group-hover:text-white transition-colors"
             >
-              En savoir plus
+              Découvrir l'intelligence stratégique
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -115,7 +115,7 @@ const HomeServicesPreview = () => {
               to="/services"
               className="inline-flex items-center gap-2 text-sm font-medium text-primary mt-5 group-hover:text-accent-dark transition-colors"
             >
-              En savoir plus
+              Explorer l'ingénierie juridique
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -142,7 +142,7 @@ const HomeServicesPreview = () => {
               to="/services"
               className="inline-flex items-center gap-2 text-sm font-medium text-primary mt-5 group-hover:text-accent-dark transition-colors"
             >
-              En savoir plus
+              Voir les formations exécutives
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

@@ -7,9 +7,9 @@ import { useToast } from '../../context/ToastContext';
 
 const subjects = [
   { value: '', label: 'Sélectionnez un objet' },
-  { value: 'conseil', label: 'Conseil & stratégie' },
-  { value: 'formation', label: 'Formation' },
-  { value: 'audit', label: 'Audit & diagnostic' },
+  { value: 'conseil', label: 'Conseil Stratégique' },
+  { value: 'formation', label: 'Formation Exécutive' },
+  { value: 'intelligence', label: 'Intelligence Stratégique' },
   { value: 'partenariat', label: 'Partenariat' },
   { value: 'autre', label: 'Autre' },
 ];

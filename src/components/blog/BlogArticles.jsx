@@ -30,6 +30,12 @@ const BlogArticles = ({ posts, currentPostsSlide, setCurrentPostsSlide, totalPos
             </p>
           </motion.div>
 
+          {displayedPosts.length === 0 ? (
+            <div className="col-span-full text-center py-16">
+              <p className="text-text-muted text-lg">Aucun article publié pour le moment.</p>
+            </div>
+          ) : null}
+
           {/* Blog Grid - 3 Columns */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayedPosts.map((post, index) => (

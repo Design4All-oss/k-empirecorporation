@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 
 const SITE_NAME = 'K-EMPIRE Corporation';
 const BASE_URL = 'https://kempirecorporation.com';
-const DEFAULT_DESCRIPTION = 'Cabinet de conseil, audit, assistance juridique et formations professionnelles au Togo. Accompagnement stratégique pour entreprises et institutions.';
+const DEFAULT_DESCRIPTION = 'Cabinet de conseil stratégique, d\'intelligence stratégique, d\'ingénierie juridique et de formation exécutive au Togo. Accompagnement stratégique pour entreprises et institutions.';
 const DEFAULT_IMAGE = `${BASE_URL}/assets/logos/Logo_kempire.svg`;
 
 export default function SEO({
@@ -13,7 +13,7 @@ export default function SEO({
   type = 'website',
   structuredData,
 }) {
-  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - Conseil, Audit & Formations au Togo`;
+  const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} - Conseil Stratégique, Intelligence Stratégique & Formation Exécutive`;
   const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
 
   return (

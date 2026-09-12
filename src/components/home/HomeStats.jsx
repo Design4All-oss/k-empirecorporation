@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { TrendingUp, Building2, Users, GraduationCap, CalendarDays } from 'lucide-react';
-import { HOME_CONTENT } from '../../constants/content';
+import { useStatistiques } from '../../hooks';
+import { STATISTIQUES_DEFAULT } from '../../constants/charte';
 
 // Composant compteur animé
 const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
@@ -42,7 +43,8 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
 };
 
 const HomeStats = () => {
-  const { stats } = HOME_CONTENT;
+  const { data } = useStatistiques();
+  const stats = data && data.items && data.items.length ? data : STATISTIQUES_DEFAULT;
   
   const icons = [Building2, Users, GraduationCap, CalendarDays];
   

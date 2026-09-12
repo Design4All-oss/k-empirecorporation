@@ -177,9 +177,7 @@ const Blog = () => {
         </>
       )}
 
-      <div className="relative z-50 px-4 -mt-48">
-        <HomeNewsletter />
-      </div>
+      <HomeNewsletter />
     </>
   );
 };

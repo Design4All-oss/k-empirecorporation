@@ -23,7 +23,7 @@ const PageBanner = ({ title, description, imageUrl, imageAlt = "" }) => {
 
       {/* Content */}
       <div className="relative z-10 h-full max-w-container mx-auto px-4">
-        <div className="h-full flex flex-col md:flex-row md:items-end md:justify-between pb-12 md:pb-16 gap-6">
+        <div className="h-full flex flex-col justify-end md:flex-row md:items-end md:justify-between pb-12 md:pb-16 gap-6">
           {/* Left side - Title in italic/script style */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -1,148 +1,94 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { HOME_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
 
+const ease = [0.32, 0.72, 0, 1];
+
 const HomeExpertise = () => {
   const { expertise } = HOME_CONTENT;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 2;
-  const totalPages = Math.ceil(expertise.items.length / itemsPerPage);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  };
-
-  const currentItems = expertise.items.slice(
-    currentIndex * itemsPerPage,
-    currentIndex * itemsPerPage + itemsPerPage
-  );
 
   return (
-    <section className="py-16 md:py-32 bg-[#FFFFFF] relative overflow-hidden">
-      <div className="absolute -bottom-32 -right-80 w-[600px] h-[700px] pointer-events-none" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'rotate(-90deg)' }}>
-        <div className="w-full h-full rounded-full border-[160px] border-primary/10" />
-      </div>
-      <div className="absolute -bottom-32 -right-80 w-[600px] h-[700px] pointer-events-none" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'rotate(-90deg)', background: 'linear-gradient(to left, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.5) 50%, transparent 100%)' }} />
+    <section className="py-16 md:py-32 bg-white relative overflow-hidden">
+      <div className="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="lg:flex lg:gap-24 items-stretch">
-          {/* Left Column */}
-          <div className="lg:w-1/2 lg:flex-1 mb-12 lg:mb-0 flex flex-col">
-            <div className="flex flex-col items-start pr-0 lg:pr-8 flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-primary shadow-sm">
-                   <Award size={16} />
-                </div>
-                <span className="text-small text-accent">Excellence garantie</span>
-              </div>
-              
-              <h2 className="text-h2-m md:text-h2-d font-semibold text-primary mb-4 leading-[1.05]">
-                Une expertise multidisciplinaire à chaque niveau.
-              </h2>
-              
-              <p className="text-body text-text-muted mb-4 leading-relaxed">
-                Notre équipe regroupe des experts nationaux et internationaux en droit, comptabilité, fiscalité, management, négociation, BTP, marketing & communication, banque, gestion des ressources humaines et stratégies.
-              </p>
-               
-              <div className="flex flex-col sm:flex-row items-center gap-4 w-full mt-auto">
-                <Link to="/a-propos">
-                  <Button variant="primary" className="px-6 py-3 rounded-full whitespace-nowrap">
-                    En savoir plus <ArrowRight size={18} className="ml-2" />
-                  </Button>
-                </Link>
-                
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center -space-x-4">
-                    <img src="https://i.pravatar.cc/100?img=11" className="w-14 h-14 rounded-full border-4 border-white shadow-sm" alt="Expert 1" />
-                    <img src="https://i.pravatar.cc/100?img=33" className="w-14 h-14 rounded-full border-4 border-white shadow-sm" alt="Expert 2" />
-                    <div className="w-14 h-14 rounded-full border-4 border-white shadow-sm bg-bg-alt flex items-center justify-center text-sm font-bold text-text-muted">
-                      +2000
-                    </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-medium text-text-muted leading-none">Accompagné par</span>
-                    <span className="text-xs font-bold text-primary leading-none">nos experts.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease }}
+          className="flex flex-col items-start md:flex-row md:items-end md:justify-between gap-8 mb-14 md:mb-20"
+        >
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+              {expertise.subtitle}
+            </span>
+            <h2 className="text-h2-m md:text-h2-d text-primary mt-5 mb-5 leading-[1.05]">
+              {expertise.title}
+            </h2>
+            <p className="text-text-muted leading-relaxed max-w-xl">
+              {expertise.intro}
+            </p>
           </div>
+          <Link to="/services" className="hidden md:inline-flex shrink-0">
+            <Button variant="outline" className="group">
+              Découvrir nos expertises
+              <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
+        </motion.div>
 
-          {/* Right Column - Slider */}
-          <div className="w-full lg:w-auto lg:flex-1 flex flex-col">
-            <div className="relative flex flex-col flex-1">
-              {/* Cards */}
-              <div className="flex flex-col gap-3 h-[220px] lg:h-[260px] mb-6">
-                {currentItems.map((item, idx) => {
-                  const itemNumber = currentIndex * itemsPerPage + idx + 1;
-                  
-                  return (
-                    <div
-                      key={item.id}
-                      className="group relative rounded-xl lg:rounded-2xl p-4 lg:p-6 transition-all duration-500 w-full max-w-md mx-auto lg:mx-0 flex-1 flex flex-col"
-                    >
-                      <div className="expertise-number absolute -top-3 -left-2 lg:-top-4 lg:-left-3 text-[100px] lg:text-[140px] font-bold text-accent/15 leading-none font-display select-none pointer-events-none group-hover:text-accent/25 transition-colors duration-500">
-                        0{itemNumber}
-                      </div>
-                      
-                      <div className="relative z-10 flex flex-col flex-1">
-                        <h3 className="text-base lg:text-lg text-primary font-semibold mb-2 group-hover:text-primary/80 transition-colors">
-                          {item.title}
-                        </h3>
-                        
-                        <p className="text-sm lg:text-base text-text-muted leading-relaxed flex-1">
-                          {item.text}
-                        </p>
-                        
-                        <div className="w-12 h-[3px] bg-accent mt-3 group-hover:w-24 transition-all duration-300 ease-out" />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Navigation */}
-              <div className="flex items-center justify-center lg:justify-start gap-4 mt-12 pt-6 border-t border-border/30">
-                <button 
-                  onClick={prevSlide}
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-accent/10 transition-colors group"
-                  aria-label="Précédent"
-                >
-                  <ChevronLeft size={24} className="text-primary group-hover:-translate-x-1 transition-transform" />
-                </button>
-                
-                <div className="flex gap-2">
-                  {Array.from({ length: totalPages }).map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentIndex(idx)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        idx === currentIndex 
-                          ? 'w-6 bg-accent' 
-                          : 'bg-border hover:bg-accent/50'
-                      }`}
-                      aria-label={`Aller à la page ${idx + 1}`}
-                    />
-                  ))}
+        {/* Cards grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {expertise.items.map((item, index) => (
+            <motion.article
+              key={item.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: (index % 3) * 0.1, ease }}
+              className="group relative rounded-3xl bg-bg-alt ring-1 ring-border p-8 hover:bg-white hover:ring-accent/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+            >
+              <span className="absolute top-6 right-7 text-5xl font-display font-bold text-primary/5 group-hover:text-accent/20 transition-colors duration-500 select-none pointer-events-none">
+                0{item.id}
+              </span>
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-white ring-1 ring-border flex items-center justify-center mb-6 group-hover:bg-accent group-hover:ring-accent transition-colors duration-500">
+                  <Sparkles size={22} className="text-accent group-hover:text-white transition-colors duration-500" />
                 </div>
-                
-                <button 
-                  onClick={nextSlide}
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-accent/10 transition-colors group"
-                  aria-label="Suivant"
-                >
-                  <ChevronRight size={24} className="text-primary group-hover:translate-x-1 transition-transform" />
-                </button>
+                <h3 className="text-lg md:text-xl text-primary font-semibold mb-3 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-text-muted leading-relaxed mb-6">
+                  {item.text}
+                </p>
+                <div className="w-12 h-[3px] bg-accent transition-all duration-300 ease-out group-hover:w-24" />
               </div>
-            </div>
-          </div>
+            </motion.article>
+          ))}
         </div>
+
+        {/* Mobile CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease }}
+          className="mt-12 flex justify-center md:hidden"
+        >
+          <Link to="/services">
+            <Button variant="primary" className="group">
+              Découvrir nos expertises
+              <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

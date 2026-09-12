@@ -1,89 +1,102 @@
-import { useQuery, useQueries } from '@tanstack/react-query';
-import { getFormations, getFormationBySlug, getFeaturedFormations, getFormationsByCategory, transformFormation } from '../api/formations';
+import { useQuery } from '@tanstack/react-query'
+import { client, portableTextToHtml } from '../config/sanity'
 
-/**
- * Hook pour récupérer toutes les formations
- * @param {Object} params - Paramètres de filtrage
- */
-export const useFormations = (params = {}) => {
-  return useQuery({
-    queryKey: ['formations', params],
-    queryFn: async () => {
-      const result = await getFormations(params);
-      if (!result || !Array.isArray(result)) return [];
-      return Promise.all(result.map(transformFormation));
-    },
-    staleTime: 5 * 60 * 1000,
-    retry: 2,
-  });
-};
+const FORMATION_PROJECTION = `{
+  _id,
+  title,
+  "slug": slug.current,
+  hook,
+  description,
+  featured,
+  format,
+  level,
+  duration,
+  audience,
+  prerequisites,
+  "category": category->name,
+  "image": coverImage.asset->url,
+  objectives[],
+  trainers[] { name, role, bio, "image": image.asset->url },
+  program[] { title, content },
+  practical { location, startDate, endDate, price, capacity, duration, schedule, materials, evaluation },
+  "sessions": *[_type == "session" && formation._ref == ^._id && statut != "annulée"] | order(startDate asc) { _id, startDate, endDate, lieu, format, places, statut },
+  content
+}`
 
-/**
- * Hook pour récupérer une formation par son slug
- * @param {string} slug - Slug de la formation
- */
-export const useFormation = (slug) => {
-  return useQuery({
+const transformFormation = (formation) => ({
+  id: formation._id,
+  slug: formation.slug,
+  title: formation.title,
+  hook: formation.hook || '',
+  description: formation.description || '',
+  format: formation.format || '',
+  location: (formation.practical && formation.practical.location) || '',
+  category: formation.category || '',
+  level: formation.level || '',
+  duration: formation.duration || '',
+  audience: formation.audience || '',
+  nextSession: (formation.sessions && formation.sessions[0] && formation.sessions[0].startDate) ||
+    (formation.practical && formation.practical.startDate) || '',
+  price: (formation.practical && formation.practical.price) || '',
+  objectives: (formation.objectives || []).map((o) => o.objective || '').filter(Boolean),
+  prerequisites: formation.prerequisites || '',
+  featured: !!formation.featured,
+  date: (formation.practical && formation.practical.startDate) || '',
+  time: '',
+  spots: (formation.practical && formation.practical.capacity) || undefined,
+  trainers: (formation.trainers || []).map((t) => ({
+    name: t.name || '',
+    role: t.role || '',
+    bio: t.bio || '',
+    image: t.image || '',
+  })),
+  program: (formation.program || []).map((m) => ({
+    title: m.title || '',
+    content: portableTextToHtml(m.content),
+  })),
+  sessions: (formation.sessions || []).map((s) => ({
+    id: s._id,
+    startDate: s.startDate || '',
+    endDate: s.endDate || '',
+    location: s.lieu || '',
+    format: s.format || '',
+    spots: s.places,
+    status: s.statut || '',
+  })),
+  practical: {
+    duration: (formation.practical && formation.practical.duration) || '',
+    location: (formation.practical && formation.practical.location) || '',
+    schedule: (formation.practical && formation.practical.schedule) || '',
+    materials: (formation.practical && formation.practical.materials) || '',
+    evaluation: (formation.practical && formation.practical.evaluation) || '',
+  },
+  content: portableTextToHtml(formation.content),
+})
+
+export const useFormations = () =>
+  useQuery({
+    queryKey: ['formations'],
+    queryFn: () =>
+      client
+        .fetch(`*[_type == "formation"] | order(featured desc, title asc) ${FORMATION_PROJECTION}`)
+        .then((docs) => (docs || []).map(transformFormation)),
+  })
+
+export const useFormation = (slug) =>
+  useQuery({
     queryKey: ['formation', slug],
-    queryFn: async () => {
-      const formation = await getFormationBySlug(slug);
-      return formation ? await transformFormation(formation) : null;
-    },
+    queryFn: () =>
+      client
+        .fetch(`*[_type == "formation" && slug.current == $slug][0] ${FORMATION_PROJECTION}`, { slug })
+        .then((formation) => (formation ? transformFormation(formation) : null)),
     enabled: !!slug,
-    staleTime: 5 * 60 * 1000,
-  });
-};
+  })
 
-/**
- * Hook pour récupérer les formations mises en avant
- */
-export const useFeaturedFormations = () => {
-  return useQuery({
+export const useFeaturedFormations = () =>
+  useQuery({
     queryKey: ['formations', 'featured'],
-    queryFn: async () => {
-      const formations = await getFeaturedFormations();
-      if (!formations || !Array.isArray(formations)) return [];
-      return Promise.all(formations.map(transformFormation));
-    },
-    staleTime: 5 * 60 * 1000,
-  });
-};
-
-/**
- * Hook pour récupérer les formations par catégorie
- * @param {number} categoryId - ID de la catégorie
- */
-export const useFormationsByCategory = (categoryId) => {
-  return useQuery({
-    queryKey: ['formations', 'category', categoryId],
-    queryFn: async () => {
-      const formations = await getFormationsByCategory(categoryId);
-      return Promise.all(formations.map(transformFormation));
-    },
-    enabled: !!categoryId,
-  });
-};
-
-/**
- * Hook pour récupérer plusieurs formations par leurs slugs
- * @param {string[]} slugs - Tableau de slugs
- */
-export const useMultipleFormations = (slugs = []) => {
-  const queries = useQueries({
-    queries: slugs.map(slug => ({
-      queryKey: ['formation', slug],
-      queryFn: async () => {
-        const formation = await getFormationBySlug(slug);
-        return formation ? await transformFormation(formation) : null;
-      },
-      enabled: !!slug,
-      staleTime: 5 * 60 * 1000,
-    }))
-  });
-  
-  return {
-    formations: queries.map(q => q.data).filter(Boolean),
-    isLoading: queries.some(q => q.isLoading),
-    isError: queries.some(q => q.isError),
-  };
-};
+    queryFn: () =>
+      client
+        .fetch(`*[_type == "formation" && featured == true] | order(title asc) ${FORMATION_PROJECTION}`)
+        .then((docs) => (docs || []).map(transformFormation)),
+  })

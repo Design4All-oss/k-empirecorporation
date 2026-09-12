@@ -53,6 +53,7 @@ const FormationSingle = () => {
     pays: '',
     format: '',
     objectif: '',
+    sessionId: '',
     acceptContact: false
   });
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -76,6 +77,7 @@ const FormationSingle = () => {
         fonction: formData.fonction,
         entreprise: formData.organization,
         message: `Format: ${formData.format}. Objectif: ${formData.objectif}. Type: ${formData.inscriptionType}`,
+        session_id: formData.sessionId,
       });
       toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
       setShowModal(false);
@@ -91,6 +93,7 @@ const FormationSingle = () => {
         pays: '',
         format: '',
         objectif: '',
+        sessionId: '',
         acceptContact: false
       });
     } catch (err) {
@@ -129,7 +132,7 @@ const FormationSingle = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-primary mb-4">Formation non trouvée</h1>
+          <h2 className="text-2xl font-bold text-primary mb-4">Formation non trouvée</h2>
           <Link to="/formations" className="text-accent hover:underline">
             Retour aux formations
           </Link>
@@ -388,6 +391,55 @@ const FormationSingle = () => {
                         )}
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Sessions */}
+              {formation.sessions && formation.sessions.length > 0 && (
+                <div className="mb-8">
+                  <h2 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
+                    <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
+                      <Calendar size={20} className="text-accent" />
+                    </div>
+                    Sessions à venir
+                  </h2>
+                  <div className="space-y-4">
+                    {formation.sessions.map((session) => {
+                      const start = session.startDate ? new Date(`${session.startDate}T00:00:00`) : null;
+                      const end = session.endDate ? new Date(`${session.endDate}T00:00:00`) : null;
+                      const label = start
+                        ? end && end.getTime() !== start.getTime()
+                          ? `${start.toLocaleDateString('fr-FR')} → ${end.toLocaleDateString('fr-FR')}`
+                          : start.toLocaleDateString('fr-FR')
+                        : 'Date à confirmer';
+                      return (
+                        <div key={session.id} className="p-5 bg-bg-alt rounded-2xl flex flex-wrap items-center gap-x-8 gap-y-2">
+                          <div className="flex items-center gap-3">
+                            <Calendar size={18} className="text-accent" />
+                            <span className="font-semibold text-primary">{label}</span>
+                          </div>
+                          {session.location && (
+                            <div className="flex items-center gap-2 text-sm text-text-muted">
+                              <MapPin size={16} className="text-accent" />
+                              {session.location}
+                            </div>
+                          )}
+                          {session.format && (
+                            <div className="flex items-center gap-2 text-sm text-text-muted">
+                              <Video size={16} className="text-accent" />
+                              {session.format}
+                            </div>
+                          )}
+                          {session.spots != null && (
+                            <div className="flex items-center gap-2 text-sm text-text-muted">
+                              <Users size={16} className="text-accent" />
+                              {session.spots} places
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -674,6 +726,33 @@ const FormationSingle = () => {
                           placeholder="Votre pays"
                         />
                       </div>
+
+                      {formation.sessions && formation.sessions.length > 0 && (
+                        <div>
+                          <label className="block text-sm font-medium text-primary mb-1">Session souhaitée</label>
+                          <select
+                            value={formData.sessionId}
+                            onChange={(e) => setFormData({...formData, sessionId: e.target.value})}
+                            className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent bg-white"
+                          >
+                            <option value="">À définir avec un conseiller</option>
+                            {formation.sessions.map((session) => {
+                              const start = session.startDate ? new Date(`${session.startDate}T00:00:00`) : null;
+                              const end = session.endDate ? new Date(`${session.endDate}T00:00:00`) : null;
+                              const label = start
+                                ? end && end.getTime() !== start.getTime()
+                                  ? `${start.toLocaleDateString('fr-FR')} → ${end.toLocaleDateString('fr-FR')}`
+                                  : start.toLocaleDateString('fr-FR')
+                                : 'Date à confirmer';
+                              return (
+                                <option key={session.id} value={session.id}>
+                                  {label}{session.location ? ` — ${session.location}` : ''}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        </div>
+                      )}
                     </div>
                     
                     <div className="flex gap-3 mt-6">
@@ -790,6 +869,21 @@ const FormationSingle = () => {
                         <p><span className="font-medium">Formation :</span> {formation.title}</p>
                         <p><span className="font-medium">Type :</span> {formData.inscriptionType === 'individuelle' ? 'Individuelle' : 'Institutionnelle'}</p>
                         <p><span className="font-medium">Format :</span> {formData.format || 'Non défini'}</p>
+                        {formData.sessionId && formation.sessions && (
+                          <p><span className="font-medium">Session :</span> {
+                            (() => {
+                              const session = formation.sessions.find((s) => s.id === formData.sessionId);
+                              if (!session) return 'Sélectionnée';
+                              const start = session.startDate ? new Date(`${session.startDate}T00:00:00`) : null;
+                              const end = session.endDate ? new Date(`${session.endDate}T00:00:00`) : null;
+                              return start
+                                ? end && end.getTime() !== start.getTime()
+                                  ? `${start.toLocaleDateString('fr-FR')} → ${end.toLocaleDateString('fr-FR')}`
+                                  : start.toLocaleDateString('fr-FR')
+                                : 'Date à confirmer';
+                            })()
+                          }</p>
+                        )}
                         <p><span className="font-medium">Tarif :</span> {formation.price ? 'Formation payante' : 'Formation gratuite'}</p>
                       </div>
                     </div>

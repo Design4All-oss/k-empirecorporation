@@ -138,7 +138,7 @@ const ServicesGrid = ({ services }) => {
                       return (
                         <li 
                           key={idx} 
-                          className="flex items-start gap-3 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500"
+                          className="flex items-start gap-3 transition-all duration-500"
                           style={{ transitionDelay: `${idx * 100}ms` }}
                         >
                           <div className="flex-shrink-0 w-6 h-6 rounded-lg bg-[#E5A81A]/10 flex items-center justify-center mt-0.5 transition-all duration-500 group-hover:bg-white/20">

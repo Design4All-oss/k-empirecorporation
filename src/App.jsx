@@ -14,7 +14,7 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
 const ServiceConseil = lazy(() => import('./pages/ServiceConseil'));
-const ServiceAudit = lazy(() => import('./pages/ServiceAudit'));
+const ServiceIntelligenceStrategique = lazy(() => import('./pages/ServiceIntelligenceStrategique'));
 const ServiceJuridique = lazy(() => import('./pages/ServiceJuridique'));
 const Formations = lazy(() => import('./pages/Formations'));
 const FormationSingle = lazy(() => import('./pages/FormationSingle'));
@@ -24,6 +24,8 @@ const LegalNotices = lazy(() => import('./pages/LegalNotices'));
 const Blog = lazy(() => import('./pages/Blog'));
 const BlogSingle = lazy(() => import('./pages/BlogSingle'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const References = lazy(() => import('./pages/References'));
+const Ecosysteme = lazy(() => import('./pages/Ecosysteme'));
 
 // Configuration React Query
 const queryClient = new QueryClient({
@@ -44,7 +46,7 @@ function AppContent() {
   const is404 = location.pathname === '*';
   
   // List of known routes (base paths)
-  const knownRoutes = ['/', '/a-propos', '/services', '/contact', '/formations', '/blog', '/mentions-legales', '/event'];
+  const knownRoutes = ['/', '/a-propos', '/services', '/contact', '/formations', '/blog', '/mentions-legales', '/event', '/references-partenariats', '/ecosysteme-experts'];
   const isKnownRoute = knownRoutes.some(route => 
     location.pathname === route || 
     location.pathname.startsWith(route + '/')
@@ -54,16 +56,21 @@ function AppContent() {
 
   return (
     <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-pill">
+        Aller au contenu principal
+      </a>
       {!is404 && <Header />}
-      <main>
+      <main id="main-content">
         <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-2 border-gold-500 border-t-transparent rounded-full animate-spin" /></div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/a-propos" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/services/conseil-strategie" element={<ServiceConseil />} />
-            <Route path="/services/audit-diagnostic" element={<ServiceAudit />} />
+            <Route path="/services/intelligence-strategique" element={<ServiceIntelligenceStrategique />} />
             <Route path="/services/assistance-juridique" element={<ServiceJuridique />} />
+            <Route path="/references-partenariats" element={<References />} />
+            <Route path="/ecosysteme-experts" element={<Ecosysteme />} />
             <Route path="/formations" element={<Formations />} />
             <Route path="/formations/:slug" element={<FormationSingle />} />
             <Route path="/event/:slug" element={<EvenementSingle />} />

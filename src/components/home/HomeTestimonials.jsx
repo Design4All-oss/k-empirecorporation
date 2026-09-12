@@ -2,20 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { HOME_CONTENT } from '../../constants/content';
+import { useTemoignages } from '../../hooks';
+import { TEMOIGNAGES_SEED } from '../../constants/charte';
+
+const imageSrc = (testimonial) => {
+  if (!testimonial.image) return '';
+  return testimonial.image.startsWith('http') || testimonial.image.startsWith('/')
+    ? testimonial.image
+    : `/assets/images/testamonials/${testimonial.image}`;
+};
 
 const HomeTestimonials = () => {
   const { testimonials } = HOME_CONTENT;
+  const { data } = useTemoignages();
+  const citations = data && data.length ? data : TEMOIGNAGES_SEED;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
   const nextSlide = () => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % testimonials.citations.length);
+    setCurrentIndex((prev) => (prev + 1) % citations.length);
   };
 
   const prevSlide = () => {
     setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + testimonials.citations.length) % testimonials.citations.length);
+    setCurrentIndex((prev) => (prev - 1 + citations.length) % citations.length);
   };
 
   useEffect(() => {
@@ -25,7 +36,7 @@ const HomeTestimonials = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const currentTestimonial = testimonials.citations[currentIndex];
+  const currentTestimonial = citations[currentIndex];
 
   const variants = {
     enter: (direction) => ({
@@ -73,11 +84,19 @@ const HomeTestimonials = () => {
             >
               {/* Image */}
               <div className="flex-shrink-0 w-full sm:w-[240px]">
-                <img 
-                  src={`/assets/images/testamonials/${currentTestimonial.image}`}
-                  alt={`Photo de ${currentTestimonial.name}`}
-                  className="w-full h-[240px] sm:h-[280px] object-contain rounded-lg"
-                />
+                {imageSrc(currentTestimonial) ? (
+                  <img
+                    src={imageSrc(currentTestimonial)}
+                    alt={`Photo de ${currentTestimonial.name}`}
+                    className="w-full h-[240px] sm:h-[280px] object-contain rounded-lg"
+                  />
+                ) : (
+                  <div className="w-full h-[240px] sm:h-[280px] rounded-lg bg-primary/5 flex items-center justify-center">
+                    <span className="text-6xl font-bold text-primary/20 font-display">
+                      {(currentTestimonial.name || 'K')[0]}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -111,7 +130,7 @@ const HomeTestimonials = () => {
 
           {/* Dots */}
           <div className="flex justify-center gap-2 mt-8">
-            {testimonials.citations.map((_, idx) => (
+            {citations.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => {

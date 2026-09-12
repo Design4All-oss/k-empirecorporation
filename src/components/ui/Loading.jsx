@@ -8,7 +8,7 @@ const LoadingSpinner = ({ size = 'md', text = 'Chargement...' }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-12">
+    <div className="flex flex-col items-center justify-center py-12" role="status" aria-live="polite">
       <div className={`${sizeClasses[size]} border-4 border-gray-200 border-t-accent rounded-full animate-spin`}></div>
       {text && <p className="mt-4 text-text-muted">{text}</p>}
     </div>
@@ -17,7 +17,7 @@ const LoadingSpinner = ({ size = 'md', text = 'Chargement...' }) => {
 
 const LoadingOverlay = ({ text = 'Chargement...' }) => {
   return (
-    <div className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex items-center justify-center" role="status" aria-live="polite">
       <div className="flex flex-col items-center">
         <div className="w-12 h-12 border-4 border-gray-200 border-t-accent rounded-full animate-spin"></div>
         <p className="mt-4 text-primary font-medium">{text}</p>

@@ -8,7 +8,7 @@ import AboutValues from '../components/about/AboutValues';
 import AboutTeam from '../components/about/AboutTeam';
 import AboutStats from '../components/about/AboutStats';
 import AboutContactCta from '../components/about/AboutContactCta';
-import AboutNewsletter from '../components/about/AboutNewsletter';
+import HomeNewsletter from '../components/home/HomeNewsletter';
 
 const About = () => {
   return (
@@ -39,7 +39,7 @@ const About = () => {
       <AboutTeam />
       <AboutStats />
       <AboutContactCta />
-      <AboutNewsletter />
+      <HomeNewsletter />
     </>
   );
 };
