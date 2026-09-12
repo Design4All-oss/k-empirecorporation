@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Check, Users } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Check, GraduationCap } from 'lucide-react';
 import { ABOUT_CONTENT } from '../../constants/content';
 
 const teamExpertises = [
@@ -12,9 +12,14 @@ const teamExpertises = [
   "Stratégie & Marketing"
 ];
 
+const comiteRoles = [
+  "Valide le contenu de chaque programme",
+  "Certifie la qualité pédagogique",
+  "Consacre les diplômes délivrés"
+];
+
 const AboutTeam = () => {
   const { team } = ABOUT_CONTENT;
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
@@ -61,48 +66,40 @@ const AboutTeam = () => {
               ))}
             </div>
 
-            {/* Accordion card */}
+            {/* Comité Scientifique International */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="bg-[#1E3A5F]"
+              className="bg-[#1E3A5F] p-6 rounded-2xl"
             >
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-start gap-4 p-6 text-left"
-              >
-                <div className="flex-shrink-0 flex items-center justify-center">
-                  <Users size={24} className="text-accent" strokeWidth={1.5} />
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0">
+                  <GraduationCap size={24} className="text-accent" strokeWidth={1.5} />
                 </div>
-                <div className="flex-1">
+                <div>
                   <h4 className="text-lg font-bold text-white">
-                    Une diversité de profils
+                    Comité Scientifique International
                   </h4>
+                  <p className="text-xs text-accent font-semibold uppercase tracking-wide mt-1">
+                    Collège des Sages
+                  </p>
                 </div>
-                <div className="text-accent text-2xl font-light">
-                  {isOpen ? '−' : '+'}
-                </div>
-              </button>
-              
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-6 pt-0">
-                      <p className="text-sm text-white/80 leading-relaxed">
-                        {team.highlight}
-                      </p>
+              </div>
+              <p className="text-sm text-white/80 leading-relaxed mb-5">
+                Composé d'anciens hauts responsables publics, de magistrats de juridictions internationales et d'experts de référence, notre Collège des Sages garantit le niveau d'exigence académique de l'Académie K-EMPIRE.
+              </p>
+              <ul className="space-y-3">
+                {comiteRoles.map((role, idx) => (
+                  <li key={idx} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
+                      <Check size={12} className="text-accent" strokeWidth={3} />
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    <span className="text-sm text-white/90">{role}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </motion.div>
 

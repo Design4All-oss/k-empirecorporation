@@ -1,23 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Lightbulb, Award, Users, Shield, Target, Star } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { ABOUT_CONTENT } from '../../constants/content';
 
 const AboutVision = () => {
   const { vision } = ABOUT_CONTENT;
 
-  // Valeurs de K-EMPIRE CORPORATION (classées par priorité)
-  const values = [
-    { label: 'Excellence', icon: 'Star', priority: 1 },
-    { label: 'Innovation', icon: 'Lightbulb', priority: 2 },
-    { label: 'Qualité', icon: 'Award', priority: 3 },
-    { label: 'Impact', icon: 'Target', priority: 4 },
-    { label: 'Proximité', icon: 'Users', priority: 5 },
-    { label: 'Confidentialité', icon: 'Shield', priority: 6 }
-  ];
-
   return (
-    <section className="py-16 md:py-24 bg-transparent relative overflow-hidden z-20 -mb-64">
+    <section className="py-16 md:py-24 bg-transparent relative overflow-hidden z-20">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-0 items-stretch rounded-2xl overflow-hidden shadow-2xl">
           
@@ -56,41 +46,8 @@ const AboutVision = () => {
 
             {/* Main heading */}
             <h2 className="text-h2-m md:text-h2-d text-white font-bold font-display mb-6 leading-tight">
-              Devenir la référence en management de qualité
+              Nous aspirons à devenir, en Afrique et à l'international, l'Académie où l'excellence devient autorité.
             </h2>
-
-            {/* Main text */}
-            <p className="text-base text-white/80 leading-relaxed mb-6">
-              {vision.text}
-            </p>
-
-            {/* Values grid - 2 columns */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="mb-8 grid grid-cols-2 gap-3"
-            >
-              {values.map((value, idx) => {
-                const IconComponent = { Lightbulb, Award, Users, Shield, Target, Star }[value.icon];
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + idx * 0.08, duration: 0.4 }}
-                    className="flex items-center gap-3"
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-                      <IconComponent size={16} className="text-white" strokeWidth={2} />
-                    </div>
-                    <span className="text-sm text-white font-medium">{value.label}</span>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
 
             {/* Highlight box */}
             <motion.div

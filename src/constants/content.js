@@ -88,7 +88,7 @@ export const ABOUT_CONTENT = {
   },
   mission: {
     title: "Notre mission",
-    text: "Notre mission est de mettre l’excellence au service des affaires. Nous aidons nos partenaires à relever leurs défis juridiques, fiscaux, comptables et managériaux en leur proposant des solutions stratégiques, pragmatiques et durables.",
+    text: "Notre mission est de mettre l’excellence au service des organisations. Nous aidons nos partenaires à relever leurs défis juridiques, fiscaux, comptables, managériaux et de gouvernance en leur proposant des solutions stratégiques, pragmatiques et durables.",
     highlight: "Nous plaçons la qualité, la proximité et le résultat au cœur de chaque intervention, qu’il s’agisse de conseil, d’audit ou de formation."
   },
   vision: {
@@ -108,16 +108,15 @@ export const ABOUT_CONTENT = {
   },
   team: {
     title: "Une équipe multidisciplinaire",
-    text: "Notre cabinet regroupe des experts nationaux et internationaux reconnus dans leurs domaines : juristes d’affaires, fiscalistes, experts-comptables, spécialistes du management, des ressources humaines, du marketing et de la stratégie.",
+    text: "Notre cabinet réunit des experts nationaux et internationaux : anciens ministres, magistrats de juridictions internationales, consultants et praticiens reconnus dans leurs domaines. Tous nos programmes sont validés par notre Comité Scientifique International.",
     highlight: "Cette diversité de profils nous permet de proposer des solutions complètes, cohérentes et adaptées à la complexité des enjeux de nos clients."
   },
   stats: {
     title: "Quelques repères",
     items: [
-      { id: 1, value: "98%", label: "Taux de satisfaction", text: "Nos clients recommandent nos services et formations pour la qualité de notre accompagnement." },
-      { id: 2, value: "+20", label: "Entreprises accompagnées", text: "Accompagnement dans la structuration, le pilotage et la sécurisation de leurs activités." },
-      { id: 3, value: "+2 000", label: "Participants formés", text: "Des professionnels et étudiants formés à des thématiques clés en droit, fiscalité, management et gouvernance." },
-      { id: 4, value: "Depuis 2018", label: "Une expérience consolidée", text: "Une expérience consolidée au service des organisations publiques et privées." }
+      { id: 1, value: "98%+", label: "Taux de satisfaction", text: "Nos clients recommandent nos services et formations pour la qualité de notre accompagnement." },
+      { id: 2, value: "2000+", label: "Professionnels formés", text: "Des professionnels et étudiants formés à des thématiques clés en droit, fiscalité, management et gouvernance." },
+      { id: 3, value: "25+", label: "Nationalités", text: "Une diversité internationale au cœur de l’Académie K-EMPIRE." }
     ]
   },
   cta: {

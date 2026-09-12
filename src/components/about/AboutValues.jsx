@@ -76,7 +76,7 @@ const AboutValues = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-primary relative z-0 pt-100">
+    <section className="py-16 md:py-24 bg-primary relative z-0">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <motion.div
@@ -84,7 +84,7 @@ const AboutValues = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 max-w-3xl mx-auto pt-32"
+          className="text-center mb-16 max-w-3xl mx-auto"
         >
           {/* Eyebrow label */}
           <span className="text-label text-accent">

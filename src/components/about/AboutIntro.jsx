@@ -29,7 +29,7 @@ const AboutIntro = () => {
               Aujourd'hui, nous nous tenons aux côtés des entreprises, des administrations publiques, des institutions financières et des organisations internationales qui osent ambitionner plus. Des PME audacieuses aux grands groupes en quête de performance durable, nous devenons le partenaire de celles et ceux qui refusent la médiocrité.
             </p>
             <p>
-              Notre parcours nous a transformés. De cabinet local, nous sommes devenus une référence en expertise juridique, comptable, fiscale et sociale. <span className="text-primary font-semibold">Mais notre mission reste la même</span> : voir nos partenaires grandir, prospérer et à leur tour, inspirer d'autres succès.
+              Notre parcours nous a transformés. De cabinet local, nous sommes devenus une référence en expertise juridique, comptable, fiscale et sociale. <span className="italic text-primary font-medium">L'année 2026 consacre une nouvelle étape : K-EMPIRE CORPORATION s'affirme désormais comme une Académie de Leadership, pensée pour former et accompagner une élite décisionnelle capable d'agir avec discernement, autorité et responsabilité.</span> <span className="text-primary font-semibold">Mais notre mission reste la même</span> : voir nos partenaires grandir, prospérer et à leur tour, inspirer d'autres succès.
             </p>
           </div>
         </motion.div>

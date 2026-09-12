@@ -72,30 +72,29 @@ const AboutStats = () => {
   };
   
   const getSuffix = (value) => {
+    if (value.includes('%') && value.includes('+')) return '%+';
     if (value.includes('+')) return '+';
     if (value.includes('%')) return '%';
     return '';
   };
   
   const shouldAnimate = (value) => {
-    const num = getNumber(value);
-    return num > 0 && !value.includes('Depuis');
+    return getNumber(value) > 0;
   };
 
   return (
     <section className="py-16 md:py-24 bg-[#F5F7FA] relative overflow-hidden">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Stats Grid - 4 columns avec séparateurs */}
+        {/* Stats Grid - 3 columns avec séparateurs */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-2 lg:grid-cols-3"
         >
           {stats.items.map((item, index) => {
-            const isLast = index === stats.items.length - 1;
-            const hasRightBorder = index < 3;
+            const hasRightBorder = index < 2;
             const numericValue = getNumber(item.value);
             const suffix = getSuffix(item.value);
             const shouldShowAnimated = shouldAnimate(item.value);
@@ -108,9 +107,7 @@ const AboutStats = () => {
               >
                 {/* Stat value avec suffixe */}
                 <div className="flex items-start justify-center gap-1 mb-2">
-                  {item.value.includes('Depuis') ? (
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent font-display">2018</h3>
-                  ) : shouldShowAnimated ? (
+                  {shouldShowAnimated ? (
                     <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent font-display">
                       <AnimatedCounter target={numericValue} suffix={suffix} duration={2 + index * 0.3} />
                     </h3>
