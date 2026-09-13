@@ -29,7 +29,7 @@ const HomeServicesPreview = () => {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-[1.05] mb-5">
+          <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-tight mb-6">
             {services.title}
           </h2>
           <p className="text-body text-text-muted leading-relaxed max-w-2xl mx-auto">

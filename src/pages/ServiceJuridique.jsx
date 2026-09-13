@@ -4,7 +4,7 @@ import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import HomeNewsletter from '../components/home/HomeNewsletter';
 import Button from '../components/ui/Button';
-import { ArrowRight, CheckCircle, Shield, Calculator, Building, AlertTriangle, Lock, Award, Users, Clock, Heart, PhoneCall, Mail, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Calculator, Building, AlertTriangle, Lock, Award, Users, Clock, Heart, PhoneCall, MessageCircle } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
 
 const ServiceJuridique = () => {
@@ -82,7 +82,7 @@ const ServiceJuridique = () => {
           "@type": "Service",
           "name": "Assistance Juridique, Comptable & Fiscale",
           "description": "Sécurisation des opérations juridiques, comptables et fiscales au Togo.",
-          "url": "https://kempirecorporation.com/services/assistance-juridique",
+          "url": "https://www.k-empirecorporation.com/services/assistance-juridique",
           "provider": {
             "@type": "Organization",
             "name": "K-EMPIRE Corporation"
@@ -101,7 +101,7 @@ const ServiceJuridique = () => {
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
-              <h2 className="text-h2-m md:text-h2-d text-primary mt-4">
+              <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
                 "Votre entreprise est exposée. Nous la protégeons."
               </h2>
             </motion.div>
@@ -119,7 +119,7 @@ const ServiceJuridique = () => {
       <section className="py-24 bg-bg-alt">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
-            <h2 className="text-h2-m md:text-h2-d text-primary mt-4">Ce que nous faisons pour vous</h2>
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">Ce que nous faisons pour vous</h2>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {commitments.map((item, index) => (
@@ -156,7 +156,7 @@ const ServiceJuridique = () => {
       <section className="py-24 bg-white">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
-            <h2 className="text-h2-m md:text-h2-d text-primary mt-4">Nos domaines d'intervention</h2>
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">Nos domaines d'intervention</h2>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {domains.map((domain, index) => (
@@ -179,7 +179,7 @@ const ServiceJuridique = () => {
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mt-4 mb-6">Quand nous contacter ?</h2>
+              <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">Quand nous contacter ?</h2>
               <p className="text-text-muted mb-8">Chaque situation nécessite une expertise spécifique. N'attendez pas qu'un problème devienne une crise pour solliciter nos services.</p>
               <div className="space-y-3">
                 {situations.map((situation, index) => (
@@ -267,25 +267,6 @@ const ServiceJuridique = () => {
                     <Shield size={18} className="text-accent flex-shrink-0" />
                     <span className="text-small">Confidentialité assurée</span>
                   </div>
-                </div>
-
-                {/* Séparateur */}
-                <div className="h-px bg-border" />
-
-                {/* Contact info */}
-                <div className="space-y-3">
-                  <a href="mailto:contact@k-empirecorporation.com" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <Mail size={18} className="text-accent" />
-                    </div>
-                    <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
-                  </a>
-                  <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <PhoneCall size={18} className="text-accent" />
-                    </div>
-                    <span className="text-body-sm font-medium">+228 92 66 45 50</span>
-                  </a>
                 </div>
 
                 {/* Séparateur */}

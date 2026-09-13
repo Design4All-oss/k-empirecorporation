@@ -93,10 +93,7 @@ const ServicesTestimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <span className="text-small text-accent">
-            Témoignages Formation
-          </span>
-          <h2 className="text-h2-m md:text-h2-d text-primary mt-4 mb-4">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
             Ce que disent nos apprenants
           </h2>
           <p className="text-[#6B7280] max-w-2xl mx-auto">

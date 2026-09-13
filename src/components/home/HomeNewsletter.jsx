@@ -32,7 +32,7 @@ const HomeNewsletter = () => {
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative z-10">
             {/* Left Column - Title & Text */}
             <div className="flex-1 text-center lg:text-left">
-              <h2 className="text-h2-m md:text-h2-d font-bold text-white font-display leading-none mb-4 md:whitespace-nowrap">
+              <h2 className="text-h2-m md:text-h2-d font-bold text-white font-display leading-tight mb-6 md:whitespace-nowrap">
                 Restez informé
               </h2>
               <p className="text-body text-white/80 max-w-sm">

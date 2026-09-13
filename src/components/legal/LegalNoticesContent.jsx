@@ -176,10 +176,9 @@ Adresse : Agoè-Kossigan, Lomé-Togo`,
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="text-label text-accent mb-4 block">Cadre Légal</span>
-          <h1 className="text-h1-m md:text-h1-d text-primary font-semibold mb-6">
+          <h2 className="text-h1-m md:text-h1-d text-primary font-semibold mb-6">
             Politique Légale
-          </h1>
+          </h2>
           <p className="text-body-lg text-text-muted max-w-2xl mx-auto">
             La présente page détaille les conditions d'utilisation de notre site web, nos engagements en matière de protection des données, ainsi que le cadre juridique applicable à nos services de conseil et d'accompagnement.
           </p>

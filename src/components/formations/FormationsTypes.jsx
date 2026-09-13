@@ -21,11 +21,7 @@ const FormationsTypes = () => {
           transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
           className="text-center mb-16 md:mb-20"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-            Nos formats
-          </span>
-          <h2 className="text-h2-m md:text-h2-d text-primary mt-6 mb-6">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
             Une offre adaptée à vos besoins
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto text-lg leading-relaxed">

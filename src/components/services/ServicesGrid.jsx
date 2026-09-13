@@ -69,10 +69,7 @@ const ServicesGrid = ({ services }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-small text-accent">
-            Nos expertises
-          </span>
-          <h2 className="text-h2-m md:text-h2-d text-primary mt-4 mb-6">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
             Des solutions complètes pour<br className="hidden md:block" /> votre réussite
           </h2>
         </motion.div>

@@ -42,10 +42,7 @@ const HomeWhyUs = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col"
           >
-            <span className="text-small text-accent mb-3">
-              Pourquoi nous choisir ?
-            </span>
-            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-none mb-4">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
               Votre partenaire pour l'excellence
             </h2>
             <p className="text-body text-text-muted mb-8 max-w-lg">

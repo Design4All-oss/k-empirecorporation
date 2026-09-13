@@ -153,7 +153,7 @@ const FormationSingle = () => {
           "@type": "Course",
           "name": formation.title,
           "description": formation.hook,
-          "url": `https://kempirecorporation.com/formations/${slug}`,
+          "url": `https://www.k-empirecorporation.com/formations/${slug}`,
           "provider": {
             "@type": "Organization",
             "name": "K-EMPIRE Corporation"

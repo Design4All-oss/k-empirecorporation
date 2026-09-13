@@ -48,15 +48,9 @@ const ServicesProcess = () => {
           variants={containerVariants}
           className="text-center mb-16"
         >
-          <motion.span 
-            variants={itemVariants}
-            className="text-small text-accent"
-          >
-            Notre méthodologie
-          </motion.span>
           <motion.h2 
             variants={itemVariants}
-            className="text-h2-m md:text-h2-d text-primary mt-4 mb-6"
+            className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6"
           >
             Comment nous travaillons
           </motion.h2>

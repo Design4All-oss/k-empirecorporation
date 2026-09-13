@@ -23,7 +23,7 @@ const Home = () => {
           "@type": "WebPage",
           "name": "K-EMPIRE Corporation - Accueil",
           "description": "Cabinet de conseil stratégique, d'intelligence stratégique, d'ingénierie juridique et de formation exécutive au Togo.",
-          "url": "https://kempirecorporation.com"
+          "url": "https://www.k-empirecorporation.com"
         }}
       />
       <HomeHero />

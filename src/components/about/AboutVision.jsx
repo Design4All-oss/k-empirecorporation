@@ -46,15 +46,6 @@ const AboutVision = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             className="pt-16 lg:pt-0"
           >
-            {/* Eyebrow label */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-12 h-0.5 bg-accent"></span>
-              <span className="text-sm font-bold uppercase tracking-wider text-text-muted">
-                Notre ambition
-              </span>
-            </div>
-
-            {/* Main heading */}
             <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Nous aspirons à devenir l'Académie où l'excellence devient autorité.
             </h2>
@@ -92,7 +83,7 @@ const AboutVision = () => {
               to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-accent text-primary px-8 py-4 rounded-full font-bold hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl group w-full sm:w-auto"
             >
-              En savoir plus
+              Rejoindre l'Académie
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>

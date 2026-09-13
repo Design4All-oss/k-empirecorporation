@@ -132,7 +132,7 @@ const Blog = () => {
           "@type": "Blog",
           "name": "Blog K-EMPIRE Corporation",
           "description": "Actualités, analyses et événements au Togo.",
-          "url": "https://kempirecorporation.com/blog"
+          "url": "https://www.k-empirecorporation.com/blog"
         }}
       />
       <PageBanner

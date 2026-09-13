@@ -24,7 +24,7 @@ const About = () => {
           "@type": "AboutPage",
           "name": "À propos de K-EMPIRE Corporation",
           "description": "Cabinet international d'études, de conseil et de formation spécialisé dans l'accompagnement des organisations vers l'excellence managériale.",
-          "url": "https://kempirecorporation.com/a-propos"
+          "url": "https://www.k-empirecorporation.com/a-propos"
         }}
       />
       <PageBanner

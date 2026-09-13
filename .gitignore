@@ -32,4 +32,6 @@ Docs/
 .env.production
 anitigravity.md
 content.md
+DOCUMENTATION.md
+.sanity/
 

@@ -18,7 +18,7 @@ const Contact = () => {
           "@type": "ContactPage",
           "name": "Contact K-EMPIRE Corporation",
           "description": "Contactez-nous pour vos besoins en conseil stratégique, intelligence stratégique, ingénierie juridique et formation exécutive au Togo.",
-          "url": "https://kempirecorporation.com/contact"
+          "url": "https://www.k-empirecorporation.com/contact"
         }}
       />
       <PageBanner

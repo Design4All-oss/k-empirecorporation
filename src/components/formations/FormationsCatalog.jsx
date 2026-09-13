@@ -119,7 +119,7 @@ const FormationsCatalog = () => {
   const totalSlides = Math.max(1, Math.ceil(regularFormations.length / itemsPerSlide));
 
   return (
-    <section id="formations" className="py-24 md:py-32 bg-white" style={{ scrollMarginTop: '120px' }}>
+    <section id="formations" className="py-24 md:py-32 bg-white scroll-mt-[120px]">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -129,10 +129,7 @@ const FormationsCatalog = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-label text-accent">
-            Catalogue
-          </span>
-          <h2 className="text-h2-m md:text-h2-d text-primary mt-4 mb-6">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
             Nos formations disponibles
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">

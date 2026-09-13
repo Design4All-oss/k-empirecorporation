@@ -13,10 +13,7 @@ const HomePartners = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-small text-accent mb-2">
-            Ils nous font confiance
-          </p>
-          <h2 className="text-h2-m md:text-h2-d text-primary font-display">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
             Nos partenaires et sponsors
           </h2>
         </motion.div>

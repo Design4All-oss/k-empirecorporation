@@ -55,14 +55,14 @@ const CustomCursor = () => {
 
   return (
     <div
-      className="custom-cursor"
+      className="fixed pointer-events-none z-[9999] mix-blend-difference"
       style={{
         left: position.x,
         top: position.y,
       }}
     >
-      <div className={`cursor-circle ${isHovering ? 'expanded' : ''}`} />
-      <div className={`cursor-dot ${isHovering ? 'hidden' : ''}`} />
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 border border-white rounded-full transition-[width,height,opacity] duration-300 ease-out ${isHovering ? 'w-10 h-10' : ''}`} />
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-white rounded-full transition-opacity duration-300 ${isHovering ? 'opacity-0' : ''}`} />
     </div>
   );
 };

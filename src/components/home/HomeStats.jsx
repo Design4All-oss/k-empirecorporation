@@ -98,7 +98,7 @@ const HomeStats = () => {
         >
           {/* Left side - Title */}
           <motion.div variants={itemVariants} className="lg:w-[280px] flex-shrink-0">
-            <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display mb-3">
+            <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-tight mb-6">
               {stats.title}
             </h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed">

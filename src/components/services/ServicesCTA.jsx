@@ -20,7 +20,7 @@ const ServicesCTA = ({ title, description }) => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center p-8 md:p-12 lg:p-16">
             {/* Colonne 1 : Titre et texte */}
             <div className="text-left">
-              <h2 className="text-h2-m md:text-h2-d text-primary font-semibold mb-6 leading-tight">
+              <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
                 {title}
               </h2>
               

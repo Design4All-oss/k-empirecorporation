@@ -106,7 +106,7 @@ const Footer = () => {
           </motion.div>
 
           <motion.div variants={itemVariants} className="flex flex-col gap-5">
-            <h4 className="text-small font-semibold text-white">L'agence</h4>
+            <h4 className="text-small font-semibold text-white">L'Institution</h4>
             <div className="flex flex-col gap-3">
               {['Le Cabinet', 'Nos Références & Partenariats', 'Notre Écosystème d\'Experts', 'Contact'].map((link, idx) => (
                 <a key={idx} href="#" className="text-body text-white/60 hover:text-accent flex items-center justify-between group w-fit">
@@ -122,7 +122,7 @@ const Footer = () => {
             <div className="flex flex-col gap-4">
               <div className="flex items-start gap-3">
                 <MapPin className="text-accent mt-1 shrink-0" size={20} />
-                <p className="text-body text-white">Agoè-Kossigan, Lomé – République du Togo</p>
+                <p className="text-body text-white">Agoè-Kossigan, Lomé-Togo</p>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-accent shrink-0" size={20} />

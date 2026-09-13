@@ -111,9 +111,9 @@ const ContactSection = () => {
             </div>
 
             {/* Heading */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-display mb-2">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-display mb-2">
               Parlons de votre projet
-            </h1>
+            </h2>
 
             {/* Description */}
             <p className="text-text-muted text-base md:text-lg max-w-xl">

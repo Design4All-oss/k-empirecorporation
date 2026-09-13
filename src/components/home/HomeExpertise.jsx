@@ -25,11 +25,7 @@ const HomeExpertise = () => {
           className="flex flex-col items-start md:flex-row md:items-end md:justify-between gap-8 mb-14 md:mb-20"
         >
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              {expertise.subtitle}
-            </span>
-            <h2 className="text-h2-m md:text-h2-d text-primary mt-5 mb-5 leading-[1.05]">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               {expertise.title}
             </h2>
             <p className="text-text-muted leading-relaxed max-w-xl">

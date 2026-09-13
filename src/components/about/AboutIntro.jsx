@@ -13,9 +13,9 @@ const AboutIntro = () => {
           className="max-w-4xl mx-auto text-center"
         >
           {/* Title */}
-          <h1 className="text-h1-m md:text-h1-d text-primary font-bold font-display mb-8 leading-tight">
+          <h2 className="text-h1-m md:text-h1-d text-primary font-bold font-display mb-8 leading-tight">
             Notre Histoire
-          </h1>
+          </h2>
 
           {/* Opening Paragraph - Storytelling */}
           <div className="space-y-5 text-base md:text-lg text-text-muted leading-relaxed text-justify">

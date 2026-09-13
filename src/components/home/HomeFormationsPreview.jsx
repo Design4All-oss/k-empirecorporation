@@ -48,14 +48,7 @@ const HomeFormationsPreview = () => {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12 md:mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-              <BookOpen size={18} className="text-accent" />
-            </div>
-            <span className="text-small font-medium text-accent tracking-wide uppercase">Formations</span>
-          </div>
-
-          <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-[1.05] mb-5">
+          <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-tight mb-6">
             Formations certifiantes et sur mesure
           </h2>
 

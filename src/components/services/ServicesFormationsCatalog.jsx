@@ -131,10 +131,7 @@ const ServicesFormationsCatalog = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-small text-accent">
-            Catalogue
-          </span>
-          <h2 className="text-h2-m md:text-h2-d text-primary mt-4 mb-4">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">
             Nos formations disponibles
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">

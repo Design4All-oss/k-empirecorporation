@@ -33,12 +33,7 @@ const FormationsCTA = () => {
             <div className="absolute top-0 right-0 w-[28rem] h-[28rem] bg-accent/15 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/3" />
             <div className="absolute bottom-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/3" />
             <div
-              className="absolute inset-0 opacity-[0.15]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
-                backgroundSize: "56px 56px",
-              }}
+              className="absolute inset-0 opacity-[0.15] [background-image:linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:56px_56px]"
             />
           </div>
 
@@ -51,11 +46,7 @@ const FormationsCTA = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.15 }}
               >
-                <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-light" />
-                  Formation sur mesure
-                </span>
-                <h2 className="text-h2-m md:text-h2-d text-white mt-6 mb-6">
+                <h2 className="text-h2-m md:text-h2-d text-white font-bold font-display leading-tight mb-6">
                   Des formations taillées{" "}
                   <span className="text-accent-light">sur mesure</span>
                 </h2>

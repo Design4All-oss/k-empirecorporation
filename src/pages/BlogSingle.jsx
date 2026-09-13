@@ -83,7 +83,7 @@ const BlogSingle = () => {
           "@type": "BlogPosting",
           "headline": post.title,
           "description": post.excerpt,
-          "url": `https://kempirecorporation.com/blog/${slug}`,
+          "url": `https://www.k-empirecorporation.com/blog/${slug}`,
           "author": {
             "@type": "Person",
             "name": authorName
@@ -147,13 +147,8 @@ const BlogSingle = () => {
               </div>
 
               <div 
-                className="text-text-muted leading-relaxed [&_p]:mb-4 [&_p]:whitespace-normal [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-2 [&_h1]:text-2xl [&_h1]:font-bold [&_h1]:mb-4 [&_h1]:mt-6 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mb-3 [&_h2]:mt-5 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mb-2 [&_h3]:mt-4"
+                className="text-text-muted leading-relaxed [&_p]:mb-4 [&_p]:whitespace-normal [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_li]:mb-2 [&_h1]:text-2xl [&_h1]:font-bold [&_h1]:mb-4 [&_h1]:mt-6 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mb-3 [&_h2]:mt-5 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mb-2 [&_h3]:mt-4 [overflow-wrap:break-word] [word-break:break-word] max-w-full"
                 dangerouslySetInnerHTML={{ __html: post.content }}
-                style={{
-                  overflowWrap: 'break-word',
-                  wordBreak: 'break-word',
-                  maxWidth: '100%',
-                }}
               />
 
               {post.tags && post.tags.length > 0 && (

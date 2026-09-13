@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 const SITE_NAME = 'K-EMPIRE Corporation';
-const BASE_URL = 'https://kempirecorporation.com';
+const BASE_URL = 'https://www.k-empirecorporation.com';
 const DEFAULT_DESCRIPTION = 'Cabinet de conseil stratégique, d\'intelligence stratégique, d\'ingénierie juridique et de formation exécutive au Togo. Accompagnement stratégique pour entreprises et institutions.';
 const DEFAULT_IMAGE = `${BASE_URL}/assets/logos/Logo_kempire.svg`;
 

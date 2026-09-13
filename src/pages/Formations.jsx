@@ -35,7 +35,7 @@ const Formations = () => {
           "@type": "ItemList",
           "name": "Académie Exécutive K-EMPIRE Corporation",
           "description": "Formations certifiantes et programmes sur mesure au Togo.",
-          "url": "https://kempirecorporation.com/formations"
+          "url": "https://www.k-empirecorporation.com/formations"
         }}
       />
       <PageBanner

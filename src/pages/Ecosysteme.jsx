@@ -83,10 +83,7 @@ const Ecosysteme = () => {
             transition={{ duration: 0.6 }}
             className="mx-auto mb-16 max-w-2xl text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Qui compose notre réseau
-            </span>
-            <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Des experts complémentaires et engagés
             </h2>
             <p className="mt-4 text-gray-600">
@@ -126,10 +123,7 @@ const Ecosysteme = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-                Comment nous travaillons
-              </span>
-              <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+              <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
                 Une mise en relation rigoureuse
               </h2>
               <div className="mt-8 space-y-5">

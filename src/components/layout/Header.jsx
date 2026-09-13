@@ -97,7 +97,11 @@ const Header = () => {
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? 'py-4 bg-white/90 backdrop-blur-sm shadow-sm' : 'py-6 bg-transparent'
+        scrolled
+          ? 'py-4 bg-white/90 shadow-sm'
+          : isOpen
+            ? 'py-6 bg-white/90 shadow-sm'
+            : 'py-6 bg-transparent shadow-none'
       }`}
     >
       <div className="max-w-container mx-auto px-6 xl:px-10 flex justify-between items-center">
@@ -218,7 +222,11 @@ const Header = () => {
             className="fixed inset-0 bg-primary z-40 xl:hidden flex flex-col p-6"
           >
             <div className="flex justify-between items-center mb-12">
-              <span className="text-white text-xl font-bold">K-EMPIRE</span>
+              <img
+                src="/assets/logos/Logo_kempireWhite.svg"
+                alt="K-EMPIRE"
+                className="h-10 w-auto"
+              />
               <button 
                 onClick={() => setIsOpen(false)}
                 className="w-10 h-10 flex items-center justify-center text-white"
@@ -234,10 +242,10 @@ const Header = () => {
                     <Link 
                       to={item.path} 
                       onClick={() => setIsOpen(false)}
-                      className="text-white text-2xl font-semibold flex justify-between items-center group"
+                      className="text-white text-xl font-semibold flex justify-between items-center group"
                     >
                       {item.label}
-                      <ChevronRight size={24} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ChevronRight size={20} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                     <div className="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
                       {menuItems[item.label].map((sub) => (
@@ -245,9 +253,9 @@ const Header = () => {
                           key={sub.id}
                           to={sub.link}
                           onClick={() => setIsOpen(false)}
-                          className="text-white/80 text-lg flex items-center gap-3 group"
+                          className="text-white/80 text-base flex items-center gap-3 group"
                         >
-                          <sub.icon size={18} className="text-accent" />
+                          <sub.icon size={16} className="text-accent" />
                           {sub.title}
                         </Link>
                       ))}
@@ -258,10 +266,10 @@ const Header = () => {
                     key={index} 
                     to={item.path} 
                     onClick={() => setIsOpen(false)}
-                    className="text-white text-2xl font-semibold flex justify-between items-center group"
+                    className="text-white text-xl font-semibold flex justify-between items-center group"
                   >
                     {item.label}
-                    <ChevronRight size={24} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ChevronRight size={20} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 )
               ))}

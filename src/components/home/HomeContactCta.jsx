@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PhoneCall, Mail, ArrowRight, CheckCircle, Clock, Shield, MessageCircle } from 'lucide-react';
+import { PhoneCall, ArrowRight, CheckCircle, Clock, Shield, MessageCircle } from 'lucide-react';
 import { HOME_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
 import { useBookingModal } from '../../context/BookingModalContext';
@@ -72,25 +72,6 @@ const HomeContactCta = () => {
                   <Shield size={18} className="text-accent flex-shrink-0" />
                   <span className="text-small">Confidentialité assurée</span>
                 </div>
-              </div>
-
-              {/* Séparateur */}
-              <div className="h-px bg-border" />
-
-              {/* Contact info */}
-              <div className="space-y-3">
-                <a href="mailto:contact@k-empirecorporation.com" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <Mail size={18} className="text-accent" />
-                  </div>
-                  <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
-                </a>
-                <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                    <PhoneCall size={18} className="text-accent" />
-                  </div>
-                  <span className="text-body-sm font-medium">+228 92 66 45 50</span>
-                </a>
               </div>
 
               {/* Séparateur */}

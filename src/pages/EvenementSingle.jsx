@@ -137,7 +137,7 @@ const EvenementSingle = () => {
           "@type": "Event",
           "name": evenement.title,
           "description": evenement.excerpt,
-          "url": `https://kempirecorporation.com/event/${slug}`,
+          "url": `https://www.k-empirecorporation.com/event/${slug}`,
           "location": {
             "@type": "Place",
             "name": evenement.location

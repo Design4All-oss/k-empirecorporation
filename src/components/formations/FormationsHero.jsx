@@ -21,30 +21,16 @@ const FormationsHero = () => {
       {/* Subtle grid texture */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
-          className="absolute inset-0 opacity-[0.35]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(14,64,99,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(14,64,99,0.04) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
-            maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
-            WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
-          }}
+          className="absolute inset-0 opacity-[0.35] [background-image:linear-gradient(to_right,rgba(14,64,99,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(14,64,99,0.04)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)] [-webkit-mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"
         />
         <div className="absolute -top-40 right-[-10rem] w-[42rem] h-[42rem] bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute top-1/3 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-container mx-auto relative z-10">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-center">
           {/* Left — Editorial typography */}
           <div className="lg:col-span-7">
-            <motion.div {...fadeUp}>
-              <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                L'Académie Exécutive
-              </span>
-            </motion.div>
-
             <motion.h1
               {...fadeUp}
               transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.08 }}

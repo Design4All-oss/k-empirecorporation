@@ -26,8 +26,7 @@ const BlogRecentNews = ({ recentNews, currentSlide, setCurrentSlide, totalSlides
           viewport={{ once: true }}
           className="mb-8"
         >
-          <span className="text-small text-accent">Actualités</span>
-          <h2 className="text-h2-m md:text-h2-d text-primary mt-2">Actualités récentes</h2>
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">Actualités récentes</h2>
           <p className="text-text-muted mt-3 max-w-2xl">
             Découvrez nos dernières nouvelles, événements et formations pour rester informé des avancées dans le domaine de la gouvernance d'entreprise, de la comptabilité et du droit OHADA.
           </p>

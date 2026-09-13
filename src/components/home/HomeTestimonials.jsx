@@ -53,14 +53,12 @@ const HomeTestimonials = () => {
   return (
     <section className="py-8 md:py-12 bg-white relative overflow-hidden">
       <div 
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ backgroundImage: 'url(/assets/images/testamonials/pattern.png)', backgroundSize: '1200px', backgroundPosition: 'center 100px', backgroundRepeat: 'no-repeat' }}
+        className="absolute inset-0 w-full h-full pointer-events-none bg-[url('/assets/images/testamonials/pattern.png')] bg-[length:1200px] bg-[position:center_100px] bg-no-repeat"
       ></div>
 
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col items-center text-center mb-12">
-          <span className="text-small text-accent mb-6">Voix de nos Partenaires</span>
-          <h2 className="text-h2-m md:text-h2-d text-primary font-semibold max-w-5xl mb-8">
+          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight max-w-5xl mb-8">
             {testimonials.title}
           </h2>
           <div className="w-12 h-1 bg-accent rounded-full" />

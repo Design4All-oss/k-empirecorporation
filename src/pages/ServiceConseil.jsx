@@ -4,7 +4,7 @@ import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import HomeNewsletter from '../components/home/HomeNewsletter';
 import Button from '../components/ui/Button';
-import { ArrowRight, Users, Target, Shield, Clock, Briefcase, Star, Award, Zap, Globe, Handshake, BarChart3, Sparkles, MessageCircle, Mail, PhoneCall } from 'lucide-react';
+import { ArrowRight, Users, Target, Shield, Clock, Briefcase, Star, Award, Zap, Globe, Handshake, BarChart3, Sparkles, MessageCircle, PhoneCall } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
 
 const ServiceConseil = () => {
@@ -68,7 +68,7 @@ const ServiceConseil = () => {
           "@type": "Service",
           "name": "Conseil & Stratégie d'entreprise",
           "description": "Accompagnement stratégique pour entreprises au Togo.",
-          "url": "https://kempirecorporation.com/services/conseil-strategie",
+          "url": "https://www.k-empirecorporation.com/services/conseil-strategie",
           "provider": {
             "@type": "Organization",
             "name": "K-EMPIRE Corporation"
@@ -160,7 +160,7 @@ const ServiceConseil = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-h2-m md:text-h2-d text-primary mt-3 mb-6 leading-tight">
+              <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
                 Votre partenaire stratégique pour la réussite
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
@@ -202,7 +202,7 @@ const ServiceConseil = () => {
             transition={{ duration: 0.6 }} 
             className="text-center mb-16"
           >
-            <h2 className="text-h2-m md:text-h2-d text-primary mt-3">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Services que nous proposons
             </h2>
             <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
@@ -245,7 +245,7 @@ const ServiceConseil = () => {
             transition={{ duration: 0.6 }} 
             className="text-center mb-16"
           >
-            <h2 className="text-h2-m md:text-h2-d text-primary mt-3">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Notre processus de travail
             </h2>
           </motion.div>
@@ -324,25 +324,6 @@ const ServiceConseil = () => {
                     <Target size={18} className="text-accent flex-shrink-0" />
                     <span className="text-small">Stratégie personnalisée</span>
                   </div>
-                </div>
-
-                {/* Séparateur */}
-                <div className="h-px bg-border" />
-
-                {/* Contact info */}
-                <div className="space-y-3">
-                  <a href="mailto:contact@k-empirecorporation.com" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <Mail size={18} className="text-accent" />
-                    </div>
-                    <span className="text-body-sm font-medium">contact@k-empirecorporation.com</span>
-                  </a>
-                  <a href="tel:+22892664550" className="flex items-center gap-3 text-primary hover:text-accent transition-colors group">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                      <PhoneCall size={18} className="text-accent" />
-                    </div>
-                    <span className="text-body-sm font-medium">+228 92 66 45 50</span>
-                  </a>
                 </div>
 
                 {/* Séparateur */}

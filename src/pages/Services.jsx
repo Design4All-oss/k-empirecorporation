@@ -100,7 +100,7 @@ const Services = () => {
           "@type": "Service",
           "name": "Expertises K-EMPIRE Corporation",
           "description": "Conseil stratégique, intelligence stratégique, ingénierie juridique et formation exécutive au Togo.",
-          "url": "https://kempirecorporation.com/services",
+          "url": "https://www.k-empirecorporation.com/services",
           "provider": {
             "@type": "Organization",
             "name": "K-EMPIRE Corporation"

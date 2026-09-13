@@ -47,10 +47,7 @@ const AboutHubs = () => {
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto mb-16 text-center">
-          <p className="text-label text-accent uppercase tracking-widest text-sm mb-4">
-            Notre maillage international
-          </p>
-          <h2 className="text-h2-m md:text-h2-d font-display text-text-primary mb-6">
+          <h2 className="text-h2-m md:text-h2-d font-display text-primary font-bold leading-tight mb-6">
             Nos hubs internationaux
           </h2>
           <p className="text-body-lg text-text-muted">

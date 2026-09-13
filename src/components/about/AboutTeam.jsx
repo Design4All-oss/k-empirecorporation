@@ -33,13 +33,7 @@ const AboutTeam = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Eyebrow label */}
-            <span className="text-label text-accent mb-4 block">
-              Notre équipe
-            </span>
-
-            {/* Main heading */}
-            <h2 className="text-h2-m md:text-h2-d text-primary font-bold mb-6 leading-tight">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Une équipe multidisciplinaire à votre service
             </h2>
 
@@ -73,7 +67,7 @@ const AboutTeam = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="bg-[#1E3A5F] p-6 rounded-2xl"
+              className={`bg-primary transition-all duration-300 ${comiteOpen ? 'bg-primary' : 'bg-primary/80'} p-6`}
             >
               <button
                 type="button"

@@ -24,7 +24,7 @@ const BlogArticles = ({ posts, currentPostsSlide, setCurrentPostsSlide, totalPos
             viewport={{ once: true }}
             className="mb-8"
           >
-            <h2 className="text-h2-m md:text-h2-d text-primary">Articles de blog</h2>
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6">Articles de blog</h2>
             <p className="text-text-muted mt-3 max-w-2xl">
               Explorez nos articles approfondis sur la gouvernance d'entreprise, la comptabilité, le droit des affaires et bien plus encore.
             </p>

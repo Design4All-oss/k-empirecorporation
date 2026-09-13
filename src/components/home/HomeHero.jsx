@@ -74,7 +74,7 @@ const HomeHero = () => {
   };
 
   return (
-    <section className="min-h-screen h-screen flex items-center pt-32 pb-20 overflow-hidden bg-[#F5F7FA]">
+    <section className="min-h-screen lg:h-screen flex lg:items-center pt-36 lg:pt-48 pb-20 overflow-hidden bg-[#F5F7FA]">
       {/* Background Soft Decoration (Optional, very light) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-primary/[0.02] rounded-full blur-[100px]" />
@@ -96,10 +96,9 @@ const HomeHero = () => {
             {/* Massive Title */}
             <motion.h1 
               variants={itemVariants}
-              className="text-[3.25rem] sm:text-6xl lg:text-[5.25rem] xl:text-[5.75rem] leading-[0.95] tracking-[-0.02em] text-primary font-semibold"
+              className="text-h1-m md:text-[4.5rem] leading-[1.15] text-primary font-semibold"
             >
-              Votre succès
-              <br /> Structure l'avenir.
+              L'excellence, <span className="block">votre capital.</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -198,8 +197,7 @@ const HomeHero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, ease: "ease-out", delay: 0.3 }}
-                className="absolute w-[400px] h-[400px] lg:w-[480px] lg:h-[480px] rounded-full border-2 border-dashed border-primary/30"
-                style={{ clipPath: 'inset(0 5% 30% 0)' }}
+                className="absolute w-[400px] h-[400px] lg:w-[480px] lg:h-[480px] rounded-full border-2 border-dashed border-primary/30 [clip-path:inset(0_5%_30%_0)]"
               />
             </div>
 

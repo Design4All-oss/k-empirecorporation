@@ -17,8 +17,7 @@ const HomeValuesMarquee = () => {
       {/* Background text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span 
-          className="text-[70px] md:text-[90px] lg:text-[120px] font-bold text-white/[0.05] whitespace-nowrap tracking-tight px-4"
-          style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+          className="text-[70px] md:text-[90px] lg:text-[120px] font-bold text-white/[0.05] whitespace-nowrap tracking-tight px-4 font-display"
         >
           K-EMPIRE CORPORATION
         </span>
@@ -49,8 +48,7 @@ const HomeValuesMarquee = () => {
             {[...items, ...items, ...items, ...items].map((item, index) => (
               <span
                 key={index}
-                className={`text-lg md:text-xl lg:text-2xl font-medium flex items-center gap-6 md:gap-8 ${item.label ? 'text-accent uppercase tracking-widest text-base md:text-lg' : 'text-white'}`}
-                style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+                className={`text-lg md:text-xl lg:text-2xl font-medium flex items-center gap-6 md:gap-8 font-display ${item.label ? 'text-accent uppercase tracking-widest text-base md:text-lg' : 'text-white'}`}
               >
                 {item.text}
                 {!item.label && (

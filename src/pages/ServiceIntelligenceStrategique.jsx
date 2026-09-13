@@ -19,7 +19,6 @@ import {
   LineChart,
   Globe,
   PhoneCall,
-  Mail,
   MessageCircle,
 } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
@@ -211,10 +210,7 @@ const ServiceIntelligenceStrategique = () => {
             transition={{ duration: 0.6 }}
             className="mx-auto mb-16 max-w-2xl text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Nos prestations
-            </span>
-            <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Des dispositifs d'intelligence sur mesure
             </h2>
             <p className="mt-4 text-gray-600">
@@ -254,10 +250,7 @@ const ServiceIntelligenceStrategique = () => {
             transition={{ duration: 0.6 }}
             className="mx-auto mb-16 max-w-2xl text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Méthodologie
-            </span>
-            <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Un processus éprouvé en 4 étapes
             </h2>
             <p className="mt-4 text-gray-600">
@@ -298,10 +291,7 @@ const ServiceIntelligenceStrategique = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-                Questions fréquentes
-              </span>
-              <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+              <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
                 Vos questions sur l'intelligence stratégique
               </h2>
               <p className="mt-4 text-gray-600">
@@ -324,7 +314,7 @@ const ServiceIntelligenceStrategique = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="overflow-hidden rounded-2xl bg-primary"
+                  className="overflow-hidden bg-primary"
                 >
                   <button
                     onClick={() => toggleFaq(index)}
@@ -370,7 +360,7 @@ const ServiceIntelligenceStrategique = () => {
           >
             <div className="grid items-center gap-10 lg:grid-cols-2">
               <div>
-                <h2 className="text-3xl font-bold text-primary md:text-4xl">
+                <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
                   Anticipez les évolutions de votre environnement
                 </h2>
                 <p className="mt-4 text-gray-600">
@@ -390,22 +380,6 @@ const ServiceIntelligenceStrategique = () => {
                     <Shield className="h-5 w-5 text-accent" />
                     <span className="text-sm text-gray-700">Confidentialité totale</span>
                   </div>
-                </div>
-                <div className="mt-8 flex flex-wrap items-center gap-6">
-                  <a
-                    href="mailto:contact@k-empirecorporation.com"
-                    className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent"
-                  >
-                    <Mail className="h-5 w-5" />
-                    contact@k-empirecorporation.com
-                  </a>
-                  <a
-                    href="tel:+22892664550"
-                    className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent"
-                  >
-                    <PhoneCall className="h-5 w-5" />
-                    +228 92 66 45 50
-                  </a>
                 </div>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Button onClick={openBookingModal} size="lg">

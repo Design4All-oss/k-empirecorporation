@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://kempirecorporation.com/sitemap.xml
+Sitemap: https://www.k-empirecorporation.com/sitemap.xml

@@ -97,10 +97,7 @@ const References = () => {
             transition={{ duration: 0.6 }}
             className="mx-auto mb-16 max-w-2xl text-center"
           >
-            <span className="text-sm font-semibold uppercase tracking-wider text-accent">
-              Ce que nous faisons pour eux
-            </span>
-            <h2 className="mt-3 text-3xl font-bold text-primary md:text-4xl">
+            <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
               Des missions variées, une exigence constante
             </h2>
             <p className="mt-4 text-gray-600">
@@ -142,7 +139,7 @@ const References = () => {
             className="rounded-3xl bg-primary p-8 text-center md:p-14"
           >
             <Star className="mx-auto mb-4 h-10 w-10 text-accent" />
-            <h2 className="text-3xl font-bold text-white md:text-4xl">
+            <h2 className="text-h2-m md:text-h2-d text-white font-bold font-display mb-6 leading-tight">
               Rejoignez nos références
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-white/70">
