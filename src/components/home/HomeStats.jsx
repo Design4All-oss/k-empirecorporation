@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { TrendingUp, Building2, Users, GraduationCap, CalendarDays } from 'lucide-react';
 import { HOME_CONTENT } from '../../constants/content';
+import { useStatistiques } from '../../hooks/useSiteContent';
 
 // Composant compteur animé
 const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
@@ -42,8 +43,10 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
 };
 
 const HomeStats = () => {
+  const { data: statsData } = useStatistiques();
   const { stats } = HOME_CONTENT;
-  
+  const items = statsData?.accueil?.length ? statsData.accueil : stats.items;
+
   const icons = [Building2, Users, GraduationCap, CalendarDays];
   
   // Extraire les valeurs numériques pour l'animation
@@ -108,7 +111,7 @@ const HomeStats = () => {
 
           {/* Right side - Stats */}
           <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {stats.items.map((item, index) => {
+            {items.map((item, index) => {
               const Icon = icons[index] || icons[0];
               const numericValue = extractNumber(item.value);
               const suffix = getSuffix(item.value);

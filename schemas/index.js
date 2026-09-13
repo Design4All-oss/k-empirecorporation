@@ -9,9 +9,9 @@ import session from './session.js'
 import soumissionDevis from './soumissionDevis.js'
 import soumissionNewsletter from './soumissionNewsletter.js'
 import soumissionRdv from './soumissionRdv.js'
+import statItem from './statItem.js'
 import statistiques from './statistiques.js'
 import temoignage from './temoignage.js'
-import temoignageFormation from './temoignageFormation.js'
 import valeurs from './valeurs.js'
 
-export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, temoignageFormation, statistiques, valeurs]
+export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, statistiques, valeurs, statItem]

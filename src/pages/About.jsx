@@ -35,11 +35,11 @@ const About = () => {
       />
       <AboutIntro />
       <AboutMission />
+      <AboutStats />
       <AboutVision />
       <AboutHubs />
       <AboutValues />
       <AboutTeam />
-      <AboutStats />
       <AboutContactCta />
       <HomeNewsletter />
     </>

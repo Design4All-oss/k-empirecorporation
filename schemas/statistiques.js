@@ -1,52 +1,26 @@
 import { defineField, defineType } from 'sanity'
 
+const section = (name, title) =>
+  defineField({
+    name,
+    title,
+    type: 'array',
+    of: [{ type: 'statItem' }],
+  })
+
 export default defineType({
   name: 'statistiques',
   title: 'Statistiques',
   type: 'document',
   fields: [
-    defineField({
-      name: 'items',
-      title: 'Chiffres clés',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          name: 'stat',
-          fields: [
-            defineField({
-              name: 'value',
-              title: 'Valeur',
-              type: 'string',
-              description: 'Ex : 2000+, 25+, 98%',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'label',
-              title: 'Libellé',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'text',
-              title: 'Description',
-              type: 'text',
-              rows: 3,
-            }),
-          ],
-          preview: {
-            select: {
-              value: 'value',
-              label: 'label',
-            },
-            prepare({ value, label }) {
-              return { title: `${value || '—'} ${label || ''}` }
-            },
-          },
-        },
-      ],
-      validation: (Rule) => Rule.required().min(1),
-    }),
+    section('accueil', 'Accueil'),
+    section('apropos', 'À propos'),
+    section('services', 'Services'),
+    section('formations', 'Formations — hero'),
+    section('formationsBenefits', 'Formations — bénéfices'),
+    section('conseilStrategie', 'Conseil & stratégie'),
+    section('assistanceJuridique', 'Assistance juridique'),
+    section('intelligenceStrategique', 'Intelligence stratégique'),
   ],
   preview: {
     prepare() {

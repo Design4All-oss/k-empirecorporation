@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users, ArrowRight, Monitor, MapPinHouse, MessageCircle, X, CheckCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, ArrowRight, Monitor, MapPinHouse, MessageCircle, X, CheckCircle, Download } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 import { useEvenement, useEvenements } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 import Button from '../components/ui/Button';
 import { submitNewsletter, submitEvenementInscription } from '../api/forms';
 import { useToast } from '../context/ToastContext';
+import { toDirectDownloadUrl, triggerDownload } from '../utils/driveDownload';
 
 const FacebookIcon = () => (
   <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor">
@@ -334,12 +335,24 @@ const EvenementSingle = () => {
               </div>
 
               {evenement.spots && (evenement.registered || 0) < evenement.spots ? (
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <Button 
                     onClick={() => setShowModal(true)}
                   >
                     S'inscrire <ArrowRight size={18} className="ml-2" />
                   </Button>
+                  {evenement.lienPresentation && (
+                    <button
+                      onClick={() => {
+                        const url = toDirectDownloadUrl(evenement.lienPresentation)
+                        if (url) triggerDownload(url, `${evenement.title || 'presentation'}.pdf`)
+                      }}
+                      className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer flex-shrink-0"
+                      title="Télécharger la présentation"
+                    >
+                      <Download size={20} />
+                    </button>
+                  )}
                   <a 
                     href="https://wa.me/228"
                     target="_blank"
@@ -350,9 +363,23 @@ const EvenementSingle = () => {
                   </a>
                 </div>
               ) : (
-                <Button variant="outline" disabled>
-                  Complet
-                </Button>
+                <div className="flex items-center gap-3">
+                  <Button variant="outline" disabled>
+                    Complet
+                  </Button>
+                  {evenement.lienPresentation && (
+                    <button
+                      onClick={() => {
+                        const url = toDirectDownloadUrl(evenement.lienPresentation)
+                        if (url) triggerDownload(url, `${evenement.title || 'presentation'}.pdf`)
+                      }}
+                      className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer flex-shrink-0"
+                      title="Télécharger la présentation"
+                    >
+                      <Download size={20} />
+                    </button>
+                  )}
+                </div>
               )}
 
               <div className="flex items-center justify-between pt-8 border-t border-gray-100 mt-8">

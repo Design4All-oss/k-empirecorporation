@@ -65,7 +65,7 @@ const HomeTestimonials = () => {
         </div>
 
         {/* Carousel */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-8 sm:px-12 lg:px-0">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -78,16 +78,16 @@ const HomeTestimonials = () => {
               className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center justify-center"
             >
               {/* Image */}
-              <div className="flex-shrink-0 w-full sm:w-[240px]">
+              <div className="flex-shrink-0 w-[160px] sm:w-[240px]">
                 {imageSrc(currentTestimonial) ? (
                   <img
                     src={imageSrc(currentTestimonial)}
                     alt={`Photo de ${currentTestimonial.name}`}
-                    className="w-full h-[240px] sm:h-[280px] object-contain rounded-lg"
+                    className="w-full h-[160px] sm:h-[280px] object-contain rounded-lg"
                   />
                 ) : (
-                  <div className="w-full h-[240px] sm:h-[280px] rounded-lg bg-primary/5 flex items-center justify-center">
-                    <span className="text-6xl font-bold text-primary/20 font-display">
+                  <div className="w-full h-[160px] sm:h-[280px] rounded-lg bg-primary/5 flex items-center justify-center">
+                    <span className="text-4xl sm:text-6xl font-bold text-primary/20 font-display">
                       {(currentTestimonial.name || 'K')[0]}
                     </span>
                   </div>
@@ -108,19 +108,19 @@ const HomeTestimonials = () => {
           </AnimatePresence>
 
           {/* Navigation Arrows */}
-          <button 
+          <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-white transition-all -translate-x-8 lg:translate-x-0 shadow-md"
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-white transition-all shadow-md"
             aria-label="Précédent"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
           </button>
-          <button 
+          <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-white transition-all translate-x-8 lg:translate-x-0 shadow-md"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-full flex items-center justify-center text-white hover:bg-accent hover:text-white transition-all shadow-md"
             aria-label="Suivant"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={16} className="sm:w-5 sm:h-5" />
           </button>
 
           {/* Dots */}

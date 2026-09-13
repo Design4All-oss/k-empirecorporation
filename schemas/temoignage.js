@@ -35,26 +35,17 @@ export default defineType({
       options: { hotspot: true },
       description: 'Photo de la personne (optionnelle)',
     }),
-    defineField({
-      name: 'consentement',
-      title: 'Consentement du client',
-      type: 'boolean',
-      initialValue: false,
-      description:
-        'Le client a donné son accord écrit pour la publication de ce témoignage. Obligatoire avant toute publication.',
-      validation: (Rule) => Rule.required(),
-    }),
   ],
   preview: {
     select: {
       title: 'nom',
       structure: 'structure',
-      consentement: 'consentement',
+      fonction: 'fonction',
     },
-    prepare({ title, structure, consentement }) {
+    prepare({ title, structure, fonction }) {
       return {
         title: title || 'Témoignage',
-        subtitle: [structure, consentement ? 'consentement OK' : 'sans consentement'].filter(Boolean).join(' · '),
+        subtitle: [fonction, structure].filter(Boolean).join(' · '),
       }
     },
   },

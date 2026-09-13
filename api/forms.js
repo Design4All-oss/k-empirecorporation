@@ -9,7 +9,7 @@ const ENDPOINTS = {
   'inscription-formation': {
     type: 'inscription',
     label: 'Inscription formation',
-    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'formation_slug', 'formation_id', 'message'],
+    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'formation_slug', 'formation_id', 'session_id', 'message'],
   },
   'inscription-evenement': {
     type: 'inscriptionEvenement',
@@ -28,10 +28,19 @@ const ENDPOINTS = {
   },
 };
 
-const getClient = () =>
+const contentClient = () =>
   createClient({
     projectId: process.env.SANITY_PROJECT_ID,
     dataset: process.env.SANITY_DATASET || 'production',
+    apiVersion: '2026-01-01',
+    token: process.env.SANITY_TOKEN,
+    useCdn: false,
+  });
+
+const submissionsClient = () =>
+  createClient({
+    projectId: process.env.SANITY_PROJECT_ID,
+    dataset: process.env.SANITY_SUBMISSIONS_DATASET || 'submissions',
     apiVersion: '2026-01-01',
     token: process.env.SANITY_TOKEN,
     useCdn: false,
@@ -90,34 +99,20 @@ export default async function handler(req, res) {
     submittedAt: new Date().toISOString(),
   };
 
-  const client = getClient();
-
-  if (config.type === 'inscription') {
-    if (raw.formation_id && /^[a-zA-Z0-9_\-]+$/.test(String(raw.formation_id))) {
-      doc.formation = { _ref: String(raw.formation_id) };
-    }
-    if (raw.session_id && /^[a-zA-Z0-9_\-]+$/.test(String(raw.session_id))) {
-      const sessionId = String(raw.session_id);
-      try {
-        const session = await client.getDocument(sessionId);
-        if (!session || session._type !== 'session' || session.statut === 'annulée') {
-          delete doc.session;
-        } else {
-          doc.session = { _ref: sessionId };
-        }
-      } catch {
-        delete doc.session;
+  if (config.type === 'inscription' && raw.session_id && /^[a-zA-Z0-9_\-]+$/.test(String(raw.session_id))) {
+    const sessionId = String(raw.session_id);
+    try {
+      const session = await contentClient().getDocument(sessionId);
+      if (!session || session._type !== 'session' || session.statut === 'annulée') {
+        delete doc.session_id;
       }
-    }
-  }
-  if (config.type === 'inscriptionEvenement') {
-    if (raw.evenement_id && /^[a-zA-Z0-9_\-]+$/.test(String(raw.evenement_id))) {
-      doc.evenement = { _ref: String(raw.evenement_id) };
+    } catch {
+      delete doc.session_id;
     }
   }
 
   try {
-    await client.create(doc);
+    await submissionsClient().create(doc);
   } catch (err) {
     console.error(`[forms] Sanity create échec (${config.type})`, err.message);
     return res.status(500).json({ success: false, message: 'Erreur de stockage — réessayez' });

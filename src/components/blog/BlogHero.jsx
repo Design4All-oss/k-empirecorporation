@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, MapPin, GraduationCap, Video } from 'lucide-react';
+import { Calendar, Clock, MapPin, GraduationCap, Video, Download } from 'lucide-react';
+import { toDirectDownloadUrl, triggerDownload } from '../../utils/driveDownload';
 
 const BlogHero = ({ featuredEvent }) => {
   const eventLink = featuredEvent?.slug ? `/formations/${featuredEvent.slug}` : '#';
@@ -56,6 +57,18 @@ const BlogHero = ({ featuredEvent }) => {
                   Voir les détails
                 </button>
               </Link>
+              {featuredEvent.lienPresentation && (
+                <button
+                  onClick={() => {
+                    const url = toDirectDownloadUrl(featuredEvent.lienPresentation)
+                    if (url) triggerDownload(url, `${featuredEvent.title || 'presentation'}.pdf`)
+                  }}
+                  className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-accent transition-all duration-300 cursor-pointer"
+                  title="Télécharger la présentation"
+                >
+                  <Download size={18} />
+                </button>
+              )}
               <div className="flex -space-x-2">
                 {[...Array(3)].map((_, i) => (
                   <img 

@@ -6,15 +6,23 @@ import HomeNewsletter from '../components/home/HomeNewsletter';
 import Button from '../components/ui/Button';
 import { ArrowRight, Users, Target, Shield, Clock, Briefcase, Star, Award, Zap, Globe, Handshake, BarChart3, Sparkles, MessageCircle, PhoneCall } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
+import { useStatistiques } from '../hooks/useSiteContent';
+
+const fallbackStats = [
+  { value: "200+", label: "Entreprises accompagnées", icon: Briefcase },
+  { value: "98%", label: "Taux de satisfaction", icon: Star },
+  { value: "15+", label: "Années d'expertise", icon: Award },
+  { value: "50+", label: "Experts consultants", icon: Users }
+];
+
+const statsIcons = [Briefcase, Star, Award, Users];
 
 const ServiceConseil = () => {
   const { openBookingModal } = useBookingModal();
-  const stats = [
-    { value: "200+", label: "Entreprises accompagnées", icon: Briefcase },
-    { value: "98%", label: "Taux de satisfaction", icon: Star },
-    { value: "15+", label: "Années d'expertise", icon: Award },
-    { value: "50+", label: "Experts consultants", icon: Users }
-  ];
+  const { data: statsData } = useStatistiques();
+  const stats = (statsData?.conseilStrategie?.length ? statsData.conseilStrategie : fallbackStats).map(
+    (s, i) => ({ ...s, icon: s.icon || statsIcons[i % statsIcons.length] })
+  );
 
   const services = [
     {

@@ -21,7 +21,8 @@ const FORMATION_PROJECTION = `{
   program[] { title, content },
   practical { location, startDate, endDate, price, capacity, duration, schedule, materials, evaluation },
   "sessions": *[_type == "session" && formation._ref == ^._id && statut != "annulée"] | order(startDate asc) { _id, startDate, endDate, lieu, format, places, statut },
-  content
+  content,
+  lienPresentation
 }`
 
 const transformFormation = (formation) => ({
@@ -73,6 +74,7 @@ const transformFormation = (formation) => ({
     evaluation: (formation.practical && formation.practical.evaluation) || '',
   },
   content: portableTextToHtml(formation.content),
+  lienPresentation: formation.lienPresentation || '',
 })
 
 export const useFormations = () =>

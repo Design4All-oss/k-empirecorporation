@@ -159,9 +159,10 @@ export default defineType({
       type: 'number',
     }),
     defineField({
-      name: 'registerLink',
-      title: "Lien d'inscription",
+      name: 'lienPresentation',
+      title: 'Lien de présentation (PDF)',
       type: 'url',
+      description: 'Lien Google Drive vers le document de présentation de l\'événement',
     }),
   ],
   preview: {

@@ -19,7 +19,7 @@ const EVENEMENT_PROJECTION = `{
   intervenants[] { nom, fonction, "photo": photo.asset->url },
   capacity,
   registered,
-  registerLink,
+  lienPresentation,
   content,
   programme
 }`
@@ -44,7 +44,7 @@ const transformEvenement = (evenement) => ({
   endTime: dateToTime(evenement.endDateTime),
   spots: evenement.capacity,
   registered: evenement.registered,
-  registerLink: evenement.registerLink || '',
+  lienPresentation: evenement.lienPresentation || '',
   intervenants: (evenement.intervenants || []).map((i) => ({
     nom: i.nom || '',
     fonction: i.fonction || '',

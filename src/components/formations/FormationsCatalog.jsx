@@ -10,69 +10,89 @@ import {
   Search,
   Filter,
   BookOpen,
-  ChevronDown
+  ChevronDown,
+  Download
 } from 'lucide-react';
 import Button from '../ui/Button';
 import Slider from '../ui/Slider';
 import { useFormations, useFeaturedFormations } from '../../hooks';
+import { toDirectDownloadUrl, triggerDownload } from '../../utils/driveDownload';
 
 // Formation Card Component
-const FormationCard = ({ formation }) => (
-  <Link to={`/formations/${formation?.slug || ''}`} className="block h-full">
-    <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-500 h-full cursor-pointer">
-      <div className="relative h-56 overflow-hidden">
-        <img
-          src={formation?.image || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop'}
-          alt={formation?.title || 'Formation'}
-          className="w-full h-full object-cover transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-60" />
-        <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary text-xs font-semibold rounded-full">
-          {formation?.category || 'Formation'}
-        </div>
-        {formation?.reconnaissance && (
-          <div className="absolute top-4 right-4 px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
-            {formation.reconnaissance === 'certification' ? 'Certifiante' : 'Attestation'}
+const FormationCard = ({ formation }) => {
+  const handleDownload = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const url = toDirectDownloadUrl(formation?.lienPresentation)
+    if (url) triggerDownload(url, `${formation?.title || 'presentation'}.pdf`)
+  }
+
+  return (
+    <Link to={`/formations/${formation?.slug || ''}`} className="block h-full">
+      <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 transition-all duration-500 h-full cursor-pointer">
+        <div className="relative h-56 overflow-hidden">
+          <img
+            src={formation?.image || 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop'}
+            alt={formation?.title || 'Formation'}
+            className="w-full h-full object-cover transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-60" />
+          <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary text-xs font-semibold rounded-full">
+            {formation?.category || 'Formation'}
           </div>
-        )}
-        <div className="absolute bottom-4 left-4 right-4">
-          <span className="inline-block px-3 py-1 bg-accent/90 text-white text-xs font-medium rounded-full">
-            {formation?.level || 'Tous niveaux'}
-          </span>
-        </div>
-      </div>
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-primary font-display mb-3 line-clamp-2 leading-snug">
-          {formation?.title || 'Titre de la formation'}
-        </h3>
-        <p className="text-sm text-text-muted mb-5 line-clamp-2 leading-relaxed">
-          {formation?.hook || 'Description de la formation'}
-        </p>
-        <div className="flex items-center gap-4 text-xs text-text-muted mb-5">
-          <div className="flex items-center gap-1.5">
-            <Clock size={14} className="text-accent flex-shrink-0" />
-            <span>{formation?.duration || 'Contactez-nous'}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <MapPin size={14} className="text-accent flex-shrink-0" />
-            <span className="truncate">{formation?.format || 'Présentiel / En ligne'}</span>
-          </div>
-        </div>
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div className="flex flex-col">
-            <span className="text-xs text-text-muted">Tarif</span>
-            <span className={`text-lg font-bold ${formation?.price ? 'text-accent' : 'text-green-600'}`}>
-              {formation?.price ? 'Formation payante' : 'Formation gratuite'}
+          {formation?.reconnaissance && (
+            <div className="absolute top-4 right-4 px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
+              {formation.reconnaissance === 'certification' ? 'Certifiante' : 'Attestation'}
+            </div>
+          )}
+          {formation?.lienPresentation && (
+            <button
+              onClick={handleDownload}
+              className="absolute bottom-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer z-10"
+              title="Télécharger la présentation"
+            >
+              <Download size={18} />
+            </button>
+          )}
+          <div className="absolute bottom-4 left-4">
+            <span className="inline-block px-3 py-1 bg-accent/90 text-white text-xs font-medium rounded-full">
+              {formation?.level || 'Tous niveaux'}
             </span>
           </div>
-          <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300">
-            <ArrowRight size={16} />
+        </div>
+        <div className="p-6">
+          <h3 className="text-lg font-bold text-primary font-display mb-3 line-clamp-2 leading-snug">
+            {formation?.title || 'Titre de la formation'}
+          </h3>
+          <p className="text-sm text-text-muted mb-5 line-clamp-2 leading-relaxed">
+            {formation?.hook || 'Description de la formation'}
+          </p>
+          <div className="flex items-center gap-4 text-xs text-text-muted mb-5">
+            <div className="flex items-center gap-1.5">
+              <Clock size={14} className="text-accent flex-shrink-0" />
+              <span>{formation?.duration || 'Contactez-nous'}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <MapPin size={14} className="text-accent flex-shrink-0" />
+              <span className="truncate">{formation?.format || 'Présentiel / En ligne'}</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+            <div className="flex flex-col">
+              <span className="text-xs text-text-muted">Tarif</span>
+              <span className={`text-lg font-bold ${formation?.price ? 'text-accent' : 'text-green-600'}`}>
+                {formation?.price ? 'Formation payante' : 'Formation gratuite'}
+              </span>
+            </div>
+            <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300">
+              <ArrowRight size={16} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </Link>
-);
+    </Link>
+  )
+}
 
 // Extraire les catégories uniques
 const getCategories = (formations) => {
@@ -88,7 +108,7 @@ const FormationsCatalog = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const { data: apiFormations, isLoading, error } = useFormations();
+  const { data: apiFormations, error } = useFormations();
   const { data: featuredFromApi } = useFeaturedFormations();
 
   const formations = apiFormations || [];
@@ -133,9 +153,7 @@ const FormationsCatalog = () => {
             Nos formations disponibles
           </h2>
           <p className="text-text-muted max-w-2xl mx-auto">
-            {isLoading 
-              ? 'Chargement des formations...' 
-              : 'Filtrez nos formations par thématique, niveau et format pour trouver le programme qui répond à vos attentes.'}
+            Filtrez nos formations par thématique, niveau et format pour trouver le programme qui répond à vos attentes.
           </p>
         </motion.div>
 
@@ -223,7 +241,7 @@ const FormationsCatalog = () => {
         )}
 
         {/* Results Count */}
-        {!isLoading && !error && (
+        {!error && (
           <div className="mb-8">
             <p className="text-text-muted">
               <span className="font-semibold text-text">{regularFormations.length}</span> formation{regularFormations.length > 1 ? 's' : ''} trouvée{regularFormations.length > 1 ? 's' : ''}
@@ -233,7 +251,7 @@ const FormationsCatalog = () => {
 
         {/* Empty State */}
         <AnimatePresence mode="wait">
-          {filteredFormations.length === 0 && !isLoading && (
+          {filteredFormations.length === 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -264,7 +282,7 @@ const FormationsCatalog = () => {
         </AnimatePresence>
 
         {/* Featured Formation */}
-        {featuredFormations.length > 0 && !isLoading && (
+        {featuredFormations.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -327,10 +345,25 @@ const FormationsCatalog = () => {
                         {featuredFormations[0].price ? 'Formation payante' : 'Formation gratuite'}
                       </div>
                     </div>
-                    <Button variant="primary" className="group">
-                      <span>Demander un devis</span>
-                      <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Button>
+                    <div className="flex items-center gap-3">
+                      {featuredFormations[0].lienPresentation && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            const url = toDirectDownloadUrl(featuredFormations[0].lienPresentation)
+                            if (url) triggerDownload(url, `${featuredFormations[0].title || 'presentation'}.pdf`)
+                          }}
+                          className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-accent transition-all duration-300 cursor-pointer"
+                          title="Télécharger la présentation"
+                        >
+                          <Download size={20} />
+                        </button>
+                      )}
+                      <Button variant="primary" className="group">
+                        <span>Demander un devis</span>
+                        <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -339,7 +372,7 @@ const FormationsCatalog = () => {
         )}
 
         {/* Regular Formations Grid - Slider Style */}
-        {regularFormations.length > 0 && !isLoading && (
+        {regularFormations.length > 0 && (
           <div className="mt-12">
             {totalSlides > 1 ? (
               <>

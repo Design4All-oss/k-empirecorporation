@@ -77,7 +77,7 @@ const AboutMission = () => {
           >
             {/* Heading */}
             <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display mb-6 leading-tight">
-              Notre Mission
+              Ce que nous changeons concrètement
             </h2>
 
             {/* Description */}

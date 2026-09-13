@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowRight, TrendingUp, Award, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useStatistiques } from '../../hooks/useSiteContent';
 
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
@@ -9,13 +10,20 @@ const fadeUp = {
   transition: { duration: 0.7, ease: [0.32, 0.72, 0, 1] },
 };
 
-const stats = [
+const fallbackStats = [
   { icon: TrendingUp, value: "98%+", label: "Taux de satisfaction" },
   { icon: Award, value: "2000+", label: "Professionnels formés" },
   { icon: GraduationCap, value: "25+", label: "Nationalités" },
 ];
 
+const statsIcons = [TrendingUp, Award, GraduationCap];
+
 const FormationsHero = () => {
+  const { data: statsData } = useStatistiques();
+  const stats = (statsData?.formations?.length ? statsData.formations : fallbackStats).map(
+    (s, i) => ({ ...s, icon: s.icon || statsIcons[i % statsIcons.length] })
+  );
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
       {/* Subtle grid texture */}

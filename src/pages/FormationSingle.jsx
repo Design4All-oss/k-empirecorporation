@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Clock, MapPin, Video, Users, Target, FileText, CheckCircle, ArrowRight, GraduationCap, X, MessageCircle } from 'lucide-react';
+import { Calendar, Clock, MapPin, Video, Users, Target, FileText, CheckCircle, ArrowRight, GraduationCap, X, MessageCircle, Download } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 import { useFormation, useFormations } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 import Button from '../components/ui/Button';
 import { submitNewsletter, submitFormationInscription } from '../api/forms';
 import { useToast } from '../context/ToastContext';
+import { toDirectDownloadUrl, triggerDownload } from '../utils/driveDownload';
 
 // Icons
 const FacebookIcon = () => (
@@ -63,6 +64,12 @@ const FormationSingle = () => {
 
   const nextStep = () => setCurrentStep(currentStep + 1);
   const prevStep = () => setCurrentStep(currentStep - 1);
+
+  const handleDownload = () => {
+    if (!formation?.lienPresentation) return
+    const url = toDirectDownloadUrl(formation.lienPresentation)
+    if (url) triggerDownload(url, `${formation.title || 'presentation'}.pdf`)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -478,6 +485,15 @@ const FormationSingle = () => {
                   <p className="text-sm text-text-muted">Prochaine session : {formation.nextSession}</p>
                 </div>
                 <div className="flex items-center gap-3">
+                  {formation.lienPresentation && (
+                    <button
+                      onClick={handleDownload}
+                      className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer flex-shrink-0"
+                      title="Télécharger la présentation"
+                    >
+                      <Download size={20} />
+                    </button>
+                  )}
                   <Button onClick={() => setShowModal(true)}>
                     S'inscrire <ArrowRight size={18} className="ml-2" />
                   </Button>

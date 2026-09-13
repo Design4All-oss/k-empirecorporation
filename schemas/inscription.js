@@ -57,6 +57,12 @@ export default defineType({
       readOnly: true,
     }),
     defineField({
+      name: 'session_id',
+      title: 'ID session (source)',
+      type: 'string',
+      readOnly: true,
+    }),
+    defineField({
       name: 'message',
       title: 'Message',
       type: 'text',

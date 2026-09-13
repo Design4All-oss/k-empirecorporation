@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const AboutValues = () => {
   const content = {
     fr: {
-      title: 'Notre Identité,\nVision et Valeurs',
+      title: 'Notre Identité',
       description:
         "Cabinet d'études, de conseil et de formation au service de votre performance. Forts de notre expertise et de notre passion pour l'excellence, nous accompagnons les organisations et dirigeants vers des standards d'exception.",
       values: [
@@ -14,7 +14,7 @@ const AboutValues = () => {
           elevated: true,
           icon: (
             <svg
-              className="w-8 h-8 md:w-9 md:h-9 text-blue-100"
+              className="w-8 h-8 md:w-9 md:h-9 text-accent"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -33,7 +33,7 @@ const AboutValues = () => {
           elevated: false,
           icon: (
             <svg
-              className="w-8 h-8 md:w-9 md:h-9 text-blue-100"
+              className="w-8 h-8 md:w-9 md:h-9 text-accent"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -51,11 +51,11 @@ const AboutValues = () => {
         },
         {
           id: 'precision',
-          label: 'Précision',
+          label: 'Professionnalisme',
           elevated: false,
           icon: (
             <svg
-              className="w-8 h-8 md:w-9 md:h-9 text-blue-100"
+              className="w-8 h-8 md:w-9 md:h-9 text-accent"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -79,7 +79,7 @@ const AboutValues = () => {
           elevated: true,
           icon: (
             <svg
-              className="w-8 h-8 md:w-9 md:h-9 text-blue-100"
+              className="w-8 h-8 md:w-9 md:h-9 text-accent"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -117,8 +117,7 @@ const AboutValues = () => {
       {/* Background radial highlight for subtle depth */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-800/20 via-transparent to-transparent pointer-events-none" />
 
-      {/* Main Container with warm cream background, matching the reference artboard */}
-      <div className="max-w-5xl lg:max-w-6xl mx-auto bg-[#FAF7F2] rounded-2xl sm:rounded-3xl md:rounded-[40px] px-4 sm:px-8 md:px-14 lg:px-20 py-12 sm:py-16 md:py-20 shadow-2xl relative z-10">
+      <div className="max-w-5xl lg:max-w-6xl mx-auto relative z-10">
 
         {/* Section Header */}
         <motion.div
@@ -128,11 +127,11 @@ const AboutValues = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 md:mb-16"
         >
-          <h2 className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight mb-6 whitespace-pre-line tracking-tight">
+          <h2 className="text-h2-m md:text-h2-d text-white font-bold font-display leading-tight mb-6 whitespace-pre-line tracking-tight">
             {current.title}
           </h2>
 
-          <p className="text-xs sm:text-sm md:text-base text-neutral-600 leading-relaxed max-w-xl mx-auto font-sans">
+          <p className="text-xs sm:text-sm md:text-base text-white/70 leading-relaxed max-w-xl mx-auto font-sans">
             {current.description}
           </p>
         </motion.div>
@@ -143,7 +142,7 @@ const AboutValues = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="relative z-20 mx-auto max-w-xl md:max-w-2xl lg:max-w-[740px] bg-primary rounded-2xl md:rounded-3xl px-6 sm:px-10 md:px-14 py-7 md:py-8 shadow-2xl shadow-primary/30 text-white"
+          className="relative z-40 mx-auto max-w-xl md:max-w-2xl lg:max-w-[740px] bg-white rounded-2xl md:rounded-3xl px-6 sm:px-10 md:px-14 py-7 md:py-8 shadow-2xl text-primary mb-[-40px] sm:mb-[-50px]"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-center">
             {current.values.map((item) => (
@@ -155,10 +154,10 @@ const AboutValues = () => {
                     : 'md:translate-y-3'
                 }`}
               >
-                <div className="mb-2.5 p-1 rounded-full transition-transform duration-300 group-hover:scale-110">
+                <div className="mb-2.5 p-1 rounded-full transition-transform duration-300 group-hover:scale-110 text-accent">
                   {item.icon}
                 </div>
-                <span className="text-sm md:text-base font-semibold tracking-wide text-white/95">
+                <span className="text-sm md:text-base font-semibold tracking-wide text-primary">
                   {item.label}
                 </span>
               </div>
@@ -172,17 +171,17 @@ const AboutValues = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="relative z-10 -mt-10 sm:-mt-12 md:-mt-14 max-w-3xl lg:max-w-4xl mx-auto bg-white rounded-3xl md:rounded-[36px] pt-16 sm:pt-20 md:pt-22 pb-8 sm:pb-10 px-6 sm:px-12 md:px-16 shadow-xl shadow-neutral-900/5 border border-neutral-100"
+          className="relative z-10 -mt-10 sm:-mt-12 md:-mt-14 max-w-3xl lg:max-w-4xl mx-auto bg-accent rounded-3xl md:rounded-[36px] pt-16 sm:pt-20 md:pt-22 pb-8 sm:pb-10 px-6 sm:px-12 md:px-16 shadow-xl shadow-neutral-900/5 border border-accent-light/30"
         >
           {/* Two Columns Grid */}
           <div className="grid md:grid-cols-2 gap-8 md:gap-14 relative items-start">
             {/* Vertical Divider for desktop */}
-            <div className="hidden md:block absolute left-1/2 top-2 bottom-4 w-px bg-neutral-200 -translate-x-1/2" />
+            <div className="hidden md:block absolute left-1/2 top-2 bottom-4 w-px bg-white/30 -translate-x-1/2" />
 
             {/* Column 1: Vision */}
             <div className="flex flex-col items-start md:pr-4">
               <div className="flex items-center gap-2.5 mb-3.5">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-primary">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white">
                   {/* Eye with Target Icon */}
                   <svg
                     className="w-6 h-6 md:w-7 md:h-7"
@@ -200,11 +199,11 @@ const AboutValues = () => {
                     <line x1="12" y1="16.5" x2="12" y2="18" />
                   </svg>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold font-display text-primary">
+                <h3 className="text-xl md:text-2xl font-bold font-display text-white">
                   {current.vision.title}
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm md:text-[15px] text-neutral-600 leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm md:text-[15px] text-white/80 leading-relaxed font-sans">
                 {current.vision.text}
               </p>
             </div>
@@ -212,7 +211,7 @@ const AboutValues = () => {
             {/* Column 2: Mission */}
             <div className="flex flex-col items-start md:pl-4">
               <div className="flex items-center gap-2.5 mb-3.5">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center text-primary">
+                <div className="w-8 h-8 rounded-full flex items-center justify-center text-white">
                   {/* Target with Checkmark Icon */}
                   <svg
                     className="w-6 h-6 md:w-7 md:h-7"
@@ -229,11 +228,11 @@ const AboutValues = () => {
                     <line x1="12" y1="1" x2="12" y2="3" />
                   </svg>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold font-display text-primary">
+                <h3 className="text-xl md:text-2xl font-bold font-display text-white">
                   {current.mission.title}
                 </h3>
               </div>
-              <p className="text-xs sm:text-sm md:text-[15px] text-neutral-600 leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm md:text-[15px] text-white/80 leading-relaxed font-sans">
                 {current.mission.text}
               </p>
             </div>

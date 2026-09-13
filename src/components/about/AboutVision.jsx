@@ -28,14 +28,6 @@ const AboutVision = () => {
                 loading="lazy"
               />
             </div>
-            
-            {/* Experience Badge matching Electriza style */}
-            <div className="absolute -bottom-6 right-8 md:right-auto md:-left-8 bg-white p-6 rounded-lg shadow-xl border-t-4 border-accent flex flex-col items-center justify-center min-w-[160px]">
-              <span className="text-5xl font-bold text-primary font-display flex items-baseline">
-                12<span className="text-accent text-4xl ml-1">+</span>
-              </span>
-              <span className="text-sm font-semibold text-text-muted text-center mt-2 uppercase tracking-wide">Années<br />d'Expérience</span>
-            </div>
           </motion.div>
 
           {/* Right Column - Content */}

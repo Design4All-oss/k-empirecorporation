@@ -6,9 +6,11 @@ import HomeNewsletter from '../components/home/HomeNewsletter';
 import Button from '../components/ui/Button';
 import { ArrowRight, CheckCircle, Shield, Calculator, Building, AlertTriangle, Lock, Award, Users, Clock, Heart, PhoneCall, MessageCircle } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
+import { useStatistiques } from '../hooks/useSiteContent';
 
 const ServiceJuridique = () => {
   const { openBookingModal } = useBookingModal();
+  const { data: statsData } = useStatistiques();
   const story = {
     intro: "Votre entreprise est exposée à des risques juridiques constants. Un contrat mal rédigé, une clause abusive, un contrôle fiscal imprévu... Et soudain, ce qui semblait secondaire devient une menace majeure pour votre activité.",
     guarantee: "Nos experts vous protègent avant qu'il ne soit trop tard. Nous anticipons les risques, sécurisons vos décisions et vous accompagnent au quotidien pour que vous puissiez vous concentrer sur votre cœur de métier en toute sérénité."
@@ -54,12 +56,17 @@ const ServiceJuridique = () => {
     }
   ];
 
-  const stats = [
+  const fallbackStats = [
     { number: "500+", label: "Entreprises accompagnées", icon: Building },
     { number: "15+", label: "Années d'expérience", icon: Clock },
     { number: "98%", label: "Taux de réussite", icon: Award },
     { number: "24h", label: "Réponse garantie", icon: Users }
   ];
+  const statsIcons = [Building, Clock, Award, Users];
+
+  const stats = (statsData?.assistanceJuridique?.length ? statsData.assistanceJuridique : fallbackStats).map(
+    (s, i) => ({ ...s, number: s.number ?? s.value, icon: s.icon || statsIcons[i % statsIcons.length] })
+  );
 
   const situations = [
     { title: "Créer ou modifier une société", urgent: false },

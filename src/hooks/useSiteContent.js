@@ -12,7 +12,7 @@ const TEMOIGNAGE_PROJECTION = `{
 const transformTemoignage = (t) => ({
   quote: t.texte || '',
   name: t.nom || '',
-  role: t.structure || t.fonction || '',
+  role: [t.fonction, t.structure].filter(Boolean).join(' — ') || '',
   image: t.image || '',
 })
 
@@ -21,31 +21,8 @@ export const useTemoignages = () =>
     queryKey: ['temoignages'],
     queryFn: () =>
       client
-        .fetch(`*[_type == "temoignage" && consentement == true] | order(_createdAt asc) ${TEMOIGNAGE_PROJECTION}`)
+        .fetch(`*[_type == "temoignage"] | order(_createdAt asc) ${TEMOIGNAGE_PROJECTION}`)
         .then((docs) => (docs || []).filter((t) => t.texte).map(transformTemoignage)),
-  })
-
-const TEMOIGNAGE_FORMATION_PROJECTION = `{
-  nom,
-  formationSuivie,
-  texte,
-  "photo": photo.asset->url
-}`
-
-const transformTemoignageFormation = (t) => ({
-  name: t.nom || '',
-  formation: t.formationSuivie || '',
-  content: t.texte || '',
-  avatar: t.photo || '',
-})
-
-export const useTemoignagesFormation = () =>
-  useQuery({
-    queryKey: ['temoignagesFormation'],
-    queryFn: () =>
-      client
-        .fetch(`*[_type == "temoignageFormation" && consentement == true] | order(_createdAt asc) ${TEMOIGNAGE_FORMATION_PROJECTION}`)
-        .then((docs) => (docs || []).filter((t) => t.texte).map(transformTemoignageFormation)),
   })
 
 export const useStatistiques = () =>

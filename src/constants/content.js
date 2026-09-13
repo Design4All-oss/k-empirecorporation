@@ -114,9 +114,9 @@ export const ABOUT_CONTENT = {
   stats: {
     title: "Quelques repères",
     items: [
-      { id: 1, value: "98%+", label: "Taux de satisfaction", text: "Nos clients recommandent nos services et formations pour la qualité de notre accompagnement." },
-      { id: 2, value: "2000+", label: "Professionnels formés", text: "Des professionnels et étudiants formés à des thématiques clés en droit, fiscalité, management et gouvernance." },
-      { id: 3, value: "25+", label: "Nationalités", text: "Une diversité internationale au cœur de l’Académie K-EMPIRE." }
+      { id: 1, value: "+20", label: "Entreprises accompagnées", text: "Nous avons accompagné plus d'une vingtaine d'entreprises dans la structuration, la sécurisation et le développement de leurs activités." },
+      { id: 2, value: "+2000", label: "Participants formés", text: "Des professionnels aguerris et des étudiants ambitieux ont renforcé leurs compétences à travers nos formations." },
+      { id: 3, value: "25+", label: "Nationalités représentées", text: "Une diversité internationale au cœur de l'Académie K-EMPIRE." }
     ]
   },
   cta: {
@@ -179,65 +179,55 @@ export const PARTNERS_LOGOS = [
 
 export const SERVICES_CONTENT = {
   testimonials: {
+    title: "Ils nous font confiance",
+    intro: "Retours de professionnels ayant bénéficié de nos services et formations.",
     stats: [
       { value: '98%+', label: 'Taux de satisfaction' },
       { value: '2000+', label: 'Professionnels formés' },
       { value: '25+', label: 'Nationalités' },
     ],
-    items: [
+    citations: [
       {
         id: 1,
+        quote: "L'accompagnement de K-EMPIRE a transformé notre approche stratégique. Leur expertise nous a permis de structurer notre croissance avec sérénité.",
         name: "Sarah Koné",
-        role: "Directrice Générale",
-        company: "TechAfrica",
-        formation: "Executive Certificate en Management Stratégique",
-        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face",
-        content: "L'accompagnement de K-EMPIRE a transformé notre approche stratégique. Leur expertise nous a permis de structurer notre croissance avec sérénité."
+        role: "Directrice Générale — TechAfrica",
+        image: ""
       },
       {
         id: 2,
+        quote: "Un audit complet et des recommandations pertinentes. L'équipe a su identifier des leviers d'amélioration que nous n'avions pas perçus.",
         name: "Marc Dubois",
-        role: "Fondateur",
-        company: "Dubois Conseil",
-        formation: "Parcours Executive Signature",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-        content: "Un audit complet et des recommandations pertinentes. L'équipe a su identifier des leviers d'amélioration que nous n'avions pas perçus."
+        role: "Fondateur — Dubois Conseil",
+        image: ""
       },
       {
         id: 3,
+        quote: "Les formations dispensées par K-EMPIRE ont considérablement renforcé les compétences de nos équipes. Une approche pédagogique excellente.",
         name: "Aminata Diallo",
-        role: "Responsable RH",
-        company: "Groupe SOGEA",
-        formation: "Management et Leadership d'Équipe",
-        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face",
-        content: "Les formations dispensées par K-EMPIRE ont considérablement renforcé les compétences de nos équipes. Une approche pédagogique excellente."
+        role: "Responsable RH — Groupe SOGEA",
+        image: ""
       },
       {
         id: 4,
+        quote: "Leur expertise juridique nous a été précieuse lors de notre restructuration. Un partenaire de confiance pour les décisions critiques.",
         name: "Jean-Pierre Mensah",
-        role: "CEO",
-        company: "Mensah Holdings",
-        formation: "Ingénierie Juridique & Contractuelle",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-        content: "Leur expertise juridique nous a été précieuse lors de notre restructuration. Un partenaire de confiance pour les décisions critiques."
+        role: "CEO — Mensah Holdings",
+        image: ""
       },
       {
         id: 5,
+        quote: "Optimisation fiscale réussie et accompagnement de qualité. Ils maîtrisent parfaitement les enjeux complexes des entreprises.",
         name: "Fatima Benali",
-        role: "Directrice Financière",
-        company: "FinancesPro",
-        formation: "Fiscalité des Entreprises : Optimisation et Conformité",
-        avatar: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=100&h=100&fit=crop&crop=face",
-        content: "Optimisation fiscale réussie et accompagnement de qualité. Ils maîtrisent parfaitement les enjeux complexes des entreprises."
+        role: "Directrice Financière — FinancesPro",
+        image: ""
       },
       {
         id: 6,
+        quote: "De la stratégie à la mise en œuvre, K-EMPIRE nous a accompagnés à chaque étape. Un investissement qui a porté ses fruits.",
         name: "Kofi Asante",
-        role: "Entrepreneur",
-        company: "Asante Corp",
-        formation: "Négociation Commerciale et Gestion des Partenariats",
-        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-        content: "De la stratégie à la mise en œuvre, K-EMPIRE nous a accompagnés à chaque étape. Un investissement qui a porté ses fruits."
+        role: "Entrepreneur — Asante Corp",
+        image: ""
       }
     ]
   }

@@ -22,16 +22,18 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { useBookingModal } from '../context/BookingModalContext';
+import { useStatistiques } from '../hooks/useSiteContent';
 
 const ServiceIntelligenceStrategique = () => {
   const { openBookingModal } = useBookingModal();
+  const { data: statsData } = useStatistiques();
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
-  const stats = [
+  const fallbackStats = [
     {
       value: '50+',
       label: 'Missions réalisées',
@@ -53,6 +55,11 @@ const ServiceIntelligenceStrategique = () => {
       icon: Globe,
     },
   ];
+  const statsIcons = [BrainCircuit, CheckCircle, Clock, Globe];
+
+  const stats = (statsData?.intelligenceStrategique?.length ? statsData.intelligenceStrategique : fallbackStats).map(
+    (s, i) => ({ ...s, icon: s.icon || statsIcons[i % statsIcons.length] })
+  );
 
   const services = [
     {

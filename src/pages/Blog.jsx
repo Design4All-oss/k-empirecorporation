@@ -11,11 +11,9 @@ const Blog = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentPostsSlide, setCurrentPostsSlide] = useState(0);
 
-  const { data: apiPosts, isLoading: postsLoading } = usePosts(1, 10);
-  const { data: apiEvenements, isLoading: eventsLoading } = useEvenements();
-  const { data: featuredFormations, isLoading: formationsLoading } = useFeaturedFormations();
-
-  const isLoading = postsLoading || eventsLoading || formationsLoading;
+  const { data: apiPosts } = usePosts(1, 10);
+  const { data: apiEvenements } = useEvenements();
+  const { data: featuredFormations } = useFeaturedFormations();
   
   const posts = apiPosts || [];
   
@@ -142,39 +140,30 @@ const Blog = () => {
         imageAlt="Blog K-EMPIRE"
       />
       
-      {isLoading ? (
-        <div className="py-20 text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
-          <p className="mt-4 text-text-muted">Chargement des donnees...</p>
-        </div>
-      ) : (
-        <>
-          {featuredEvent && (
-            <BlogHero featuredEvent={featuredEvent} />
-          )}
-          
-          {recentNews.length > 0 && (
-            <BlogRecentNews 
-              recentNews={recentNews}
-              currentSlide={currentSlide}
-              setCurrentSlide={setCurrentSlide}
-              totalSlides={totalSlides}
-              nextSlide={nextSlide}
-              prevSlide={prevSlide}
-            />
-          )}
-          
-          {posts.length > 0 && (
-            <BlogArticles 
-              posts={posts}
-              currentPostsSlide={currentPostsSlide}
-              setCurrentPostsSlide={setCurrentPostsSlide}
-              totalPostsSlides={totalPostsSlides}
-              nextPostsSlide={nextPostsSlide}
-              prevPostsSlide={prevPostsSlide}
-            />
-          )}
-        </>
+      {featuredEvent && (
+        <BlogHero featuredEvent={featuredEvent} />
+      )}
+      
+      {recentNews.length > 0 && (
+        <BlogRecentNews 
+          recentNews={recentNews}
+          currentSlide={currentSlide}
+          setCurrentSlide={setCurrentSlide}
+          totalSlides={totalSlides}
+          nextSlide={nextSlide}
+          prevSlide={prevSlide}
+        />
+      )}
+      
+      {posts.length > 0 && (
+        <BlogArticles 
+          posts={posts}
+          currentPostsSlide={currentPostsSlide}
+          setCurrentPostsSlide={setCurrentPostsSlide}
+          totalPostsSlides={totalPostsSlides}
+          nextPostsSlide={nextPostsSlide}
+          prevPostsSlide={prevPostsSlide}
+        />
       )}
 
       <HomeNewsletter />

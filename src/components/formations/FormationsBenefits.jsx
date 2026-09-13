@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Button from '../ui/Button';
 import { useBookingModal } from '../../context/BookingModalContext';
+import { useStatistiques } from '../../hooks/useSiteContent';
 
 const benefits = [
   {
@@ -45,7 +46,7 @@ const guarantees = [
 
 const experienceYears = new Date().getFullYear() - 2018;
 
-const stats = [
+const fallbackStats = [
   { value: "98%+", label: "Taux de satisfaction" },
   { value: "2000+", label: "Professionnels formés" },
   { value: `${experienceYears}+`, label: "Années d'expérience" }
@@ -53,6 +54,8 @@ const stats = [
 
 const FormationsBenefits = () => {
   const { openBookingModal } = useBookingModal();
+  const { data: statsData } = useStatistiques();
+  const stats = statsData?.formationsBenefits?.length ? statsData.formationsBenefits : fallbackStats;
 
   return (
     <section className="py-24 md:py-32 bg-white relative overflow-hidden">
