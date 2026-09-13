@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import AutoExcerptInput from '../components/AutoExcerptInput.jsx'
 
 export default defineType({
   name: 'evenement',
@@ -47,6 +48,9 @@ export default defineType({
       title: 'Extrait',
       type: 'text',
       rows: 3,
+      components: {
+        input: AutoExcerptInput,
+      },
     }),
     defineField({
       name: 'description',
@@ -164,17 +168,28 @@ export default defineType({
       type: 'url',
       description: 'Lien Google Drive vers le document de présentation de l\'événement',
     }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Date de publication',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+    }),
   ],
   preview: {
     select: {
       title: 'title',
       subtitle: 'status',
       media: 'coverImage',
+      publishedAt: 'publishedAt',
       startDateTime: 'startDateTime',
     },
-    prepare({ title, subtitle, media, startDateTime }) {
+    prepare({ title, subtitle, media, publishedAt, startDateTime }) {
       const status = subtitle === 'publié' ? '✓ Publié' : '○ Brouillon'
-      const date = startDateTime ? new Date(startDateTime).toLocaleDateString('fr-FR') : ''
+      const date = publishedAt
+        ? new Date(publishedAt).toLocaleDateString('fr-FR')
+        : startDateTime
+          ? new Date(startDateTime).toLocaleDateString('fr-FR')
+          : ''
       return {
         title: title || 'Événement',
         subtitle: [status, date].filter(Boolean).join(' · '),

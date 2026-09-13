@@ -22,7 +22,8 @@ const FORMATION_PROJECTION = `{
   practical { location, startDate, endDate, price, capacity, duration, schedule, materials, evaluation },
   "sessions": *[_type == "session" && formation._ref == ^._id && statut != "annulée"] | order(startDate asc) { _id, startDate, endDate, lieu, format, places, statut },
   content,
-  lienPresentation
+  lienPresentation,
+  publishedAt
 }`
 
 const transformFormation = (formation) => ({
@@ -82,7 +83,7 @@ export const useFormations = () =>
     queryKey: ['formations'],
     queryFn: () =>
       client
-        .fetch(`*[_type == "formation"] | order(featured desc, title asc) ${FORMATION_PROJECTION}`)
+        .fetch(`*[_type == "formation"] | order(publishedAt desc, title asc) ${FORMATION_PROJECTION}`)
         .then((docs) => (docs || []).map(transformFormation)),
   })
 

@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import AutoExcerptInput from '../components/AutoExcerptInput.jsx'
 
 export default defineType({
   name: 'formation',
@@ -22,6 +23,9 @@ export default defineType({
       title: 'Accroche',
       type: 'text',
       rows: 3,
+      components: {
+        input: AutoExcerptInput,
+      },
     }),
     defineField({
       name: 'description',
@@ -224,6 +228,12 @@ export default defineType({
       title: 'Lien de présentation (PDF)',
       type: 'url',
       description: 'Lien Google Drive vers le document de présentation de la formation',
+    }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Date de publication',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
     }),
   ],
   preview: {

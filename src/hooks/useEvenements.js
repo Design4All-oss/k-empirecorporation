@@ -7,6 +7,7 @@ const EVENEMENT_PROJECTION = `{
   "slug": slug.current,
   status,
   excerpt,
+  description,
   type,
   lieu,
   startDateTime,
@@ -21,7 +22,8 @@ const EVENEMENT_PROJECTION = `{
   registered,
   lienPresentation,
   content,
-  programme
+  programme,
+  publishedAt
 }`
 
 const dateToTime = (dateTime) => (dateTime ? dateTime.slice(11, 16) : '')

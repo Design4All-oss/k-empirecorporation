@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import AutoExcerptInput from '../components/AutoExcerptInput.jsx'
 
 export default defineType({
   name: 'post',
@@ -47,6 +48,9 @@ export default defineType({
       title: 'Extrait',
       type: 'text',
       rows: 3,
+      components: {
+        input: AutoExcerptInput,
+      },
     }),
     defineField({
       name: 'coverImage',
@@ -89,6 +93,7 @@ export default defineType({
       name: 'publishedAt',
       title: 'Date de publication',
       type: 'datetime',
+      initialValue: () => new Date().toISOString(),
     }),
     defineField({
       name: 'featured',
