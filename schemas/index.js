@@ -11,6 +11,7 @@ import soumissionNewsletter from './soumissionNewsletter.js'
 import soumissionRdv from './soumissionRdv.js'
 import statistiques from './statistiques.js'
 import temoignage from './temoignage.js'
+import temoignageFormation from './temoignageFormation.js'
 import valeurs from './valeurs.js'
 
-export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, statistiques, valeurs]
+export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, temoignageFormation, statistiques, valeurs]

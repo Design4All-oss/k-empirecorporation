@@ -1,12 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
-import { useValeurs } from '../../hooks';
 import { CHARTE_VALEURS } from '../../constants/charte';
 
 const HomeValuesMarquee = () => {
-  const { data } = useValeurs();
-  const charte = data && (data.groupe1 || []).length ? data : CHARTE_VALEURS;
+  const charte = CHARTE_VALEURS;
 
   const items = [
     ...(charte.groupe1 || []).map((v) => ({ text: v.titre, label: false })),

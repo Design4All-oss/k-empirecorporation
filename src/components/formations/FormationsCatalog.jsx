@@ -30,6 +30,11 @@ const FormationCard = ({ formation }) => (
         <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm text-primary text-xs font-semibold rounded-full">
           {formation?.category || 'Formation'}
         </div>
+        {formation?.reconnaissance && (
+          <div className="absolute top-4 right-4 px-3 py-1.5 bg-accent/90 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
+            {formation.reconnaissance === 'certification' ? 'Certifiante' : 'Attestation'}
+          </div>
+        )}
         <div className="absolute bottom-4 left-4 right-4">
           <span className="inline-block px-3 py-1 bg-accent/90 text-white text-xs font-medium rounded-full">
             {formation?.level || 'Tous niveaux'}

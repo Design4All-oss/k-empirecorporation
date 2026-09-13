@@ -56,6 +56,21 @@ export default defineType({
       title: 'Catégorie',
       type: 'reference',
       to: [{ type: 'category' }],
+      options: {
+        disableNew: false,
+      },
+    }),
+    defineField({
+      name: 'reconnaissance',
+      title: 'Type de reconnaissance',
+      type: 'string',
+      description: "Ce qui est délivré à l'issue de ce programme",
+      options: {
+        list: [
+          { title: 'Certification reconnue', value: 'certification' },
+          { title: 'Attestation de participation', value: 'attestation' },
+        ],
+      },
     }),
     defineField({
       name: 'level',

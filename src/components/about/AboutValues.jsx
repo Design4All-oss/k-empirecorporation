@@ -1,108 +1,121 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, ShieldCheck, HeartHandshake, Zap } from 'lucide-react';
+import {
+  ShieldCheck,
+  Timer,
+  Lock,
+  Award,
+  HeartHandshake,
+  Target,
+  Gem,
+  Lightbulb,
+  ArrowRight
+} from 'lucide-react';
 import { ABOUT_CONTENT } from '../../constants/content';
-import { useValeurs } from '../../hooks';
 import { CHARTE_VALEURS } from '../../constants/charte';
 
-const valueIcons = [Award, ShieldCheck, HeartHandshake, Zap];
+const valueIcons = {
+  Intégrité: ShieldCheck,
+  Célérité: Timer,
+  Sécurité: Lock,
+  Professionnalisme: Award,
+  Proximité: HeartHandshake,
+  Pragmatisme: Target,
+  Qualité: Gem,
+  Innovation: Lightbulb,
+};
 
 const AboutValues = () => {
   const { values } = ABOUT_CONTENT;
-  const { data } = useValeurs();
-  const charte = data && (data.groupe1 || []).length ? data : CHARTE_VALEURS;
+  const charte = CHARTE_VALEURS;
+  
   const groupe1 = charte.groupe1 || [];
   const groupe2 = charte.groupe2 || [];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   const renderGroup = (group) => (
-    <div className="grid grid-cols-2 gap-0">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {group.map((value, index) => {
-        const Icon = valueIcons[index % valueIcons.length];
-        const isLastRow = index >= group.length - 2;
-        const isLastCol = index % 2 === 1;
+        const Icon = valueIcons[value.titre] || valueIcons.Professionnalisme;
         return (
           <motion.div
             key={index}
             variants={itemVariants}
-            className={`group relative p-8 rounded-none ${!isLastRow ? 'border-b border-white/30' : ''} ${!isLastCol ? 'border-r border-white/30' : ''} hover:border-white/50 transition-all duration-300 cursor-pointer`}
+            className="group relative bg-[#13223e] p-8 md:p-10 rounded-xl border border-white/5 hover:border-accent/30 transition-all duration-300 flex flex-col items-center text-center shadow-lg"
           >
-            {/* Icon container */}
-            <div className="relative mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-accent transition-all duration-500">
-                <Icon
-                  size={28}
-                  className="text-accent group-hover:text-white transition-colors duration-500"
-                  strokeWidth={1.5}
-                />
-              </div>
+            {/* Circular Icon with Yellow bg */}
+            <div className="w-20 h-20 rounded-full bg-accent/10 group-hover:bg-accent flex items-center justify-center mb-6 transition-colors duration-300">
+              <Icon
+                size={36}
+                className="text-accent group-hover:text-primary transition-colors duration-300"
+                strokeWidth={1.5}
+              />
             </div>
 
-            {/* Value title */}
-            <h3 className="relative text-xl md:text-2xl text-white font-bold mb-4 group-hover:text-accent transition-colors duration-300">
+            <h3 className="text-xl md:text-2xl font-display font-bold text-white mb-4">
               {value.titre}
             </h3>
 
-            {/* Value description */}
-            <p className="relative text-sm text-white/70 leading-relaxed group-hover:text-white transition-colors duration-300">
+            <p className="text-sm text-white/60 leading-relaxed mb-6 flex-grow">
               {value.description}
             </p>
+
+            <a href="#contact" className="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:text-white transition-colors duration-300">
+              En savoir plus
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </motion.div>
         );
       })}
     </div>
   );
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    },
-  };
-
   return (
-    <section className="py-16 md:py-24 bg-primary relative z-0">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
+    <section className="py-20 md:py-32 bg-primary relative overflow-hidden z-10">
+      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-16 md:mb-24 max-w-3xl mx-auto"
         >
-          {/* Eyebrow label */}
-          <span className="text-label text-accent">
-            Nos principes fondamentaux
-          </span>
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="w-8 h-0.5 bg-accent"></span>
+            <span className="text-sm font-bold uppercase tracking-wider text-accent">
+              Nos principes fondamentaux
+            </span>
+            <span className="w-8 h-0.5 bg-accent"></span>
+          </div>
 
-          {/* Main heading */}
-          <h2 className="text-h2-m md:text-h2-d text-white font-bold mb-6">
-            {values.title}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-bold font-display mb-6 leading-tight">
+            {values.title || "Ce que nous offrons"}
           </h2>
 
-          {/* Intro text */}
-          <p className="text-lg text-white/80 leading-relaxed">
+          <p className="text-lg text-white/60 leading-relaxed">
             {values.intro}
           </p>
         </motion.div>
 
-        {/* Values Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -110,12 +123,15 @@ const AboutValues = () => {
           viewport={{ once: true, margin: "-100px" }}
         >
           {renderGroup(groupe1)}
+
           {groupe2.length > 0 && (
             <>
-              <div className="border-y border-white/30 py-6 flex items-center justify-center">
-                <span className="text-label text-accent uppercase tracking-widest font-semibold">
+              <div className="flex items-center justify-center gap-4 my-16">
+                <span className="h-px w-24 bg-white/10" />
+                <span className="text-sm uppercase tracking-widest font-semibold text-white/40">
                   {charte.titreGroupe2}
                 </span>
+                <span className="h-px w-24 bg-white/10" />
               </div>
               {renderGroup(groupe2)}
             </>

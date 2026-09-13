@@ -1,16 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const PARTNERS_LOGOS = [
-  { id: 1, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 2, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 3, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 4, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 5, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 6, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 7, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 8, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-];
+import { PARTNERS_LOGOS } from '../../constants/content';
 
 const HomePartners = () => {
   return (

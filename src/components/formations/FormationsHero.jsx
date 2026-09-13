@@ -10,9 +10,9 @@ const fadeUp = {
 };
 
 const stats = [
-  { icon: TrendingUp, value: "2000+", label: "Professionnels formés" },
-  { icon: Award, value: "50+", label: "Programmes certifiants" },
-  { icon: GraduationCap, value: "98%", label: "Taux de satisfaction" },
+  { icon: TrendingUp, value: "98%+", label: "Taux de satisfaction" },
+  { icon: Award, value: "2000+", label: "Professionnels formés" },
+  { icon: GraduationCap, value: "25+", label: "Nationalités" },
 ];
 
 const FormationsHero = () => {

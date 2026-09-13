@@ -17,7 +17,7 @@ const benefits = [
   {
     icon: Award,
     title: "Formations certifiantes",
-    description: "Obtenez des certifications reconnues qui valorisent votre parcours professionnel."
+    description: "Certifications reconnues ou attestations de participation délivrées selon le programme suivi."
   },
   {
     icon: Users,
@@ -38,16 +38,17 @@ const benefits = [
 
 const guarantees = [
   "Supports de formation complets fournis",
-  "Attestation de participation délivrée",
+  "Certification ou attestation délivrée selon le programme",
   "Accès aux ressources post-formation",
   "Suivi personnalisé disponible"
 ];
 
+const experienceYears = new Date().getFullYear() - 2018;
+
 const stats = [
-  { value: "2000+", label: "Participants formés" },
-  { value: "98%", label: "Taux de satisfaction" },
-  { value: "50+", label: "Programmes" },
-  { value: "6+", label: "Années d'expérience" }
+  { value: "98%+", label: "Taux de satisfaction" },
+  { value: "2000+", label: "Professionnels formés" },
+  { value: `${experienceYears}+`, label: "Années d'expérience" }
 ];
 
 const FormationsBenefits = () => {

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { HOME_CONTENT } from '../../constants/content';
-import { useTemoignages } from '../../hooks';
-import { TEMOIGNAGES_SEED } from '../../constants/charte';
+import { HOME_CONTENT, PARTNERS_LOGOS } from '../../constants/content';
 
 const imageSrc = (testimonial) => {
   if (!testimonial.image) return '';
@@ -14,8 +12,7 @@ const imageSrc = (testimonial) => {
 
 const HomeTestimonials = () => {
   const { testimonials } = HOME_CONTENT;
-  const { data } = useTemoignages();
-  const citations = data && data.length ? data : TEMOIGNAGES_SEED;
+  const citations = testimonials.citations;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -186,16 +183,5 @@ const HomeTestimonials = () => {
     </section>
   );
 };
-
-const PARTNERS_LOGOS = [
-  { id: 1, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 2, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 3, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 4, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 5, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 6, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 7, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-  { id: 8, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
-];
 
 export default HomeTestimonials;

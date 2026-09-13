@@ -3,7 +3,11 @@ import {
   Compass, 
   BrainCircuit, 
   Scale, 
-  GraduationCap
+  GraduationCap,
+  Building2,
+  Users,
+  FileText,
+  Gavel
 } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
@@ -16,7 +20,7 @@ import ServicesFormationsCatalog from '../components/services/ServicesFormations
 import ServicesCTA from '../components/services/ServicesCTA';
 import HomeNewsletter from '../components/home/HomeNewsletter';
 
-// Services content based on content.md
+// Services content - updated per spec
 const SERVICES_CONTENT = {
   hero: {
     label: "Nos expertises",
@@ -27,50 +31,50 @@ const SERVICES_CONTENT = {
   services: [
     {
       id: 1,
-      icon: Compass,
-      title: "Conseil Stratégique",
-      description: "Nous aidons les dirigeants et décideurs à prendre des décisions éclairées, à anticiper les risques et à saisir les opportunités de développement.",
+      icon: Scale,
+      title: "Droit des Affaires, Fiscalité & Ingénierie Contractuelle",
+      description: "Sécurisation juridique et fiscale des opérations complexes : droit des affaires, droit social, propriété intellectuelle, fiscalité des entreprises, prix de transfert, fiscalité minière, pétrolière et gazière. Négociation et structuration des contrats miniers, pétroliers et énergétiques, financement de projets, partenariats public-privé, audit et management des contrats complexes.",
       points: [
-        "Élaboration, revue et mise en œuvre de plans stratégiques",
-        "Appui à la gouvernance et à l'organisation interne",
-        "Diagnostic stratégique et recommandations opérationnelles",
-        "Accompagnement du changement et conduite de projets structurants"
+        "Droit des affaires, droit social, propriété intellectuelle",
+        "Fiscalité des entreprises, prix de transfert, fiscalité minière/pétrolière/gazière",
+        "Négociation et structuration de contrats complexes",
+        "Audit et management des contrats, PPP, financement de projets"
       ]
     },
     {
       id: 2,
-      icon: BrainCircuit,
-      title: "Intelligence Stratégique",
-      description: "Nous aidons vos dirigeants à anticiper les évolutions de leur environnement grâce à une veille stratégique, des analyses prospectives et des données d'aide à la décision.",
+      icon: Building2,
+      title: "Stratégie, Gouvernance & Capital Humain",
+      description: "Élaboration de stratégies d'entreprise, business plans, études de marché et gouvernance des entités. Management stratégique du capital humain : organisation et performance RH, recrutement, pilotage des ressources humaines.",
       points: [
-        "Veille stratégique et analyse de l'environnement",
-        "Analyses prospectives et construction de scénarios",
-        "Études de marché, sectorielles et concurrentielles",
-        "Monitoring et tableaux de bord de décision"
+        "Stratégies d'entreprise, business plans, études de marché",
+        "Gouvernance des entités et management stratégique",
+        "Organisation et performance RH, recrutement",
+        "Pilotage des ressources humaines"
       ]
     },
     {
       id: 3,
-      icon: Scale,
-      title: "Ingénierie Juridique",
-      description: "Nous sécurisons vos décisions et opérations grâce à un accompagnement juridique, comptable et fiscal adapté à votre contexte.",
+      icon: GraduationCap,
+      title: "Formation Exécutive & Certifiante — Académie K-EMPIRE",
+      description: "Executive Certificates, programmes INTER et INTRA-entreprise, Parcours Executive Signature : le cœur de l'offre pédagogique de l'Académie K-EMPIRE.",
       points: [
-        "Assistance en droit des affaires (contrats, partenariats, restructuration)",
-        "Conseil en fiscalité des entreprises et optimisation",
-        "Accompagnement comptable et financier",
-        "Préparation et sécurisation des dossiers de contrôle"
+        "Executive Certificates et programmes certifiants",
+        "Programmes INTER et INTRA-entreprise sur mesure",
+        "Parcours Executive Signature",
+        "Catalogue de programmes détaillé disponible"
       ]
     },
     {
       id: 4,
-      icon: GraduationCap,
-      title: "Formation Exécutive",
-      description: "Nous concevons des parcours de formation adaptés aux besoins des cadres, dirigeants, experts et étudiants, avec une approche résolument pratique.",
+      icon: Gavel,
+      title: "Services Stratégiques Intégrés",
+      description: "Externalisation de l'audit et du management des contrats, recouvrement stratégique de créances, financement de procédures contentieuses.",
       points: [
-        "Formations inter-entreprises sur des thématiques clés",
-        "Formations intra-entreprise sur mesure",
-        "Formations certifiantes avec validation des acquis",
-        "Formations en présentiel et en visioconférence"
+        "Externalisation de l'audit et management des contrats",
+        "Recouvrement stratégique de créances",
+        "Financement de procédures contentieuses",
+        "Accompagnement juridique global"
       ]
     }
   ],

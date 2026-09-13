@@ -13,6 +13,7 @@ const FORMATION_PROJECTION = `{
   duration,
   audience,
   prerequisites,
+  reconnaissance,
   "category": category->name,
   "image": coverImage.asset->url,
   objectives[],
@@ -35,6 +36,7 @@ const transformFormation = (formation) => ({
   level: formation.level || '',
   duration: formation.duration || '',
   audience: formation.audience || '',
+  reconnaissance: formation.reconnaissance || '',
   nextSession: (formation.sessions && formation.sessions[0] && formation.sessions[0].startDate) ||
     (formation.practical && formation.practical.startDate) || '',
   price: (formation.practical && formation.practical.price) || '',
@@ -99,4 +101,21 @@ export const useFeaturedFormations = () =>
       client
         .fetch(`*[_type == "formation" && featured == true] | order(title asc) ${FORMATION_PROJECTION}`)
         .then((docs) => (docs || []).map(transformFormation)),
+  })
+
+export const useCategories = () =>
+  useQuery({
+    queryKey: ['categories'],
+    queryFn: () =>
+      client
+        .fetch(`*[_type == "category"] | order(order asc, name asc) {
+          _id,
+          name,
+          "slug": slug.current,
+          description,
+          order,
+          programType,
+          programCode
+        }`)
+        .then((docs) => docs || []),
   })

@@ -6,7 +6,6 @@ import AboutMission from '../components/about/AboutMission';
 import AboutVision from '../components/about/AboutVision';
 import AboutHubs from '../components/about/AboutHubs';
 import AboutValues from '../components/about/AboutValues';
-import AboutAlumni from '../components/about/AboutAlumni';
 import AboutTeam from '../components/about/AboutTeam';
 import AboutStats from '../components/about/AboutStats';
 import AboutContactCta from '../components/about/AboutContactCta';
@@ -39,7 +38,6 @@ const About = () => {
       <AboutVision />
       <AboutHubs />
       <AboutValues />
-      <AboutAlumni />
       <AboutTeam />
       <AboutStats />
       <AboutContactCta />

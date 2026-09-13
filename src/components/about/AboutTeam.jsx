@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Check, GraduationCap } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, ChevronDown, GraduationCap } from 'lucide-react';
 import { ABOUT_CONTENT } from '../../constants/content';
 
 const teamExpertises = [
@@ -20,6 +20,7 @@ const comiteRoles = [
 
 const AboutTeam = () => {
   const { team } = ABOUT_CONTENT;
+  const [comiteOpen, setComiteOpen] = useState(false);
 
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
@@ -74,32 +75,57 @@ const AboutTeam = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="bg-[#1E3A5F] p-6 rounded-2xl"
             >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="flex-shrink-0">
-                  <GraduationCap size={24} className="text-accent" strokeWidth={1.5} />
+              <button
+                type="button"
+                onClick={() => setComiteOpen(!comiteOpen)}
+                aria-expanded={comiteOpen}
+                className="w-full flex items-center justify-between gap-4"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0">
+                    <GraduationCap size={24} className="text-accent" strokeWidth={1.5} />
+                  </div>
+                  <div className="text-left">
+                    <h4 className="text-lg font-bold text-white">
+                      Comité Scientifique International
+                    </h4>
+                    <p className="text-xs text-accent font-semibold uppercase tracking-wide mt-1">
+                      Collège des Sages
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-lg font-bold text-white">
-                    Comité Scientifique International
-                  </h4>
-                  <p className="text-xs text-accent font-semibold uppercase tracking-wide mt-1">
-                    Collège des Sages
-                  </p>
+                <div
+                  className={`flex-shrink-0 transition-transform duration-300 ${comiteOpen ? 'rotate-180' : ''}`}
+                >
+                  <ChevronDown size={20} className="text-accent" strokeWidth={2} />
                 </div>
-              </div>
-              <p className="text-sm text-white/80 leading-relaxed mb-5">
-                Composé d'anciens hauts responsables publics, de magistrats de juridictions internationales et d'experts de référence, notre Collège des Sages garantit le niveau d'exigence académique de l'Académie K-EMPIRE.
-              </p>
-              <ul className="space-y-3">
-                {comiteRoles.map((role, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Check size={12} className="text-accent" strokeWidth={3} />
-                    </div>
-                    <span className="text-sm text-white/90">{role}</span>
-                  </li>
-                ))}
-              </ul>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {comiteOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-sm text-white/80 leading-relaxed mb-5 pt-5">
+                      Composé d'anciens hauts responsables publics, de magistrats de juridictions internationales et d'experts de référence, notre Collège des Sages garantit le niveau d'exigence académique de l'Académie K-EMPIRE.
+                    </p>
+                    <ul className="space-y-3">
+                      {comiteRoles.map((role, idx) => (
+                        <li key={idx} className="flex items-center gap-3">
+                          <div className="flex-shrink-0 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
+                            <Check size={12} className="text-accent" strokeWidth={3} />
+                          </div>
+                          <span className="text-sm text-white/90">{role}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
 

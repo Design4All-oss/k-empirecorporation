@@ -19,7 +19,7 @@ export const HOME_CONTENT = {
   },
   expertise: {
     title: "Une expertise multidisciplinaire",
-    intro: "Notre équipe regroupe des experts nationaux et internationaux en droit, comptabilité, fiscalité, management, négociation, BTP, marketing & communication, banque, gestion des ressources humaines et stratégies.",
+    intro: "Notre équipe regroupe des experts nationaux et internationaux en droit, comptabilité, fiscalité, management, négociation, marketing & communication, banque, gestion des ressources humaines et stratégies.",
     subtitle: "Nos principaux domaines d’intervention",
     items: [
       { id: 1, title: "Droit des affaires & fiscalité", text: "Sécurisation des opérations, conformité réglementaire, structuration de contrats et optimisation fiscale." },
@@ -165,3 +165,119 @@ export const COMMON_CONTENT = {
     ]
   }
 };
+
+export const PARTNERS_LOGOS = [
+  { id: 1, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 2, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 3, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 4, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 5, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 6, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 7, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+  { id: 8, src: '/assets/logos/Logo_kempire.svg', alt: 'K-EMPIRE' },
+];
+
+export const SERVICES_CONTENT = {
+  testimonials: {
+    stats: [
+      { value: '98%+', label: 'Taux de satisfaction' },
+      { value: '2000+', label: 'Professionnels formés' },
+      { value: '25+', label: 'Nationalités' },
+    ],
+    items: [
+      {
+        id: 1,
+        name: "Sarah Koné",
+        role: "Directrice Générale",
+        company: "TechAfrica",
+        formation: "Executive Certificate en Management Stratégique",
+        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face",
+        content: "L'accompagnement de K-EMPIRE a transformé notre approche stratégique. Leur expertise nous a permis de structurer notre croissance avec sérénité."
+      },
+      {
+        id: 2,
+        name: "Marc Dubois",
+        role: "Fondateur",
+        company: "Dubois Conseil",
+        formation: "Parcours Executive Signature",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+        content: "Un audit complet et des recommandations pertinentes. L'équipe a su identifier des leviers d'amélioration que nous n'avions pas perçus."
+      },
+      {
+        id: 3,
+        name: "Aminata Diallo",
+        role: "Responsable RH",
+        company: "Groupe SOGEA",
+        formation: "Management et Leadership d'Équipe",
+        avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face",
+        content: "Les formations dispensées par K-EMPIRE ont considérablement renforcé les compétences de nos équipes. Une approche pédagogique excellente."
+      },
+      {
+        id: 4,
+        name: "Jean-Pierre Mensah",
+        role: "CEO",
+        company: "Mensah Holdings",
+        formation: "Ingénierie Juridique & Contractuelle",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+        content: "Leur expertise juridique nous a été précieuse lors de notre restructuration. Un partenaire de confiance pour les décisions critiques."
+      },
+      {
+        id: 5,
+        name: "Fatima Benali",
+        role: "Directrice Financière",
+        company: "FinancesPro",
+        formation: "Fiscalité des Entreprises : Optimisation et Conformité",
+        avatar: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=100&h=100&fit=crop&crop=face",
+        content: "Optimisation fiscale réussie et accompagnement de qualité. Ils maîtrisent parfaitement les enjeux complexes des entreprises."
+      },
+      {
+        id: 6,
+        name: "Kofi Asante",
+        role: "Entrepreneur",
+        company: "Asante Corp",
+        formation: "Négociation Commerciale et Gestion des Partenariats",
+        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+        content: "De la stratégie à la mise en œuvre, K-EMPIRE nous a accompagnés à chaque étape. Un investissement qui a porté ses fruits."
+      }
+    ]
+  }
+};
+
+export const FORMATION_TYPES = [
+  {
+    id: 1,
+    icon: 'Users',
+    title: "Inter-entreprises",
+    description: "Des sessions ouvertes réunissant des professionnels de divers horizons pour favoriser les échanges d'expériences.",
+    features: [
+      "Partage d'expériences entre professionnels",
+      "Réseau élargi de contacts",
+      "Bonnes pratiques multi-sectorielles",
+      "Dates fixes tout au long de l'année"
+    ],
+  },
+  {
+    id: 2,
+    icon: 'Building2',
+    title: "Intra-entreprise",
+    description: "Des programmes conçus spécifiquement pour votre organisation, adaptés à vos enjeux et à vos équipes.",
+    features: [
+      "Contenu 100% personnalisé",
+      "Adapté à votre secteur d'activité",
+      "Planning flexible selon vos contraintes",
+      "Formation dans vos locaux ou chez nous"
+    ],
+  },
+  {
+    id: 3,
+    icon: 'Monitor',
+    title: "En ligne",
+    description: "Des formations accessibles à distance via visioconférence, pour toucher vos équipes où qu'elles se trouvent.",
+    features: [
+      "Accessibilité géographique totale",
+      "Supports numériques interactifs",
+      "Replay disponible 30 jours",
+      "Coût de déplacement réduit"
+    ],
+  }
+];

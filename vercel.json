@@ -1,5 +1,17 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "redirects": [
+    {
+      "source": "/services/genie-civil",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/genie-civil/:path*",
+      "destination": "/services",
+      "permanent": true
+    }
   ]
 }

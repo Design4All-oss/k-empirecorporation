@@ -5,6 +5,7 @@ const POST_PROJECTION = `{
   _id,
   title,
   "slug": slug.current,
+  status,
   excerpt,
   featured,
   publishedAt,
@@ -38,7 +39,7 @@ const transformPost = (post) => ({
 
 const fetchPosts = (page, perPage) =>
   client.fetch(
-    `*[_type == "post"] | order(coalesce(publishedAt, _updatedAt) desc) [${(page - 1) * perPage}...${page * perPage}] ${POST_PROJECTION}`
+    `*[_type == "post" && status == "publié"] | order(coalesce(publishedAt, _updatedAt) desc) [${(page - 1) * perPage}...${page * perPage}] ${POST_PROJECTION}`
   )
 
 export const usePosts = (page = 1, perPage = 10) =>
@@ -47,12 +48,18 @@ export const usePosts = (page = 1, perPage = 10) =>
     queryFn: () => fetchPosts(page, perPage).then((docs) => (docs || []).map(transformPost)),
   })
 
+export const usePostsCount = () =>
+  useQuery({
+    queryKey: ['postsCount'],
+    queryFn: () => client.fetch(`count(*[_type == "post" && status == "publié"])`),
+  })
+
 export const usePost = (slug) =>
   useQuery({
     queryKey: ['post', slug],
     queryFn: () =>
       client
-        .fetch(`*[_type == "post" && slug.current == $slug][0] ${POST_PROJECTION}`, { slug })
+        .fetch(`*[_type == "post" && status == "publié" && slug.current == $slug][0] ${POST_PROJECTION}`, { slug })
         .then((post) => (post ? transformPost(post) : null)),
     enabled: !!slug,
   })

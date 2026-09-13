@@ -2,45 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Building2, Monitor, ArrowRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { FORMATION_TYPES } from '../../constants/content';
 
-const formationTypes = [
-  {
-    id: 1,
-    icon: Users,
-    title: "Inter-entreprises",
-    description: "Des sessions ouvertes réunissant des professionnels de divers horizons pour favoriser les échanges d'expériences.",
-    features: [
-      "Partage d'expériences entre professionnels",
-      "Réseau élargi de contacts",
-      "Bonnes pratiques multi-sectorielles",
-      "Dates fixes tout au long de l'année"
-    ],
-  },
-  {
-    id: 2,
-    icon: Building2,
-    title: "Intra-entreprise",
-    description: "Des programmes conçus spécifiquement pour votre organisation, adaptés à vos enjeux et à vos équipes.",
-    features: [
-      "Contenu 100% personnalisé",
-      "Adapté à votre secteur d'activité",
-      "Planning flexible selon vos contraintes",
-      "Formation dans vos locaux ou chez nous"
-    ],
-  },
-  {
-    id: 3,
-    icon: Monitor,
-    title: "En ligne",
-    description: "Des formations accessibles à distance via visioconférence, pour toucher vos équipes où qu'elles se trouvent.",
-    features: [
-      "Accessibilité géographique totale",
-      "Supports numériques interactifs",
-      "Replay disponible 30 jours",
-      "Coût de déplacement réduit"
-    ],
-  }
-];
+const iconMap = { Users, Building2, Monitor };
 
 const FormationsTypes = () => {
   return (
@@ -71,8 +35,8 @@ const FormationsTypes = () => {
 
         {/* Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {formationTypes.map((type, index) => {
-            const IconComponent = type.icon;
+          {FORMATION_TYPES.map((type, index) => {
+            const IconComponent = iconMap[type.icon];
             return (
               <motion.div
                 key={type.id}

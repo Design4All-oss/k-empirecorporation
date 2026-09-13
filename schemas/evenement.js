@@ -4,6 +4,18 @@ export default defineType({
   name: 'evenement',
   title: 'Événement',
   type: 'document',
+  orderings: [
+    {
+      title: 'Date de début',
+      name: 'startDateTimeAsc',
+      by: [{ field: 'startDateTime', direction: 'asc' }],
+    },
+    {
+      title: 'Titre A→Z',
+      name: 'titleAsc',
+      by: [{ field: 'title', direction: 'asc' }],
+    },
+  ],
   fields: [
     defineField({
       name: 'title',
@@ -16,6 +28,19 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: { source: 'title', maxLength: 120 },
+    }),
+    defineField({
+      name: 'status',
+      title: 'Statut',
+      type: 'string',
+      initialValue: 'brouillon',
+      options: {
+        list: [
+          { title: 'Brouillon', value: 'brouillon' },
+          { title: 'Publié', value: 'publié' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'excerpt',
@@ -135,15 +160,25 @@ export default defineType({
     }),
     defineField({
       name: 'registerLink',
-      title: 'Lien d’inscription',
+      title: "Lien d'inscription",
       type: 'url',
     }),
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'lieu',
+      subtitle: 'status',
       media: 'coverImage',
+      startDateTime: 'startDateTime',
+    },
+    prepare({ title, subtitle, media, startDateTime }) {
+      const status = subtitle === 'publié' ? '✓ Publié' : '○ Brouillon'
+      const date = startDateTime ? new Date(startDateTime).toLocaleDateString('fr-FR') : ''
+      return {
+        title: title || 'Événement',
+        subtitle: [status, date].filter(Boolean).join(' · '),
+        media,
+      }
     },
   },
 })

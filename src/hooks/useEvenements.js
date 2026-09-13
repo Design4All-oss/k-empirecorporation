@@ -5,6 +5,7 @@ const EVENEMENT_PROJECTION = `{
   _id,
   title,
   "slug": slug.current,
+  status,
   excerpt,
   type,
   lieu,
@@ -58,7 +59,7 @@ export const useEvenements = () =>
     queryKey: ['evenements'],
     queryFn: () =>
       client
-        .fetch(`*[_type == "evenement"] | order(startDateTime asc) ${EVENEMENT_PROJECTION}`)
+        .fetch(`*[_type == "evenement" && status == "publié"] | order(startDateTime asc) ${EVENEMENT_PROJECTION}`)
         .then((docs) => (docs || []).map(transformEvenement)),
   })
 
@@ -67,7 +68,7 @@ export const useEvenement = (slug) =>
     queryKey: ['evenement', slug],
     queryFn: () =>
       client
-        .fetch(`*[_type == "evenement" && slug.current == $slug][0] ${EVENEMENT_PROJECTION}`, { slug })
+        .fetch(`*[_type == "evenement" && status == "publié" && slug.current == $slug][0] ${EVENEMENT_PROJECTION}`, { slug })
         .then((evenement) => (evenement ? transformEvenement(evenement) : null)),
     enabled: !!slug,
   })

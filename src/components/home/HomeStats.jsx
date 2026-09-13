@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { TrendingUp, Building2, Users, GraduationCap, CalendarDays } from 'lucide-react';
-import { useStatistiques } from '../../hooks';
-import { STATISTIQUES_DEFAULT } from '../../constants/charte';
+import { HOME_CONTENT } from '../../constants/content';
 
 // Composant compteur animé
 const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
@@ -43,8 +42,7 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
 };
 
 const HomeStats = () => {
-  const { data } = useStatistiques();
-  const stats = data && data.items && data.items.length ? data : STATISTIQUES_DEFAULT;
+  const { stats } = HOME_CONTENT;
   
   const icons = [Building2, Users, GraduationCap, CalendarDays];
   
@@ -101,10 +99,10 @@ const HomeStats = () => {
           {/* Left side - Title */}
           <motion.div variants={itemVariants} className="lg:w-[280px] flex-shrink-0">
             <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display mb-3">
-              Nos Stats
+              {stats.title}
             </h2>
             <p className="text-text-muted text-sm md:text-base leading-relaxed">
-              Nous vous aidons à libérer le potentiel de votre entreprise
+              {stats.intro}
             </p>
           </motion.div>
 

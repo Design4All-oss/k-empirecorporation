@@ -48,7 +48,7 @@ const AboutStats = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
         delayChildren: 0.1,
       },
     },
@@ -59,10 +59,7 @@ const AboutStats = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
     },
   };
 
@@ -83,43 +80,44 @@ const AboutStats = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-[#F5F7FA] relative overflow-hidden">
+    <section className="bg-primary py-8 relative z-30 -mt-12 md:-mt-16">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Stats Grid - 3 columns avec séparateurs */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-2 lg:grid-cols-4"
         >
           {stats.items.map((item, index) => {
-            const hasRightBorder = index < 2;
             const numericValue = getNumber(item.value);
             const suffix = getSuffix(item.value);
             const shouldShowAnimated = shouldAnimate(item.value);
-            
+
             return (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`group relative py-8 px-4 text-center ${hasRightBorder ? 'border-r border-gray-200' : ''} ${index < 2 ? 'border-b lg:border-b-0 border-gray-200' : ''} lg:border-b-0`}
+                className="flex flex-col items-center justify-center text-center py-8 px-4"
               >
-                {/* Stat value avec suffixe */}
-                <div className="flex items-start justify-center gap-1 mb-2">
+                {/* Chiffre blanc + suffixe jaune */}
+                <div className="flex items-baseline gap-0.5 mb-2">
                   {shouldShowAnimated ? (
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent font-display">
-                      <AnimatedCounter target={numericValue} suffix={suffix} duration={2 + index * 0.3} />
-                    </h3>
+                    <>
+                      <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display">
+                        <AnimatedCounter target={numericValue} duration={2 + index * 0.3} />
+                      </span>
+                      <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent font-display">{suffix}</span>
+                    </>
                   ) : (
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-accent font-display">
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display">
                       {item.value}
-                    </h3>
+                    </span>
                   )}
                 </div>
 
-                {/* Stat label */}
-                <p className="text-sm text-text-muted">
+                {/* Label en blanc, petite taille */}
+                <p className="text-xs md:text-sm text-white/70 font-normal">
                   {item.label}
                 </p>
               </motion.div>
