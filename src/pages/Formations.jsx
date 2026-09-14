@@ -40,7 +40,7 @@ const Formations = () => {
       />
       <PageBanner
         title="L'Académie Exécutive"
-        description="Des programmes certifiants pratiques et orientés résultats pour propulser votre carrière vers l'excellence professionnelle."
+        description="Nous développons des capacités d'action mesurables, immédiatement mobilisables dans les environnements institutionnels et économiques complexes."
         imageUrl="/assets/images/services/coverImage.png"
         imageAlt="Formations K-EMPIRE"
       />
