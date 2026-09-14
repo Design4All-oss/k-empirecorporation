@@ -58,6 +58,7 @@ const FormationsHero = () => {
             >
               Des formations certifiantes conçues par des experts pour développer
               vos compétences, faire grandir vos équipes et accélérer votre carrière.
+              Chaque programme est adapté à votre contexte organisationnel pour une application concrète et immédiate.
             </motion.p>
 
             <motion.div
