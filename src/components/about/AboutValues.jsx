@@ -6,7 +6,7 @@ const AboutValues = () => {
     fr: {
       title: 'Notre Identité',
       description:
-        "Cabinet d'études, de conseil et de formation au service de votre performance. Forts de notre expertise et de notre passion pour l'excellence, nous accompagnons les organisations et dirigeants vers des standards d'exception.",
+        "Conseil. Expertise. Executive Education.\nK-EMPIRE CORPORATION accompagne les organisations et les décideurs confrontés à des enjeux complexes, stratégiques et réglementaires. À la croisée du droit, de la gouvernance, de la stratégie et du développement des compétences, nous mobilisons une expertise de haut niveau pour éclairer la décision, sécuriser l'action et renforcer la performance.\nUne exigence : l'excellence. Une vocation : créer de l'impact.",
       values: [
         {
           id: 'safety',
@@ -101,11 +101,11 @@ const AboutValues = () => {
       ],
       vision: {
         title: 'Vision',
-        text: "Être l'institution de référence en management de qualité, conseil stratégique et formation d'élite en Afrique et à l'international francophone.",
+        text: "Devenir une institution panafricaine de référence en conseil stratégique, expertise de haut niveau et Executive Education, ouverte sur le monde.",
       },
       mission: {
         title: 'Mission',
-        text: "Mobiliser notre expertise multidisciplinaire, nos ressources et notre technologie pour propulser les organisations et dépasser les standards du marché.",
+        text: "Éclairer la décision, renforcer les capacités et créer de l'impact en mobilisant expertise, intelligence stratégique, innovation et technologie au service des organisations et des décideurs.",
       },
     },
   };
@@ -125,13 +125,13 @@ const AboutValues = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-10 sm:mb-14 md:mb-16"
+          className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 md:mb-16"
         >
           <h2 className="text-h2-m md:text-h2-d text-white font-bold font-display leading-tight mb-6 whitespace-pre-line tracking-tight">
             {current.title}
           </h2>
 
-          <p className="text-xs sm:text-sm md:text-base text-white/70 leading-relaxed max-w-xl mx-auto font-sans">
+          <p className="text-xs sm:text-sm md:text-base text-white/70 leading-relaxed max-w-none mx-auto font-sans whitespace-pre-line">
             {current.description}
           </p>
         </motion.div>

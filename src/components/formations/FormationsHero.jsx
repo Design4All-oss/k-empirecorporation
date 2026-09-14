@@ -44,9 +44,9 @@ const FormationsHero = () => {
               transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.08 }}
               className="mt-8 font-display font-bold text-primary leading-[0.95] tracking-[-0.02em] text-[2.75rem] sm:text-6xl xl:text-[4.5rem]"
             >
-              Maîtrisez votre{" "}
+              Orchestrez votre{" "}
               <span className="relative inline-block text-accent">
-                avenir professionnel
+                montée en compétence
                 <span className="absolute left-0 -bottom-2 w-full h-[3px] rounded-full bg-accent/30" aria-hidden="true" />
               </span>
             </motion.h1>
@@ -56,7 +56,7 @@ const FormationsHero = () => {
               transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.16 }}
               className="mt-8 max-w-xl text-lg text-text-muted leading-relaxed"
             >
-              Des formations certifiantes conçues par des experts pour développer
+              Des formations professionnelles et certifiantes conçues par des experts pour développer
               vos compétences, faire grandir vos équipes et accélérer votre carrière.
               Chaque programme est adapté à votre contexte organisationnel pour une application concrète et immédiate.
             </motion.p>

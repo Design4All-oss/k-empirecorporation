@@ -2,13 +2,17 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
 import CustomCursor from './components/ui/CustomCursor';
 import BookingModal from './components/ui/BookingModal';
+import GoogleAnalytics from './components/analytics/GoogleAnalytics';
 import { BookingModalProvider } from './context/BookingModalContext';
 import { ToastProvider } from './context/ToastContext';
+import { CookieConsentProvider } from './components/legal/CookieConsent';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -95,14 +99,19 @@ function App() {
           <BookingModalProvider>
             <ToastProvider>
               <Router>
-                <CustomCursor />
-                <BookingModal />
-                <AppContent />
+                <CookieConsentProvider>
+                  <GoogleAnalytics />
+                  <CustomCursor />
+                  <BookingModal />
+                  <AppContent />
+                </CookieConsentProvider>
               </Router>
             </ToastProvider>
           </BookingModalProvider>
         </QueryClientProvider>
       </ErrorBoundary>
+      <Analytics />
+      <SpeedInsights />
     </HelmetProvider>
   );
 }

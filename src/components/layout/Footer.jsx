@@ -72,7 +72,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-body text-white/70 leading-relaxed">
-              Structure, Excellence et Innovation pour une croissance durable au cœur de l'Afrique.
+              Structure, Excellence et Autorité pour une élite décisionnelle au cœur de l'Afrique.
             </p>
             <div className="flex gap-3">
               {socialLinks?.map((link) => (
@@ -95,12 +95,17 @@ const Footer = () => {
 
           {/* Nav Columns Mockup */}
           <motion.div variants={itemVariants} className="flex flex-col gap-5">
-            <h4 className="text-small font-semibold text-white">Secteurs</h4>
+            <h4 className="text-small font-semibold text-white">Nos Expertises</h4>
             <div className="flex flex-col gap-3">
-              {['Services Stratégiques', 'Formations', 'Expertise Juridique'].map((link, idx) => (
-                <a key={idx} href="#" className="text-body text-white/60 hover:text-accent flex items-center justify-between group w-fit">
-                  {link}
-                </a>
+              {[
+                { label: 'Conseil Stratégique', path: '/services/conseil-strategie' },
+                { label: 'Intelligence Stratégique', path: '/services/intelligence-strategique' },
+                { label: 'Ingénierie Juridique', path: '/services/assistance-juridique' },
+                { label: 'Formation Exécutive', path: '/formations' },
+              ].map((link, idx) => (
+                <Link key={idx} to={link.path} className="text-body text-white/60 hover:text-accent flex items-center justify-between group w-fit">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -126,7 +131,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-accent shrink-0" size={20} />
-                <p className="text-body text-white">+228 92 66 45 50</p>
+                <p className="text-body text-white">+228 92 66 45 50 | 90 10 80 75</p>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="text-accent shrink-0" size={20} />

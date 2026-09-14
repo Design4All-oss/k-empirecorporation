@@ -88,12 +88,12 @@ export const ABOUT_CONTENT = {
   },
   mission: {
     title: "Notre mission",
-    text: "Notre mission est de mettre l’excellence au service des organisations. Nous aidons nos partenaires à relever leurs défis juridiques, fiscaux, comptables, managériaux et de gouvernance en leur proposant des solutions stratégiques, pragmatiques et durables.",
+    text: "Éclairer la décision, renforcer les capacités et créer de l’impact en mobilisant expertise, intelligence stratégique, innovation et technologie au service des organisations et des décideurs.",
     highlight: "Nous plaçons la qualité, la proximité et le résultat au cœur de chaque intervention, qu’il s’agisse de conseil, d’audit ou de formation."
   },
   vision: {
     title: "Notre vision",
-    text: "Nous aspirons à devenir un instrument de référence en management de qualité en Afrique et à l’international francophone.",
+    text: "Devenir une institution panafricaine de référence en conseil stratégique, expertise de haut niveau et Executive Education, ouverte sur le monde.",
     highlight: "Nous voulons être reconnus pour notre capacité à transformer les ambitions de nos clients en résultats concrets, mesurables et pérennes."
   },
   values: {
@@ -144,6 +144,7 @@ export const COMMON_CONTENT = {
     contact: {
       address: "Agoè-Kossigan, Lomé-Togo",
       phone: "+228 92 66 45 50",
+      phone2: "+228 90 10 80 75",
       email: "contact@k-empirecorporation.com"
     },
     socialLinks: [
