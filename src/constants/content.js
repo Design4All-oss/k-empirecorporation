@@ -143,8 +143,8 @@ export const COMMON_CONTENT = {
     about: "K-EMPIRE CORPORATION est un cabinet d'études, de conseil et de formation au service de votre performance.",
     contact: {
       address: "Agoè-Kossigan, Lomé-Togo",
-      phone: "+228 92 66 45 50",
-      phone2: "+228 90 10 80 75",
+      phone: "+228 90 10 80 75",
+      phone2: "+221 78 149 29 98",
       email: "contact@k-empirecorporation.com"
     },
     socialLinks: [

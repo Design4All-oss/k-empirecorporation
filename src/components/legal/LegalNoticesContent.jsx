@@ -16,7 +16,7 @@ const LegalNoticesContent = () => {
       title: "Article 1 - Identification de l'éditeur et responsable du traitement",
       content: `Le Site est édité par K-EMPIRE CORPORATION SARL U, Société à Responsabilité Limitée Unipersonnelle de droit togolais au capital social de 1 000 000 FCFA, immatriculée au Registre du Commerce et du Crédit Mobilier (RCCM) du Togo sous le numéro TG-LRL-01-204-B13-00035, titulaire du numéro d'identification fiscale (NIF) 1001957840 et du numéro CNSS 189389, dont le siège social est établi Quartier Dongoyo, Kara, Togo, représentée par son Gérant, Monsieur KOUDADJE Kouami Emmanuel.
 
-Téléphone : +228 98 78 95 31
+Téléphone : +228 90 10 80 75
 Courriel : contact@k-empirecorporation.com
 
 K-EMPIRE agit en qualité de Responsable du Traitement au sens de la loi n°2019-014 du 29 octobre 2019 relative à la protection des données à caractère personnel en République togolaise (ci-après la « LPDCP ») et du Règlement Général sur la Protection des Données (RGPD - Règlement UE 2016/679) pour les traitement concernant des résidents de l'Union européenne. Elle détermine à ce titre les finalités et les moyens des traitements mis en œuvre dans le cadre de l'exploitation du Site et garantit le respect des droits des personnes concernées. Toute question relative à la présente Politique ou à l'exercice des droits qu'elle institue est adressée à contact@k-empirecorporation.com.`,
@@ -305,7 +305,7 @@ Tout différend né de l'interprétation ou de l'exécution de la présente Poli
                     <span>Nous écrire</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
-                  <a href="tel:+22898789531" className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-all">
+                  <a href="tel:+22890108075" className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-all">
                     <Phone className="w-5 h-5" />
                     <span>Appeler</span>
                   </a>

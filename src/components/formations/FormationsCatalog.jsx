@@ -371,11 +371,27 @@ const FormationsCatalog = () => {
           </motion.div>
         )}
 
-        {/* Regular Formations Grid - Slider Style */}
+        {/* Regular Formations */}
         {regularFormations.length > 0 && (
           <div className="mt-12">
-            {totalSlides > 1 ? (
-              <>
+            {/* Mobile: stacked grid */}
+            <div className="grid grid-cols-1 gap-8 md:hidden">
+              {regularFormations.map((formation, index) => (
+                <motion.div
+                  key={formation.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                >
+                  <FormationCard formation={formation} />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Desktop: slider carousel */}
+            <div className="hidden md:block">
+              {totalSlides > 1 ? (
                 <Slider 
                   currentSlide={currentSlide}
                   setCurrentSlide={setCurrentSlide}
@@ -402,22 +418,22 @@ const FormationsCatalog = () => {
                     </motion.div>
                   ))}
                 </Slider>
-              </>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {regularFormations.map((formation, index) => (
-                  <motion.div
-                    key={formation.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                  >
-                    <FormationCard formation={formation} />
-                  </motion.div>
-                ))}
-              </div>
-            )}
+              ) : (
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+                  {regularFormations.map((formation, index) => (
+                    <motion.div
+                      key={formation.id}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <FormationCard formation={formation} />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>

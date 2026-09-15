@@ -733,7 +733,7 @@ const FormationSingle = () => {
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                           className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="+228 92 66 45 50"
+                          placeholder="+228 90 10 80 75"
                         />
                       </div>
 

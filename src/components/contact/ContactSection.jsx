@@ -127,7 +127,7 @@ const ContactSection = () => {
                 <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-primary">+228 92 66 45 50</span>
+                <span className="text-sm font-medium text-primary">+228 90 10 80 75</span>
               </div>
 
               <div className="flex items-center gap-3">
@@ -305,7 +305,7 @@ const ContactSection = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+228 92 66 45 50"
+                        placeholder="+228 90 10 80 75"
                         className="w-full px-4 py-3 rounded-2xl bg-white/35 border-none h-14 text-white placeholder:text-white/50 focus:outline-none focus:bg-white/45 transition-all"
                       />
                     </div>

@@ -394,7 +394,7 @@ const ServiceIntelligenceStrategique = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <a
-                    href="tel:+22892664550"
+                    href="tel:+22890108075"
                     className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-primary transition-colors hover:bg-orange-300"
                   >
                     <PhoneCall className="h-5 w-5" />
