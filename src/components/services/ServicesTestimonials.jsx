@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { SERVICES_CONTENT, PARTNERS_LOGOS } from '../../constants/content';
-import { useStatistiques } from '../../hooks/useSiteContent';
+import { HOME_CONTENT } from '../../constants/content';
+import { useStatistiques, usePartenaires } from '../../hooks/useSiteContent';
 
 const Counter = ({ value, inView }) => {
   const [count, setCount] = useState(null);
@@ -43,10 +43,15 @@ const ServicesTestimonials = () => {
   const statsRef = useRef(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-100px" });
   const { data: statsData } = useStatistiques();
+  const { data: partenaires = [] } = usePartenaires();
   const stats = statsData?.services?.length
     ? statsData.services
-    : SERVICES_CONTENT.testimonials.stats;
-  const { citations } = SERVICES_CONTENT.testimonials;
+    : HOME_CONTENT.testimonials.stats || [
+        { value: '98%+', label: 'Taux de satisfaction' },
+        { value: '2000+', label: 'Professionnels formés' },
+        { value: '25+', label: 'Nationalités' },
+      ];
+  const { citations } = HOME_CONTENT.testimonials;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -100,7 +105,7 @@ const ServicesTestimonials = () => {
             transition={{ duration: 0.6 }}
             className="text-h2-m md:text-h2-d text-primary font-bold font-display leading-tight max-w-5xl mb-8"
           >
-            {SERVICES_CONTENT.testimonials.title}
+            {HOME_CONTENT.testimonials.title}
           </motion.h2>
           <div className="w-12 h-1 bg-accent rounded-full" />
         </div>
@@ -208,30 +213,33 @@ const ServicesTestimonials = () => {
 
         {/* Partners Logos */}
         <div className="mt-6 pt-4">
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 80s linear infinite;
+            }
+          `}</style>
           <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
             <div className="flex overflow-hidden">
-              <motion.div
-                className="flex gap-12 items-center"
-                animate={{ x: [0, -50 * 8 * 3] }}
-                transition={{
-                  x: { repeat: Infinity, repeatType: 'loop', duration: 20, ease: 'linear' },
-                }}
-              >
-                {[...PARTNERS_LOGOS, ...PARTNERS_LOGOS, ...PARTNERS_LOGOS].map((partner, index) => (
+              <div className="animate-marquee flex gap-10 items-center shrink-0">
+                {[...partenaires, ...partenaires].map((partner, index) => (
                   <div key={index} className="flex-shrink-0 flex items-center justify-center">
-                    <div className="w-32 h-20 md:w-40 md:h-24 flex items-center justify-center">
+                    <div className="w-24 h-14 md:w-32 md:h-18 flex items-center justify-center">
                       <img
-                        src={partner.src}
-                        alt={partner.alt}
-                        className="w-full h-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+                        src={partner.logo}
+                        alt={partner.nom}
+                        className="w-full h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
                       />
                     </div>
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

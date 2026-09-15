@@ -64,12 +64,12 @@ const BookingModal = () => {
     setSubmitting(true);
     try {
       await submitRdv({
-        nom: bookingData.name,
+        name: bookingData.name,
         email: bookingData.email,
-        telephone: bookingData.phone,
-        service: '',
+        phone: bookingData.phone,
+        date: bookingData.date || '',
+        time: bookingData.time || '',
         message: bookingData.message,
-        date_rdv: bookingData.date ? `${bookingData.date}T${bookingData.time || '10:00'}:00` : '',
       });
       setIsSubmitted(true);
       toast('Rendez-vous demandé ! Nous vous contacterons pour confirmer.');

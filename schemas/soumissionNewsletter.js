@@ -20,7 +20,14 @@ export default defineType({
       name: 'source',
       title: 'Source',
       type: 'string',
-      description: 'Page ou bloc d’où provient l’inscription',
+      description: 'Page ou bloc d\'où provient l\'inscription',
+    }),
+    defineField({
+      name: 'consentement',
+      title: 'Consentement RGPD',
+      type: 'boolean',
+      description: 'L\'utilisateur a accepté la politique de confidentialité',
+      initialValue: false,
     }),
     defineField({
       name: 'submittedAt',

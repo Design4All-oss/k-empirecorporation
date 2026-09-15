@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, Users, BookOpen, Calendar } from 'lucide-react';
-import { useFormations } from '../../hooks';
+import { ArrowRight, Clock, Users, BookOpen } from 'lucide-react';
 import Button from '../ui/Button';
+import { useFormations } from '../../hooks';
+
+const ease = [0.22, 1, 0.36, 1];
 
 const HomeFormationsPreview = () => {
   const { data: apiFormations } = useFormations();
@@ -16,28 +18,22 @@ const HomeFormationsPreview = () => {
         { id: 3, slug: 'en-ligne', title: "Formations en ligne", hook: "Des formations accessibles à distance via visioconférence, pour toucher vos équipes où qu'elles se trouvent.", format: "En ligne", duration: "1 jour", objectives: [1, 2, 3] }
       ];
 
-  const featured = formations[0];
-  const rest = formations.slice(1, 3);
+  const [hero, c2, c3] = formations;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-    },
+  const container = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
   };
 
-  const itemVariants = {
+  const item = {
     hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
   };
+
+  const IMG = (f) => f.image || '/assets/images/formationImage.png';
 
   return (
-    <section className="py-16 md:py-24 bg-bg-alt relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-bg-alt">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
@@ -45,154 +41,176 @@ const HomeFormationsPreview = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12 md:mb-16"
+          transition={{ duration: 0.6, ease }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12 md:mb-16"
         >
-          <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-tight mb-6">
-            Formations certifiantes et sur mesure
-          </h2>
-
-          <p className="text-body text-text-muted leading-relaxed max-w-2xl mx-auto">
-            Nos formations sont conçues pour apporter des compétences immédiatement mobilisables sur le terrain, en combinant apports théoriques, études de cas et mises en situation.
-          </p>
+          <div>
+            <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-tight mb-6">
+              Formations certifiantes et sur mesure
+            </h2>
+            <p className="text-body text-text-muted leading-relaxed max-w-2xl">
+              Nos formations sont conçues pour apporter des compétences immédiatement mobilisables sur le terrain, en combinant apports théoriques, études de cas et mises en situation.
+            </p>
+          </div>
+          <Link to="/formations" className="shrink-0">
+            <Button variant="outline" className="group whitespace-nowrap">
+              Toutes nos formations
+              <ArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Button>
+          </Link>
         </motion.div>
 
-        {/* ── Grid: Featured + 2 Cards ── */}
+        {/* ── Bento Grid ── */}
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 lg:grid-cols-5 gap-5"
+          className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-[1fr_1fr] gap-4"
         >
-          {/* Featured Card — spans 3 cols */}
-          {featured && (
-            <motion.div
-              variants={itemVariants}
-              className="lg:col-span-3 group relative rounded-2xl overflow-hidden bg-white shadow-sm border border-border/40 hover:shadow-lg transition-shadow duration-500"
-            >
-              {/* Image */}
-              <div className="relative h-56 md:h-64 overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${featured.image || '/assets/images/formationImage.png'})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-
-                {/* Badge */}
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-accent text-white text-xs font-semibold rounded-full">
-                    {featured.format || 'Présentiel'}
-                  </span>
-                  <span className="px-3 py-1 bg-white/90 text-primary text-xs font-semibold rounded-full flex items-center gap-1.5">
-                    <Clock size={12} />
-                    {featured.duration || '3 jours'}
-                  </span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 md:p-8">
-                <h3 className="text-xl md:text-2xl font-bold text-primary mb-3 group-hover:text-accent-dark transition-colors duration-300 font-display">
-                  {featured.title}
-                </h3>
-
-                <p className="text-text-muted text-sm md:text-base leading-relaxed mb-6">
-                  {featured.hook || featured.description || 'Formation professionnelle pour développer vos compétences et booster votre carrière.'}
-                </p>
-
-                {/* Meta */}
-                <div className="flex items-center gap-5 mb-6 text-xs text-text-muted">
-                  {featured.objectives && (
-                    <div className="flex items-center gap-1.5">
-                      <BookOpen size={14} className="text-accent" />
-                      <span>{featured.objectives.length} modules</span>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-1.5">
-                    <Users size={14} className="text-accent" />
-                    <span>Groupes à taille humaine</span>
-                  </div>
-                </div>
-
-                <Link to={`/formations/${featured.slug || featured.id}`}>
-                  <Button variant="primary" className="rounded-full">
-                    Découvrir cette formation
-                    <ArrowRight size={18} className="ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Side Cards — span 2 cols, stacked */}
-          <div className="lg:col-span-2 flex flex-col gap-5">
-            {rest.map((formation, index) => (
-              <motion.div
-                key={formation.id || index}
-                variants={itemVariants}
-                className="group relative flex flex-col sm:flex-row lg:flex-col xl:flex-row rounded-2xl overflow-hidden bg-white shadow-sm border border-border/40 hover:shadow-lg transition-shadow duration-500 flex-1"
+          {/* ── Hero Card — 2 cols × 2 rows ── */}
+          {hero && (
+            <motion.div variants={item} className="lg:col-span-2 lg:row-span-2">
+              <Link
+                to={`/formations/${hero.slug || hero.id}`}
+                className="group relative flex flex-col h-full min-h-[320px] lg:min-h-[480px] rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-shadow duration-500"
               >
-                {/* Thumbnail */}
-                <div className="relative w-full sm:w-40 lg:w-full xl:w-40 h-40 sm:h-auto lg:h-44 xl:h-auto flex-shrink-0 overflow-hidden">
+                {/* Image */}
+                <div className="absolute inset-0">
                   <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    style={{ backgroundImage: `url(${formation.image || '/assets/images/formationImage.png'})` }}
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    style={{ backgroundImage: `url(${IMG(hero)})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/10 sm:bg-gradient-to-r lg:bg-gradient-to-t xl:bg-gradient-to-r" />
-
-                  {/* Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-0.5 bg-accent text-white text-[11px] font-semibold rounded-full">
-                      {formation.format || 'En ligne'}
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 p-5 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-base font-bold text-primary mb-2 group-hover:text-accent-dark transition-colors duration-300 leading-tight">
-                      {formation.title}
-                    </h3>
-                    <p className="text-text-muted text-sm leading-relaxed line-clamp-2">
-                      {formation.hook || formation.description || 'Formation professionnelle pour développer vos compétences.'}
-                    </p>
+                <div className="relative flex flex-col justify-end h-full p-6 md:p-8 lg:p-10">
+                  {/* Badges */}
+                  <div className="flex gap-2 mb-auto pt-2">
+                    <span className="px-3 py-1 bg-accent text-white text-xs font-semibold rounded-full">
+                      {hero.format || 'Présentiel'}
+                    </span>
+                    <span className="px-3 py-1 bg-white/90 text-primary text-xs font-semibold rounded-full flex items-center gap-1.5">
+                      <Clock size={12} />
+                      {hero.duration || '3 jours'}
+                    </span>
                   </div>
 
-                  <div className="flex items-center justify-between mt-4">
-                    <div className="flex items-center gap-1.5 text-xs text-text-muted">
-                      <Clock size={13} className="text-accent" />
-                      <span>{formation.duration || '2 jours'}</span>
+                  {/* Title + description */}
+                  <div>
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white font-display leading-tight mb-3 group-hover:text-accent-light transition-colors duration-300">
+                      {hero.title}
+                    </h3>
+                    <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-lg mb-6">
+                      {hero.hook || hero.description || 'Formation professionnelle pour développer vos compétences et booster votre carrière.'}
+                    </p>
+
+                    {/* Meta */}
+                    <div className="flex items-center gap-5">
+                      {hero.objectives && (
+                        <div className="flex items-center gap-1.5 text-white/70 text-xs">
+                          <BookOpen size={13} />
+                          <span>{hero.objectives.length} modules</span>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-1.5 text-white/70 text-xs">
+                        <Users size={13} />
+                        <span>Groupes à taille humaine</span>
+                      </div>
+                      <span className="ml-auto flex items-center gap-1.5 text-sm font-medium text-white group-hover:text-accent-light transition-colors duration-300">
+                        Découvrir
+                        <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
                     </div>
-                    <Link
-                      to={`/formations/${formation.slug || formation.id}`}
-                      className="flex items-center gap-1.5 text-sm font-medium text-primary hover:text-accent transition-colors"
-                    >
-                      Voir
-                      <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-                    </Link>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              </Link>
+            </motion.div>
+          )}
 
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10 md:mt-14"
-        >
-          <Link to="/formations">
-            <Button variant="outline" className="rounded-full">
-              Consulter le catalogue de formations
-              <ArrowRight size={18} className="ml-2" />
-            </Button>
-          </Link>
+          {/* ── Card 2 — right column top ── */}
+          {c2 && (
+            <motion.div variants={item}>
+              <Link
+                to={`/formations/${c2.slug || c2.id}`}
+                className="group relative flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-shadow duration-500"
+              >
+                {/* Square image */}
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    style={{ backgroundImage: `url(${IMG(c2)})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-accent text-white text-[11px] font-semibold rounded-full">
+                    {c2.format || 'En ligne'}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="text-base font-bold text-primary mb-2 group-hover:text-accent-dark transition-colors duration-300 leading-tight font-display">
+                    {c2.title}
+                  </h3>
+                  <p className="text-text-muted text-sm leading-relaxed line-clamp-2 mb-4">
+                    {c2.hook || c2.description || 'Formation professionnelle pour développer vos compétences.'}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs text-text-muted">
+                      <Clock size={13} className="text-accent" />
+                      {c2.duration || '2 jours'}
+                    </span>
+                    <span className="flex items-center gap-1 text-sm font-medium text-primary group-hover:text-accent transition-colors duration-300">
+                      Voir
+                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          )}
+
+          {/* ── Card 3 — right column bottom ── */}
+          {c3 && (
+            <motion.div variants={item}>
+              <Link
+                to={`/formations/${c3.slug || c3.id}`}
+                className="group relative flex flex-col h-full rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-shadow duration-500"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    style={{ backgroundImage: `url(${IMG(c3)})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-accent text-white text-[11px] font-semibold rounded-full">
+                    {c3.format || 'En ligne'}
+                  </span>
+                </div>
+
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="text-base font-bold text-primary mb-2 group-hover:text-accent-dark transition-colors duration-300 leading-tight font-display">
+                    {c3.title}
+                  </h3>
+                  <p className="text-text-muted text-sm leading-relaxed line-clamp-2 mb-4">
+                    {c3.hook || c3.description || 'Formation professionnelle pour développer vos compétences.'}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between">
+                    <span className="flex items-center gap-1.5 text-xs text-text-muted">
+                      <Clock size={13} className="text-accent" />
+                      {c3.duration || '2 jours'}
+                    </span>
+                    <span className="flex items-center gap-1 text-sm font-medium text-primary group-hover:text-accent transition-colors duration-300">
+                      Voir
+                      <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          )}
+
         </motion.div>
       </div>
     </section>

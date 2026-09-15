@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { HOME_CONTENT, PARTNERS_LOGOS } from '../../constants/content';
+import { HOME_CONTENT } from '../../constants/content';
+import { usePartenaires } from '../../hooks/useSiteContent';
 
 const imageSrc = (testimonial) => {
   if (!testimonial.image) return '';
@@ -13,6 +14,7 @@ const imageSrc = (testimonial) => {
 const HomeTestimonials = () => {
   const { testimonials } = HOME_CONTENT;
   const citations = testimonials.citations;
+  const { data: partenaires = [] } = usePartenaires();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -143,38 +145,34 @@ const HomeTestimonials = () => {
 
         {/* Partners Logos Scroll */}
         <div className="relative mt-16">
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 80s linear infinite;
+            }
+          `}</style>
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
           <div className="flex overflow-hidden">
-            <motion.div
-              className="flex gap-12 items-center"
-              animate={{
-                x: [0, -50 * 8],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: 'loop',
-                  duration: 20,
-                  ease: 'linear',
-                },
-              }}
-            >
-              {[...PARTNERS_LOGOS, ...PARTNERS_LOGOS, ...PARTNERS_LOGOS].map((partner, index) => (
+            <div className="animate-marquee flex gap-10 items-center shrink-0">
+              {[...partenaires, ...partenaires].map((partner, index) => (
                 <div
-                  key={`${partner.id}-${index}`}
+                  key={`${partner.nom}-${index}`}
                   className="flex-shrink-0 flex items-center justify-center"
                 >
-                  <div className="w-32 h-20 flex items-center justify-center">
-                    <img 
-                      src={partner.src} 
-                      alt={partner.alt} 
-                      className="w-full h-full object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  <div className="w-24 h-14 md:w-32 md:h-18 flex items-center justify-center">
+                    <img
+                      src={partner.logo}
+                      alt={partner.nom}
+                      className="w-full h-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
                     />
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

@@ -117,8 +117,8 @@ const Services = () => {
       <ServicesGrid services={services} />
       <ServicesProcess />
       <HomeValuesMarquee />
-      <ServicesTestimonials />
       <ServicesFormationsCatalog />
+      <ServicesTestimonials />
       <ServicesCTA 
         title={cta.title}
         description={cta.description}

@@ -63,11 +63,11 @@ const ContactSection = () => {
     setSubmitting(true);
     try {
       await submitDevis({
-        nom: formData.fullName,
+        fullName: formData.fullName,
         email: formData.email,
-        telephone: formData.phone,
-        entreprise: formData.organization,
-        sujet: formData.subject,
+        phone: formData.phone,
+        organization: formData.organization,
+        subject: formData.subject,
         message: formData.message,
       });
       setSubmitStatus('success');

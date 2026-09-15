@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 import { usePost, usePosts } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
+import { submitNewsletter } from '../api/forms';
+import { useToast } from '../context/ToastContext';
 
 const FacebookIcon = () => (
   <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor">
@@ -28,6 +30,10 @@ const BlogSingle = () => {
   const { slug } = useParams();
   const { data: apiPost, isLoading, error } = usePost(slug);
   const { data: apiPosts } = usePosts(1, 5);
+  const toast = useToast();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterConsent, setNewsletterConsent] = useState(false);
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
   
   const getAuthorName = (author) => {
     if (!author) return 'Auteur';
@@ -49,6 +55,25 @@ const BlogSingle = () => {
   
   const allPosts = apiPosts || [];
   const relatedPosts = post ? allPosts.filter(p => p.id !== post.id).slice(0, 2) : [];
+
+  const handleNewsletterSidebar = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail || !newsletterConsent) {
+      if (!newsletterConsent) toast("Vous devez accepter la politique de confidentialité.", 'error');
+      return;
+    }
+    setNewsletterLoading(true);
+    try {
+      const res = await submitNewsletter({ email: newsletterEmail, nom: '', source: 'blog-sidebar', consentement: true });
+      toast(res.message || 'Inscription à la newsletter réussie !');
+      setNewsletterEmail('');
+      setNewsletterConsent(false);
+    } catch (err) {
+      toast(err.message, 'error');
+    } finally {
+      setNewsletterLoading(false);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -223,17 +248,33 @@ const BlogSingle = () => {
 
               <div className="bg-primary rounded-3xl p-6 text-white mt-8">
                 <h3 className="text-lg font-bold mb-2">Newsletter</h3>
-                <p className="text-white/70 text-sm mb-4">Recevez nos dernieres actualites et articles</p>
-                <div className="flex gap-3">
-                  <input 
-                    type="email" 
-                    placeholder="Votre email" 
-                    className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-accent"
-                  />
-                  <button className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent-light transition-colors flex-shrink-0">
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
+                <p className="text-white/70 text-sm mb-4">Recevez nos derniers articles et actualités</p>
+                <form onSubmit={handleNewsletterSidebar} className="flex flex-col gap-3">
+                  <div className="flex gap-3">
+                    <input 
+                      type="email"
+                      value={newsletterEmail}
+                      onChange={(e) => setNewsletterEmail(e.target.value)}
+                      placeholder="Votre email" 
+                      required
+                      className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-accent"
+                    />
+                    <button type="submit" disabled={newsletterLoading || !newsletterConsent} className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white hover:bg-accent-light transition-colors flex-shrink-0 disabled:opacity-50">
+                      <ArrowRight size={18} />
+                    </button>
+                  </div>
+                  <label className="flex items-start gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={newsletterConsent}
+                      onChange={(e) => setNewsletterConsent(e.target.checked)}
+                      className="mt-0.5 w-3.5 h-3.5 rounded border-white/40 bg-white/10 text-accent focus:ring-accent"
+                    />
+                    <span className="text-[11px] text-white/60 leading-tight">
+                      J'accepte la <a href="/mentions-legales" className="underline hover:text-white" target="_blank" rel="noopener noreferrer">politique de confidentialité</a> et consens à recevoir des communications.
+                    </span>
+                  </label>
+                </form>
               </div>
             </div>
           </div>

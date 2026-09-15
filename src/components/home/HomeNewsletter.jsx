@@ -1,20 +1,43 @@
 import React, { useState } from 'react';
 import { Inbox } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import { submitNewsletter } from '../../api/forms';
 import { useToast } from '../../context/ToastContext';
 
+const SOURCE_MAP = {
+  '/': 'home',
+  '/about': 'about',
+  '/blog': 'blog',
+  '/formations': 'formations',
+  '/services': 'services',
+  '/services/conseil': 'services-conseil',
+  '/services/intelligence-strategique': 'services-intelligence',
+  '/services/juridique': 'services-juridique',
+  '/references': 'references',
+  '/ecosysteme': 'ecosysteme',
+};
+
 const HomeNewsletter = () => {
   const [email, setEmail] = useState('');
+  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const toast = useToast();
+  const location = useLocation();
+
+  const source = SOURCE_MAP[location.pathname] || 'newsletter';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!consent) {
+      toast("Vous devez accepter la politique de confidentialité pour vous inscrire.", 'error');
+      return;
+    }
     setLoading(true);
     try {
-      await submitNewsletter({ email, nom: '', source: 'home' });
-      toast('Inscription à la newsletter réussie !');
+      const res = await submitNewsletter({ email, nom: '', source, consentement: true });
+      toast(res.message || 'Inscription à la newsletter réussie !');
       setEmail('');
+      setConsent(false);
     } catch (err) {
       toast(err.message, 'error');
     } finally {
@@ -42,8 +65,8 @@ const HomeNewsletter = () => {
 
             {/* Right Column - Form */}
             <div className="flex-shrink-0 w-full max-w-md">
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-end gap-6">
-                <div className="flex-1 relative">
+              <form onSubmit={handleSubmit} className="flex flex-col items-end gap-4">
+                <div className="w-full relative">
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none">
                     <Inbox size={28} strokeWidth={1.5} />
                   </div>
@@ -57,7 +80,23 @@ const HomeNewsletter = () => {
                     required
                   />
                 </div>
-                <button type="submit" disabled={loading} className="px-6 py-3 bg-white text-primary font-semibold rounded-pill hover:bg-white/90 transition-colors disabled:opacity-50">
+                <label className="flex items-start gap-2 cursor-pointer text-left">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 w-4 h-4 rounded border-white/40 bg-white/10 text-accent focus:ring-accent"
+                    required
+                  />
+                  <span className="text-xs text-white/70 leading-tight">
+                    J'accepte la{' '}
+                    <a href="/mentions-legales" className="underline underline-offset-2 hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+                      politique de confidentialité
+                    </a>{' '}
+                    et consens à recevoir des communications.
+                  </span>
+                </label>
+                <button type="submit" disabled={loading || !consent} className="px-6 py-3 bg-white text-primary font-semibold rounded-pill hover:bg-white/90 transition-colors disabled:opacity-50">
                   {loading ? 'En cours...' : "S'inscrire"}
                 </button>
               </form>
