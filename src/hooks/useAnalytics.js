@@ -17,14 +17,5 @@ export const useAnalytics = () => {
     });
   }, []);
 
-  const trackConversion = useCallback((conversionLabel, value) => {
-    const prefs = getConsentPrefs();
-    if (!prefs.marketing) return;
-    window.gtag?.('event', 'conversion', {
-      send_to: `${import.meta.env.VITE_GADS_CONVERSION_ID}/${conversionLabel}`,
-      value,
-    });
-  }, []);
-
-  return { trackEvent, trackPageView, trackConversion };
+  return { trackEvent, trackPageView };
 };

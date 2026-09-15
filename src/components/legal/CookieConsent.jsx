@@ -204,11 +204,6 @@ const CookieConsentCategories = () => {
           name="Analytiques"
           description="Mesure d'audience et compréhension de l'utilisation du site."
         />
-        <CategoryItem
-          id="marketing"
-          name="Marketing"
-          description="Publicité et campagnes de communication."
-        />
       </div>
     </div>
   );
