@@ -2,6 +2,7 @@ import author from './author.js'
 import category from './category.js'
 import evenement from './evenement.js'
 import formation from './formation.js'
+import googleTokens from './googleTokens.js'
 import inscription from './inscription.js'
 import inscriptionEvenement from './inscriptionEvenement.js'
 import post from './post.js'
@@ -15,4 +16,4 @@ import partenaires from './partenaires.js'
 import temoignage from './temoignage.js'
 import valeurs from './valeurs.js'
 
-export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, statistiques, valeurs, statItem, partenaires]
+export const schemaTypes = [post, formation, evenement, author, category, session, inscription, inscriptionEvenement, soumissionNewsletter, soumissionDevis, soumissionRdv, temoignage, statistiques, valeurs, statItem, partenaires, googleTokens]

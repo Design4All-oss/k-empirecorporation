@@ -11,7 +11,7 @@ const submissionsDataset = process.env.SANITY_STUDIO_SUBMISSIONS_DATASET || 'sub
 // Types masqués de la barre latérale — restent dans schemaTypes pour les docs existants
 // category → se choisit/crée inline dans le document formation (disableNew: false)
 // valeurs → contenu statique, éditable dans src/constants/
-const hiddenTypes = ['category', 'valeurs', 'soumissionNewsletter', 'soumissionDevis', 'soumissionRdv', 'inscription', 'inscriptionEvenement']
+const hiddenTypes = ['category', 'valeurs', 'soumissionNewsletter', 'soumissionDevis', 'soumissionRdv', 'inscription', 'inscriptionEvenement', 'googleTokens']
 
 const submissionTypes = ['soumissionNewsletter', 'soumissionDevis', 'soumissionRdv', 'inscription', 'inscriptionEvenement']
 

@@ -19,6 +19,113 @@ const submissionsClient = () =>
     useCdn: false,
   });
 
+// ── Google Calendar helpers ─────────────────────────────────────
+async function getGoogleTokens() {
+  const email = process.env.GOOGLE_CALENDAR_EMAIL;
+  if (!email) return null;
+  try {
+    const doc = await contentClient().fetch(
+      `*[_type == "googleTokens" && email == $email][0]`,
+      { email }
+    );
+    return doc || null;
+  } catch { return null; }
+}
+
+async function refreshGoogleToken(tokens) {
+  const res = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      refresh_token: tokens.refreshToken,
+      grant_type: 'refresh_token',
+    }),
+  });
+  if (!res.ok) throw new Error('Google token refresh failed');
+  const data = await res.json();
+  return {
+    ...tokens,
+    accessToken: data.access_token,
+    expiry: Date.now() + (data.expires_in - 60) * 1000,
+  };
+}
+
+async function saveGoogleTokens(tokens) {
+  const email = process.env.GOOGLE_CALENDAR_EMAIL;
+  const existing = await contentClient().fetch(
+    `*[_type == "googleTokens" && email == $email][0]._id`,
+    { email }
+  );
+  const doc = {
+    _type: 'googleTokens',
+    email,
+    accessToken: tokens.accessToken,
+    refreshToken: tokens.refreshToken,
+    expiry: tokens.expiry,
+  };
+  if (existing) {
+    await submissionsClient().patch(existing).set(doc).commit();
+  } else {
+    await submissionsClient().create(doc);
+  }
+}
+
+async function getGoogleAccessToken() {
+  const tokens = await getGoogleTokens();
+  if (!tokens) return null;
+  if (tokens.expiry && Date.now() < tokens.expiry) return tokens.accessToken;
+  try {
+    const refreshed = await refreshGoogleToken(tokens);
+    await saveGoogleTokens(refreshed);
+    return refreshed.accessToken;
+  } catch { return null; }
+}
+
+async function createCalendarEvent(fields) {
+  const accessToken = await getGoogleAccessToken();
+  if (!accessToken) {
+    console.error('[forms] No Google access token — skipping calendar event');
+    return;
+  }
+
+  const startDateTime = new Date(`${fields.date}T${fields.time || '09:00'}:00`);
+  const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // +1h
+
+  const event = {
+    summary: `RDV — ${fields.name || fields.email}`,
+    description: fields.message || `Rendez-vous demandé par ${fields.name} (${fields.email})`,
+    start: { dateTime: startDateTime.toISOString(), timeZone: 'Africa/Lome' },
+    end: { dateTime: endDateTime.toISOString(), timeZone: 'Africa/Lome' },
+    attendees: [{ email: fields.email }],
+    reminders: {
+      useDefault: false,
+      overrides: [
+        { method: 'email', minutes: 60 },
+        { method: 'popup', minutes: 30 },
+      ],
+    },
+  };
+
+  try {
+    const res = await fetch(
+      'https://www.googleapis.com/calendar/v3/calendars/primary/events',
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(event),
+      }
+    );
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      console.error('[forms] Calendar event creation failed:', res.status, err);
+    }
+  } catch (err) {
+    console.error('[forms] Calendar API error:', err.message);
+  }
+}
+
 // ── Endpoint config ─────────────────────────────────────────────
 const ENDPOINTS = {
   newsletter: {
@@ -282,6 +389,11 @@ export default async function handler(req, res) {
   // ── Send user confirmation ──
   if (fields.email) {
     await sendEmail(fields.email, `K-EMPIRE — ${config.label} confirmée`, buildUserConfirmation(endpoint, fields));
+  }
+
+  // ── Create Google Calendar event for RDV ──
+  if (config.type === 'soumissionRdv') {
+    await createCalendarEvent(fields);
   }
 
   return res.status(200).json({ success: true });
