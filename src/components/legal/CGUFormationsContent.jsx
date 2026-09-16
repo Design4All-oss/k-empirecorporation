@@ -3,218 +3,793 @@ import { motion } from 'framer-motion';
 import {
   FileText, Users, Building2, BookOpen, CreditCard, XCircle,
   Shield, Lock, Globe, Eye, Mail, Phone, ArrowRight, Scale,
-  UserCheck, Briefcase, AlertTriangle, Clock
+  UserCheck, Briefcase, AlertTriangle, Clock, Handshake, AlertCircle
 } from 'lucide-react';
 
 const CGUFormationsContent = () => {
   const sections = [
     {
       icon: FileText,
-      title: "Article 1 — Objet et champ d'application",
-      content: `Les présentes Conditions Générales de Formation (ci-après les « CGF ») régissent l'ensemble des relations contractuelles entre la société K-EMPIRE CORPORATION SARL U (ci-après « K-EMPIRE »), prestataire de formation professionnelle, et les personnes physiques ou morales (ci-après les « Clients » ou « Participants ») qui souscrivent aux formations proposées par K-EMPIRE, que celles-ci soient dispensées en présentiel, en visioconférence ou en modalité hybride.
+      title: "Introduction",
+      content: `K-EMPIRE CORPORATION, basé à Kara, en République du Togo, est un cabinet
+international de référence spécialisé dans les études, le conseil et les formations
+professionnelles certifiantes. Fort de son expertise et de son engagement envers
+l'excellence, le cabinet accompagne ses partenaires à travers des programmes
+de formation de haut niveau, conçus pour répondre aux exigences des
+professionnels et des organisations évoluant dans un environnement globalisé
+et compétitif.
 
-Les CGF s'appliquent sans réserve à toute commande de formation. Toute condition contraire, même mentionnée dans les documents du Client, est inopposable à K-EMPIRE sauf acceptation écrite et préalable de celle-ci.`,
+Les présentes conditions générales de vente (CGV) s'appliquent à toutes les
+offres de formation de K-EMPIRE CORPORATION.
+
+K-EMPIRE CORPORATION se réserve le droit de modifier ou de mettre à jour les
+présentes Conditions Générales de Vente (CGV) à tout moment, sans préavis.
+Les CGV applicables sont celles en vigueur à la date de la commande. Elles
+sont disponibles sur le site internet officiel de K-EMPIRE CORPORATION : www.kempirecorporation.com.
+
+En passant commande, le Client accepte sans réserve l'intégralité des
+présentes CGV. Toute condition particulière ou contraire émise par le Client, sauf
+acceptation expresse et écrite de K- EMPIRE CORPORATION, est inopposable. Le
+fait que K-EMPIRE CORPORATION ne fasse pas valoir à un moment donné l'une des
+clauses des présentes CGV ne pourra être interprété comme une renonciation à
+s'en prévaloir ultérieurement. Avant toute commande, le Client reconnaît avoir
+reçu de la part de K-EMPIRE CORPORATION toutes les informations et conseils
+nécessaires pour évaluer l'adéquation de l'offre de services à ses besoins.`,
       columns: false,
       hasList: false
     },
     {
-      icon: Users,
-      title: "Article 2 — Conditions particulières aux formations inter-entreprises",
-      content: `Les formations inter-entreprises sont organisées par K-EMPIRE et ouvertes à tout professionnel ou organismes intéressé. Elles se déroulent dans les locaux désignés par K-EMPIRE ou en modalité visioconférence.
-
-Les conditions suivantes s'appliquent spécifiquement à ces formations :`,
+      icon: BookOpen,
+      title: "1. FORMATION",
+      content: null,
       columns: false,
-      hasList: true,
+      hasList: false,
       subSections: [
         {
-          title: "Inscription et confirmation",
-          content: `L'inscription est effective dès réception du formulaire de pré-inscription dûment complété et validé par K-EMPIRE. Une confirmation écrite est adressée au Participant dans un délai de cinq (5) jours ouvrés, accompagnée des modalités pratiques (lieu, horaires, programme détaillé).`
+          title: "1.1. FORMATIONS INTER-ENTREPRISES",
+          content: null,
+          subSubSections: [
+            {
+              title: "1.1.1. Descriptif",
+              content: `Les formations inter-entreprises proposées par K-EMPIRE CORPORATION sont
+disponibles à la fois en présentiel, dans les locaux de K-EMPIRE CORPORATION
+ou dans des lieux adaptés mis à disposition, et en ligne via une plateforme
+numérique dédiée. Ces formations, issues du catalogue officiel, sont conçues
+pour répondre aux besoins des participants grâce à une approche flexible et
+adaptée.`
+            },
+            {
+              title: "1.1.2. Conditions financières",
+              content: `Le bulletin d'inscription, dûment complété, signé par le Responsable de
+l'entreprise Cliente ou tout représentant habilité, cacheté et transmis à K-EMPIRE
+CORPORATION, fait office de bon de commande ferme. Le règlement du prix de
+la formation est à effectuer comptant, lors de l'inscription, à l'ordre de K-EMPIRE
+CORPORATION.
+
+K-EMPIRE CORPORATION se réserve le droit d'appliquer une révision tarifaire en
+cas de variation significative des coûts externes. Cette révision sera notifiée par
+écrit au Client au moins trente (30) jours avant son entrée en vigueur
+
+Tous les prix sont exprimés hors taxes et majorés du taux de TVA en vigueur.
+
+• Pour les formations en présentiel, les tarifs incluent les pauses café, les
+déjeuners et la documentation. Les frais de transport, d'hébergement et
+de dîner sont à la charge des participants.
+
+• Pour les formationsenligne, les tarifs incluent l'accès à la plateforme, les
+supports numériques et une assistance technique.`
+            },
+            {
+              title: "1.1.3. Remplacementd'unparticipant",
+              content: `Un participant empêché peut être remplacé par une autre personne ayant
+le même profil et des besoins similaires, sur notification préalable adressée à
+K-EMPIRE CORPORATION.`
+            },
+            {
+              title: "1.1.4. Insuffisance dunombrede participants",
+              content: `En cas d'un nombre insuffisant de participants, K-EMPIRE CORPORATION se
+réserve le droit de reporter la session au plus tard sept (07) jours calendaires
+avant la date prévue, sans indemnité pour le Client.`
+            },
+            {
+              title: "1.1.5. Remise relativeaunombre de participants",
+              content: `Lorsqu'un Client inscrit plus de cinq (5) personnes à une même formation, qu'elle
+soit en présentiel ou en ligne, il bénéficie d'une remise de 20% sur le montant
+total dû.`
+            }
+          ]
         },
         {
-          title: "Nombre de Participants",
-          content: `Le nombre de Participants par session est limité et précisé dans l'offre de formation. K-EMPIRE se réserve le droit de refuser ou de reporter un Participant si le nombre minimum requis n'est pas atteint, dans un délai de dix (10) jours ouvrés avant le début de la session.`
-        },
-        {
-          title: "Prérequis",
-          content: `Chaque formation peut comporter des prérequis techniques, linguistiques ou de niveau de qualification. Le Client est tenu de s'assurer que les Participants remplissent ces conditions avant l'inscription.`
+          title: "1.2. FORMATION INTRA-ENTREPRISE",
+          content: null,
+          subSubSections: [
+            {
+              title: "1.2.1. Description",
+              content: `Les formations intra-entreprises proposées par K-EMPIRE CORPORATION sont
+conçues sur mesure pour répondre aux besoins spécifiques du Client. Elles
+peuvent être réalisées :
+
+• En présentiel, dans les locaux de K-EMPIRE CORPORATION, du Client, ou
+dans des locaux mis à disposition par l'une ou l'autre des parties après
+accord préalable ;
+
+• Enligne, via une plateforme dédiée, offrant flexibilité et accessibilité, tout
+en maintenant les standards de qualité et d'interactivité.
+
+Le contenu, le format, et les modalités d'exécution sont établis en concertation
+avec le Client et conformément aux termes de la proposition commerciale et
+technique de K-EMPIRE CORPORATION. Le Client s'engage à fournir à K-EMPIRE
+CORPORATION toutes les informations nécessaires à l'élaboration d'un
+programme sur mesure, notamment les objectifs spécifiques, le profil des
+participants et toute contrainte opérationnelle particulière. Tout retard dans
+la transmission de ces informations pourra entraîner un report des échéances
+convenues sans indemnité pour le Client.`
+            },
+            {
+              title: "1.2.2. Conditions financières",
+              content: null,
+              subSubSections: [
+                {
+                  title: "1.2.2.1. Propositioncommerciale et validation",
+                  content: `Toute formation intra-entreprise, qu'elle soit en présentiel ou en ligne, fera l'objet
+d'une proposition commerciale et financière écrite, précisant les coûts, les
+modalités d'exécution, et
+les délais. La formation sera réputée acceptée à réception, par K-EMPIRE
+CORPORATION, de la proposition signée par un représentant dûment habilité du
+Client.`
+                },
+                {
+                  title: "1.2.2.2. Acompte",
+                  content: `Sauf disposition contraire expressément mentionnée dans la proposition,
+le Client s'engage à verser un acompte minimum de 50 % du montant total
+de la formation lors de l'acceptation de l'offre. Ce paiement conditionne la
+réservation des dates, le démarrage des préparatifs de la formation, et, le cas
+échéant, l'accès aux ressources en ligne.`
+                },
+                {
+                  title: "1.2.2.3. Règlement dusolde",
+                  content: `Le solde devra être réglé par le Client au plus tard 7 jours avant le début de la
+formation, sauf stipulation contraire dans la proposition commerciale.`
+                },
+                {
+                  title: "1.2.2.4. Modalitésde paiement",
+                  content: `Les paiements peuvent être effectués par chèque, virement bancaire, règlement
+domicilié ou tout autre mode convenu. Les frais bancaires ou de transaction
+restent à la charge exclusive du Client.`
+                },
+                {
+                  title: "1.2.2.5. Pénalitésde retard",
+                  content: `En cas de retard de paiement, les dispositions de l'article 2.3.2.6. Relatif aux
+pénalités financières s'appliquent.`
+                },
+                {
+                  title: "1.2.2.6. Annulationoumodification",
+                  content: `Toute annulation ou modification de la commande par le Client doit être notifiée
+par écrit à K- EMPIRE CORPORATION. Les frais y afférents seront déterminés
+conformément aux conditions prévues dans la proposition commerciale ou
+dans les présentes CGV.`
+                },
+                {
+                  title: "1.2.2.7. Accessibilité pour les formations enligne",
+                  content: `Pour les formations en ligne, K-EMPIRE CORPORATION garantit l'accès aux
+plateformes dédiées dès le paiement de l'acompte. Le Client s'engage à fournir
+les informations nécessaires à l'inscription des participants dans les délais
+impartis.`
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
       icon: Building2,
-      title: "Article 3 — Conditions particulières aux formations intra-entreprises",
-      content: `Les formations intra-entreprises sont organisées à la demande du Client, dans les locaux de celui-ci ou dans un lieu convenu entre les parties. Elles sont exclusivement dédiées aux collaborateurs du Client.
-
-Les conditions suivantes s'appliquent spécifiquement à ces formations :`,
+      title: "2. DISPOSITIONS COMMUNES AUX FORMATIONS",
+      content: null,
       columns: false,
-      hasList: true,
+      hasList: false,
       subSections: [
         {
-          title: "Définition du besoin et proposition",
-          content: `Un diagnostic préalable est réalisé par K-EMPIRE afin d'identifier les besoins spécifiques du Client. Sur la base de ce diagnostic, K-EMPIRE établit une proposition de formation personnalisée précisant les objectifs pédagogiques, le programme, la durée, le nombre de Participants et le tarif.`
+          title: "2.1. Documents contractuels",
+          content: `Une attestation de participation est délivrée à chaque participant à l'issue de la
+formation soit réalisée en présentiel ou en ligne.
+Une attestation de présence peut être fournie à chaque partie (Client ou
+organisme financeur) sur demande écrite préalable adressée à K-EMPIRE
+CORPORATION.`
         },
         {
-          title: "Adaptation du programme",
-          content: `Le programme est adapté aux besoins spécifiques du Client. Toutefois, K-EMPIRE conserve la liberté pédagogique quant aux méthodes et supports utilisés, afin de garantir la qualité et la cohérence de la prestation.`
+          title: "2.2. Règlementparun Organisme de financement de formationcontinue",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.2.1. Demandepréalable deprise encharge",
+              content: `Le Client est responsable d'effectuer la demande de prise en charge auprès de
+l'organisme financeur avant le début de la formation. L'accord de financement
+obtenu doit être communiqué à K-EMPIRE CORPORATION au moment de
+l'inscription, accompagné de la convention de formation signée.`
+            },
+            {
+              title: "2.2.2. Prise enchargepartielle",
+              content: `En cas de prise en charge partielle par l'organisme, le Client s'engage à régler
+la différence directement à K-EMPIRE CORPORATION dans les délais impartis,
+conformément aux modalités de paiement définies dans la convention de
+formation`
+            },
+            {
+              title: "2.2.3. Absence d'accord de financement",
+              content: `Si l'accord de prise en charge ne parvient pas à K-EMPIRE CORPORATION au
+plus tard le premier jour de la formation, sauf accord contraire, la totalité des
+frais de formation sera facturée au Client, indépendamment des démarches
+entreprises auprès de l'organisme financeur.`
+            },
+            {
+              title: "2.2.4. Modalités depaiement encas deprise encharge",
+              content: `Le Client s'assure que l'organisme financeur procède au règlement des sommes
+dues dans les délais convenus. À défaut, K-EMPIRE CORPORATION pourra exiger
+le paiement intégral des frais directement auprès du Client, sans préjudice des
+éventuels recours exercés par le Client auprès de l'organisme financeur.`
+            }
+          ]
         },
         {
-          title: "Validation préalable",
-          content: `La formation est considérée comme validée par le Client dès la signature du bon de commande ou de la proposition commerciale. Toute modification substantielle du programme ou du nombre de Participants peut donner lieu à une révision du tarif.`
+          title: "2.3. Annulationet report des formationsà l'initiativedu Client",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.3.1. Fixationdes dates",
+              content: `Les dates de formation sont déterminées d'un commun accord entre K-EMPIRE
+CORPORATION et le Client, puis confirmées par écrit.
+Une fois validées, elles sont considérées comme fermes et engageantes pour
+les deux parties.`
+            },
+            {
+              title: "2.3.2. Conditions d'annulationoude report par le Client",
+              content: null,
+              subSubSections: [
+                {
+                  title: "2.3.2.1. Notificationpréalable",
+                  content: `Toute demande d'annulation ou de report d'une session de formation déjà
+planifiée doit être communiquée par écrit à K-EMPIRE CORPORATION au moins
+quinze (15) jours ouvrés avant la date prévue de la session. Toute communication
+en dehors de ce délai entraînera l'application des pénalités prévues dans les
+présentes conditions générales, sauf cas de force majeure ou raison médicale.`
+                },
+                {
+                  title: "2.3.2.2. Cas de forcemajeure ouraisonmédicale",
+                  content: `Aucune pénalité ne sera appliquée en cas d'annulation ou de report pour
+des raisons de force majeure, telles que définies par l'Acte uniforme relatif au
+droit commercial général de l'OHADA, ou pour des raisons médicales dûment
+justifiées.`
+                },
+                {
+                  title: "2.3.2.3. Justificatifs requis",
+                  content: `Le Client devra fournir à K-EMPIRE CORPORATION un document officiel en cas de
+force majeure, ou un certificat médical en cas de raison médicale, dans un délai
+maximum de cinq
+(5) jours calendaires.`
+                },
+                {
+                  title: "2.3.2.4. Conséquences encas denon-respectdes obligations",
+                  content: `À défaut de respecter les délais ou de fournir les justificatifs, le Client sera tenu
+au paiement des frais d'annulation ou de report.`
+                },
+                {
+                  title: "2.3.2.5. Engagement collaboratif",
+                  content: `K-EMPIRE CORPORATION s'engage à examiner de bonne foi toute demande
+d'annulation ou de report et à proposer, dans la mesure du possible, une
+reprogrammation de la session à une date ultérieure convenant aux deux
+parties.`
+                },
+                {
+                  title: "2.3.2.6. Conditions et pénalitésapplicables",
+                  content: `• Annulation notifiée entre 15 et 7 jours ouvrés avant la session : une
+indemnité de 20% des honoraires sera facturée.
+
+• Annulation notifiée moins de 7 jours ouvrés avant la session : une
+indemnité de 30% des honoraires sera facturée.
+
+• Report notifié moins de 48 heures avant la session : une indemnité de 50%
+des honoraires sera facturée.
+
+• Toute annulation ou report ne respectant pas les délais sera considérée
+comme tardive et soumis aux indemnités prévues.
+
+• En cas de non-présentation du Client
+sans préavis écrit, K-EMPIRE CORPORATION se réserve le
+droit de facturer l'intégralité des honoraires.`
+                },
+                {
+                  title: "2.3.2.7. Modificationpar accordmutuel",
+                  content: `Toute modification des dispositions ci-dessus peut être envisagée à condition
+d'un accord écrit préalable entre K-EMPIRE CORPORATION et la Cliente.`
+                }
+              ]
+            }
+          ]
+        },
+        {
+          title: "2.4. Modalités depassationdes Commandes",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.4.1. Durée de validitéde l'offre",
+              content: `Les propositions et prix indiqués par K-EMPIRE CORPORATION sont valables
+pendant une durée de 30 jours calendaires à compter de la date de soumission
+de l'offre au Client.`
+            },
+            {
+              title: "2.4.2. Acceptationde l'offre",
+              content: `L'offre de formation est réputée acceptée dès réception, par K-EMPIRE
+CORPORATION, d'un bon de commande dûment complété, signé et daté par un
+représentant légal ou tout autre mandataire habilité de la Cliente.`
+            },
+            {
+              title: "2.4.3. Acceptationdes conditions générales",
+              content: `La signature du bon de commande ou tout accord exprès donné par le Client
+implique l'acceptation irrévocable et sans réserve des présentes conditions
+générales de vente et d'exécution des services. Ces conditions générales
+prévalent sur tout autre document, sauf accord écrit contraire convenu entre
+les parties.`
+            },
+            {
+              title: "2.4.4. Modificationdes conditionsgénérales",
+              content: `K-EMPIRE CORPORATION se réserve le droit de modifier les présentes conditions
+générales à tout moment. Les modifications s'appliquent exclusivement aux
+contrats conclus après la publication des nouvelles conditions. Les modifications
+n'affectent en aucun cas les contrats en cours ou les offres déjà acceptées.`
+            }
+          ]
+        },
+        {
+          title: "2.5. Facturation- Règlement",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.5.1. Prix et conditionsde facturation",
+              content: null,
+              subSubSections: [
+                {
+                  title: "2.5.1.1. Expression des prix",
+                  content: `Tous les prix sont exprimés en Francs CFA (XOF) et s'entendent hors taxes (HT).`
+                },
+                {
+                  title: "2.5.1.2. Applicationdes taxes",
+                  content: `Les prix seront majorés de la Taxe sur la Valeur Ajoutée (TVA) ou de toute autre
+taxe applicable, au taux en vigueur au moment de la facturation, conformément
+à la réglementation en vigueur.`
+                },
+                {
+                  title: "2.5.1.3. Charges supplémentaires",
+                  content: `Le Client sera exclusivement responsable des taxes locales, droits de douane,
+ou autres prélèvements éventuels applicables dans son pays ou à sa juridiction.`
+                },
+                {
+                  title: "2.5.1.4. Fraisbancaires et de transaction",
+                  content: `Tous les frais bancaires, frais de transaction ou coûts associés au mode de
+paiement choisi par le Client sont entièrement à la charge de ce dernier.`
+                }
+              ]
+            },
+            {
+              title: "2.5.2. Paiement",
+              content: null,
+              subSubSections: [
+                {
+                  title: "2.5.2.1. Modalitésgénérales depaiement",
+                  content: `Sauf convention contraire précisée dans une offre spécifique ou sur la facture,
+le règlement du montant total dû par le Client doit être effectué au plus tard dix
+(10) jours avant le début de la formation.`
+                },
+                {
+                  title: "2.5.2.2. Moyens de paiement",
+                  content: `• Chèque bancaire émis par une banque située sur le territoire national ;
+
+• Virement bancaire ;
+
+• Transfert monétaire, les frais de transaction étant intégralement à la
+charge du Client.`
+                },
+                {
+                  title: "2.5.2.3. Escompte",
+                  content: `Aucun escompte ne sera accordé en cas de paiement anticipé, sauf mention
+expresse sur la facture.`
+                },
+                {
+                  title: "2.5.2.4. Retard depaiement",
+                  content: null,
+                  subSubSections: [
+                    {
+                      title: "2.5.2.4.1. Intérêtsde retard",
+                      content: `Toute somme non payée à l'échéance entraîne de plein droit et sans mise en
+demeure préalable, l'application de pénalités de retard calculées à un taux
+de 10% par mois de retard, conformément à l'article 291 du droit commercial
+de l'OHADA. Le calcul des pénalités s'effectue à partir du jour suivant la date
+d'exigibilité jusqu'à paiement complet.`
+                    },
+                    {
+                      title: "2.5.2.4.2. Suspensiondesprestations",
+                      content: `K-EMPIRE CORPORATION se réserve le droit de suspendre toute prestation ou
+commande en cours en cas de retard de paiement, sans préjudice des autres
+voies de recours disponibles.`
+                    },
+                    {
+                      title: "2.5.2.4.3. Recouvrement et indemnités",
+                      content: `Une indemnité forfaitaire de cent mille franc cfa (100.000 FCFA) pour frais de
+recouvrement sera appliquée à chaque retard de paiement. Si les frais de
+recouvrement réellement exposés par K-EMPIRE CORPORATION dépassent
+ce montant, une indemnité complémentaire pourra être réclamée, sur
+présentation des justificatifs`
+                    }
+                  ]
+                },
+                {
+                  title: "2.5.2.5. Résolutiondulitige",
+                  content: `Tout défaut de paiement persistant malgré les relances de K-EMPIRE
+CORPORATION pourra donner lieu à une procédure contentieuse, les frais
+afférents étant à la charge exclusive du Client.`
+                }
+              ]
+            }
+          ]
+        },
+        {
+          title: "2.6. Satisfaction Client et améliorationcontinue",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.6.1. Suivi qualité des prestations",
+              content: `Afin de garantir un haut niveau de qualité dans ses prestations, K-EMPIRE
+CORPORATION met en place des outils d'évaluation systématique de la
+satisfaction des participants à l'issue de chaque formation.
+Les retours obtenus seront utilisés pour améliorer l'offre pédagogique. Le Client
+peut également soumettre toute réclamation par écrit à l'adresse suivante :
+reclamation@k- empirecorporation.com
+Toute réclamation sera traitée dans un délai de cinq (5) jours ouvrables suivant
+sa réception.`
+            }
+          ]
+        },
+        {
+          title: "2.7. Limitationsde responsabilitésde K-EMPIRE CORPORATION",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.7.1. Responsabilité limitée aux dommagesdirects",
+              content: `K-EMPIRE CORPORATION ne pourra être tenue responsable qu'au titre des
+dommages directs subis par la Cliente, à condition que ces derniers soient
+dûment prouvés et résultent d'une faute ou d'une inexécution imputable
+à K-EMPIRE CORPORATION dans le cadre de l'exécution de ses obligations
+contractuelles.`
+            },
+            {
+              title: "2.7.2. Plafonnement de la responsabilité",
+              content: `La responsabilité globale de K-EMPIRE CORPORATION, toutes causes confondues,
+est strictement limitée au montant total effectivement payé par le Client pour
+la formation concernée.`
+            },
+            {
+              title: "2.7.3. Exclusiondes dommages indirects",
+              content: `En aucun cas, K-EMPIRE CORPORATION ne saurait être tenue responsable des
+dommages indirects, incluant, sans que cette liste soit exhaustive :
+
+a. Perte de données ou de fichier(s) ;
+
+b. Perte d'exploitation(s) ;
+
+c. Préjudice commercial ;
+
+d. Manque à gagner ;
+
+e. Atteinte à l'image ou à la réputation.`
+            },
+            {
+              title: "2.7.4. Obligationdu Client",
+              content: `Le Client s'engage à informer immédiatement K-EMPIRE CORPORATION de tout
+dommage dont il pourrait demander réparation, afin de permettre une gestion
+rapide et efficace de la situation.`
+            }
+          ]
+        },
+        {
+          title: "2.8. Forcemajeure",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.8.1. Définitionde laforcemajeure",
+              content: `K-EMPIRE CORPORATION ne pourra être tenue responsable envers le Client de
+l'inexécution totale ou partielle de ses obligations contractuelles lorsque cette
+inexécution résulte d'un cas de force majeure ou d'un cas fortuit.
+
+Constituent des cas de force majeure ou cas fortuits, outre ceux habituellement
+reconnus par la jurisprudence des Cours et Tribunaux compétents, et sans que
+cette liste soit exhaustive :
+
+• La maladie ou l'accident d'un consultant ou animateur de formation ;
+
+• Les grèves ou conflits sociaux internes ou externes à K-EMPIRE
+CORPORATION ;
+
+• Les désastres naturels (inondations, tempêtes, tremblements de terre,
+etc.) ;
+
+• Les incendies ;
+
+• La non-obtention de visas, autorisations de travail ou autres permis
+nécessaires ;
+
+• La promulgation de nouvelles lois ou règlements postérieurs à la
+signature du contrat ;
+
+• L'interruption des télécommunications ou des approvisionnements en
+énergie ;
+
+• L'interruption des communications ou des transports de tout type ;
+
+• Tout autre événement échappant
+au contrôle raisonnable de K-EMPIRE CORPORATION`
+            },
+            {
+              title: "2.8.2. Procédure encasde forcemajeure",
+              content: `La partie affectée par un cas de force majeure s'engage à :
+
+Informer l'autre partie de la survenance de l'événement dans un délai de cinq
+(5) jours ouvrables à compter de sa connaissance, par courriel ou par lettre
+recommandée avec accusé de réception.
+
+Fournir, dans un délai de dix (10) jours ouvrables suivant cette notification,
+les justificatifs appropriés attestant de la réalité et des conséquences de
+l'événement.`
+            },
+            {
+              title: "2.8.3. Effets de laforcemajeure",
+              content: `En cas de force majeure, l'exécution des obligations affectées sera suspendue
+pendant toute la durée de l'événement, sans que cette suspension puisse
+donner lieu à des pénalités ou à une quelconque indemnisation.
+
+Si l'événement de force majeure se prolonge au-delà de trente (30) jours
+calendaires, chaque partie aura la faculté de résilier le contrat de manière
+anticipée, par notification écrite, sans indemnité, à l'exception des frais déjà
+engagés au titre des prestations réalisées`
+            },
+            {
+              title: "2.8.4. Mesures raisonnables",
+              content: `Chaque partie s'engage à prendre toutes les mesures raisonnables pour limiter
+les effets de l'événement de force majeure et reprendre l'exécution de ses
+obligations dans les meilleurs délais.`
+            }
+          ]
+        },
+        {
+          title: "2.9. Propriété intellectuelle",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.9.1. Titularité desdroits",
+              content: `K-EMPIRE CORPORATION est seule titulaire des droits de propriété intellectuelle
+relatifs à l'ensemble des formations qu'elle propose à ses Clients. À ce titre,
+tous les contenus, supports pédagogiques et outils, quelle qu'en soit la forme
+(papier, électronique, numérique, oraux, visuelle, etc.), utilisés dans le cadre des
+formations demeurent la propriété exclusive de K- EMPIRE CORPORATION.`
+            },
+            {
+              title: "2.9.2. Usage des contenus",
+              content: `Le Client bénéficie uniquement d'un droit d'utilisation personnel, non exclusif
+et non transférable des contenus et supports pédagogiques, strictement
+limité à ses propres besoins internes. Ces contenus ne peuvent en aucun cas
+être utilisés à d'autres fins sans l'autorisation préalable, écrite et expresse de
+K-EMPIRE CORPORATION.
+
+En particulier, le Client s'interdit :
+
+• De reproduire, représenter, modifier, adapter, publier, transmettre ou
+dénaturer, en tout ou en partie, les contenus ou supports pédagogiques,
+quel que soit le procédé ou le support utilisé ;
+
+• D'utiliser les contenus des formations pour former des tiers ou des
+personnes autres que son personnel ;
+
+• De céder, communiquer ou mettre à disposition les contenus ou supports
+pédagogiques à des tiers, à titre gratuit ou onéreux.`
+            },
+            {
+              title: "2.9.3. Engagementde responsabilité",
+              content: `Le Client reconnaît que tout manquement à ces obligations constitue une
+violation des droits de propriété intellectuelle de K-EMPIRE CORPORATION. En cas
+de cession ou de communication non autorisée des contenus, la responsabilité
+du Client sera engagée conformément aux dispositions légales applicables,
+notamment celles relatives à la protection du droit d'auteur et des droits voisins
+de l'OAPI.`
+            },
+            {
+              title: "2.9.4. Maintiendes droits préexistants",
+              content: `En toute hypothèse, K-EMPIRE CORPORATION demeure propriétaire de ses
+outils, méthodes, savoir-faire et innovations développés antérieurement
+ou à l'occasion de l'exécution des prestations réalisées chez le Client. Ces
+éléments ne peuvent être appropriés, reproduits ou exploités par le Client sans
+autorisation expresse.`
+            },
+            {
+              title: "2.9.5. Sanctions",
+              content: `Toute violation des présentes dispositions expose le Client à des sanctions civiles
+et pénales prévues par l'accord de Bangui instituant l'Organisation Africaine de
+la Propriété Intellectuelle (OAPI), ainsi qu'au paiement de dommages et intérêts
+pour les préjudices subis par K-EMPIRE CORPORATION.`
+            }
+          ]
+        },
+        {
+          title: "2.10. Confidentialité",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.10.1. Engagementgénéralde confidentialité",
+              content: `Les parties s'engagent mutuellement à préserver la confidentialité de toutes
+les informations sensibles ou confidentielles de nature économique, technique,
+commerciale ou autre, auxquelles elles pourraient avoir accès dans le cadre
+de l'exécution du contrat ou à l'occasion des échanges intervenus avant sa
+conclusion. Ces informations incluent, sans s'y limiter, celles figurant dans la
+proposition commerciale et financière transmise par K-EMPIRE CORPORATION à
+la Cliente.`
+            },
+            {
+              title: "2.10.2. Obligations spécifiques",
+              content: `• Chaque partie s'engage à ne pas divulguer, communiquer ou rendre
+accessibles à des tiers, directement ou indirectement, tout ou partie des
+informations confidentielles reçues de l'autre partie, sans l'autorisation
+préalable, écrite et expresse de celle-ci.
+
+• Chaque partie prendra toutes les mesures raisonnables pour protéger
+ces informations avec le même niveau de soin qu'elle accorde à ses
+propres informations confidentielles, et au minimum avec un niveau de
+soin raisonnable.`
+            },
+            {
+              title: "2.10.3. Exceptions",
+              content: `L'obligation de confidentialité ne s'applique pas aux informations qui :
+
+a) Sont ou deviennent publiquement accessibles autrement que par une
+violation de la présente clause ;
+
+b) Ont été légalement obtenues auprès d'un tiers sans violation d'une obligation
+de confidentialité ;
+
+c) Sont déjà connues de la partie réceptrice avant leur divulgation, comme en
+attestent ses dossiers écrits ;
+
+d) Doivent être divulguées en vertu de la loi, d'un règlement ou d'une décision
+judiciaire ou administrative, sous réserve d'en informer l'autre partie dans les
+meilleurs délais, sauf interdiction légale.`
+            },
+            {
+              title: "2.10.4. Engagements spécifiques de K-EMPIRE CORPORATION",
+              content: `K-EMPIRE CORPORATION s'engage à ne communiquer les informations
+transmises par le Client qu'à ses sociétés affiliées, partenaires ou fournisseurs,
+exclusivement dans la mesure où cela est nécessaire à l'exécution des
+prestations prévues par le contrat et sous réserve que ces tiers soient également
+tenus à une obligation de confidentialité équivalente.`
+            },
+            {
+              title: "2.10.5. Durée de l'obligationde confidentialité",
+              content: `L'obligation de confidentialité prévue par la présente clause restera en vigueur
+pendant toute la durée du contrat et pour une période de cinq (5) ans après son
+expiration ou sa résiliation, sauf disposition contraire convenue par écrit entre
+les parties.`
+            },
+            {
+              title: "2.10.6. Sanctions encas de violation",
+              content: `En cas de violation des obligations de confidentialité, la Partie fautive sera
+tenue de verser à l'autre Partie une indemnité forfaitaire d'un million (1.000.000)
+FCFA. Ce montant est sans préjudice du droit de l'autre Partie de réclamer des
+dommages et intérêts complémentaires en cas de préjudice avéré.`
+            }
+          ]
+        },
+        {
+          title: "2.11. Communication",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.11.1. Acceptationde principe",
+              content: `Le Client accepte d'être cité par K-EMPIRE CORPORATION comme référence dans
+le cadre de ses offres de services. Cette mention inclut l'utilisation de son nom,
+de son logo et d'une description objective des prestations réalisées.`
+            },
+            {
+              title: "2.11.2. Modalités d'utilisation",
+              content: `• K-EMPIRE CORPORATION pourra mentionner ces informations dans les
+supports suivants : Son site internet, ses brochures commerciales et ses
+propositions adressées à ses prospects ou Clientes.
+
+• Ses communications internes, telles que des présentations à son
+personnel ou des documents de gestion.
+
+• Ses rapports externes, comme les rapports annuels ou autres documents
+adressés à ses actionnaires.
+
+• Toute communication imposée par des dispositions légales,
+réglementaires ou comptables.`
+            },
+            {
+              title: "2.11.3. Conditions et limitations",
+              content: `Toute utilisation des éléments d'identité visuelle du Client (logo, marque, etc.)
+sera effectuée aux frais de K-EMPIRE CORPORATION et dans le respect des
+standards de présentation définis par la Cliente.
+
+Le Client pourra demander à tout moment, par écrit motivé, la limitation ou la
+cessation de l'utilisation de son nom ou de son logo dans certains supports ou
+contextes spécifiques, sauf si cette utilisation est requise par la loi.`
+            },
+            {
+              title: "2.11.4. Engagementde K-EMPIRE CORPORATION",
+              content: `K-EMPIRE CORPORATION s'engage à utiliser les informations du Client de manière
+loyale, objective et dans le strict respect de leur nature confidentielle.`
+            }
+          ]
+        },
+        {
+          title: "2.12. Protectiondes donnéespersonnelles desparticipants",
+          content: `Dans le cadre de ses activités, K-EMPIRE CORPORATION collecte et traite les
+données personnelles des Clientes pour l'organisation et le suivi des formations.
+Ces données seront conservées et traitées conformément à notre politique de
+traitement de données personnelles disponibles sur notre site officiel : www.kempirecorporation.com
+
+Chaque Cliente dispose d'un droit d'accès, de rectification, de suppression
+et d'opposition qu'il peut exercer en contactant le délégué à la protection
+des données (DPO) de K-EMPIRE CORPORATION à l'adresse suivante : dpo@kempirecorporation.com`,
+          columns: false,
+          hasList: false
+        },
+        {
+          title: "2.13. Droitapplicable - Attributionde compétence",
+          content: null,
+          subSubSections: [
+            {
+              title: "2.13.1. Droit applicable",
+              content: `Le présent contrat est régi par l'Acte uniforme relatif au droit commercial
+général de l'OHADA.`
+            },
+            {
+              title: "2.13.2. Règlement amiabledes litiges",
+              content: `En cas de différend relatif à l'exécution ou à l'interprétation du présent contrat,
+les parties s'engagent à rechercher, en priorité, une solution amiable par voie de
+négociation directe, puis par médiation. Cette démarche devra être entreprise
+dans un délai maximum de trente (30) jours à compter de la notification écrite
+du litige par lettre recommandée avec accusé de réception.`
+            },
+            {
+              title: "2.13.3. Recoursà l'arbitrage",
+              content: `Si la négociation directe et la médiation échouent, tout litige relatif à la validité,
+l'interprétation, l'exécution ou la résiliation du présent contrat sera soumis
+exclusivement à l'arbitrage, à l'exception de l'exécution forcée de la sentence
+arbitrale.`
+            },
+            {
+              title: "2.13.4. Arbitrage adhoc,désignation, lieu, langue et procédure arbitrale.",
+              content: `Tout différend né de l'exécution ou de l'interprétation du présent contrat sera
+définitivement tranché par la Cour d'Arbitrage du Togo (CATO),, conformément
+au règlement de procédure et d'arbitrage de la CCJA.
+
+Le lieu de l'arbitrage est fixé à Lomé en République du Togo. La procédure se
+déroulera en langue française. Le nombre d'arbitres sera déterminé par
+compromis. Tout désaccord relatif à la désignation ou au nombre d'arbitres
+sera soumis au président du tribunal de commerce de Lomé.`
+            },
+            {
+              title: "2.13.5. Engagementde collaboration",
+              content: `Les parties s'engagent à collaborer de bonne foi tout au long de la procédure
+arbitrale, en fournissant, dans les délais impartis, tous les documents,
+informations et éléments nécessaires à son bon déroulement.`
+            },
+            {
+              title: "2.13.6. Caractère définitif et répartitiondes frais",
+              content: `La sentence arbitrale sera définitive, contraignante et immédiatement
+exécutoire, sans possibilité d'appel, sauf dans les limites prévues par la loi. Les
+frais d'arbitrage seront répartis à parts égales entre les parties, sauf décision
+contraire de l'arbitre.`
+            }
+          ]
         }
       ]
-    },
-    {
-      icon: BookOpen,
-      title: "Article 4 — Dispositions communes à tous les types de formations",
-      content: `Les dispositions suivantes s'appliquent indépendamment du type de formation choisi :`,
-      columns: false,
-      hasList: true,
-      subSections: [
-        {
-          title: "Obligations de K-EMPIRE",
-          content: `K-EMPIRE s'engage à dispenser la formation conformément au programme validé, à mettre à disposition des supports pédagogiques adaptés, à délivrer une attestation de formation à chaque Participant ayant suivi la session intégralement, et à respecter les horaires convenus.`
-        },
-        {
-          title: "Obligations des Participants",
-          content: `Les Participants s'engagent à participer activement aux sessions, à respecter le règlement intérieur communiqué en début de formation, à se conformer aux consignes de sécurité le cas échéant, et à signaler tout empêchement en amont.`
-        },
-        {
-          title: "Évaluation et suivi",
-          content: `Un questionnaire d'évaluation est distribué en fin de formation. Les résultats sont exploités par K-EMPIRE dans le seul but d'améliorer la qualité de ses prestations.`
-        },
-        {
-          title: "Validation et certification",
-          content: `L'attestation de formation est délivrée à l'issue de chaque session. Elle mentionne les objectifs, la durée, les dates et le nom du Participant. Cette attestation ne constitue pas un diplôme ni une certification au sens de la réglementation en vigueur, sauf mention contraire expresse.`
-        }
-      ]
-    },
-    {
-      icon: CreditCard,
-      title: "Article 5 — Facturation et modalités de paiement",
-      content: `Les formations sont facturées selon les modalités suivantes :`,
-      columns: false,
-      hasList: true,
-      subSections: [
-        {
-          title: "Tarification",
-          content: `Les tarifs sont exprimés en Francs CFA (FCFA) ou en Euros (EUR), toutes taxes comprises, sauf indication contraire. Ils incluent la prestation pédagogique, les supports de formation et, le cas échéant, les équipements mis à disposition. Les déplacements, hébergement et restauration ne sont pas inclus sauf accord écrit contraire.`
-        },
-        {
-          title: "Facturation et échéancier",
-          content: `Un acompte de trente pour cent (30%) du montant total est exigé à la confirmation de la commande. Le solde est facturé à l'issue de la formation. Un règlement par virement bancaire est attendu dans un délai de trente (30) jours à compter de la date de facture.`
-        },
-        {
-          title: "Pénalités de retard",
-          content: `Tout retard de paiement entraîne l'application de pénalités au taux de trois fois le taux d'intérêt légal en vigueur au Togo, ainsi qu'une indemnité forfaitaire de recouvrement de cinquante mille (50 000) FCFA.`
-        },
-        {
-          title: "Contestation",
-          content: `Toute contestation relative à une facture doit être adressée par écrit à K-EMPIRE dans un délai de dix (10) jours à compter de sa réception. Passé ce délai, la facture est réputée acceptée.`
-        }
-      ]
-    },
-    {
-      icon: XCircle,
-      title: "Article 6 — Annulation, report et désistement",
-      content: `Les conditions d'annulation et de report varient selon le type de formation :`,
-      columns: false,
-      hasList: true,
-      subSections: [
-        {
-          title: "Formations inter-entreprises",
-          content: `Toute annulation par le Participant doit être notifiée par écrit. Si l'annulation intervient plus de vingt (20) jours ouvrés avant le début de la session, l'acompte versé est intégralement remboursé. Si l'annulation intervient entre dix (10) et vingt (20) jours ouvrés avant le début de la session, cinquante pour cent (50%) du montant total est retenu. Si l'annulation intervient moins de dix (10) jours ouvrés avant le début de la session, le montant total est dû intégralement.`
-        },
-        {
-          title: "Formations intra-entreprises",
-          content: `Toute annulation ou report doit faire l'objet d'un accord écrit entre les parties. En cas d'annulation par le Client moins de dix (10) jours ouvrés avant le début de la formation, le montant total est dû intégralement, sauf force majeure dûment justifiée.`
-        },
-        {
-          title: "Report de session",
-          content: `Le report d'une session est possible sous réserve de disponibilité et doit être demandé au moins cinq (5) jours ouvrés à l'avance. K-EMPIRE se réserve le droit de refuser un report et de proposer une date alternative dans un délai de trois (3) mois.`
-        },
-        {
-          title: "Substitution de Participant",
-          content: `Le Client peut substituer un Participant à tout moment, à condition de communiquer les informations du nouveau Participant au moins deux (2) jours ouvrés avant le début de la formation, sans incidence tarifaire.`
-        }
-      ]
-    },
-    {
-      icon: AlertTriangle,
-      title: "Article 7 — Force majeure",
-      content: `Aucune des parties ne saurait être tenue responsable de l'inexécution ou du retard dans l'exécution de ses obligations lorsque celui-ci résulte d'un événement de force majeure, au sens de l'article 1218 du Code civil togolais, y compris mais sans s'y limiter : catastrophe naturelle, épidémie, pandémie, conflit armé, decision administrative ou judiciaire, panne de réseau informatique indépendante de la volonté des parties, ou interruption des moyens de communication.
-
-La partie affectée doit en informer l'autre partie dans les meilleurs délais et mettre en œuvre tous les moyens raisonnables pour limiter les conséquences de l'événement. Si l'événement de force majeure persiste pendant une période supérieure à trente (30) jours, chaque partie pourra résilier le contrat de droit et sans formalité, sans indemnité, et les sommes versées seront remboursées dans un délai de trente (30) jours.`,
-      columns: false,
-      hasList: false
-    },
-    {
-      icon: Shield,
-      title: "Article 8 — Propriété intellectuelle",
-      content: `L'ensemble des supports de formation (supports de cours, exercices, études de cas, vidéos, logiciels, bases de données, et tout autre document ou outil pédagogique) est la propriété exclusive de K-EMPIRE ou de ses concédants et est protégé par le droit d'auteur, l'Accord de Bangui (OAPI) et les conventions internationales.
-
-Le Client et les Participants s'engagent à ne pas reproduire, copier, diffuser, modifier ou exploiter ces supports à des fins autres que la formation interne de l'entreprise, sans l'autorisation écrite préalable de K-EMPIRE. Toute contrefaçon ou utilization non autorisée pourra donner lieu à des poursuites judiciaires.
-
-Les enregistrements audio ou vidéo des sessions de formation sont strictement interdits, sauf autorisation expresse et écrite de K-EMPIRE.`,
-      columns: false,
-      hasList: false
-    },
-    {
-      icon: Lock,
-      title: "Article 9 — Confidentialité et secret professionnel",
-      content: `Chaque partie s'engage à considérer comme strictement confidentiels tous les informations, documents, données et contenus auxquels elle accède dans le cadre de l'exécution du contrat de formation, et à ne pas les divulguer à des tiers sans l'accord écrit préalable de l'autre partie.
-
-K-EMPIRE s'engage en particulier à ne pas divulguer les informations stratégiques, organisationnelles ou techniques du Client auxquelles elle pourrait avoir accès durant la formation, conformément à l'article 226-13 du Code pénal togolais.
-
-Cette obligation de confidentialité survit à la résiliation ou à l'expiration du contrat de formation pour une durée de cinq (5) ans.`,
-      columns: false,
-      hasList: false
-    },
-    {
-      icon: Globe,
-      title: "Article 10 — Communication et diffusion de contenus",
-      content: `K-EMPIRE peut, à des fins de communication et de valorisation de ses activités, utiliser les informations non confidentielles relatives à la relation commerciale avec le Client, sous réserve du consentement préalable écrit de celui-ci.
-
-Le Client autorise expressément K-EMPIRE à :
-  • Réaliser des photographies ou des enregistrements vidéo lors des sessions de formation, à des fins de communication institutionnelle et de promotion de ses activités ;
-  • Diffuser lesdits supports sur son site internet, ses réseaux sociaux, ses publications professionnelles et ses supports de communication, sans limitation géographique ni temporelle ;
-  • Mentionner le nom commercial du Client, son logo et la nature des prestations réalisées dans le cadre de ses références clients.
-
-Le Client peut à tout moment retirer son consentement en notifiant sa décision par écrit à K-EMPIRE. Le retrait de consentement n'a pas d'effet rétroactif sur les contenus déjà diffusés.`,
-      columns: false,
-      hasList: false
-    },
-    {
-      icon: Eye,
-      title: "Article 11 — Protection des données à caractère personnel",
-      content: `K-EMPIRE collecte et traite les données à caractère personnel des Participants (nom, prénom, adresse courriel, fonction, photo de profil) aux seules fins d'exécution du contrat de formation, de gestion administrative, de délivrance des attestations et, le cas échéant, de communication institutionnelle conformément à l'article 10.
-
-Ce traitement repose sur l'exécution du contrat, le consentement de la personne concernée et la légitimité de l'intérêt de K-EMPIRE. Les données sont conservées pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, conformément à la loi n°2019-014 du 29 octobre 2019 relative à la protection des données à caractère personnel en République togolaise (LPDCP) et au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) pour les résidents européens.
-
-Les données ne sont transmises qu'aux prestataires techniques liés par contrat de sous-traitance conforme à l'article 20 de la LPDCP. Chaque Participant dispose d'un droit d'accès, de rectification, d'effacement, d'opposition et de portabilité de ses données, qu'il peut exercer en écrivant à contact@k-empirecorporation.com.`,
-      columns: false,
-      hasList: false
-    },
-    {
-      icon: UserCheck,
-      title: "Article 12 — Exigences linguistiques et qualité de prestation",
-      content: `Les formations sont dispensées en français, en anglais ou dans toute autre langue convenue entre les parties. K-EMPIRE s'engage à mettre à disposition des formateurs qualifiés et disposant d'une expertise reconnue dans le domaine concerné.
-
-En cas de prestation en langue étrangère, des supports complémentaires (glossaires, traductions, sous-titrages) peuvent être fournis sur demande, sans surcoût, sous réserve de délai raisonnable. Le Client est seul responsable du niveau de compréhension linguistique de ses Participants.
-
-K-EMPIRE se réserve le droit de suspendre ou d'interrompre une session de formation si un Participant se rend coupable de comportement inapproprié, de perturbation de l'ordre ou de manquement grave au règlement intérieur, sans remboursement.`,
-      columns: false,
-      hasList: false
-    },
-    {
-      icon: Scale,
-      title: "Article 13 — Droit applicable et résolution des litiges",
-      content: `Les présentes CGF sont régies par le droit togolais, notamment le Code civil, le Code de commerce, la loi n°2019-014 du 29 octobre 2019 relative à la protection des données à caractère personnel (LPDCP), le RGPD (Règlement UE 2016/679) pour les traitements concernant des résidents européens, et l'Acte uniforme OHADA relatif au droit des sociétés commerciales (AUSCGIE).
-
-Tout litige né de l'interprétation ou de l'exécution des présentes CGF fera l'objet d'une tentative de résolution amiable entre les parties. À défaut d'accord amiable dans un délai de trente (30) jours à compter de la notification écrite du litige, celui-ci sera soumis à la compétence exclusive des juridictions compétentes de Lomé, République du Togo.
-
-Dernière mise à jour : 16 septembre 2026.`,
-      columns: false,
-      hasList: false
     }
   ];
 
@@ -234,20 +809,33 @@ Dernière mise à jour : 16 septembre 2026.`,
     }
   };
 
+  const renderSubSubSection = (subSub, depth = 0) => (
+    <div key={subSub.title} className={`${depth > 0 ? 'ml-4 md:ml-8' : ''} mb-6`}>
+      <h4 className="text-sm font-semibold text-accent mb-2">{subSub.title}</h4>
+      {subSub.content && (
+        <p className="text-body text-text-muted leading-relaxed text-justify whitespace-pre-wrap mb-4">{subSub.content}</p>
+      )}
+      {subSub.subSubSections && subSub.subSubSections.map(sub => renderSubSubSection(sub, depth + 1))}
+    </div>
+  );
+
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Introduction */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <h2 className="text-h1-m md:text-h1-d text-primary font-semibold mb-6">
-            Conditions Générales de Formation
+          <h1 className="text-h1-m md:text-h1-d text-primary font-semibold mb-4">
+            CONDITIONS GENERALES
+          </h1>
+          <h2 className="text-h2-m md:text-h2-d text-primary font-semibold mb-6">
+            DE FORMATION
           </h2>
           <p className="text-body-lg text-text-muted max-w-2xl mx-auto">
             Dispositions applicables à l'ensemble des formations dispensées par K-EMPIRE CORPORATION
@@ -282,15 +870,18 @@ Dernière mise à jour : 16 septembre 2026.`,
                   </div>
 
                   {/* Content */}
-                  <div className={`text-body text-text-muted leading-relaxed pl-0 md:pl-16 ${section.columns ? 'md:columns-2 md:gap-16' : ''}`}>
+                  <div className="text-body text-text-muted leading-relaxed pl-0 md:pl-16">
                     {section.content && (
                       <div className="text-justify whitespace-pre-wrap mb-6">{section.content}</div>
                     )}
 
                     {section.subSections && section.subSections.map((sub, subIndex) => (
-                      <div key={subIndex} className="mb-6">
-                        <h3 className="text-base font-semibold text-primary mb-3">{sub.title}</h3>
-                        <p className="text-justify">{sub.content}</p>
+                      <div key={subIndex} className="mb-8">
+                        <h3 className="text-lg font-semibold text-primary mb-4">{sub.title}</h3>
+                        {sub.content && (
+                          <p className="text-body text-text-muted leading-relaxed text-justify whitespace-pre-wrap mb-4">{sub.content}</p>
+                        )}
+                        {sub.subSubSections && sub.subSubSections.map(subSub => renderSubSubSection(subSub, 0))}
                       </div>
                     ))}
                   </div>
