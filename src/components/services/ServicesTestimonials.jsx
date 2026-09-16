@@ -195,7 +195,7 @@ const ServicesTestimonials = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-3 gap-6 md:gap-0"
+            className="grid grid-cols-3 gap-6 md:gap-0 max-w-4xl mx-auto"
           >
             {stats.map((stat, index) => (
               <div key={index} className="text-center relative">

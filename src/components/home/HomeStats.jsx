@@ -97,19 +97,20 @@ const HomeStats = () => {
            initial="hidden"
            whileInView="visible"
            viewport={{ once: true, margin: "-50px" }}
+           className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16"
         >
-          {/* Title */}
-          <motion.div variants={itemVariants} className="mb-12 md:mb-16">
+          {/* Left side - Title */}
+          <motion.div variants={itemVariants} className="lg:w-[320px] flex-shrink-0">
             <h2 className="text-h2-m md:text-h2-d font-bold text-primary font-display leading-tight mb-6">
               {stats.title}
             </h2>
-            <p className="text-text-muted text-sm md:text-base leading-relaxed max-w-2xl">
+            <p className="text-text-muted text-sm md:text-base leading-relaxed">
               {stats.intro}
             </p>
           </motion.div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {/* Right side - Stats */}
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {items.map((item, index) => {
               const Icon = icons[index] || icons[0];
               const numericValue = extractNumber(item.value);
