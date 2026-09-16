@@ -113,10 +113,15 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="flex flex-col gap-5">
             <h4 className="text-small font-semibold text-white">L'Institution</h4>
             <div className="flex flex-col gap-3">
-              {['Le Cabinet', 'Nos Références & Partenariats', 'Notre Écosystème d\'Experts', 'Contact'].map((link, idx) => (
-                <a key={idx} href="#" className="text-body text-white/60 hover:text-accent flex items-center justify-between group w-fit">
-                  {link}
-                </a>
+              {[
+                { label: 'Le Cabinet', path: '/a-propos' },
+                { label: 'Nos Références & Partenariats', path: '/references-partenariats' },
+                { label: 'Notre Écosystème d\'Experts', path: '/ecosysteme-experts' },
+                { label: 'CGU Formations', path: '/cgu-formations' },
+              ].map((link, idx) => (
+                <Link key={idx} to={link.path} className="text-body text-white/60 hover:text-accent flex items-center justify-between group w-fit">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </motion.div>

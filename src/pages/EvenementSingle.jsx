@@ -674,7 +674,8 @@ const EvenementSingle = () => {
                         className="w-5 h-5 mt-0.5 text-accent accent-accent rounded"
                       />
                       <span className="text-sm text-text-muted">
-                        J'accepte d'être contacté dans le cadre de cette demande
+                        J'accepte d'être contacté dans le cadre de cette demande et j'ai lu les{' '}
+                        <a href="/cgu-formations" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">CGU</a>
                       </span>
                     </label>
 

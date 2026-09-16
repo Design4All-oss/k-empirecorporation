@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SEO from '../components/ui/SEO';
 import PageBanner from '../components/ui/PageBanner';
 import HomeNewsletter from '../components/home/HomeNewsletter';
@@ -8,9 +8,6 @@ import BlogArticles from '../components/blog/BlogArticles';
 import { usePosts, useEvenements, useFeaturedFormations } from '../hooks';
 
 const Blog = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentPostsSlide, setCurrentPostsSlide] = useState(0);
-
   const { data: apiPosts } = usePosts(1, 10);
   const { data: apiEvenements } = useEvenements();
   const { data: featuredFormations } = useFeaturedFormations();
@@ -36,87 +33,43 @@ const Blog = () => {
     return html.replace(/<[^>]*>/g, '').trim();
   };
   
-  // Fonction pour parser les dates (gère format ISO et format français)
   const parseDate = (dateStr) => {
     if (!dateStr) return 0;
-    // Essayer de parser comme ISO
     const isoDate = new Date(dateStr);
-    if (!isNaN(isoDate.getTime())) {
-      return isoDate.getTime();
-    }
-    // Essayer de parser le format français (ex: "20 Avril 2026")
+    if (!isNaN(isoDate.getTime())) return isoDate.getTime();
     const frenchMonths = {
       'janvier': 0, 'février': 1, 'mars': 2, 'avril': 3, 'mai': 4, 'juin': 5,
       'juillet': 6, 'août': 7, 'septembre': 8, 'octobre': 9, 'novembre': 10, 'décembre': 11
     };
     const match = dateStr.match(/(\d{1,2})\s+(\w+)\s+(\d{4})/);
     if (match) {
-      const day = parseInt(match[1]);
       const month = frenchMonths[match[2].toLowerCase()];
-      const year = parseInt(match[3]);
-      if (month !== undefined) {
-        return new Date(year, month, day).getTime();
-      }
+      if (month !== undefined) return new Date(parseInt(match[3]), month, parseInt(match[1])).getTime();
     }
     return 0;
   };
   
-  // Transformer les événements - ajouter dateTimestamp pour le tri
   const allEvents = (apiEvenements && apiEvenements.length > 0) 
     ? apiEvenements.map(e => ({
-        id: e.id,
-        slug: e.slug,
-        type: 'event',
-        title: e.title,
-        excerpt: e.excerpt,
-        date: e.date,
-        dateTimestamp: parseDate(e.date),
-        time: e.time,
-        location: e.location,
-        spots: e.spots,
-        registered: e.registered,
-        image: e.image,
-        format: e.format
+        id: e.id, slug: e.slug, type: 'event', title: e.title,
+        excerpt: e.excerpt, date: e.date, dateTimestamp: parseDate(e.date),
+        time: e.time, location: e.location, spots: e.spots,
+        registered: e.registered, image: e.image, format: e.format
       }))
     : [];
   
-  // Transformer les articles - utiliser modified si disponible, sinon date
   const allPosts = (posts && posts.length > 0) ? posts.map(p => ({
-    id: p.id,
-    slug: p.slug,
-    type: 'post',
-    title: p.title,
+    id: p.id, slug: p.slug, type: 'post', title: p.title,
     excerpt: stripHtml(p.excerpt),
     category: p.categories?.[0]?.name || p.category,
     author: typeof p.author === 'object' ? p.author?.name || 'Auteur' : p.author || 'Auteur',
-    date: p.date,
-    modified: p.modified || p.date,
+    date: p.date, modified: p.modified || p.date,
     dateTimestamp: parseDate(p.modified || p.date),
-    dateFormatted: p.date ? new Date(p.date).toLocaleDateString('fr-FR') : '',
-    readTime: p.readTime,
-    image: p.image
+    readTime: p.readTime, image: p.image
   })) : [];
   
-  // Combiner et trier par dateTimestamp (plus récent en premier)
-  const allNews = [...allEvents, ...allPosts].sort((a, b) => {
-    const aTime = a.dateTimestamp || 0;
-    const bTime = b.dateTimestamp || 0;
-    return bTime - aTime;
-  });
-  
-  // Prendre les 4 premières nouvelles pour le slider
-  const recentNews = allNews.slice(0, 4);
-
-  const itemsPerSlide = 5;
-  const totalSlides = recentNews.length > 0 ? Math.max(1, Math.ceil(recentNews.length / itemsPerSlide)) : 1;
-  const postsPerSlide = 3;
-  const totalPostsSlides = posts.length > 0 ? Math.ceil(posts.length / postsPerSlide) : 1;
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-
-  const nextPostsSlide = () => setCurrentPostsSlide((prev) => (prev + 1) % totalPostsSlides);
-  const prevPostsSlide = () => setCurrentPostsSlide((prev) => (prev - 1 + totalPostsSlides) % totalPostsSlides);
+  const allNews = [...allEvents, ...allPosts].sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
+  const recentNews = allNews.slice(0, 5);
 
   return (
     <>
@@ -145,25 +98,11 @@ const Blog = () => {
       )}
       
       {recentNews.length > 0 && (
-        <BlogRecentNews 
-          recentNews={recentNews}
-          currentSlide={currentSlide}
-          setCurrentSlide={setCurrentSlide}
-          totalSlides={totalSlides}
-          nextSlide={nextSlide}
-          prevSlide={prevSlide}
-        />
+        <BlogRecentNews recentNews={recentNews} />
       )}
-      
-      {posts.length > 0 && (
-        <BlogArticles 
-          posts={posts}
-          currentPostsSlide={currentPostsSlide}
-          setCurrentPostsSlide={setCurrentPostsSlide}
-          totalPostsSlides={totalPostsSlides}
-          nextPostsSlide={nextPostsSlide}
-          prevPostsSlide={prevPostsSlide}
-        />
+
+      {allNews.length > 0 && (
+        <BlogArticles posts={allNews} />
       )}
 
       <HomeNewsletter />

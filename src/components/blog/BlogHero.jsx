@@ -1,120 +1,69 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, MapPin, GraduationCap, Video, Download } from 'lucide-react';
-import { toDirectDownloadUrl, triggerDownload } from '../../utils/driveDownload';
+import { Calendar, Clock, MapPin, ArrowRight, Users } from 'lucide-react';
 
 const BlogHero = ({ featuredEvent }) => {
   const eventLink = featuredEvent?.slug ? `/formations/${featuredEvent.slug}` : '#';
-  
+  const defaultImage = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=120&h=80&fit=crop';
+
   return (
-    <section className="relative bg-gradient-to-r from-primary via-[#0d4a6e] to-primary overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
-      </div>
-      
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex flex-col justify-end"
-          >
-            <Link to={eventLink}>
-              <div className="flex items-center gap-2 mb-3 cursor-pointer">
-                <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
-                  <GraduationCap className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-accent font-medium text-sm">FORMATION À LA UNE</span>
-              </div>
-              
-              <div className="inline-flex self-start px-3 py-1 bg-accent text-white text-xs font-medium rounded-full mb-4">
-                {featuredEvent.type}
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight cursor-pointer hover:text-accent transition-colors">
-                {featuredEvent.title}
-              </h2>
-              <div className="flex flex-wrap gap-4 text-white/80 text-sm mb-6">
-                <span className="flex items-center gap-2">
-                  <Calendar size={16} className="text-accent" />
+    <div className="bg-accent">
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+        <Link
+          to={eventLink}
+          className="flex items-center gap-5 py-4 group"
+        >
+          {/* Image */}
+          <img
+            src={featuredEvent?.image || defaultImage}
+            alt=""
+            className="w-24 h-16 md:w-32 md:h-20 rounded-lg object-cover flex-shrink-0"
+          />
+
+          {/* Texte + infos */}
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider">Formation à la une</span>
+            </div>
+            <p className="text-[15px] md:text-base font-bold text-white truncate leading-tight mb-1.5">
+              {featuredEvent?.title || 'Formation en cours'}
+            </p>
+            <div className="flex items-center gap-3 text-[11px] text-white/60">
+              {featuredEvent?.date && (
+                <span className="flex items-center gap-1">
+                  <Calendar size={11} />
                   {featuredEvent.date}
                 </span>
-                <span className="flex items-center gap-2">
-                  <Clock size={16} className="text-accent" />
+              )}
+              {featuredEvent?.time && (
+                <span className="flex items-center gap-1">
+                  <Clock size={11} />
                   {featuredEvent.time}
                 </span>
-                <span className="flex items-center gap-2">
-                  <MapPin size={16} className="text-accent" />
+              )}
+              {featuredEvent?.location && (
+                <span className="flex items-center gap-1">
+                  <MapPin size={11} />
                   {featuredEvent.location}
                 </span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link to={eventLink}>
-                <button className="px-6 py-3 bg-accent text-white font-medium rounded-full hover:bg-orange-400 transition-colors">
-                  Voir les détails
-                </button>
-              </Link>
-              {featuredEvent.lienPresentation && (
-                <button
-                  onClick={() => {
-                    const url = toDirectDownloadUrl(featuredEvent.lienPresentation)
-                    if (url) triggerDownload(url, `${featuredEvent.title || 'presentation'}.pdf`)
-                  }}
-                  className="w-11 h-11 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-accent transition-all duration-300 cursor-pointer"
-                  title="Télécharger la présentation"
-                >
-                  <Download size={18} />
-                </button>
               )}
-              <div className="flex -space-x-2">
-                {[...Array(3)].map((_, i) => (
-                  <img 
-                    key={i}
-                    src={`https://i.pravatar.cc/150?img=${i + 10}`}
-                    alt={`Participant ${i + 1}`}
-                    className="w-8 h-8 rounded-full border-2 border-primary object-cover"
-                  />
-                ))}
-                <div className="w-8 h-8 rounded-full bg-accent border-2 border-primary flex items-center justify-center">
-                  <span className="text-white text-xs font-medium">+{featuredEvent.registered}</span>
-                </div>
-              </div>
-              <span className="text-white/60 text-sm">{featuredEvent.registered}/{featuredEvent.spots} places</span>
+              {featuredEvent?.spots && (
+                <span className="flex items-center gap-1">
+                  <Users size={11} />
+                  {featuredEvent.registered}/{featuredEvent.spots} places
+                </span>
+              )}
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative"
-          >
-            <Link to={eventLink}>
-              <div className="relative rounded-2xl overflow-hidden cursor-pointer">
-                <img 
-                  src={featuredEvent.image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop'} 
-                  alt={featuredEvent.title}
-                  className="w-full h-64 md:h-80 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-white text-sm">
-                    <Video size={16} />
-                    {featuredEvent.format}
-                  </span>
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full">
-                    Prochain événement
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        </div>
+          {/* CTA */}
+          <span className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 text-white text-xs font-medium px-4 py-2 rounded-full transition-colors flex-shrink-0">
+            Découvrir
+            <ArrowRight size={12} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </Link>
       </div>
-    </section>
+    </div>
   );
 };
 
