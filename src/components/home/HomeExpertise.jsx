@@ -43,7 +43,7 @@ const HomeExpertise = () => {
   };
 
   return (
-    <section className="py-20 md:py-36 bg-bg-alt">
+    <section className="py-20 md:py-36 bg-white">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
