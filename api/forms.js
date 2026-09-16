@@ -309,6 +309,7 @@ export default async function handler(req, res) {
   const projectId = process.env.SANITY_PROJECT_ID;
   const token = process.env.SANITY_TOKEN;
   if (!projectId || !token) {
+    console.error('[forms] Missing env vars:', { projectId: !!projectId, token: !!token });
     return res.status(500).json({ success: false, message: 'Stockage non configuré côté serveur' });
   }
 
@@ -321,43 +322,9 @@ export default async function handler(req, res) {
   // ── Build document ──
   const doc = { _type: config.type, ...fields, submittedAt: new Date().toISOString() };
 
-  // ── Resolve formation reference ──
-  if (config.type === 'inscription' && fields.formation_id) {
-    try {
-      const id = String(fields.formation_id);
-      const doc2 = await contentClient().getDocument(id);
-      if (doc2 && doc2._type === 'formation') {
-        doc.formation = { _type: 'reference', _ref: id };
-      }
-    } catch { /* skip */ }
-    delete doc.formation_id;
-  }
-
-  // ── Resolve session reference ──
-  if (config.type === 'inscription' && fields.session_id) {
-    const sid = String(fields.session_id);
-    if (/^[a-zA-Z0-9_\-]+$/.test(sid)) {
-      try {
-        const session = await contentClient().getDocument(sid);
-        if (session && session._type === 'session' && session.statut !== 'annulée') {
-          doc.session = { _type: 'reference', _ref: sid };
-        }
-      } catch { /* skip */ }
-    }
-    delete doc.session_id;
-  }
-
-  // ── Resolve evenement reference ──
-  if (config.type === 'inscriptionEvenement' && fields.evenement_id) {
-    try {
-      const id = String(fields.evenement_id);
-      const doc2 = await contentClient().getDocument(id);
-      if (doc2 && doc2._type === 'evenement') {
-        doc.evenement = { _type: 'reference', _ref: id };
-      }
-    } catch { /* skip */ }
-    delete doc.evenement_id;
-  }
+  // Note: references are NOT set here because inscriptions write to the `submissions` dataset
+  // while formations/events live in `production`. Cross-dataset refs are rejected by Sanity.
+  // The string IDs (formation_id, evenement_id, session_id) are kept for lookup purposes.
 
   // ── Newsletter dedup ──
   if (config.type === 'soumissionNewsletter' && fields.email) {
@@ -376,8 +343,13 @@ export default async function handler(req, res) {
   try {
     await submissionsClient().create(doc);
   } catch (err) {
-    console.error(`[forms] Sanity create échec (${config.type})`, err.message);
-    return res.status(500).json({ success: false, message: 'Erreur de stockage — réessayez' });
+    console.error(`[forms] Sanity create échec (${config.type})`, {
+      message: err.message,
+      statusCode: err.statusCode,
+      response: err.response ? JSON.stringify(err.response) : 'n/a',
+      details: err.details ? JSON.stringify(err.details) : 'n/a',
+    });
+    return res.status(500).json({ success: false, message: 'Erreur de stockage — réessayez', detail: err.message });
   }
 
   // ── Send admin notification ──
