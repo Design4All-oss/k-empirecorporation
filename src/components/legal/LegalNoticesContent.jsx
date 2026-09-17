@@ -14,7 +14,7 @@ const LegalNoticesContent = () => {
     {
       icon: Building2,
       title: "Article 1 - Identification de l'éditeur et responsable du traitement",
-      content: `Le Site est édité par K-EMPIRE CORPORATION SARL U, Société à Responsabilité Limitée Unipersonnelle de droit togolais au capital social de 1 000 000 FCFA, immatriculée au Registre du Commerce et du Crédit Mobilier (RCCM) du Togo sous le numéro TG-LRL-01-204-B13-00035, titulaire du numéro CNSS 189389, dont le siège social est établi Quartier Dongoyo, Kara, Togo, représentée par son Gérant, Monsieur KOUDADJE Kouami Emmanuel.
+      content: `Le Site est édité par K-EMPIRE CORPORATION SARL U, Société à Responsabilité Limitée Unipersonnelle de droit togolais au capital social de 1 000 000 FCFA, immatriculée au Registre du Commerce et du Crédit Mobilier (RCCM) du Togo, dont le siège social est établi Quartier Dongoyo, Kara, Togo, représentée par son Gérant, Monsieur KOUDADJE Kouami Emmanuel.
 
 Téléphone : +228 90 10 80 75
 Courriel : contact@k-empirecorporation.com

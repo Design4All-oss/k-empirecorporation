@@ -15,20 +15,20 @@ const CGUFormationsContent = () => {
 
 Contact : +228 98 78 95 31 et +228 90 10 80 75 — contact@k-empirecorporation.com et k.empirecorporation@gmail.com.
 
-Objet et champ d'application. Les présentes conditions générales de formation, ci-après « les Conditions générales », s'appliquent à toutes les offres de formation de K-EMPIRE CORPORATION, qu'elles soient inter-entreprises ou intra-entreprises, réalisées en présentiel ou en ligne.
+<strong>Objet et champ d'application.</strong> Les présentes conditions générales de formation, ci-après « les Conditions générales », s'appliquent à toutes les offres de formation de K-EMPIRE CORPORATION, qu'elles soient inter-entreprises ou intra-entreprises, réalisées en présentiel ou en ligne.
 
-Définition. « Le Client » désigne indifféremment toute personne physique ou morale qui commande une formation à K-EMPIRE CORPORATION. Le terme est employé au masculin par simple convention de rédaction. « Les participants » désigne les personnes physiques qui suivent la formation.
+<strong>Définition.</strong> « Le Client » désigne indifféremment toute personne physique ou morale qui commande une formation à K-EMPIRE CORPORATION. Le terme est employé au masculin par simple convention de rédaction. « Les participants » désigne les personnes physiques qui suivent la formation.
 
-Documents contractuels et ordre de priorité. La relation contractuelle est régie par les documents suivants. En cas de contradiction entre eux, ils prévalent dans l'ordre décroissant ci-après :
+<strong>Documents contractuels et ordre de priorité.</strong> La relation contractuelle est régie par les documents suivants. En cas de contradiction entre eux, ils prévalent dans l'ordre décroissant ci-après :
 • la proposition commerciale et technique signée des deux parties ;
 • le bon de commande ou le bulletin d'inscription signé par le Client ;
 • les présentes Conditions générales.
 
-Acceptation. En passant commande, le Client accepte sans réserve l'intégralité des présentes Conditions générales. Toute condition particulière ou contraire émise par le Client est inopposable à K-EMPIRE CORPORATION, sauf acceptation expresse et écrite de cette dernière. Le fait pour K-EMPIRE CORPORATION de ne pas se prévaloir à un moment donné de l'une des stipulations des présentes Conditions générales ne peut être interprété comme une renonciation à s'en prévaloir ultérieurement.
+<strong>Acceptation.</strong> En passant commande, le Client accepte sans réserve l'intégralité des présentes Conditions générales. Toute condition particulière ou contraire émise par le Client est inopposable à K-EMPIRE CORPORATION, sauf acceptation expresse et écrite de cette dernière. Le fait pour K-EMPIRE CORPORATION de ne pas se prévaloir à un moment donné de l'une des stipulations des présentes Conditions générales ne peut être interprété comme une renonciation à s'en prévaloir ultérieurement.
 
-Devoir d'information. Avant toute commande, le Client reconnaît avoir reçu de la part de K-EMPIRE CORPORATION toutes les informations et tous les conseils nécessaires pour évaluer l'adéquation de l'offre de services à ses besoins.
+<strong>Devoir d'information.</strong> Avant toute commande, le Client reconnaît avoir reçu de la part de K-EMPIRE CORPORATION toutes les informations et tous les conseils nécessaires pour évaluer l'adéquation de l'offre de services à ses besoins.
 
-Modification et versions. K-EMPIRE CORPORATION peut modifier ou mettre à jour les présentes Conditions générales. Les Conditions générales applicables sont celles en vigueur à la date de la commande ; les modifications n'affectent ni les contrats en cours, ni les offres déjà acceptées. Chaque version est identifiée par son numéro et sa date d'entrée en vigueur. Les versions successives sont archivées et disponibles sur le site www.k-empirecorporation.com.`
+<strong>Modification et versions.</strong> K-EMPIRE CORPORATION peut modifier ou mettre à jour les présentes Conditions générales. Les Conditions générales applicables sont celles en vigueur à la date de la commande ; les modifications n'affectent ni les contrats en cours, ni les offres déjà acceptées. Chaque version est identifiée par son numéro et sa date d'entrée en vigueur. Les versions successives sont archivées et disponibles sur le site www.k-empirecorporation.com.`
     },
     {
       icon: BookOpen,
@@ -750,7 +750,7 @@ Le siège de l'arbitrage est fixé à Lomé, en République togolaise. La procé
                   {/* Content */}
                   <div className="text-body text-text-muted leading-relaxed pl-0 md:pl-16">
                     {section.content && (
-                      <div className="text-justify whitespace-pre-wrap mb-6">{section.content}</div>
+                      <div className="text-justify whitespace-pre-wrap mb-6" dangerouslySetInnerHTML={{ __html: section.content }} />
                     )}
 
                     {section.subSections && section.subSections.map((sub, subIndex) => (
