@@ -117,7 +117,7 @@ const Footer = () => {
                 { label: 'Le Cabinet', path: '/a-propos' },
                 { label: 'Nos Références & Partenariats', path: '/references-partenariats' },
                 { label: 'Notre Écosystème d\'Experts', path: '/ecosysteme-experts' },
-                { label: 'CGU Formations', path: '/cgu-formations' },
+                { label: 'CGF K-EMPIRE', path: '/cgf-k-empire' },
               ].map((link, idx) => (
                 <Link key={idx} to={link.path} className="text-body text-white/60 hover:text-accent flex items-center justify-between group w-fit">
                   {link.label}

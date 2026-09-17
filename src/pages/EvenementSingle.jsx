@@ -675,7 +675,7 @@ const EvenementSingle = () => {
                       />
                       <span className="text-sm text-text-muted">
                         J'accepte d'être contacté dans le cadre de cette demande et j'ai lu les{' '}
-                        <a href="/cgu-formations" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">CGU</a>
+                        <a href="/cgf-k-empire" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">CGF</a>
                       </span>
                     </label>
 

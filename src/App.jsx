@@ -51,7 +51,7 @@ function AppContent() {
   const is404 = location.pathname === '*';
   
   // List of known routes (base paths)
-  const knownRoutes = ['/', '/a-propos', '/services', '/contact', '/formations', '/blog', '/mentions-legales', '/cgu-formations', '/event', '/references-partenariats', '/ecosysteme-experts'];
+  const knownRoutes = ['/', '/a-propos', '/services', '/contact', '/formations', '/blog', '/mentions-legales', '/cgf-k-empire', '/event', '/references-partenariats', '/ecosysteme-experts'];
   const isKnownRoute = knownRoutes.some(route => 
     location.pathname === route || 
     location.pathname.startsWith(route + '/')
@@ -81,7 +81,7 @@ function AppContent() {
             <Route path="/event/:slug" element={<EvenementSingle />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/mentions-legales" element={<LegalNotices />} />
-            <Route path="/cgu-formations" element={<CGUFormations />} />
+            <Route path="/cgf-k-empire" element={<CGUFormations />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogSingle />} />
             <Route path="*" element={<NotFound />} />
