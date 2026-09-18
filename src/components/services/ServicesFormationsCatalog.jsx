@@ -18,7 +18,7 @@ const ServicesFormationsCatalog = () => {
         { id: 4, slug: 'sur-mesure', title: "Gouvernance d'entreprise et conformité", hook: "Mettez en place une gouvernance efficace et assurez la conformité de votre organisation.", format: "En ligne", duration: "2 jours", category: "Gouvernance", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" },
       ];
 
-  const IMG = (f) => f.image || '/assets/images/formationImage.png';
+  const IMG = (f) => f.image || '/assets/images/formations/fallback.png';
 
   return (
     <section className="py-20 md:py-28 bg-white">

@@ -204,7 +204,7 @@ const HomeHero = () => {
             {/* Image Layer - Independent from circles */}
             <div className="absolute inset-0 flex items-end justify-center z-10 overflow-visible">
               <img 
-                src="/assets/images/heroImg.png" 
+                src="/assets/images/home/hero.png" 
                 alt="Expert K-EMPIRE" 
                 className="w-[135%] lg:w-[160%] h-auto max-h-[150%] object-contain object-bottom translate-y-[18%]"
               />

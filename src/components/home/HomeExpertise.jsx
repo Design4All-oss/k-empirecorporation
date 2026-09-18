@@ -74,9 +74,18 @@ const HomeExpertise = () => {
           ))}
         </div>
 
-        {/* Desktop — split interactif */}
-        <div className="hidden lg:grid grid-cols-[320px_1fr] gap-16 items-start">
-          {/* Left — navigation list */}
+        {/* Desktop — 3 colonnes : image (4:3) | nav | détail */}
+        <div className="hidden lg:grid grid-cols-[480px_320px_1fr] gap-16 items-start">
+          {/* Col 1 — image fixe 4:3 */}
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-border sticky top-28">
+            <img
+              src="/assets/images/home/expertise.png"
+              alt={expertise.title}
+              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </div>
+
+          {/* Col 2 — navigation list */}
           <motion.nav
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -110,7 +119,7 @@ const HomeExpertise = () => {
             ))}
           </motion.nav>
 
-          {/* Right — detail panel */}
+          {/* Col 3 — detail panel */}
           <div className="relative min-h-[280px]">
             <AnimatePresence mode="wait">
               <motion.div
@@ -121,22 +130,24 @@ const HomeExpertise = () => {
                 transition={{ duration: 0.35, ease }}
                 className="sticky top-28"
               >
-                <div className="flex items-center gap-5 mb-8">
-                  <div className="w-16 h-16 rounded-2xl bg-white ring-1 ring-border flex items-center justify-center">
-                    <CurrentIcon size={30} className="text-accent" strokeWidth={1.5} />
+                <div className="bg-white/50 backdrop-blur-sm rounded-2xl border border-border p-6 md:p-8 h-full">
+                  <div className="flex items-center gap-5 mb-8">
+                    <div className="w-16 h-16 rounded-2xl bg-white ring-1 ring-border flex items-center justify-center">
+                      <CurrentIcon size={30} className="text-accent" strokeWidth={1.5} />
+                    </div>
+                    <span className="text-xs font-mono text-text-muted tracking-wider">
+                      0{active + 1} / 0{expertise.items.length}
+                    </span>
                   </div>
-                  <span className="text-xs font-mono text-text-muted tracking-wider">
-                    0{active + 1} / 0{expertise.items.length}
-                  </span>
+
+                  <h3 className="text-2xl lg:text-3xl text-primary font-bold font-display leading-tight mb-4">
+                    {current.title}
+                  </h3>
+
+                  <p className="text-text-muted leading-relaxed text-base lg:text-lg">
+                    {current.text}
+                  </p>
                 </div>
-
-                <h3 className="text-4xl lg:text-5xl text-primary font-bold font-display leading-tight mb-6">
-                  {current.title}
-                </h3>
-
-                <p className="text-text-muted leading-relaxed text-lg lg:text-xl">
-                  {current.text}
-                </p>
               </motion.div>
             </AnimatePresence>
           </div>

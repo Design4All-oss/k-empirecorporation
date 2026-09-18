@@ -14,7 +14,7 @@ const LegalNotices = () => {
       <PageBanner
         title="Mentions légales"
         description="Informations légales relatives à l'utilisation de notre site web"
-        imageUrl="/assets/images/services/coverImage.png"
+        imageUrl="/assets/images/legal/hero.png"
         imageAlt="Mentions légales K-EMPIRE CORPORATION"
       />
       

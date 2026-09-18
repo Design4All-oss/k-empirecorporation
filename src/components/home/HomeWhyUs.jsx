@@ -28,7 +28,7 @@ const HomeWhyUs = () => {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="/assets/images/whyImage.png" 
+              src="/assets/images/home/why-us.png" 
               alt="Pourquoi K-EMPIRE" 
               className="w-full h-[300px] lg:h-[500px] object-contain"
             />

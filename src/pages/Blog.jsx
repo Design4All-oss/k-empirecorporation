@@ -77,7 +77,7 @@ const Blog = () => {
         title="Blog & Événements"
         description="Actualités, analyses et événements de K-EMPIRE Corporation. Restez informé des dernières tendances en business, droit et management au Togo."
         url="/blog"
-        image="/assets/images/services/coverImage.png"
+        image="/assets/images/blog/hero.png"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Blog",
@@ -89,7 +89,7 @@ const Blog = () => {
       <PageBanner
         title="Blog & Événements"
         description="Actualités, analyses et événements pour rester informé"
-        imageUrl="/assets/images/services/coverImage.png"
+        imageUrl="/assets/images/blog/hero.png"
         imageAlt="Blog K-EMPIRE"
       />
       

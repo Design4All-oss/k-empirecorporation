@@ -70,7 +70,7 @@ const ServiceConseil = () => {
         title="Conseil & Stratégie"
         description="K-EMPIRE Corporation vous accompagne dans la définition et la mise en œuvre de votre stratégie de développement. Conseil stratégique pour entreprises au Togo."
         url="/services/conseil-strategie"
-        image="/assets/images/services/coverImage.png"
+        image="/assets/images/services/hero.png"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
@@ -86,7 +86,7 @@ const ServiceConseil = () => {
       {/* Hero Banner */}
       <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <img
-          src="/assets/images/services/coverImage.png"
+          src="/assets/images/services/hero.png"
           alt="Conseil stratégique d'entreprise"
           className="w-full h-full object-cover"
         />

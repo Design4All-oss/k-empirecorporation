@@ -50,7 +50,7 @@ const ServicesHero = ({ content }) => {
           >
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
               <img 
-                src="/assets/images/services/coverImage.png" 
+                src="/assets/images/services/hero.png" 
                 alt="Services K-EMPIRE"
                 className="w-full h-full object-cover"
               />

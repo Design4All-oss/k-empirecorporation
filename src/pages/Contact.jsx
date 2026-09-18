@@ -12,7 +12,7 @@ const Contact = () => {
         title="Contact"
         description="Contactez K-EMPIRE Corporation pour vos besoins en conseil stratégique, intelligence stratégique, ingénierie juridique et formation exécutive au Togo. Réponse sous 24h."
         url="/contact"
-        image="/assets/images/contact/coverImage.png"
+        image="/assets/images/contact/hero.png"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
@@ -24,7 +24,7 @@ const Contact = () => {
       <PageBanner
         title="Contactez-nous"
         description="Une question, un projet ou un besoin spécifique ? Notre équipe est à votre disposition pour vous accompagner."
-        imageUrl="/assets/images/contact/coverImage.png"
+        imageUrl="/assets/images/contact/hero.png"
         imageAlt="Contact K-EMPIRE CORPORATION"
       />
       <ContactSection />

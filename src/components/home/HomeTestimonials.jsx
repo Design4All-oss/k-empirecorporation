@@ -8,7 +8,7 @@ const imageSrc = (testimonial) => {
   if (!testimonial.image) return '';
   return testimonial.image.startsWith('http') || testimonial.image.startsWith('/')
     ? testimonial.image
-    : `/assets/images/testamonials/${testimonial.image}`;
+    : `/assets/images/testimonials/${testimonial.image}`;
 };
 
 const HomeTestimonials = () => {
@@ -55,7 +55,7 @@ const HomeTestimonials = () => {
   return (
     <section className="py-8 md:py-12 bg-white relative overflow-hidden">
       <div 
-        className="absolute inset-0 w-full h-full pointer-events-none bg-[url('/assets/images/testamonials/pattern.png')] bg-[length:1200px] bg-[position:center_100px] bg-no-repeat"
+        className="absolute inset-0 w-full h-full pointer-events-none bg-[url('/assets/images/testimonials/pattern.png')] bg-[length:1200px] bg-[position:center_100px] bg-no-repeat"
       ></div>
 
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

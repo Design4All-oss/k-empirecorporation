@@ -49,7 +49,6 @@ const HomeServicesPreview = () => {
             className="md:col-span-2 md:row-span-1 rounded-2xl p-7 md:p-9 bg-accent/8 flex flex-col justify-between min-h-[220px] md:min-h-[260px] group hover:bg-accent/12 transition-colors duration-500"
           >
             <div>
-              <span className="inline-block text-label font-semibold text-accent tracking-widest uppercase mb-3">01</span>
               <h3 className="text-h3-m md:text-h3-d font-bold text-primary font-display leading-[1.1] mb-3">
                 {s1.title}
               </h3>
@@ -76,7 +75,6 @@ const HomeServicesPreview = () => {
             className="md:col-span-1 md:row-span-1 rounded-2xl p-7 md:p-9 bg-primary flex flex-col justify-between min-h-[200px] md:min-h-[260px] group hover:bg-primary-hover transition-colors duration-500"
           >
             <div>
-              <span className="inline-block text-label font-semibold text-accent tracking-widest uppercase mb-3">02</span>
               <h3 className="text-lg md:text-xl font-bold text-white font-display leading-[1.15] mb-3">
                 {s2.title}
               </h3>
@@ -103,7 +101,6 @@ const HomeServicesPreview = () => {
             className="md:col-span-1 md:row-span-1 rounded-2xl p-7 md:p-9 bg-white border border-border/60 flex flex-col justify-between min-h-[200px] md:min-h-[260px] group hover:border-accent/40 transition-colors duration-500"
           >
             <div>
-              <span className="inline-block text-label font-semibold text-accent tracking-widest uppercase mb-3">03</span>
               <h3 className="text-lg md:text-xl font-bold text-primary font-display leading-[1.15] mb-3">
                 {s3.title}
               </h3>
@@ -130,7 +127,6 @@ const HomeServicesPreview = () => {
             className="md:col-span-2 md:row-span-1 rounded-2xl p-7 md:p-9 bg-bg-alt flex flex-col justify-between min-h-[220px] md:min-h-[260px] group hover:bg-[#edf1f5] transition-colors duration-500"
           >
             <div>
-              <span className="inline-block text-label font-semibold text-accent tracking-widest uppercase mb-3">04</span>
               <h3 className="text-h3-m md:text-h3-d font-bold text-primary font-display leading-[1.1] mb-3">
                 {s4.title}
               </h3>

@@ -14,7 +14,7 @@ const CGUFormations = () => {
       <PageBanner
         title="CGF K-EMPIRE"
         description="Conditions Générales de Formation — Dispositions applicables à l'ensemble de nos formations"
-        imageUrl="/assets/images/services/coverImage.png"
+        imageUrl="/assets/images/cgu-formations/hero.png"
         imageAlt="CGF K-EMPIRE Corporation"
       />
       

@@ -4,7 +4,7 @@ import { PhoneCall, ArrowRight, CheckCircle, Clock, Shield, MessageCircle } from
 import { HOME_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
 import { useBookingModal } from '../../context/BookingModalContext';
-import contactImage from '/assets/images/contactImage.webp';
+import contactImage from '/assets/images/contact/illustration.webp';
 
 const HomeContactCta = () => {
   const { contact } = HOME_CONTENT;

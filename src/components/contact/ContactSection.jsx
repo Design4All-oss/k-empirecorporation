@@ -154,7 +154,7 @@ const ContactSection = () => {
               </div>
               <div className="w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden">
                 <img 
-                  src="/assets/images/contactImage.webp" 
+                  src="/assets/images/contact/illustration.webp" 
                   alt="K-EMPIRE" 
                   className="w-full h-full object-cover"
                 />

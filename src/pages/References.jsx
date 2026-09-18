@@ -47,7 +47,7 @@ const References = () => {
         title="Nos Références & Partenariats"
         description="Entreprises, institutions, ONG et partenaires qui nous font confiance : découvrez les références et partenariats de K-EMPIRE CORPORATION au Togo et en Afrique."
         url="/references-partenariats"
-        image="/assets/images/services/coverImage.png"
+        image="/assets/images/references/hero.png"
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'Organization',
@@ -60,7 +60,7 @@ const References = () => {
       <PageBanner
         title="Nos Références & Partenariats"
         description="Entreprises, institutions, organisations et partenaires qui nous font confiance pour conduire leurs projets vers la performance."
-        imageUrl="/assets/images/services/coverImage.png"
+        imageUrl="/assets/images/references/hero.png"
         imageAlt="Références et partenariats K-EMPIRE CORPORATION"
       />
 

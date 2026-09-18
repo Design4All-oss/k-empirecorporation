@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { PhoneCall, ArrowRight, Clock, Shield, MessageCircle } from 'lucide-react';
 import { ABOUT_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
-import contactImage from '/assets/images/contactImage.webp';
+import contactImage from '/assets/images/contact/illustration.webp';
 
 const AboutContactCta = () => {
   const { cta } = ABOUT_CONTENT;

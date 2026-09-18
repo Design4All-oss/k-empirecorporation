@@ -29,7 +29,7 @@ const Formations = () => {
         title="L'Académie Exécutive | K-EMPIRE Corporation"
         description="L'Académie Exécutive K-EMPIRE : formations certifiantes, programmes inter-entreprises, intra-entreprise et en ligne pour développer les compétences de vos équipes au Togo."
         url="/formations"
-        image="/assets/images/services/coverImage.png"
+        image="/assets/images/formations/hero.png"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ItemList",
@@ -41,7 +41,7 @@ const Formations = () => {
       <PageBanner
         title="L'Académie Exécutive"
         description="Nous développons des capacités d'action mesurables, immédiatement mobilisables dans les environnements institutionnels et économiques complexes."
-        imageUrl="/assets/images/services/coverImage.png"
+        imageUrl="/assets/images/formations/hero.png"
         imageAlt="Formations K-EMPIRE"
       />
       <FormationsHero />
