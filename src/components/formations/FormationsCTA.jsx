@@ -77,14 +77,12 @@ const FormationsCTA = () => {
                 transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.25 }}
                 className="hidden lg:block"
               >
-                <div className="p-1.5 rounded-[2rem] bg-white/10 ring-1 ring-white/15">
-                  <div className="rounded-[calc(2rem-0.375rem)] overflow-hidden">
-                    <img
-                      src="https://images.unsplash.com/photo-1524178232363-1fb2b04b6ed6?w=700&h=500&fit=crop"
-                      alt="Formation sur mesure K-EMPIRE"
-                      className="w-full h-[340px] object-cover"
-                    />
-                  </div>
+                <div className="relative rounded-[2rem] overflow-hidden">
+                  <img
+                    src="/assets/images/formations/formation-sur-mesure.jpg"
+                    alt="Formation sur mesure K-EMPIRE"
+                    className="w-full h-[340px] object-cover"
+                  />
                 </div>
               </motion.div>
             </div>

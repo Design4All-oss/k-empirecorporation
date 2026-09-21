@@ -83,31 +83,18 @@ const ServiceConseil = () => {
           }
         }}
       />
-      {/* Hero Banner */}
-      <div className="relative h-[400px] md:h-[500px] overflow-hidden">
-        <img
-          src="/assets/images/services/hero.png"
-          alt="Conseil stratégique d'entreprise"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-white px-4">
-            <h1 className="text-h2-m md:text-h2-d font-bold font-display mb-4 leading-tight">
-              Conseil & Stratégie
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-              Transformez vos ambitions en résultats concrets avec un accompagnement stratégique personnalisé. Nous accompagnons les entreprises qui changent le monde.
-            </p>
-          </div>
-        </div>
-      </div>
+      <PageBanner
+        title="Conseil & Stratégie"
+        description="Transformez vos ambitions en résultats concrets avec un accompagnement stratégique personnalisé. Nous accompagnons les entreprises qui changent le monde."
+        imageUrl="/assets/images/services/hero.png"
+        imageAlt="Conseil stratégique d'entreprise"
+      />
 
-      {/* About / Stats Section with Image Collage */}
+{/* Hero Section with Image */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Image Collage */}
+            {/* Left: Image */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -115,33 +102,12 @@ const ServiceConseil = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="rounded-2xl overflow-hidden shadow-lg">
-                    <img 
-                      src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" 
-                      alt="Team collaboration"
-                      className="w-full h-40 object-cover"
-                    />
-                  </div>
-                  <div className="rounded-2xl overflow-hidden shadow-lg bg-primary p-6 flex flex-col justify-center">
-                    <p className="text-4xl font-bold text-accent mb-1">15+</p>
-                    <p className="text-white/80 text-sm">Années d'expertise</p>
-                  </div>
-                </div>
-                <div className="space-y-4 pt-8">
-                  <div className="rounded-2xl overflow-hidden shadow-lg bg-accent p-6 flex flex-col justify-center">
-                    <p className="text-4xl font-bold text-primary mb-1">200+</p>
-                    <p className="text-primary/80 text-sm">Entreprises accompagnées</p>
-                  </div>
-                  <div className="rounded-2xl overflow-hidden shadow-lg">
-                    <img 
-                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop" 
-                      alt="Team meeting"
-                      className="w-full h-48 object-cover"
-                    />
-                  </div>
-                </div>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                <img
+                  src="/assets/images/services/strategie.png"
+                  alt="Conseil stratégique d'entreprise"
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Floating badge */}
@@ -153,14 +119,22 @@ const ServiceConseil = () => {
                 transition={{ delay: 0.4 }}
               >
                 <div className="flex -space-x-2">
-                  {[1,2,3].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
+                  {[
+                    "https://api.dicebear.com/7.x/avataaars/svg?seed=afro1&skinColor=darkbrown&hairColor=brown&hairColor=black&facialHair=beardMagestic&facialHairColor=black",
+                    "https://api.dicebear.com/7.x/avataaars/svg?seed=afro2&skinColor=darkbrown&hairColor=brown&hairColor=black&facialHair=beardMedium&facialHairColor=black",
+                    "https://api.dicebear.com/7.x/avataaars/svg?seed=afro3&skinColor=darkbrown&hairColor=brown&hairColor=black&eyes=happy&facialHair=beardLight&facialHairColor=black"
+                  ].map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt="Expert"
+                      className="w-8 h-8 rounded-full border-2 border-white shadow-md object-cover"
+                    />
                   ))}
                 </div>
                 <span className="text-sm font-medium text-gray-700">+50 experts</span>
               </motion.div>
             </motion.div>
-            
             {/* Right: Content */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
@@ -305,13 +279,13 @@ const ServiceConseil = () => {
                 </p>
               </motion.div>
 
-              {/* Colonne 2 : Image */}
+{/* Colonne 2 : Image */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="flex justify-center relative">
                 <div className="w-full max-w-[360px] relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop" 
-                    alt="Business meeting"
-                    className="w-full h-auto object-contain rounded-3xl"
+                  <img
+                    src="/assets/images/services/cta.jpg"
+                    alt="Équipe conseil stratégique"
+                    className="w-full h-auto object-cover rounded-3xl"
                   />
                 </div>
               </motion.div>

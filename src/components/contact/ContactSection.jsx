@@ -93,7 +93,7 @@ const ContactSection = () => {
   return (
     <section className="py-16 md:py-24 bg-[#F5F7FA] relative overflow-hidden !mb-0">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 xl:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 xl:gap-12 items-start">
           {/* Left Side - Info Section */}
           <motion.div
             variants={itemVariants}
@@ -102,14 +102,6 @@ const ContactSection = () => {
             viewport={{ once: true }}
             className="space-y-6 lg:pt-8"
           >
-            {/* Badge */}
-            <div className="flex items-center gap-2 bg-accent/10 text-accent border border-accent pr-4 w-fit p-1 rounded-full">
-              <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
-                <Mail className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-sm font-medium">Contact</span>
-            </div>
-
             {/* Heading */}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary font-display mb-2">
               Parlons de votre projet
@@ -123,11 +115,12 @@ const ContactSection = () => {
 
             {/* Contact Info Cards */}
             <div className="flex flex-col gap-3 pt-4">
+              {/* Two phone numbers on same line with separator */}
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-accent text-white rounded-full flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-medium text-primary">+228 90 10 80 75</span>
+                <span className="text-sm font-medium text-primary">+228 90 10 80 75 <span className="text-text-muted mx-2">|</span> +221 78 149 29 98</span>
               </div>
 
               <div className="flex items-center gap-3">

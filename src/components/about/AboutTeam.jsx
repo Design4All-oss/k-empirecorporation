@@ -136,70 +136,20 @@ const AboutTeam = () => {
             className="relative"
           >
             <div className="relative">
-              {/* Main image - top */}
+              {/* Main image */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="relative rounded-2xl overflow-hidden shadow-xl mb-4"
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=600"
+                  src="/assets/images/about/equipes.png"
                   alt="Équipe K-EMPIRE"
-                  className="w-full h-56 object-cover"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
-              </motion.div>
-
-              {/* Bottom images row */}
-              <div className="grid grid-cols-2 gap-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="relative rounded-2xl overflow-hidden shadow-lg"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400"
-                    alt="Collaboration"
-                    className="w-full h-40 object-cover"
-                    loading="lazy"
-                  />
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="relative rounded-2xl overflow-hidden shadow-lg"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=400"
-                    alt="Expertise"
-                    className="w-full h-40 object-cover"
-                    loading="lazy"
-                  />
-                </motion.div>
-              </div>
-
-              {/* Floating badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                className="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-xl shadow-xl p-4 border border-gray-100"
-              >
-                <div className="text-center">
-                  <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-accent/10 flex items-center justify-center">
-                    <span className="text-2xl">👥</span>
-                  </div>
-                  <p className="text-xs text-accent font-semibold">Expertise</p>
-                  <p className="text-sm text-primary font-bold">Multidisciplinaire</p>
-                </div>
               </motion.div>
             </div>
           </motion.div>

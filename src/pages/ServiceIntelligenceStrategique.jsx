@@ -403,8 +403,8 @@ const ServiceIntelligenceStrategique = () => {
               </div>
               <div className="relative overflow-hidden rounded-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
-                  alt="Réunion de travail"
+                  src="/assets/images/services/cta-inteStrat.jpg"
+                  alt="Intelligence stratégique"
                   className="h-full w-full object-cover"
                 />
               </div>

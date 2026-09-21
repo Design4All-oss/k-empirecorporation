@@ -24,7 +24,7 @@ const AboutMission = () => {
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
           
-          {/* Left Column - Images & Stats */}
+          {/* Left Column - Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -32,39 +32,14 @@ const AboutMission = () => {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            {/* Images Stack */}
-            <div className="relative">
-              {/* Main Image */}
-              <div className="relative z-10 bg-white p-3 rounded-lg shadow-lg">
-                <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
-                  alt="Notre mission"
-                  className="w-full h-[350px] md:h-[420px] object-cover rounded"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Overlapping Image - Right */}
-              <div className="absolute -bottom-8 -right-4 md:-right-8 z-20 bg-white p-2 rounded-lg shadow-xl w-40 md:w-48">
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400"
-                  alt="Équipe"
-                  className="w-full h-28 md:h-32 object-cover rounded"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Overlapping Image - Bottom Left */}
-              <div className="absolute -bottom-4 left-0 md:left-4 z-30 bg-white p-2 rounded-lg shadow-xl w-36 md:w-44">
-                <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62a4a70?auto=format&fit=crop&q=80&w=400"
-                  alt="Collaboration"
-                  className="w-full h-24 md:h-28 object-cover rounded"
-                  loading="lazy"
-                />
-              </div>
+            <div className="relative rounded-lg overflow-hidden h-[350px] md:h-[420px]">
+              <img
+                src="/assets/images/about/mission.png"
+                alt="Notre mission"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
-
 
           </motion.div>
 

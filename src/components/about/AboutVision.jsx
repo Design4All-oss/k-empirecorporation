@@ -22,7 +22,7 @@ const AboutVision = () => {
           >
             <div className="relative rounded-lg overflow-hidden h-[450px] md:h-[600px]">
               <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
+                src="/assets/images/about/aspiration.png"
                 alt="Notre vision"
                 className="w-full h-full object-cover"
                 loading="lazy"

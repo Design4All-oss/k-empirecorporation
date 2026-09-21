@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, ArrowRight, TrendingUp, Award, Star } from 'lucide-react';
+import { ArrowRight, TrendingUp, Award, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useStatistiques } from '../../hooks/useSiteContent';
 
@@ -105,45 +105,19 @@ const FormationsHero = () => {
             </motion.div>
           </div>
 
-          {/* Right — Double-bezel visual */}
+          {/* Right — Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
             className="lg:col-span-5 relative hidden lg:block"
           >
-            <div className="relative">
-              {/* Outer shell */}
-              <div className="p-1.5 rounded-[2rem] bg-bg-alt ring-1 ring-border">
-                <div className="rounded-[calc(2rem-0.375rem)] overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1524178232363-1fb2b04b6ed6?w=900&h=700&fit=crop"
-                    alt="Session de formation K-EMPIRE"
-                    className="w-full h-[500px] object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Floating badge */}
-              <motion.div
-                className="absolute -bottom-8 -left-8 bg-primary text-white rounded-2xl p-5 shadow-[0_24px_48px_-12px_rgba(14,64,99,0.4)]"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
-                    <GraduationCap size={20} />
-                  </div>
-                  <div>
-                    <div className="font-display font-bold text-sm">Certifié & reconnu</div>
-                    <div className="flex items-center gap-1 mt-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={11} fill="#F5C75D" className="text-accent-light" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+            <div className="relative rounded-[2rem] overflow-hidden">
+              <img
+                src="/assets/images/formations/orchestrez.png"
+                alt="Session de formation K-EMPIRE"
+                className="w-full h-[500px] object-cover"
+              />
             </div>
           </motion.div>
         </div>

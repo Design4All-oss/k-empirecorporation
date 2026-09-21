@@ -247,13 +247,13 @@ const ServiceJuridique = () => {
                 </p>
               </motion.div>
 
-              {/* Colonne 2 : Image */}
+{/* Colonne 2 : Image */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="flex justify-center relative">
                 <div className="w-full max-w-[360px] relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1589829545856-d10d557cee95?w=600&h=400&fit=crop" 
-                    alt="Legal services"
-                    className="w-full h-auto object-contain rounded-3xl"
+                  <img
+                    src="/assets/images/services/cta-assistance.png"
+                    alt="Assistance juridique"
+                    className="w-full h-auto object-cover rounded-3xl"
                   />
                 </div>
               </motion.div>
