@@ -70,7 +70,7 @@ const ServiceConseil = () => {
         title="Conseil & Stratégie"
         description="K-EMPIRE Corporation vous accompagne dans la définition et la mise en œuvre de votre stratégie de développement. Conseil stratégique pour entreprises au Togo."
         url="/services/conseil-strategie"
-        image="/assets/images/services/hero.png"
+        image="/assets/images/services/hero.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
@@ -86,7 +86,7 @@ const ServiceConseil = () => {
       <PageBanner
         title="Conseil & Stratégie"
         description="Transformez vos ambitions en résultats concrets avec un accompagnement stratégique personnalisé. Nous accompagnons les entreprises qui changent le monde."
-        imageUrl="/assets/images/services/hero.png"
+        imageUrl="/assets/images/services/hero.webp"
         imageAlt="Conseil stratégique d'entreprise"
       />
 
@@ -104,7 +104,7 @@ const ServiceConseil = () => {
             >
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
                 <img
-                  src="/assets/images/services/strategie.png"
+                  src="/assets/images/services/strategie.webp"
                   alt="Conseil stratégique d'entreprise"
                   className="w-full h-full object-cover"
                 />
@@ -283,7 +283,7 @@ const ServiceConseil = () => {
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="flex justify-center relative">
                 <div className="w-full max-w-[360px] relative">
                   <img
-                    src="/assets/images/services/cta.jpg"
+                    src="/assets/images/services/cta.webp"
                     alt="Équipe conseil stratégique"
                     className="w-full h-auto object-cover rounded-3xl"
                   />

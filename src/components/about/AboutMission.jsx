@@ -34,7 +34,7 @@ const AboutMission = () => {
           >
             <div className="relative rounded-lg overflow-hidden h-[350px] md:h-[420px]">
               <img
-                src="/assets/images/about/mission.png"
+                src="/assets/images/about/mission.webp"
                 alt="Notre mission"
                 className="w-full h-full object-cover"
                 loading="lazy"

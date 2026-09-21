@@ -57,7 +57,7 @@ const Ecosysteme = () => {
         title="Notre Écosystème d'Experts"
         description="Découvrez l'écosystème d'experts de K-EMPIRE CORPORATION : juristes, consultants en stratégie, formateurs exécutifs et spécialistes de l'intelligence stratégique au service de votre performance."
         url="/ecosysteme-experts"
-        image="/assets/images/ecosysteme/hero.png"
+        image="/assets/images/ecosysteme/hero.webp"
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'Organization',
@@ -69,7 +69,7 @@ const Ecosysteme = () => {
       <PageBanner
         title="Notre Écosystème d'Experts"
         description="Un réseau d'experts nationaux et internationaux mobilisés autour de vos enjeux : droit, stratégie, formation et intelligence économique."
-        imageUrl="/assets/images/ecosysteme/hero.png"
+        imageUrl="/assets/images/ecosysteme/hero.webp"
         imageAlt="Écosystème d'experts K-EMPIRE CORPORATION"
       />
 

@@ -94,7 +94,7 @@ const Services = () => {
         title="Nos Expertises"
         description="K-EMPIRE Corporation propose des expertises en conseil stratégique, intelligence stratégique, ingénierie juridique et formation exécutive au Togo."
         url="/services"
-        image="/assets/images/services/hero.png"
+        image="/assets/images/services/hero.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
@@ -110,7 +110,7 @@ const Services = () => {
       <PageBanner
         title="Nos expertises"
         description="Nous vous accompagnons dans la conception, la sécurisation et la mise en œuvre de vos projets à haute valeur ajoutée."
-        imageUrl="/assets/images/services/hero.png"
+        imageUrl="/assets/images/services/hero.webp"
         imageAlt="Expertises K-EMPIRE CORPORATION"
       />
       <ServicesHero content={hero} />

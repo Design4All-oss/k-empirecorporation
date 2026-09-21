@@ -79,7 +79,7 @@ const HomeExpertise = () => {
           {/* Col 1 — image fixe 4:3 */}
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-border sticky top-28">
             <img
-              src="/assets/images/home/expertise.png"
+              src="/assets/images/home/expertise.webp"
               alt={expertise.title}
               className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
             />

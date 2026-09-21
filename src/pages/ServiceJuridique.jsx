@@ -83,7 +83,7 @@ const ServiceJuridique = () => {
         title="Assistance Juridique, Comptable & Fiscale"
         description="K-EMPIRE Corporation sécurise vos opérations juridiques, comptables et fiscales. Assistance juridique et fiscale pour entreprises au Togo."
         url="/services/assistance-juridique"
-        image="/assets/images/services/hero.png"
+        image="/assets/images/services/hero.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
@@ -99,7 +99,7 @@ const ServiceJuridique = () => {
       <PageBanner
         title="Assistance Juridique, Comptable & Fiscale"
         description="La complexité juridique, comptable et fiscale ne doit pas être un obstacle. Nos experts vous accompagnent pour sécuriser votre activité et optimiser votre performance."
-        imageUrl="/assets/images/services/hero.png"
+        imageUrl="/assets/images/services/hero.webp"
         imageAlt="Assistance juridique et fiscale"
       />
 
@@ -251,7 +251,7 @@ const ServiceJuridique = () => {
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="flex justify-center relative">
                 <div className="w-full max-w-[360px] relative">
                   <img
-                    src="/assets/images/services/cta-assistance.png"
+                    src="/assets/images/services/cta-assistance.webp"
                     alt="Assistance juridique"
                     className="w-full h-auto object-cover rounded-3xl"
                   />

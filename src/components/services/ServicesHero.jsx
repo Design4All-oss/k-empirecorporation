@@ -50,7 +50,7 @@ const ServicesHero = ({ content }) => {
           >
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
               <img 
-                src="/assets/images/services/potentiel.jpg" 
+                src="/assets/images/services/potentiel.webp" 
                 alt="Potentiel K-EMPIRE"
                 className="w-full h-full object-cover"
               />

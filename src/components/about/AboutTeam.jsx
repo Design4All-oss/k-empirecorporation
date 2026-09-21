@@ -145,7 +145,7 @@ const AboutTeam = () => {
                 className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl"
               >
                 <img
-                  src="/assets/images/about/equipes.png"
+                  src="/assets/images/about/equipes.webp"
                   alt="Équipe K-EMPIRE"
                   className="w-full h-full object-cover"
                   loading="lazy"

@@ -18,7 +18,7 @@ const About = () => {
         title="À propos"
         description="Découvrez K-EMPIRE Corporation - Cabinet international d'études, de conseil et de formation spécialisé dans l'accompagnement des organisations vers l'excellence managériale au Togo."
         url="/a-propos"
-        image="/assets/images/about/hero.png"
+        image="/assets/images/about/hero.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
@@ -30,7 +30,7 @@ const About = () => {
       <PageBanner
         title="À propos de nous"
         description="Au fil des années, notre engagement envers l'excellence et notre passion pour l'accompagnement de nos clients ont été reconnus."
-        imageUrl="/assets/images/about/hero.png"
+        imageUrl="/assets/images/about/hero.webp"
         imageAlt="Équipe K-EMPIRE CORPORATION"
       />
       <AboutIntro />

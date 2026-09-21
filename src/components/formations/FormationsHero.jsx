@@ -114,7 +114,7 @@ const FormationsHero = () => {
           >
             <div className="relative rounded-[2rem] overflow-hidden">
               <img
-                src="/assets/images/formations/orchestrez.png"
+                src="/assets/images/formations/orchestrez.webp"
                 alt="Session de formation K-EMPIRE"
                 className="w-full h-[500px] object-cover"
               />

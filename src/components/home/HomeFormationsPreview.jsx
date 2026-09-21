@@ -30,7 +30,7 @@ const HomeFormationsPreview = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
   };
 
-  const IMG = (f) => f.image || '/assets/images/formations/fallback.png';
+  const IMG = (f) => f.image || '/assets/images/formations/fallback.webp';
 
   return (
     <section className="py-16 md:py-24 bg-bg-alt">

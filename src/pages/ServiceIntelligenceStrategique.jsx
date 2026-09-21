@@ -151,7 +151,7 @@ const ServiceIntelligenceStrategique = () => {
         title="Intelligence Stratégique"
         description="Veille stratégique, analyses prospectives et intelligence économique pour éclairer vos décisions : anticipez les évolutions de votre environnement grâce à K-EMPIRE CORPORATION."
         url="/services/intelligence-strategique"
-        image="/assets/images/services/hero.png"
+        image="/assets/images/services/hero.webp"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
@@ -181,7 +181,7 @@ const ServiceIntelligenceStrategique = () => {
       <PageBanner
         title="Intelligence Stratégique"
         description="Anticipez, décidez, gagnez : veille stratégique, analyses prospectives et intelligence économique pour éclairer chacune de vos décisions."
-        imageUrl="/assets/images/services/hero.png"
+        imageUrl="/assets/images/services/hero.webp"
         imageAlt="Intelligence Stratégique K-EMPIRE CORPORATION"
       />
 
