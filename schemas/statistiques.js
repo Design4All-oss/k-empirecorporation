@@ -13,7 +13,8 @@ export default defineType({
   title: 'Statistiques',
   type: 'document',
   fields: [
-    section('accueil', 'Accueil'),
+    section('accueil', 'Accueil — Hero'),
+    section('accueilBas', 'Accueil — Section chiffres (bas de page)'),
     section('apropos', 'À propos'),
     section('services', 'Services'),
     section('formations', 'Formations — hero'),

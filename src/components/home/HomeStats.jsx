@@ -45,7 +45,7 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
 const HomeStats = () => {
   const { data: statsData } = useStatistiques();
   const { stats } = HOME_CONTENT;
-  const items = statsData?.accueil?.length ? statsData.accueil : stats.items;
+  const items = statsData?.accueilBas?.length ? statsData.accueilBas : stats.items;
 
   const icons = [Building2, Users, GraduationCap, CalendarDays];
   
