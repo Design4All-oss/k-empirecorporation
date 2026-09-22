@@ -5,6 +5,7 @@ import { ArrowRight, Calendar, CheckCircle2, Trophy } from 'lucide-react';
 import { HOME_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
 import { useBookingModal } from '../../context/BookingModalContext';
+import { useStatistiques } from '../../hooks/useSiteContent';
 
 // Composant compteur animé
 const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
@@ -52,6 +53,20 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
 const HomeHero = () => {
   const { hero } = HOME_CONTENT;
   const { openBookingModal } = useBookingModal();
+  const { data: statsData } = useStatistiques();
+  const accueilStats = statsData?.accueil || [];
+
+  const parseValue = (val) => {
+    const num = parseInt(val?.replace(/[^\d]/g, ''), 10);
+    return isNaN(num) ? 0 : num;
+  };
+
+  const stat1 = accueilStats[0] ? parseValue(accueilStats[0].value) : 2000;
+  const stat2 = accueilStats[1] ? parseValue(accueilStats[1].value) : 98;
+  const stat3 = accueilStats[2] ? parseValue(accueilStats[2].value) : 50;
+  const label1 = accueilStats[0]?.label || 'Experts formés';
+  const label2 = accueilStats[1]?.label || 'Satisfaction';
+  const label3 = accueilStats[2]?.label || 'Partenaires';
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -136,31 +151,31 @@ const HomeHero = () => {
                 <div className="flex flex-col">
                   <div className="flex items-baseline -mr-2">
                     <span className="text-3xl md:text-4xl font-bold text-primary font-display">
-                      <AnimatedCounter target={2000} duration={2.5} />
+                      <AnimatedCounter target={stat1} duration={2.5} />
                     </span>
                     <span className="text-lg md:text-xl font-bold text-accent font-display">+</span>
                   </div>
-                  <span className="text-small font-normal text-text-muted mt-1">Experts formés</span>
+                  <span className="text-small font-normal text-text-muted mt-1">{label1}</span>
                 </div>
                 <div className="w-px h-6 bg-border/60 hidden sm:block" />
                 <div className="flex flex-col">
                   <div className="flex items-baseline -mr-2">
                     <span className="text-3xl md:text-4xl font-bold text-primary font-display">
-                      <AnimatedCounter target={98} duration={2} />
+                      <AnimatedCounter target={stat2} duration={2} />
                     </span>
                     <span className="text-lg md:text-xl font-bold text-accent font-display">%</span>
                   </div>
-                  <span className="text-small font-normal text-text-muted mt-1">Satisfaction</span>
+                  <span className="text-small font-normal text-text-muted mt-1">{label2}</span>
                 </div>
                 <div className="w-px h-6 bg-border/60 hidden lg:block" />
                 <div className="flex flex-col">
                   <div className="flex items-baseline -mr-2">
                     <span className="text-3xl md:text-4xl font-bold text-primary font-display">
-                      <AnimatedCounter target={50} duration={1.8} />
+                      <AnimatedCounter target={stat3} duration={1.8} />
                     </span>
                     <span className="text-lg md:text-xl font-bold text-accent font-display">+</span>
                   </div>
-                  <span className="text-small font-normal text-text-muted mt-1">Partenaires</span>
+                  <span className="text-small font-normal text-text-muted mt-1">{label3}</span>
                 </div>
             </motion.div>
           </motion.div>
