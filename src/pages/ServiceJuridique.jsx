@@ -50,8 +50,8 @@ const ServiceJuridique = () => {
       keywords: ["Relations bancaires", "Levée de fonds", "Obligations", "Financement"]
     },
     {
-      title: "Contentieux & arbitration",
-      desc: "Représentation devant les tribunaux, médiation, arbitration. Nous défendons vos intérêts avec efficacité.",
+      title: "Contentieux & arbitrage",
+      desc: "Représentation devant les tribunaux, médiation, arbitrage. Nous défendons vos intérêts avec efficacité.",
       keywords: ["Contentieux", "Médiation", "Arbitrage", "Négociation"]
     }
   ];
