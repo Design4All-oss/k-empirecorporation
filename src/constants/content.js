@@ -9,7 +9,7 @@ export const HOME_CONTENT = {
   },
   stats: {
     title: "Nos résultats en chiffres",
-    intro: "Les chiffres témoignent de la confiance que nous accordent nos partenaires et de l’impact concret de nos interventions.",
+    intro: "Notre développement se mesure à travers la diversité de nos expertises, l’étendue de notre réseau et la confiance construite avec nos partenaires.",
     items: [
       { id: 1, value: "+20", label: "Entreprises accompagnées", text: "Nous avons accompagné plus d’une vingtaine d’entreprises dans la structuration, la sécurisation et le développement de leurs activités." },
       { id: 2, value: "+50", label: "Entrepreneurs et start-up", text: "Nous soutenons les entrepreneurs et start-up dans la mise en place de modèles d’affaires solides et durables." },
