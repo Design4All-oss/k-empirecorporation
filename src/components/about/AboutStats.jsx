@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { ABOUT_CONTENT } from '../../constants/content';
 import { useStatistiques } from '../../hooks/useSiteContent';
 
-const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
+const AnimatedCounter = ({ target, suffix = '', duration = 2, keepZeros = false }) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef(null);
@@ -24,7 +24,9 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
   }, [isInView, target, duration]);
 
   if (!target || target === 0) return null;
-  return <span ref={ref}>{hasStarted ? count : 0}{suffix}</span>;
+  const displayValue = hasStarted ? count : 0;
+  const displayStr = keepZeros ? String(displayValue).padStart(2, '0') : String(displayValue);
+  return <span ref={ref}>{displayStr}{suffix}</span>;
 };
 
 const AboutStats = () => {
@@ -70,6 +72,7 @@ const AboutStats = () => {
               const numericValue = getNumber(item.value);
               const suffix = getSuffix(item.value);
               const shouldShowAnimated = shouldAnimate(item.value);
+              const keepZeros = /^0\d/.test(item.value.replace(/\s/g, ''));
 
               return (
                 <motion.div
@@ -81,7 +84,7 @@ const AboutStats = () => {
                     {shouldShowAnimated ? (
                       <>
                         <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white font-display">
-                          <AnimatedCounter target={numericValue} duration={2 + index * 0.3} />
+                          <AnimatedCounter target={numericValue} duration={2 + index * 0.3} keepZeros={keepZeros} />
                         </span>
                         <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-accent font-display">{suffix}</span>
                       </>

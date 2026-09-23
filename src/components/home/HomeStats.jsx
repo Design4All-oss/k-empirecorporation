@@ -5,7 +5,7 @@ import { HOME_CONTENT } from '../../constants/content';
 import { useStatistiques } from '../../hooks/useSiteContent';
 
 // Composant compteur animé
-const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
+const AnimatedCounter = ({ target, suffix = '', duration = 2, keepZeros = false }) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const ref = useRef(null);
@@ -36,10 +36,11 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
   }, [isInView, target, duration]);
   
   const displayValue = hasStarted ? count : target;
+  const displayStr = keepZeros ? String(displayValue).padStart(2, '0') : String(displayValue);
   
   if (!target || target === 0) return null;
   
-  return <span ref={ref}>{displayValue}{suffix}</span>;
+  return <span ref={ref}>{displayStr}{suffix}</span>;
 };
 
 const HomeStats = () => {
@@ -116,6 +117,7 @@ const HomeStats = () => {
               const numericValue = extractNumber(item.value);
               const suffix = getSuffix(item.value);
               const shouldShowAnimated = shouldAnimate(item.value);
+              const keepZeros = /^0\d/.test(item.value.replace(/\s/g, ''));
               
               return (
                 <motion.div
@@ -130,7 +132,7 @@ const HomeStats = () => {
                       <h3 className="text-3xl md:text-4xl font-bold text-accent font-display">2018</h3>
                     ) : shouldShowAnimated ? (
                       <h3 className="text-3xl md:text-4xl font-bold text-accent font-display">
-                        <AnimatedCounter target={numericValue} duration={2 + index * 0.3} suffix={suffix} />
+                        <AnimatedCounter target={numericValue} duration={2 + index * 0.3} suffix={suffix} keepZeros={keepZeros} />
                       </h3>
                     ) : (
                       <h3 className="text-3xl md:text-4xl font-bold text-accent font-display">

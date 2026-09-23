@@ -163,7 +163,7 @@ const HomeHero = () => {
                     <span className="text-3xl md:text-4xl font-bold text-primary font-display">
                       <AnimatedCounter target={stat2} duration={2} />
                     </span>
-                    <span className="text-lg md:text-xl font-bold text-accent font-display">%</span>
+                    <span className="text-lg md:text-xl font-bold text-accent font-display">+</span>
                   </div>
                   <span className="text-small font-normal text-text-muted mt-1">{label2}</span>
                 </div>
