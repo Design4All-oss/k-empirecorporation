@@ -111,7 +111,7 @@ const HomeStats = () => {
           </motion.div>
 
           {/* Right side - Stats */}
-          <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="flex-1 grid grid-cols-2 gap-8 md:gap-12">
             {items.map((item, index) => {
               const Icon = icons[index] || icons[0];
               const numericValue = extractNumber(item.value);
