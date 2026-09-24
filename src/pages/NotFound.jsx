@@ -22,27 +22,6 @@ const contentVariants = {
   }
 };
 
-const numberVariants = {
-  initial: { opacity: 0, scale: 0.5, rotate: -10 },
-  animate: { 
-    opacity: 1, 
-    scale: 1,
-    rotate: 0,
-    transition: { type: "spring", stiffness: 100, damping: 15 }
-  }
-};
-
-const floatAnimation = {
-  animate: {
-    y: [0, -10, 0],
-    transition: {
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-};
-
 function NotFound() {
   const { openBookingModal } = useBookingModal();
   return (

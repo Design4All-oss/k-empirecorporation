@@ -29,7 +29,7 @@ const HeartIcon = () => (
 );
 
 const Footer = () => {
-  const { contactInfo, socialLinks, copyright } = COMMON_CONTENT.footer;
+  const { socialLinks } = COMMON_CONTENT.footer;
   const currentYear = new Date().getFullYear();
 
   const containerVariants = {

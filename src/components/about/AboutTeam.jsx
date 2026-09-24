@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronDown, GraduationCap } from 'lucide-react';
-import { ABOUT_CONTENT } from '../../constants/content';
 
 const teamRoles = [
   "Avocats & Juristes d'affaires",
@@ -19,7 +18,6 @@ const comiteRoles = [
 ];
 
 const AboutTeam = () => {
-  const { team } = ABOUT_CONTENT;
   const [comiteOpen, setComiteOpen] = useState(false);
 
   return (

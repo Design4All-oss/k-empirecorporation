@@ -91,13 +91,13 @@ const CookieConsentProvider = ({
   return (
     <CookieConsentContext.Provider value={value}>
       {children}
-      {show && <CookieConsentBanner storageKey={storageKey} />}
+      {show && <CookieConsentBanner />}
     </CookieConsentContext.Provider>
   );
 };
 
 // --- Banner ---
-const CookieConsentBanner = ({ storageKey }) => {
+const CookieConsentBanner = () => {
   const { expanded, setExpanded, acceptAll, rejectAll, save, dismiss } = useCookieConsent();
   const [visible, setVisible] = useState(false);
 

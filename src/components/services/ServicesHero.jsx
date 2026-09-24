@@ -35,7 +35,7 @@ const features = [
 ];
 
 const ServicesHero = ({ content }) => {
-  const { title, subtitle, description } = content;
+  const { title, subtitle } = content;
 
   return (
     <section className="relative bg-white overflow-hidden">

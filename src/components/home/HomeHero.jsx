@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, CheckCircle2, Trophy } from 'lucide-react';
-import { HOME_CONTENT } from '../../constants/content';
 import Button from '../ui/Button';
 import { useBookingModal } from '../../context/BookingModalContext';
 import { useStatistiques } from '../../hooks/useSiteContent';
@@ -51,7 +50,6 @@ const AnimatedCounter = ({ target, suffix = '', duration = 2 }) => {
 };
 
 const HomeHero = () => {
-  const { hero } = HOME_CONTENT;
   const { openBookingModal } = useBookingModal();
   const { data: statsData } = useStatistiques();
   const accueilStats = statsData?.accueil || [];

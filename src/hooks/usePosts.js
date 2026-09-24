@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { client, urlFor, portableTextToHtml } from '../config/sanity'
+import { client, portableTextToHtml } from '../config/sanity'
 
 const POST_PROJECTION = `{
   _id,
