@@ -78,9 +78,11 @@ const EvenementSingle = () => {
         fonction: formData.fonction,
         entreprise: formData.organisation,
         type: formData.inscriptionType,
-        message: formData.inscriptionType === 'institutionnelle'
-          ? `Dénomination: ${formData.denomination}. RCCM: ${formData.rccm}. NIF: ${formData.nif}. Siège social: ${formData.siegeSocial}. Responsable: ${formData.responsableNom}`
-          : '',
+        denomination: formData.denomination,
+        rccm: formData.rccm,
+        nif: formData.nif,
+        siegeSocial: formData.siegeSocial,
+        responsableNom: formData.responsableNom,
       });
       toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
       setShowModal(false);

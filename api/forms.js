@@ -136,12 +136,12 @@ const ENDPOINTS = {
   'inscription-formation': {
     type: 'inscription',
     label: 'Inscription formation',
-    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'formation_slug', 'formation_id', 'session_id', 'message'],
+    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'formation_slug', 'formation_id', 'session_id', 'message', 'type', 'denomination', 'rccm', 'nif', 'siegeSocial', 'responsableNom'],
   },
   'inscription-evenement': {
     type: 'inscriptionEvenement',
     label: 'Inscription événement',
-    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'evenement_slug', 'evenement_id', 'type', 'message'],
+    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'evenement_slug', 'evenement_id', 'type', 'denomination', 'rccm', 'nif', 'siegeSocial', 'responsableNom'],
   },
   devis: {
     type: 'soumissionDevis',
@@ -230,6 +230,8 @@ function buildAdminEmail(type, fields) {
     organization: 'Organisation', function: 'Fonction', phone: 'Téléphone',
     country: 'Pays', subject: 'Sujet', date: 'Date', time: 'Heure',
     consentement: 'RGPD',
+    type: "Type d'inscription", denomination: 'Dénomination', rccm: 'RCCM',
+    nif: 'NIF', siegeSocial: 'Siège social', responsableNom: 'Responsable inscription',
   };
 
   const rows = Object.entries(fields)

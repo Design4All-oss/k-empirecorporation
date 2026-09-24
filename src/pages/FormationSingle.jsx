@@ -89,12 +89,14 @@ const FormationSingle = () => {
         formation_id: formation?.id?.toString() || '',
         fonction: formData.fonction,
         entreprise: formData.organization,
-        message: `Format: ${formData.format}. Objectif: ${formData.objectif}. Type: ${formData.inscriptionType}${
-          formData.inscriptionType === 'institutionnelle'
-            ? `. Dénomination: ${formData.denomination}. RCCM: ${formData.rccm}. NIF: ${formData.nif}. Siège social: ${formData.siegeSocial}. Responsable: ${formData.responsableNom}`
-            : ''
-        }`,
+        message: `Format: ${formData.format}. Objectif: ${formData.objectif}`,
         session_id: formData.sessionId,
+        type: formData.inscriptionType,
+        denomination: formData.denomination,
+        rccm: formData.rccm,
+        nif: formData.nif,
+        siegeSocial: formData.siegeSocial,
+        responsableNom: formData.responsableNom,
       });
       toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
       setShowModal(false);

@@ -63,6 +63,42 @@ export default defineType({
       readOnly: true,
     }),
     defineField({
+      name: 'type',
+      title: "Type d'inscription",
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Individuelle', value: 'individuelle' },
+          { title: 'Institutionnelle', value: 'institutionnelle' },
+        ],
+      },
+    }),
+    defineField({
+      name: 'denomination',
+      title: "Dénomination de l'institution",
+      type: 'string',
+    }),
+    defineField({
+      name: 'rccm',
+      title: 'RCCM',
+      type: 'string',
+    }),
+    defineField({
+      name: 'nif',
+      title: 'NIF',
+      type: 'string',
+    }),
+    defineField({
+      name: 'siegeSocial',
+      title: 'Siège social',
+      type: 'string',
+    }),
+    defineField({
+      name: 'responsableNom',
+      title: "Nom du responsable de l'inscription",
+      type: 'string',
+    }),
+    defineField({
       name: 'message',
       title: 'Message',
       type: 'text',
