@@ -48,6 +48,12 @@ const EvenementSingle = () => {
     organisation: '',
     fonction: '',
     pays: '',
+    inscriptionType: '',
+    denomination: '',
+    rccm: '',
+    nif: '',
+    siegeSocial: '',
+    responsableNom: '',
     acceptContact: false
   });
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -71,6 +77,10 @@ const EvenementSingle = () => {
         evenement_id: evenement?.id?.toString() || '',
         fonction: formData.fonction,
         entreprise: formData.organisation,
+        type: formData.inscriptionType,
+        message: formData.inscriptionType === 'institutionnelle'
+          ? `Dénomination: ${formData.denomination}. RCCM: ${formData.rccm}. NIF: ${formData.nif}. Siège social: ${formData.siegeSocial}. Responsable: ${formData.responsableNom}`
+          : '',
       });
       toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
       setShowModal(false);
@@ -82,6 +92,12 @@ const EvenementSingle = () => {
         organisation: '',
         fonction: '',
         pays: '',
+        inscriptionType: '',
+        denomination: '',
+        rccm: '',
+        nif: '',
+        siegeSocial: '',
+        responsableNom: '',
         acceptContact: false
       });
     } catch (err) {
@@ -563,6 +579,32 @@ const EvenementSingle = () => {
                       <h2 className="text-xl font-bold text-primary">Vos informations</h2>
                     </div>
                     
+                    <div className="space-y-3 mb-6">
+                      <p className="text-sm font-semibold text-primary">Type d'inscription</p>
+                      <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                        <input 
+                          type="radio" 
+                          name="inscriptionType" 
+                          value="individuelle"
+                          checked={formData.inscriptionType === 'individuelle'}
+                          onChange={(e) => setFormData({...formData, inscriptionType: e.target.value})}
+                          className="w-5 h-5 text-accent accent-accent"
+                        />
+                        <span className="text-primary font-medium">Individuelle</span>
+                      </label>
+                      <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                        <input 
+                          type="radio" 
+                          name="inscriptionType" 
+                          value="institutionnelle"
+                          checked={formData.inscriptionType === 'institutionnelle'}
+                          onChange={(e) => setFormData({...formData, inscriptionType: e.target.value})}
+                          className="w-5 h-5 text-accent accent-accent"
+                        />
+                        <span className="text-primary font-medium">Institutionnelle (Entreprise / Organisation)</span>
+                      </label>
+                    </div>
+                    
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-primary mb-1">Nom & Prénom *</label>
@@ -611,6 +653,67 @@ const EvenementSingle = () => {
                         />
                       </div>
 
+                      {formData.inscriptionType === 'institutionnelle' && (
+                        <div className="border-t border-gray-100 pt-4 space-y-4">
+                          <p className="text-sm font-semibold text-primary">Informations de l'institution</p>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">Dénomination *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.denomination}
+                              onChange={(e) => setFormData({...formData, denomination: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="Nom officiel de l'institution"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">RCCM *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.rccm}
+                              onChange={(e) => setFormData({...formData, rccm: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="N° RCCM"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">NIF *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.nif}
+                              onChange={(e) => setFormData({...formData, nif: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="N° NIF"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">Siège social *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.siegeSocial}
+                              onChange={(e) => setFormData({...formData, siegeSocial: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="Adresse du siège social"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">Nom du responsable de l'inscription *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.responsableNom}
+                              onChange={(e) => setFormData({...formData, responsableNom: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="Nom du responsable"
+                            />
+                          </div>
+                        </div>
+                      )}
+
                       <div>
                         <label className="block text-sm font-medium text-primary mb-1">Fonction / Profession</label>
                         <input 
@@ -641,7 +744,7 @@ const EvenementSingle = () => {
                       </Button>
                       <Button 
                         onClick={nextStep}
-                        disabled={!formData.name || !formData.email || !formData.phone || !formData.pays}
+                        disabled={!formData.inscriptionType || !formData.name || !formData.email || !formData.phone || !formData.pays}
                       >
                         Suivant
                       </Button>

@@ -55,6 +55,11 @@ const FormationSingle = () => {
     format: '',
     objectif: '',
     sessionId: '',
+    denomination: '',
+    rccm: '',
+    nif: '',
+    siegeSocial: '',
+    responsableNom: '',
     acceptContact: false
   });
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -84,7 +89,11 @@ const FormationSingle = () => {
         formation_id: formation?.id?.toString() || '',
         fonction: formData.fonction,
         entreprise: formData.organization,
-        message: `Format: ${formData.format}. Objectif: ${formData.objectif}. Type: ${formData.inscriptionType}`,
+        message: `Format: ${formData.format}. Objectif: ${formData.objectif}. Type: ${formData.inscriptionType}${
+          formData.inscriptionType === 'institutionnelle'
+            ? `. Dénomination: ${formData.denomination}. RCCM: ${formData.rccm}. NIF: ${formData.nif}. Siège social: ${formData.siegeSocial}. Responsable: ${formData.responsableNom}`
+            : ''
+        }`,
         session_id: formData.sessionId,
       });
       toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
@@ -102,6 +111,11 @@ const FormationSingle = () => {
         format: '',
         objectif: '',
         sessionId: '',
+        denomination: '',
+        rccm: '',
+        nif: '',
+        siegeSocial: '',
+        responsableNom: '',
         acceptContact: false
       });
     } catch (err) {
@@ -760,6 +774,67 @@ const FormationSingle = () => {
                           placeholder="Votre pays"
                         />
                       </div>
+
+                      {formData.inscriptionType === 'institutionnelle' && (
+                        <div className="border-t border-gray-100 pt-4 space-y-4">
+                          <p className="text-sm font-semibold text-primary">Informations de l'institution</p>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">Dénomination *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.denomination}
+                              onChange={(e) => setFormData({...formData, denomination: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="Nom officiel de l'institution"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">RCCM *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.rccm}
+                              onChange={(e) => setFormData({...formData, rccm: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="N° RCCM"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">NIF *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.nif}
+                              onChange={(e) => setFormData({...formData, nif: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="N° NIF"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">Siège social *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.siegeSocial}
+                              onChange={(e) => setFormData({...formData, siegeSocial: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="Adresse du siège social"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-primary mb-1">Nom du responsable de l'inscription *</label>
+                            <input 
+                              type="text"
+                              required
+                              value={formData.responsableNom}
+                              onChange={(e) => setFormData({...formData, responsableNom: e.target.value})}
+                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
+                              placeholder="Nom du responsable"
+                            />
+                          </div>
+                        </div>
+                      )}
 
                       {formation.sessions && formation.sessions.length > 0 && (
                         <div>

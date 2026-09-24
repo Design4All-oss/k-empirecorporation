@@ -141,7 +141,7 @@ const ENDPOINTS = {
   'inscription-evenement': {
     type: 'inscriptionEvenement',
     label: 'Inscription événement',
-    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'evenement_slug', 'evenement_id'],
+    fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'evenement_slug', 'evenement_id', 'type', 'message'],
   },
   devis: {
     type: 'soumissionDevis',
