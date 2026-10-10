@@ -188,34 +188,35 @@ const BRAND = {
 
 // ── HTML email layout ───────────────────────────────────────────
 function emailShell(title, bodyHtml) {
+  const year = new Date().getFullYear();
   return `
 <!DOCTYPE html>
 <html lang="fr">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:${BRAND.bgAlt};font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:${BRAND.text};">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.bgAlt};padding:32px 0;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.bgAlt};padding:32px 12px;">
   <tr><td align="center">
     <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
-      <!-- Header -->
-      <tr><td style="background:${BRAND.primary};padding:28px 40px;border-radius:12px 12px 0 0;text-align:center;">
-        <h1 style="margin:0;color:#FFFFFF;font-size:20px;font-weight:700;letter-spacing:0.5px;">K-EMPIRE CORPORATION</h1>
-        <p style="margin:6px 0 0;color:${BRAND.accentLight};font-size:13px;">${title}</p>
+      <tr><td style="background:${BRAND.primary};padding:32px 40px 26px;border-radius:12px 12px 0 0;text-align:center;">
+        <img src="https://www.k-empirecorporation.com/assets/logos/Favicon_kempire.webp" alt="K-EMPIRE CORPORATION" width="44" height="44" style="display:inline-block;width:44px;height:44px;border-radius:10px;" />
+        <p style="margin:14px 0 0;color:#FFFFFF;font-size:14px;font-weight:700;letter-spacing:3px;">K-EMPIRE CORPORATION</p>
+        <div style="width:28px;height:2px;background:${BRAND.accent};margin:12px auto;font-size:0;line-height:0;">&nbsp;</div>
+        <p style="margin:0;color:${BRAND.accentLight};font-size:12px;letter-spacing:1.5px;text-transform:uppercase;">${title}</p>
       </td></tr>
-      <!-- Body -->
       <tr><td style="background:${BRAND.bg};padding:36px 40px;">
         ${bodyHtml}
       </td></tr>
-      <!-- Footer -->
-      <tr><td style="background:${BRAND.bg};padding:0 40px 28px;">
-        <hr style="border:none;border-top:1px solid ${BRAND.border};margin:0 0 20px;">
-        <p style="margin:0;font-size:12px;color:${BRAND.textLight};text-align:center;line-height:1.6;">
-          K-EMPIRE CORPORATION &mdash; Conseil &amp; Formation<br>
-          Lomé, Togo &bull; <a href="mailto:contact@k-empirecorporation.com" style="color:${BRAND.accent};">contact@k-empirecorporation.com</a><br>
-          <a href="https://k-empirecorporation.com" style="color:${BRAND.accent};">k-empirecorporation.com</a>
+      <tr><td style="height:3px;background:linear-gradient(90deg,${BRAND.primary},${BRAND.accent},${BRAND.primary});font-size:0;line-height:0;">&nbsp;</td></tr>
+      <tr><td style="background:${BRAND.primary};padding:22px 40px 24px;border-radius:0 0 12px 12px;text-align:center;">
+        <p style="margin:0 0 8px;font-size:12px;color:rgba(255,255,255,0.78);line-height:1.7;">
+          Lomé, Togo &bull; <a href="mailto:contact@k-empirecorporation.com" style="color:${BRAND.accentLight};text-decoration:none;">contact@k-empirecorporation.com</a>
         </p>
+        <p style="margin:0 0 12px;font-size:12px;">
+          <a href="https://k-empirecorporation.com" style="color:${BRAND.accentLight};text-decoration:none;letter-spacing:0.5px;">k-empirecorporation.com</a>
+        </p>
+        <div style="width:36px;height:1px;background:rgba(255,255,255,0.25);margin:0 auto 12px;font-size:0;line-height:0;">&nbsp;</div>
+        <p style="margin:0;font-size:11px;color:rgba(255,255,255,0.55);">&copy; ${year} K-EMPIRE CORPORATION &middot; Tous droits réservés</p>
       </td></tr>
-      <!-- Accent bar -->
-      <tr><td style="height:4px;background:linear-gradient(90deg,${BRAND.primary},${BRAND.accent},${BRAND.primary});border-radius:0 0 12px 12px;"></td></tr>
     </table>
   </td></tr>
 </table>
@@ -223,9 +224,6 @@ function emailShell(title, bodyHtml) {
 </html>`;
 }
 
-// Échappe les valeurs saisies par les visiteurs avant tout rendu HTML.
-// Sans cela, un champ libre (nom, message…) injecte du HTML dans les
-// e-mails reçus par l'équipe.
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
@@ -234,14 +232,15 @@ function escapeHtml(value) {
 
 function fieldRow(label, value) {
   if (!value) return '';
-  return `<tr><td style="padding:8px 0;font-size:13px;color:${BRAND.textLight};width:140px;vertical-align:top;">${escapeHtml(label)}</td><td style="padding:8px 0;font-size:14px;color:${BRAND.text};font-weight:500;">${escapeHtml(value)}</td></tr>`;
+  return `<tr><td style="padding:12px 0;border-bottom:1px solid ${BRAND.border};width:150px;font-size:11px;color:${BRAND.textLight};text-transform:uppercase;letter-spacing:0.5px;vertical-align:top;">${escapeHtml(label)}</td><td style="padding:12px 0;border-bottom:1px solid ${BRAND.border};font-size:14px;color:${BRAND.text};font-weight:500;line-height:1.5;">${escapeHtml(value)}</td></tr>`;
 }
 
 function fieldsTable(rows) {
-  return `<table width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0 20px;">${rows.join('')}</table>`;
+  return `<table width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 24px;background:${BRAND.bgAlt};border-radius:10px;"><tr><td style="padding:6px 24px;"><table width="100%" cellpadding="0" cellspacing="0">${rows.join('')}</table></td></tr></table>`;
 }
 
-// ── Email builders ──────────────────────────────────────────────
+// ── Email builders ─────────────────────────────────────────────
+
 function buildAdminEmail(type, fields) {
   const labels = {
     newsletter: 'Nouvelle inscription newsletter',
@@ -308,7 +307,7 @@ function buildAdminEmail(type, fields) {
       Type : <strong>${labels[type] || type}</strong> &bull; ${new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
     </p>
     ${fieldsTable(rows)}
-    <a href="https://k-empirecorporation.com" style="display:inline-block;padding:12px 28px;background:${BRAND.accent};color:#fff;font-weight:600;font-size:14px;text-decoration:none;border-radius:8px;margin-top:8px;">Voir dans le Studio</a>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 4px;"><tr><td align="center"><table cellpadding="0" cellspacing="0"><tr><td bgcolor="${BRAND.accent}" style="border-radius:8px;"><a href="https://www.sanity.io/@ohurvf4bb/studio/szov8e3v9ao4o4p086yg1r53/kempire-content" style="display:inline-block;padding:13px 32px;background:${BRAND.accent};color:#FFFFFF;font-weight:600;font-size:13px;text-decoration:none;letter-spacing:0.5px;border-radius:8px;">OUVRIR LE STUDIO</a></td></tr></table></td></tr></table>
   `);
 }
 
@@ -321,24 +320,29 @@ function buildUserConfirmation(type, fields) {
     rdv: 'Votre demande de rendez-vous a bien été reçue. Nous vous contacterons rapidement pour confirmer le créneau.',
   };
 
-  return emailShell('Confirmation', `
-    <p style="margin:0 0 4px;font-size:16px;font-weight:600;color:${BRAND.text};">
-      Bonjour${fields.nom ? ' ' + escapeHtml(fields.nom) : ''} 👋
+  return emailShell('Confirmation de votre demande', `
+    <p style="margin:0 0 18px;font-size:17px;font-weight:600;color:${BRAND.text};">
+      Bonjour${fields.nom ? ' ' + escapeHtml(fields.nom) : ''},
     </p>
-    <p style="margin:0 0 24px;font-size:14px;color:${BRAND.textLight};line-height:1.7;">
+    <p style="margin:0 0 16px;font-size:15px;color:${BRAND.text};line-height:1.75;">
       ${messages[type] || 'Merci pour votre soumission. Nous vous recontacterons très rapidement.'}
     </p>
-    <table width="100%" cellpadding="0" cellspacing="0">
-      <tr><td style="text-align:center;">
-        <a href="https://k-empirecorporation.com" style="display:inline-block;padding:14px 36px;background:${BRAND.primary};color:#fff;font-weight:600;font-size:14px;text-decoration:none;border-radius:8px;">
-          Découvrir nos services
-        </a>
+    <p style="margin:0;font-size:14px;color:${BRAND.textLight};line-height:1.7;">
+      Nous restons à votre disposition pour toute question.<br>
+      L'équipe K-EMPIRE CORPORATION
+    </p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:28px 0 4px;">
+      <tr><td align="center">
+        <table cellpadding="0" cellspacing="0"><tr>
+          <td bgcolor="${BRAND.accent}" style="border-radius:8px;">
+            <a href="https://www.k-empirecorporation.com" style="display:inline-block;padding:14px 36px;background:${BRAND.accent};color:#FFFFFF;font-weight:600;font-size:13px;text-decoration:none;letter-spacing:0.5px;border-radius:8px;">DÉCOUVRIR NOS SERVICES</a>
+          </td>
+        </tr></table>
       </td></tr>
     </table>
   `);
 }
 
-// ── Send email ──────────────────────────────────────────────────
 async function sendEmail(to, subject, html) {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
@@ -469,3 +473,5 @@ export default async function handler(req, res) {
 
   return res.status(200).json({ success: true });
 }
+
+export { emailShell, buildAdminEmail, buildUserConfirmation };
