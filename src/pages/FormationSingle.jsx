@@ -205,18 +205,29 @@ const FormationSingle = () => {
                 if (keys.length === 0) return null;
 
                 return (
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 p-6 bg-bg-alt rounded-2xl">
-                    {keys.map(({ icon: Icon, label, value }) => (
-                      <div key={label} className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Icon size={18} className="text-accent" />
+                  <div className="mb-8 p-6 bg-bg-alt rounded-2xl grid md:grid-cols-[1fr_auto] gap-6 md:gap-8 items-center">
+                    <div className="grid grid-cols-2 gap-4">
+                      {keys.map(({ icon: Icon, label, value }) => (
+                        <div key={label} className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Icon size={18} className="text-accent" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-xs text-text-muted">{label}</p>
+                            <p className="text-sm font-semibold text-primary truncate">{value}</p>
+                          </div>
                         </div>
-                        <div className="min-w-0">
-                          <p className="text-xs text-text-muted">{label}</p>
-                          <p className="text-sm font-semibold text-primary truncate">{value}</p>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => setShowModal(true)}
+                      className="group inline-flex items-center gap-2 text-small font-normal font-display tracking-tight text-accent hover:text-primary transition-colors duration-300 hover:cursor-pointer whitespace-nowrap"
+                    >
+                      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                      <span className="underline decoration-accent/40 decoration-2 underline-offset-4 group-hover:decoration-primary/40">
+                        S'inscrire
+                      </span>
+                    </button>
                   </div>
                 );
               })()}
