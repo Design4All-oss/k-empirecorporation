@@ -129,7 +129,7 @@ const RegistrationModal = ({ formation, onClose }) => {
   const isIndividual = form.type === 'individuelle';
   const isInstitution = form.type === 'institutionnelle';
   const nbParticipants = Number(form.nbParticipants) || 0;
-  const showTable = isInstitution && nbParticipants > 1;
+  const showTable = isInstitution && nbParticipants >= 1;
 
   const steps = form.type ? ALL_STEPS : [0];
   const meta = (isIndividual ? STEP_META_INDIVIDUAL : STEP_META_INSTITUTION)[step] || STEP_META_INSTITUTION[0];
@@ -179,7 +179,7 @@ const RegistrationModal = ({ formation, onClose }) => {
     const n = raw === '' ? '' : Math.max(0, Math.min(99, parseInt(raw, 10) || 0));
     setForm((f) => {
       const participants = [...f.participants];
-      if (typeof n === 'number' && n > 1) {
+      if (typeof n === 'number' && n >= 1) {
         while (participants.length < n) participants.push({ ...EMPTY_PARTICIPANT });
         if (participants.length > n) participants.length = n;
       }
@@ -203,6 +203,7 @@ const RegistrationModal = ({ formation, onClose }) => {
   const removeParticipant = (index) =>
     setForm((f) => {
       const participants = f.participants.filter((_, i) => i !== index);
+      if (participants.length === 0) participants.push({ ...EMPTY_PARTICIPANT });
       return { ...f, participants, nbParticipants: Math.max(1, participants.length) };
     });
 
@@ -621,7 +622,7 @@ const RegistrationModal = ({ formation, onClose }) => {
         </div>
       ) : (
         <p className="text-sm text-text-muted">
-          Indiquez plus d&apos;un participant pour renseigner leurs coordonnées individuellement.
+          Indiquez le nombre de participants pour renseigner leurs coordonnées.
         </p>
       )}
     </>
