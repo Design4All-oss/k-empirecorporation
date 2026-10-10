@@ -63,18 +63,18 @@ const FormationsHero = () => {
             <motion.div
               {...fadeUp}
               transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1], delay: 0.24 }}
-              className="mt-10 flex flex-col sm:flex-row gap-4"
+              className="mt-10 flex flex-wrap items-center gap-2 sm:gap-4"
             >
               <Link
                 to="/contact"
-                className="group inline-flex items-center justify-center gap-2 rounded-pill select-none bg-accent px-6 py-3 md:px-8 md:py-4 font-normal text-small tracking-tight text-white transition-all duration-300 hover:bg-accent-dark hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="group inline-flex items-center justify-center gap-2 rounded-pill select-none whitespace-nowrap bg-accent px-2.5 py-3 text-xs font-display sm:px-6 sm:py-3 sm:text-small md:px-8 md:py-4 font-normal tracking-tight text-white transition-all duration-300 hover:bg-accent-dark hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 Demander un devis
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/formations#formations"
-                className="inline-flex items-center justify-center gap-2 rounded-pill select-none bg-transparent px-6 py-3 md:px-8 md:py-4 font-normal text-small tracking-tight text-primary transition-all duration-300 hover:bg-primary/10 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="inline-flex items-center justify-center gap-2 rounded-pill select-none whitespace-nowrap bg-transparent px-2.5 py-3 text-xs font-display sm:px-6 sm:py-3 sm:text-small md:px-8 md:py-4 font-normal tracking-tight text-primary transition-all duration-300 hover:bg-primary/10 hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 Parcourir le catalogue
               </Link>

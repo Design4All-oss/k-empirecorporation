@@ -116,7 +116,7 @@ const Ecosysteme = () => {
       {/* Méthode */}
       <section className="bg-white py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -147,6 +147,21 @@ const Ecosysteme = () => {
                 >
                   Nous contacter
                 </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <div className="rounded-[2rem] overflow-hidden h-72 lg:h-[440px]">
+                <img
+                  src="/assets/images/about/equipes.webp"
+                  alt="Équipe d'experts K-EMPIRE CORPORATION"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
           </div>

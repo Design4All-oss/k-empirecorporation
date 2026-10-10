@@ -166,13 +166,13 @@ const FormationsCatalog = () => {
             </div>
 
             {/* Type de formation Filter - pushed to right */}
-            <div className="flex-1 flex justify-end">
+            <div className="flex-1 flex justify-start sm:justify-end">
               <div className="flex gap-2 flex-wrap">
                 {formationTypes.map((type) => (
                   <button
                     key={type}
                     onClick={() => setActiveType(type)}
-                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 cursor-pointer whitespace-nowrap ${
+                    className={`px-2.5 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm font-medium rounded-full transition-all duration-300 cursor-pointer whitespace-nowrap ${
                       activeType === type
                         ? 'bg-accent text-white'
                         : 'bg-bg-alt text-text-muted hover:bg-accent/10 hover:text-accent'
