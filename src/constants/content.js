@@ -1,0 +1,263 @@
+export const HOME_CONTENT = {
+  hero: {
+    title: "Cabinet d’études, de conseil et de formation au service de votre performance",
+    subtitle: "K‑EMPIRE CORPORATION accompagne les entreprises, institutions et professionnels en Afrique et à l’international avec des solutions sur mesure en management, droit, comptabilité, fiscalité et disciplines connexes.",
+    primaryCta: "Découvrir nos formations",
+    primaryCtaMicro: "Explorez nos programmes certifiants et nos formations sur mesure pour vos équipes.",
+    secondaryCta: "Demander un rendez-vous",
+    secondaryCtaMicro: "Parlez‑nous de vos besoins en conseil, intelligence stratégique ou accompagnement personnalisé."
+  },
+  stats: {
+    title: "Nos résultats en chiffres",
+    intro: "Notre développement se mesure à travers la diversité de nos expertises, l’étendue de notre réseau et la confiance construite avec nos partenaires.",
+    items: [
+      { id: 1, value: "+20", label: "Entreprises accompagnées", text: "Nous avons accompagné plus d’une vingtaine d’entreprises dans la structuration, la sécurisation et le développement de leurs activités." },
+      { id: 2, value: "+50", label: "Entrepreneurs et start-up", text: "Nous soutenons les entrepreneurs et start-up dans la mise en place de modèles d’affaires solides et durables." },
+      { id: 3, value: "+2 000", label: "Participants formés", text: "Des professionnels aguerris et des étudiants ambitieux ont renforcé leurs compétences à travers nos formations." },
+      { id: 4, value: "Depuis 2018", label: "Une expertise consolidée", text: "Un cabinet en croissance continue, avec une équipe engagée et multidisciplinaire." }
+    ]
+  },
+  expertise: {
+    title: "Une expertise multidisciplinaire",
+    intro: "Notre équipe regroupe des experts nationaux et internationaux en droit, comptabilité, fiscalité, management, négociation, marketing & communication, banque, gestion des ressources humaines et stratégies.",
+    subtitle: "Nos principaux domaines d’intervention",
+    items: [
+      { id: 1, title: "Droit des affaires & fiscalité", text: "Sécurisation des opérations, conformité réglementaire, structuration de contrats et optimisation fiscale." },
+      { id: 2, title: "Comptabilité & gestion financière", text: "Fiabilisation de l’information financière, accompagnement comptable, gestion des risques et pilotage de la performance." },
+      { id: 3, title: "Management & gouvernance", text: "Appui aux dirigeants, organisation, gouvernance et conduite du changement pour une meilleure efficacité." },
+      { id: 4, title: "Négociation & stratégies", text: "Stratégies de négociation, gestion de partenariats et soutien aux décisions stratégiques clés." },
+      { id: 5, title: "Ressources humaines", text: "Développement des compétences, politiques RH, gestion des talents et climat social." },
+      { id: 6, title: "Formations professionnelles", text: "Programmes certifiants et formations sur mesure pour renforcer les capacités de vos équipes." }
+    ]
+  },
+  services: {
+    title: "Des services sur mesure pour votre organisation",
+    intro: "Nous concevons des solutions adaptées aux enjeux spécifiques des entreprises, administrations et institutions, de la réflexion stratégique à la mise en œuvre opérationnelle.",
+    items: [
+      { id: 1, title: "Conseil Stratégique", text: "Nous accompagnons les directions générales et les décideurs dans la définition, l’exécution et le suivi de leurs stratégies de développement." },
+      { id: 2, title: "Intelligence Stratégique", text: "Nous aidons vos dirigeants à anticiper les évolutions de leur environnement grâce à une veille stratégique, des analyses prospectives et des données d’aide à la décision." },
+      { id: 3, title: "Ingénierie Juridique", text: "Nous sécurisons vos opérations par un accompagnement juridique, comptable et fiscal aligné sur les réglementations en vigueur." },
+      { id: 4, title: "Formation Exécutive", text: "Nous proposons des formations pratiques, certifiantes et orientées résultats, en présentiel et à distance." }
+    ],
+    cta: "Voir tous nos services"
+  },
+  formations: {
+    title: "Formations certifiantes et programmes sur mesure",
+    intro: "Nos formations sont conçues pour apporter des compétences immédiatement mobilisables sur le terrain, en combinant apports théoriques, études de cas et mises en situation.",
+    items: [
+      { id: 1, title: "Formations inter-entreprises", text: "Des sessions ouvertes réunissant des professionnels de divers horizons pour favoriser les échanges d’expériences." },
+      { id: 2, title: "Formations intra-entreprise", text: "Des programmes conçus spécifiquement pour votre organisation, adaptés à vos enjeux et à vos équipes." },
+      { id: 3, title: "Formations en ligne", text: "Des formations accessibles à distance via visioconférence, pour toucher vos équipes où qu’elles se trouvent." }
+    ],
+    cta: "Consulter le catalogue de formations",
+    ctaMicro: "Découvrez nos sessions à venir et les modalités d’inscription."
+  },
+  whyUs: {
+    title: "Pourquoi choisir K‑EMPIRE CORPORATION ?",
+    intro: "Nous sommes plus qu’une simple société de services et de formation : nous sommes un partenaire engagé dans la réussite durable de vos projets.",
+    piliers: [
+      { id: 1, title: "Expertise multidisciplinaire", text: "Des experts issus du monde académique et professionnel, couvrant le droit, la fiscalité, la comptabilité, le management et bien plus." },
+      { id: 2, title: "Approche pragmatique & sur mesure", text: "Des recommandations concrètes, adaptées à votre réalité et orientées vers des résultats mesurables." },
+      { id: 3, title: "Engagement & proximité", text: "Une équipe disponible, à l’écoute et impliquée à chaque étape de votre projet, au plus près de vos besoins." },
+      { id: 4, title: "Impact durable", text: "Des interventions qui laissent une empreinte positive : montée en compétences, meilleure gouvernance et performance renforcée." }
+    ]
+  },
+  testimonials: {
+    title: "Ils nous font confiance",
+    intro: "Entreprises, institutions et professionnels nous font confiance pour les accompagner dans leurs enjeux stratégiques et opérationnels.",
+    citations: [
+      { id: 1, quote: "Leurs équipes sont agréables avec qui travailler et m'ont aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Herman Miller", role: "Monday", image: "01.webp" },
+      { id: 2, quote: "Leur équipe est facile avec qui travailler et m'a aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Leonel Mooney", role: "Logitech", image: "02.webp" },
+      { id: 3, quote: "Leurs équipes sont agréables avec qui travailler et m'ont aidé à créer des sites Web incroyables en peu de temps. Merci pour votre travail acharné. Nous avons cherché pendant très longtemps.", name: "Matthew Taylor", role: "Invision", image: "03.webp" }
+    ]
+  },
+  contact: {
+    title: "Parlez‑nous de vos besoins",
+    text: "Vous avez un projet de formation, de conseil ou d’accompagnement ? Notre équipe est à votre disposition pour analyser vos besoins et vous proposer une solution adaptée.",
+    primaryCta: "Demander un rendez-vous",
+    primaryCtaMicro: "Remplissez le formulaire et nous reviendrons vers vous dans les plus brefs délais.",
+    secondaryCta: "Nous contacter"
+  }
+};
+
+export const ABOUT_CONTENT = {
+  hero: {
+    title: "À propos de K‑EMPIRE CORPORATION",
+    subtitle: "Basé à Lomé au Togo, K‑EMPIRE CORPORATION est un cabinet international d’études, de conseil et de formation spécialisé dans l’accompagnement des organisations vers l’excellence managériale.",
+    description: "Nous intervenons auprès des entreprises, administrations publiques, institutions financières, organisations internationales, PME/PMI et professionnels en quête de performance durable."
+  },
+  mission: {
+    title: "Notre mission",
+    text: "Éclairer la décision, renforcer les capacités et créer de l’impact en mobilisant expertise, intelligence stratégique, innovation et technologie au service des organisations et des décideurs.",
+    highlight: "Nous plaçons la qualité, la proximité et le résultat au cœur de chaque intervention, qu’il s’agisse de conseil, d’audit ou de formation."
+  },
+  vision: {
+    title: "Notre vision",
+    text: "Devenir une institution panafricaine de référence en conseil stratégique, expertise de haut niveau et Executive Education, ouverte sur le monde.",
+    highlight: "Nous voulons être reconnus pour notre capacité à transformer les ambitions de nos clients en résultats concrets, mesurables et pérennes."
+  },
+  values: {
+    title: "Nos valeurs",
+    intro: "Nos valeurs guident notre manière de travailler au quotidien et structurent la relation que nous construisons avec nos clients.",
+    items: [
+      { id: 1, title: "Excellence", text: "Nous visons un haut niveau d’exigence dans la conception de nos missions, la qualité de nos analyses et la rigueur de nos formations." },
+      { id: 2, title: "Intégrité", text: "Nous agissons avec éthique, transparence et respect des engagements pris avec nos clients et partenaires." },
+      { id: 3, title: "Engagement", text: "Nous nous impliquons pleinement dans chaque projet, avec une volonté claire d’apporter des résultats tangibles." },
+      { id: 4, title: "Innovation", text: "Nous mettons à jour en permanence nos contenus, méthodes et outils pour répondre aux nouveaux enjeux économiques, juridiques et managériaux." }
+    ]
+  },
+  team: {
+    title: "Une équipe multidisciplinaire",
+    text: "Notre cabinet réunit des experts nationaux et internationaux : anciens ministres, magistrats de juridictions internationales, consultants et praticiens reconnus dans leurs domaines. Tous nos programmes sont validés par notre Comité Scientifique International.",
+    highlight: "Cette diversité de profils nous permet de proposer des solutions complètes, cohérentes et adaptées à la complexité des enjeux de nos clients."
+  },
+  stats: {
+    title: "Quelques repères",
+    items: [
+      { id: 1, value: "+20", label: "Entreprises accompagnées", text: "Nous avons accompagné plus d'une vingtaine d'entreprises dans la structuration, la sécurisation et le développement de leurs activités." },
+      { id: 2, value: "+2000", label: "Participants formés", text: "Des professionnels aguerris et des étudiants ambitieux ont renforcé leurs compétences à travers nos formations." },
+      { id: 3, value: "25+", label: "Nationalités représentées", text: "Une diversité internationale au cœur de l'Académie K-EMPIRE." }
+    ]
+  },
+  cta: {
+    title: "Construisons ensemble votre prochain succès",
+    text: "Vous souhaitez renforcer vos équipes, structurer vos activités ou sécuriser vos opérations ? Nous sommes à vos côtés pour bâtir des solutions adaptées à vos enjeux.",
+    button: "Échanger avec un expert"
+  }
+};
+
+export const COMMON_CONTENT = {
+  header: {
+    nav: [
+      { label: "Accueil", path: "/" },
+      { label: "Le Cabinet", path: "/a-propos" },
+      { label: "Nos Expertises", path: "/services" },
+      { label: "L'Académie Exécutive", path: "/formations" },
+      { label: "Nos Références", path: "/references-partenariats" },
+      { label: "Blog", path: "/blog" },
+      { label: "Contact", path: "/contact" }
+    ],
+    cta: "Contact"
+  },
+  footer: {
+    about: "K-EMPIRE CORPORATION est un cabinet d'études, de conseil et de formation au service de votre performance.",
+    contact: {
+      address: "Agoè-Kossigan, Lomé-Togo",
+      phone: "+228 90 10 80 75",
+      phone2: "+221 78 149 29 98",
+      email: "contact@k-empirecorporation.com"
+    },
+    socialLinks: [
+      {
+        name: "X",
+        url: "https://x.com/K_E_CORPORATION",
+        label: "Suivez-nous sur X"
+      },
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/company/kempirecorporation-tg/",
+        label: "Suivez-nous sur LinkedIn"
+      },
+      {
+        name: "Facebook",
+        url: "https://www.facebook.com/AideJuridique7.0",
+        label: "Suivez-nous sur Facebook"
+      }
+    ]
+  }
+};
+
+export const SERVICES_CONTENT = {
+  testimonials: {
+    title: "Ils nous font confiance",
+    intro: "Retours de professionnels ayant bénéficié de nos services et formations.",
+    stats: [
+      { value: '98%+', label: 'Taux de satisfaction' },
+      { value: '2000+', label: 'Professionnels formés' },
+      { value: '25+', label: 'Nationalités' },
+    ],
+    citations: [
+      {
+        id: 1,
+        quote: "L'accompagnement de K-EMPIRE a transformé notre approche stratégique. Leur expertise nous a permis de structurer notre croissance avec sérénité.",
+        name: "Sarah Koné",
+        role: "Directrice Générale — TechAfrica",
+        image: ""
+      },
+      {
+        id: 2,
+        quote: "Un audit complet et des recommandations pertinentes. L'équipe a su identifier des leviers d'amélioration que nous n'avions pas perçus.",
+        name: "Marc Dubois",
+        role: "Fondateur — Dubois Conseil",
+        image: ""
+      },
+      {
+        id: 3,
+        quote: "Les formations dispensées par K-EMPIRE ont considérablement renforcé les compétences de nos équipes. Une approche pédagogique excellente.",
+        name: "Aminata Diallo",
+        role: "Responsable RH — Groupe SOGEA",
+        image: ""
+      },
+      {
+        id: 4,
+        quote: "Leur expertise juridique nous a été précieuse lors de notre restructuration. Un partenaire de confiance pour les décisions critiques.",
+        name: "Jean-Pierre Mensah",
+        role: "CEO — Mensah Holdings",
+        image: ""
+      },
+      {
+        id: 5,
+        quote: "Optimisation fiscale réussie et accompagnement de qualité. Ils maîtrisent parfaitement les enjeux complexes des entreprises.",
+        name: "Fatima Benali",
+        role: "Directrice Financière — FinancesPro",
+        image: ""
+      },
+      {
+        id: 6,
+        quote: "De la stratégie à la mise en œuvre, K-EMPIRE nous a accompagnés à chaque étape. Un investissement qui a porté ses fruits.",
+        name: "Kofi Asante",
+        role: "Entrepreneur — Asante Corp",
+        image: ""
+      }
+    ]
+  }
+};
+
+export const FORMATION_TYPES = [
+  {
+    id: 1,
+    icon: 'Users',
+    title: "Inter-entreprises",
+    description: "Des sessions ouvertes réunissant des professionnels de divers horizons pour favoriser les échanges d'expériences.",
+    features: [
+      "Partage d'expériences entre professionnels",
+      "Réseau élargi de contacts",
+      "Bonnes pratiques multi-sectorielles",
+      "Dates fixes tout au long de l'année"
+    ],
+  },
+  {
+    id: 2,
+    icon: 'Building2',
+    title: "Intra-entreprise",
+    description: "Des programmes conçus spécifiquement pour votre organisation, adaptés à vos enjeux et à vos équipes.",
+    features: [
+      "Contenu 100% personnalisé",
+      "Adapté à votre secteur d'activité",
+      "Planning flexible selon vos contraintes",
+      "Formation dans vos locaux ou chez nous"
+    ],
+  },
+  {
+    id: 3,
+    icon: 'Monitor',
+    title: "En ligne",
+    description: "Des formations accessibles à distance via visioconférence, pour toucher vos équipes où qu'elles se trouvent.",
+    features: [
+      "Accessibilité géographique totale",
+      "Supports numériques interactifs",
+      "Replay disponible 30 jours",
+      "Coût de déplacement réduit"
+    ],
+  }
+];
