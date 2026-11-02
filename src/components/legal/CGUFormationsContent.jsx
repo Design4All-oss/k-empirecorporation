@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  FileText, Building2, BookOpen, Mail, Phone, ArrowRight
+  FileText, Building2, BookOpen, Mail, Phone, ArrowRight, Shield
 } from 'lucide-react';
 import { sanitizeHtml } from '../../utils/sanitize';
 
