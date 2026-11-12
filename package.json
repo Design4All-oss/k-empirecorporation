@@ -9,7 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "seed": "node scripts/seed-site-content.mjs"
+    "seed": "node scripts/seed-site-content.mjs",
+    "publish:event": "node scripts/publish-event.mjs"
   },
   "dependencies": {
     "@sanity/client": "^8.6.1",

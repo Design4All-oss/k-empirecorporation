@@ -1,0 +1,191 @@
+{
+  "create": {
+    "_type": "evenement",
+    "title": "Gouvernance des Entités Extractives et Énergétiques",
+    "slug": { "_type": "slug", "current": "gouvernance-entites-extractives-energetiques" },
+    "status": "publié",
+    "excerpt": "Programme intensif de trois jours conçu pour les avocats d'affaires, juristes d'entreprise, conseillers, cadres de l'administration publique et décideurs intervenant sur les industries extractives et énergétiques africaines : due diligence, structuration, fiscalité, gouvernance et contentieux, autour d'un cas fil rouge unique.",
+    "coverImage": null,
+    "type": "Executive Education",
+    "startDateTime": "2026-12-17T09:00:00Z",
+    "endDateTime": "2026-12-19T18:00:00Z",
+    "duration": "3 jours",
+    "format": "Présentiel",
+    "lieu": "Lomé & Kpalimé, Togo",
+    "price": "payant",
+    "subtitle": "Executive Intensive Programme",
+    "tagline": "Conseiller, sécuriser et négocier les projets miniers, pétroliers et gaziers d'Afrique de l'Ouest et du Centre.",
+    "dateLine": "17 – 18 – 19 DÉCEMBRE 2026 · LOMÉ & KPALIMÉ, TOGO",
+    "heroIntro": "Un programme intensif de trois jours conçu pour les avocats d'affaires, juristes d'entreprise, conseillers, cadres de l'administration publique et décideurs intervenant sur les industries extractives et énergétiques africaines : due diligence, structuration, fiscalité, gouvernance et contentieux, autour d'un cas fil rouge unique — « Projet Africain Intégré Minier & Énergétique ».",
+    "ctas": [
+      { "label": "Demander le dossier", "url": "" },
+      { "label": "Candidater", "url": "" }
+    ],
+    "regard": [
+      { "label": "Format", "valeur": "Présentiel" },
+      { "label": "Durée", "valeur": "3 jours — 17, 18 et 19 décembre 2026" },
+      { "label": "Lieu", "valeur": "Lomé (formation) et Kpalimé (immersion Executive), Togo" },
+      { "label": "Portage", "valeur": "K-EMPIRE CORPORATION, avec SCPA BIRBA-GUITANGA & ASSOCIÉS et CARPEM" },
+      { "label": "Admission", "valeur": "Sur étude de dossier — cohorte sélective" },
+      { "label": "Certification", "valeur": "Executive Certificate K-EMPIRE CORPORATION" }
+    ],
+    "stats": {
+      "items": [
+        { "value": "5", "label": "Modules Executive" },
+        { "value": "3", "label": "Jours d'expérience" },
+        { "value": "2", "label": "Villes — Lomé & Kpalimé" },
+        { "value": "11", "label": "Faculty & gouvernance scientifique" }
+      ],
+      "note": "Faculty : 9 formateurs pressentis + 2 fonctions de gouvernance scientifique (Direction scientifique, Présidence du Comité Scientifique). Nombre de places volontairement non communiqué — admission sur dossier."
+    },
+    "pourquoi": {
+      "intro": "Une expérience conçue pour décider, structurer et sécuriser.",
+      "items": [
+        { "titre": "Gouvernance scientifique à deux têtes", "texte": "Une Direction scientifique opérationnelle et une Présidence du Comité Scientifique distincte, garante de la rigueur doctrinale et de la légitimité académique du parcours." },
+        { "titre": "Ancrage institutionnel", "texte": "Un portage conjoint K-EMPIRE CORPORATION, SCPA BIRBA-GUITANGA & ASSOCIÉS (cabinet d'avocats de haut niveau) et CARPEM (Centre Africain de Recherche sur les Politiques Énergétiques et Minières, Paris)." },
+        { "titre": "Un cas fil rouge unique", "texte": "« Projet Africain Intégré Minier & Énergétique » : les cinq modules s'articulent autour d'un même dossier, de la due diligence à l'arbitrage." },
+        { "titre": "Deux temps, une progression", "texte": "Lomé pour l'ingénierie juridique, fiscale et contentieuse ; Kpalimé pour l'immersion Executive et la restitution stratégique devant le panel d'experts." }
+      ]
+    },
+    "gouvernance": {
+      "intro": "Le programme repose sur deux fonctions scientifiques distinctes et complémentaires, sans hiérarchie entre elles : l'une exécute et coordonne, l'autre valide et arbitre.",
+      "items": [
+        {
+          "titre": "Direction scientifique — Dr ESSAGA",
+          "fonction": "Fonction opérationnelle et continue",
+          "texte": "Inspecteur des Impôts, plus de 25 années d'expérience. Conçoit l'architecture pédagogique, harmonise les contenus, coordonne la Faculty et valide les supports avant diffusion."
+        },
+        {
+          "titre": "Présidence du Comité Scientifique — Pr AWOKI",
+          "fonction": "Fonction stratégique — Agrégé des facultés de droit",
+          "texte": "Valide l'architecture scientifique et la rigueur doctrinale du programme, arbitre les questions sensibles d'évolution réglementaire et de choix doctrinaux, valide l'entrée de tout nouveau formateur et porte la légitimité académique du parcours auprès des partenaires et institutions."
+        }
+      ],
+      "note": "Comité Scientifique à composition ouverte : aucun membre nommé à ce stade au-delà de ces deux fonctions."
+    },
+    "faculty": {
+      "intro": "Neuf formateurs pressentis, sans pré-affectation par module à ce stade.",
+      "texte": "K-EMPIRE CORPORATION réunit, autour de la Direction scientifique et de la Présidence du Comité Scientifique, une Faculty associant pratique du contentieux extractif, expertise fiscale et droit public des affaires.",
+      "noms": [
+        "Dr GUITANGA — Docteur et Avocat",
+        "Dr Achille NGWANZA",
+        "Me Hamidou DRAME",
+        "Me Amadou YONI",
+        "Me BOBSON COULIBALY",
+        "M. TRAORE Diakalya",
+        "Me KONE Alifa Habib",
+        "M. BOUKARI Farid",
+        "M. ITOUA Samuel"
+      ],
+      "note": "Bios complètes (2-3 lignes par formateur) à produire avant diffusion."
+    },
+    "parcours": {
+      "intro": "Une progression en deux temps : ingénierie à Lomé, immersion à Kpalimé.",
+      "jours": [
+        {
+          "label": "Jour 1",
+          "lieu": "Lomé",
+          "date": "17 décembre 2026",
+          "intro": "Accueil, cadrage du cas fil rouge « Projet Africain Intégré Minier & Énergétique » et ouverture des modules d'ingénierie juridique et contractuelle.",
+          "items": [
+            { "titre": "Module 1 — Due diligence & négociation", "texte": "Transformation : conduire la due diligence juridique, fiscale et réglementaire d'un projet extractif et préparer la négociation." },
+            { "titre": "Module 2 — Protection de l'investissement", "texte": "Transformation : sécuriser les garanties et mécanismes de protection applicables aux investisseurs et aux États." },
+            { "titre": "Module 3 — Gouvernance", "texte": "Transformation : structurer une gouvernance crédible des entités extractives face aux institutions et aux investisseurs." }
+          ]
+        },
+        {
+          "label": "Jour 2",
+          "lieu": "Lomé",
+          "date": "18 décembre 2026",
+          "items": [
+            { "titre": "Module 4 — Gouvernance fiscale", "texte": "Transformation : arbitrer le partage de la rente extractive et sécuriser la fiscalité des projets." },
+            { "titre": "Module 5 — Contentieux & arbitrage", "texte": "Transformation : piloter la défense des intérêts juridiques et fiscaux devant les instances contentieuses et arbitrales." }
+          ],
+          "pied": "Clôture des sessions de formation à Lomé — synthèse intermédiaire du cas fil rouge.",
+          "closing": "19:00 — Closing & Graduation (Lomé)"
+        },
+        {
+          "label": "Jour 3",
+          "lieu": "Kpalimé",
+          "date": "19 décembre 2026",
+          "intro": "Une journée d'immersion pour les participants déjà certifiés la veille à Lomé — restitution finale du cas fil rouge et clôture d'expérience.",
+          "points": [
+            "Travaux collectifs sur le cas fil rouge, en environnement d'immersion",
+            "Restitution stratégique devant la Direction scientifique, la Présidence du Comité Scientifique et la Faculty",
+            "Clôture d'expérience K-EMPIRE à Kpalimé"
+          ]
+        }
+      ]
+    },
+    "pedagogie": {
+      "items": [
+        "Exposés stratégiques & retours d'expérience",
+        "Études de cas & simulations d'arbitrage",
+        "Supports & outils experts",
+        "Mémorandum stratégique certifiant"
+      ]
+    },
+    "participer": [
+      { "titre": "Avocats d'affaires & conseils juridiques seniors", "texte": "Intervenant dans les secteurs minier, pétrolier, gazier, énergétique ou des grands projets d'infrastructure." },
+      { "titre": "Juristes d'entreprise & directeurs juridiques", "texte": "Responsables conformité impliqués dans la structuration contractuelle, fiscale et réglementaire des projets extractifs." },
+      { "titre": "Conseillers, experts & consultants", "texte": "Participant à la négociation, à la sécurisation et à l'audit des projets miniers, pétroliers et gaziers." },
+      { "titre": "Cadres des administrations publiques", "texte": "Autorités de régulation et ministères sectoriels (Mines, Énergie, Finances, Environnement)." },
+      { "titre": "Décideurs publics & hauts fonctionnaires", "texte": "Responsables d'organismes parapublics ou de compagnies nationales impliqués dans la valorisation des ressources." }
+    ],
+    "experience": {
+      "intro": "Plus qu'une formation.",
+      "items": [
+        { "titre": "Executive learning", "texte": "Deux journées intensives à Lomé conçues pour rapprocher expertise, analyse et décision." },
+        { "titre": "Immersion", "texte": "Une troisième journée à Kpalimé, connectée aux réalités du secteur et de son environnement." },
+        { "titre": "Réseau stratégique", "texte": "Une communauté réunissant avocats, juristes d'entreprise, administrations et décideurs du secteur extractif." },
+        { "titre": "Graduation", "texte": "Une cérémonie institutionnelle marquant l'aboutissement du parcours, le soir du Jour 2 à Lomé — avant le départ pour l'immersion de Kpalimé." }
+      ]
+    },
+    "livrables": {
+      "intro": "À l'issue du programme, les participants disposent notamment de :",
+      "items": [
+        "Checklists opérationnelles directement exploitables (due diligence, titres, fiscalité)",
+        "Modèles et outils professionnels issus des ateliers",
+        "Supports pédagogiques de la Faculty",
+        "Mémorandum stratégique sur le cas fil rouge",
+        "Executive Certificate K-EMPIRE CORPORATION",
+        "Accès au réseau K-EMPIRE Alumni"
+      ]
+    },
+    "partenaires": {
+      "items": [
+        { "categorie": "Partenaire scientifique", "titre": "CARPEM", "texte": "Centre Africain de Recherche sur les Politiques Énergétiques et Minières (Paris)." },
+        { "categorie": "Partenaire juridique stratégique", "titre": "SCPA BIRBA-GUITANGA & ASSOCIÉS", "texte": "Cabinet d'avocats de haut niveau : expertise juridique, conseils et accompagnement stratégique." }
+      ]
+    },
+    "infosPratiques": {
+      "rows": [
+        { "label": "Dates", "valeur": "17 – 18 – 19 décembre 2026" },
+        { "label": "Lieu", "valeur": "Lomé (Modules 1 à 5, Jours 1 et 2) · Kpalimé (immersion, Jour 3)" },
+        { "label": "Format", "valeur": "Présentiel" },
+        { "label": "Places", "valeur": "Cohorte sélective — nombre non communiqué, sur étude de dossier" },
+        { "label": "Langue", "valeur": "Français" },
+        { "label": "Certification", "valeur": "Executive Certificate K-EMPIRE CORPORATION" },
+        { "label": "Portage", "valeur": "K-EMPIRE CORPORATION · SCPA BIRBA-GUITANGA & ASSOCIÉS · CARPEM" },
+        { "label": "Dress code", "valeur": "Business" }
+      ],
+      "note": "Tarif et conditions financières communiqués exclusivement sur demande de dossier."
+    },
+    "faq": [
+      { "question": "Qui peut participer ?", "reponse": "Avocats d'affaires, juristes d'entreprise, conseillers et experts du secteur extractif, cadres des administrations publiques et décideurs d'organismes parapublics ou de compagnies nationales." },
+      { "question": "Le programme se déroule-t-il sur un seul site ?", "reponse": "Non. Les deux premières journées (Modules 1 à 5) se tiennent à Lomé ; la troisième journée, consacrée à l'immersion Executive et à la restitution du cas fil rouge, se tient à Kpalimé." },
+      { "question": "Comment les formateurs sont-ils répartis par module ?", "reponse": "La répartition de la Faculty par module n'est pas encore arrêtée à ce stade ; elle sera communiquée aux participants admis." },
+      { "question": "Une certification est-elle délivrée ?", "reponse": "Oui, un Executive Certificate K-EMPIRE CORPORATION, sous réserve d'assiduité et de validation du mémorandum stratégique sur le cas fil rouge." },
+      { "question": "Comment se déroule l'admission ?", "reponse": "Sur étude de dossier et de motivation. Le nombre de places est volontairement limité." },
+      { "question": "Comment connaître les conditions tarifaires ?", "reponse": "Les conditions financières sont communiquées individuellement sur demande du dossier d'inscription." },
+      { "question": "Les entreprises et administrations peuvent-elles inscrire plusieurs collaborateurs ?", "reponse": "Oui, sur étude conjointe des dossiers — nous consulter via le formulaire de demande de dossier." },
+      { "question": "Comment recevoir le dossier d'inscription ?", "reponse": "Via le bouton « Demander le dossier » ci-dessus, ou directement auprès de K-EMPIRE CORPORATION." }
+    ],
+    "ctaFinal": {
+      "titre": "Prendre part à l'expérience",
+      "texte": "Rejoignez une communauté de professionnels, d'experts et de décideurs réunis autour de la gouvernance des ressources extractives et énergétiques africaines."
+    },
+    "internalNotes": "POINTS DE VIGILANCE — À ARBITRER (repris du brief du 10/2026) :\n1. Dénomination : « Comité scientifique international » non acté — la dénomination verrouillée le 02/10/2026 est « Présidence du Comité Scientifique » (Pr AWOKI), sans qualificatif « international ». Page publiée sans ce qualificatif — à confirmer avec Emmanuel.\n2. Dates déplacées du 10-11-12 au 17-18-19 décembre 2026. Graduation calée le soir du Jour 2 (18 déc, Lomé, 19h-22h GMT). Répartition des 5 modules entre J1 et J2 non reconfirmée — structure publiée à titre indicatif, à valider.\n3. Effectif et tarif retirés de tout document de diffusion (effectif cible 100, usage interne). Nombre de places non communiqué.\n4. Répartition Faculty par module non arrêtée (9 formateurs pressentis, sans pré-affectation).\n5. Bios à produire : Pr AWOKI, M. BOUKARI Farid, M. ITOUA Samuel (point ouvert au 02/10/2026).\n6. Note du programme non reprise publiquement : « répartition proposée — à valider ».\n7. Pédagogie : pondération indicative non communiquée — 4 piliers listés sans répartition en %.\n8. Catégories « Partenaires institutionnels » et « Partenaires médias » retirées : aucun partenaire confirmé.\n9. CTA faculty « Voir toute la faculty » non publié : aucune page cible existante.",
+    "publishedAt": "2026-11-12T12:00:00Z"
+  }
+}
