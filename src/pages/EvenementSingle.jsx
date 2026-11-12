@@ -229,54 +229,52 @@ const EvenementSingle = () => {
         }}
       />
 
-      {/* ═══ NEW HERO DESIGN ═══ */}
-      <section className="relative isolate overflow-hidden bg-[#b9e0f8] pt-28 text-center text-[#0f2136] md:pt-36 lg:pt-40">
+      {/* ═══ Hero — image + dégradé navy, titre en carte blanche (motif FormationSingle / BlogSingle) ═══ */}
+      <div className="relative h-[400px] overflow-hidden bg-primary md:h-[500px]">
         {evenement.image && (
-          <div className="absolute inset-x-0 bottom-0 z-0 h-[400px] md:h-[600px] w-full">
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
-            <img
-              src={evenement.image}
-              alt=""
-              aria-hidden="true"
-              className="h-full w-full object-cover object-bottom opacity-40 mix-blend-multiply"
-            />
-          </div>
+          <img
+            src={evenement.image}
+            alt={evenement.title}
+            className="h-full w-full object-cover"
+          />
         )}
-        
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto -mt-24 max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 16 }}
+          initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-20 mx-auto w-full max-w-6xl px-4 pb-20 sm:px-6 lg:px-8 flex flex-col items-center"
+          className="rounded-3xl bg-white p-8 shadow-lg md:p-12"
         >
           {subtitle && (
-            <p className="mb-4 font-display text-lg md:text-xl font-bold tracking-widest text-[#0066cc] uppercase">
+            <span className="mb-4 inline-block rounded-full bg-accent/10 px-3 py-1 font-display text-sm font-semibold text-accent">
               {subtitle}
-            </p>
+            </span>
           )}
 
-          <h1 className="max-w-5xl font-display text-5xl font-black uppercase leading-[1.1] tracking-tight text-white drop-shadow-lg sm:text-6xl md:text-7xl lg:text-[6rem]" style={{ WebkitTextStroke: '2px #0f2136' }}>
+          <h1 className="text-h2-m font-bold leading-tight text-primary md:text-h2-d">
             {evenement.title}
           </h1>
 
           {dateLine && (
-            <p className="mt-8 font-display text-lg md:text-2xl font-black tracking-widest text-[#0f2136] uppercase">
-              {dateLine}
+            <p className="mt-4 flex items-center gap-2 text-sm font-semibold text-accent md:text-base">
+              <Calendar size={16} className="shrink-0" />
+              <span>{dateLine}</span>
             </p>
           )}
 
           {tagline && (
-            <p className="mt-4 max-w-[65ch] text-base font-medium leading-relaxed text-[#0f2136]/80 md:text-lg">
+            <p className="mt-4 max-w-[65ch] leading-relaxed text-text-muted">
               {tagline}
             </p>
           )}
 
           {ctas.length > 0 && (
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <div className="mt-8 flex flex-wrap gap-3">
               {ctas.map((cta, i) => {
-                const cls = i === 0 
-                  ? 'inline-flex items-center rounded-full bg-black px-10 py-4 text-sm font-bold text-white transition-transform hover:scale-105 hover:bg-black/90 uppercase tracking-widest shadow-xl' 
-                  : 'inline-flex items-center rounded-full bg-white/50 backdrop-blur-sm border-2 border-black px-10 py-4 text-sm font-bold text-black transition-transform hover:scale-105 hover:bg-white/80 uppercase tracking-widest';
+                const cls = i === 0 ? BTN_PRIMARY : BTN_LIGHT_OUTLINE;
                 return cta.url ? (
                   <a key={i} href={cta.url} className={cls}>
                     {cta.label}
@@ -295,35 +293,18 @@ const EvenementSingle = () => {
             </div>
           )}
 
-          {stats && stats.items && stats.items.length > 0 && (
-            <div className="mt-16 flex flex-wrap justify-center gap-10 md:gap-20">
-              {stats.items.slice(0,4).map((s, i) => (
-                <div key={i} className="text-center">
-                  <p className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-[#0f2136]">
-                    {s.value}
-                  </p>
-                  <p className="mt-2 text-sm md:text-base font-bold uppercase tracking-widest text-[#0f2136]/70">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-          
           {regard.length > 0 && (
-            <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:flex lg:justify-center lg:gap-12 border-t border-black/10 pt-10">
+            <dl className="mt-10 grid gap-x-10 gap-y-6 border-t border-gray-100 pt-8 sm:grid-cols-2 lg:grid-cols-4">
               {regard.map((row) => (
-                <div key={row.label} className="text-center">
-                  <dt className="text-xs font-bold uppercase tracking-widest text-[#0066cc]">
-                    {row.label}
-                  </dt>
-                  <dd className="mt-1 text-base font-semibold text-[#0f2136]">{row.valeur}</dd>
+                <div key={row.label}>
+                  <dt className="text-xs font-semibold text-text-muted">{row.label}</dt>
+                  <dd className="mt-1 font-display text-base text-primary">{row.valeur}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           )}
         </motion.div>
-      </section>
+      </div>
 
       {/* ═══ Sous-menu collant ═══ */}
       <nav className="sticky top-16 z-40 border-b border-gray-100 bg-white/90 backdrop-blur-md">
