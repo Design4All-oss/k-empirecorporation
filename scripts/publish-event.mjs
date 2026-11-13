@@ -5,7 +5,7 @@
 //   Ou avec une session CLI Sanity ouverte (npx sanity login, une seule fois) :
 //   npx sanity exec scripts/publish-event.mjs --with-user-token
 //
-// Idempotent : si le document existe deja, il ne fait rien.
+// Idempotent : recree le document s'il existe deja (mise a jour du contenu).
 import { createClient } from '@sanity/client'
 import fs from 'node:fs'
 
@@ -29,24 +29,29 @@ const payload = JSON.parse(fs.readFileSync(new URL('./event-gouvernance-extracti
 const doc = { _id: 'evenement-gouvernance-entites-extractives', ...payload.create }
 
 const existing = await client.getDocument(doc._id)
-if (existing) {
-  console.log('Deja publie :', existing._id, '| statut :', existing.status, '| slug :', existing.slug?.current)
-  process.exit(0)
-}
 
 // Couverture reutilisee du site (la generation d'image etait indisponible).
-const asset = await client.assets.upload(
-  'image',
-  fs.readFileSync(new URL('../public/assets/images/services/hero.webp', import.meta.url)),
-  { filename: 'event-cover-extractives.webp' },
-)
-doc.coverImage = {
-  _type: 'image',
-  asset: { _type: 'reference', _id: asset._id },
-  alt: 'Programme intensif — gouvernance des entités extractives et énergétiques',
+if (!existing) {
+  const asset = await client.assets.upload(
+    'image',
+    fs.readFileSync(new URL('../public/assets/images/services/hero.webp', import.meta.url)),
+    { filename: 'event-cover-extractives.webp' },
+  )
+  doc.coverImage = {
+    _type: 'image',
+    asset: { _type: 'reference', _id: asset._id },
+    alt: 'Programme intensif — gouvernance des entités extractives et énergétiques',
+  }
 }
 
-const created = await client.create(doc)
-console.log('Publie :', created._id)
-console.log('Statut :', created.status, '| slug :', created.slug.current)
-console.log('Apercu : https://k-empirecorporation.com/event/' + created.slug.current)
+if (existing) {
+  // _type est immuable et coverImage (null dans le JSON) ne doit pas ecraser l'existant.
+  const { _type, coverImage, ...fields } = doc
+  await client.patch(doc._id).set(fields).commit()
+  console.log('Mis a jour :', doc._id)
+} else {
+  await client.create(doc)
+  console.log('Publie :', doc._id)
+}
+console.log('Statut :', doc.status, '| slug :', doc.slug.current)
+console.log('Apercu : https://k-empirecorporation.com/event/' + doc.slug.current)
