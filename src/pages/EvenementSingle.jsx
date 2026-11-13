@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Calendar, ArrowRight, CheckCircle, CheckCircle2, X } from 'lucide-react';
+import { Calendar, CheckCircle, CheckCircle2, X } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 import { useEvenement, useEvenements } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 import Button from '../components/ui/Button';
-import { submitNewsletter, submitEvenementInscription } from '../api/forms';
+import { submitEvenementInscription } from '../api/forms';
 import { useToast } from '../context/ToastContext';
 
 // Verrou de forme : rounded-full = interactifs · rounded-2xl = conteneurs, cartes, images,
@@ -88,9 +88,6 @@ const EvenementSingle = () => {
     responsableNom: '',
     acceptContact: false
   });
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterConsent, setNewsletterConsent] = useState(false);
-  const [newsletterLoading, setNewsletterLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const toast = useToast();
 
@@ -138,25 +135,6 @@ const EvenementSingle = () => {
       toast(err.message, 'error');
     } finally {
       setSubmitting(false);
-    }
-  };
-
-  const handleNewsletterSidebar = async (e) => {
-    e.preventDefault();
-    if (!newsletterEmail || !newsletterConsent) {
-      if (!newsletterConsent) toast("Vous devez accepter la politique de confidentialité.", 'error');
-      return;
-    }
-    setNewsletterLoading(true);
-    try {
-      const res = await submitNewsletter({ email: newsletterEmail, nom: '', source: 'event-sidebar', consentement: true });
-      toast(res.message || 'Inscription à la newsletter réussie !');
-      setNewsletterEmail('');
-      setNewsletterConsent(false);
-    } catch (err) {
-      toast(err.message, 'error');
-    } finally {
-      setNewsletterLoading(false);
     }
   };
 
@@ -659,89 +637,40 @@ const EvenementSingle = () => {
           </Section>
         )}
 
-        {/* ═══ Événements à venir + newsletter ═══ */}
-        <Section title="Restez informé">
-          <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-            {relatedEvenements.length > 0 && (
-              <div>
-                <ol className="border-t border-gray-100">
-                  {relatedEvenements.map((event) => (
-                    <li key={event.id} className="border-b border-gray-100">
-                      <Link
-                        to={`/event/${event.slug}`}
-                        className="group flex items-center gap-5 py-5"
-                      >
-                        {event.image && (
-                          <div className="h-16 w-16 flex-shrink-0 overflow-hidden md:h-20 md:w-20">
-                            <img
-                              src={event.image}
-                              alt={event.title}
-                              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                          </div>
-                        )}
-                        <div className="min-w-0 flex-1">
-                          <h4 className="font-display text-sm font-bold leading-snug text-primary transition-colors group-hover:text-accent md:text-base">
-                            {event.title}
-                          </h4>
-                          <div className="mt-1.5 flex items-center gap-2 text-xs text-text-muted">
-                            <Calendar size={12} />
-                            <span>{event.date}</span>
-                          </div>
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            )}
-
-            <div className="bg-primary p-7 text-white sm:p-9">
-              <h3 className="font-display text-xl font-bold">Newsletter</h3>
-              <p className="mt-2 text-sm text-white/70">Recevez nos dernières invitations</p>
-              <form onSubmit={handleNewsletterSidebar} className="mt-6 flex flex-col gap-3">
-                <div className="flex gap-3">
-                  <input
-                    type="email"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Votre email"
-                    required
-                    className="min-w-0 flex-1 rounded-full border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder-white/50 focus:border-accent focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    disabled={newsletterLoading || !newsletterConsent}
-                    aria-label="S'inscrire à la newsletter"
-                    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-accent text-white transition-colors hover:bg-accent-light disabled:opacity-50"
+        {/* ═══ Événements à venir ═══ */}
+        {relatedEvenements.length > 0 && (
+          <Section title="Restez informé">
+            <ol className="border-t border-gray-100">
+              {relatedEvenements.map((event) => (
+                <li key={event.id} className="border-b border-gray-100">
+                  <Link
+                    to={`/event/${event.slug}`}
+                    className="group flex items-center gap-5 py-5"
                   >
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
-                <label className="flex cursor-pointer items-start gap-2">
-                  <input
-                    type="checkbox"
-                    checked={newsletterConsent}
-                    onChange={(e) => setNewsletterConsent(e.target.checked)}
-                    className="mt-0.5 h-3.5 w-3.5 rounded border-white/40 bg-white/10 accent-accent"
-                  />
-                  <span className="text-[11px] leading-tight text-white/60">
-                    J&apos;accepte la{' '}
-                    <a
-                      href="/mentions-legales"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline hover:text-white"
-                    >
-                      politique de confidentialité
-                    </a>{' '}
-                    et consens à recevoir des communications.
-                  </span>
-                </label>
-              </form>
-            </div>
-          </div>
-        </Section>
+                    {event.image && (
+                      <div className="h-16 w-16 flex-shrink-0 overflow-hidden md:h-20 md:w-20">
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <h4 className="font-display text-sm font-bold leading-snug text-primary transition-colors group-hover:text-accent md:text-base">
+                        {event.title}
+                      </h4>
+                      <div className="mt-1.5 flex items-center gap-2 text-xs text-text-muted">
+                        <Calendar size={12} />
+                        <span>{event.date}</span>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </Section>
+        )}
       </main>
 
       {/* ═══ Candidature — unique bandeau saturé de la page ═══ */}
@@ -784,9 +713,6 @@ const EvenementSingle = () => {
         </Bleed>
       )}
 
-      <div className="h-16" />
-
-      {/* Registration Modal */}
       {/* Registration Modal */}
       <AnimatePresence>
         {showModal && (
