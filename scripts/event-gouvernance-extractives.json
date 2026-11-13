@@ -27,8 +27,6 @@
       { "label": "Format", "valeur": "Présentiel intensif : 2 jours de formation + 1 jour d'immersion" },
       { "label": "Portage institutionnel", "valeur": "K-EMPIRE CORPORATION × SCPA BIRBA-GUITANGA & ASSOCIÉS × CARPEM" },
       { "label": "Gouvernance scientifique", "valeur": "Présidence du Comité scientifique : Pr AWOKI Kougnontèma · Direction scientifique : Dr ESSAGA Stéphane" },
-      { "label": "Tarif individuel", "valeur": "600 000 FCFA avant le 20 novembre 2026 · 700 000 FCFA après le 20 novembre 2026" },
-      { "label": "Tarif institutionnel", "valeur": "750 000 FCFA avant le 20 novembre 2026 · 850 000 FCFA après le 20 novembre 2026" },
       { "label": "Clôture des inscriptions", "valeur": "5 décembre 2026" }
     ],
     "stats": {
@@ -175,8 +173,6 @@
         { "label": "Dates", "valeur": "17-18 décembre 2026 : formation · 19 décembre 2026 : immersion Executive" },
         { "label": "Lieux", "valeur": "Hôtel Sarakawa, Lomé (17-18 décembre) · Kpalimé (19 décembre), Togo" },
         { "label": "Format", "valeur": "Présentiel intensif : 2 jours de formation + 1 jour d'immersion" },
-        { "label": "Tarif individuel", "valeur": "600 000 FCFA avant le 20 novembre 2026 · 700 000 FCFA après le 20 novembre 2026" },
-        { "label": "Tarif institutionnel", "valeur": "750 000 FCFA avant le 20 novembre 2026 · 850 000 FCFA après le 20 novembre 2026" },
         { "label": "Clôture des inscriptions", "valeur": "5 décembre 2026" },
         { "label": "Frais couverts", "valeur": "Sessions, livrables stratégiques, petits-déjeuners, déjeuners, immersion à Kpalimé et dîner de gala" },
         { "label": "Non couverts", "valeur": "Transport, hébergement et autres dîners" },
@@ -190,7 +186,6 @@
     "faq": [
       { "question": "À qui s'adresse le programme ?", "reponse": "Aux dirigeants et décideurs, aux professionnels du droit, de la fiscalité et du contrôle, aux responsables publics et institutionnels, aux investisseurs et opérateurs économiques ainsi qu'aux consultants et conseils spécialisés intervenant dans les secteurs extractif et énergétique en Afrique." },
       { "question": "Où et quand se déroule le programme ?", "reponse": "Du 17 au 19 décembre 2026 : deux journées de formation exécutive à Lomé les 17 et 18 décembre, puis une journée d'immersion à Kpalimé le 19 décembre." },
-      { "question": "Quels sont les frais de participation ?", "reponse": "600 000 FCFA en tarif individuel et 750 000 FCFA en tarif institutionnel jusqu'au 20 novembre 2026 inclus ; 700 000 FCFA et 850 000 FCFA après cette date." },
       { "question": "Que couvrent les frais de participation ?", "reponse": "Les sessions, les livrables stratégiques, les petits-déjeuners, les déjeuners, l'immersion à Kpalimé et le dîner de gala. Le transport, l'hébergement et les autres dîners restent à la charge des participants." },
       { "question": "Quelle est la date limite d'inscription ?", "reponse": "Les inscriptions sont définitivement closes le 5 décembre 2026." },
       { "question": "Comment se déroule l'admission ?", "reponse": "L'admission s'effectue sur étude du dossier de candidature et de motivation. Le candidat retenu remplit et signe le bulletin d'inscription, puis le transmet accompagné du bordereau de paiement." },
@@ -202,7 +197,7 @@
       "titre": "Participation · Partenariat · Sponsoring",
       "texte": "K-EMPIRE CORPORATION invite les dirigeants, professionnels, institutions et entreprises des secteurs extractif et énergétique à prendre part à cette initiative dédiée à la maîtrise des risques, à la gouvernance et à la sécurisation des investissements en Afrique."
     },
-    "internalNotes": "PAYLOAD ÉTABLI À PARTIR DES TERMES DE RÉFÉRENCE OFFICIELS (21 pages) — le brief page_evenement du 10/2026 est supplanté.\n1. Tarifs désormais publics (TDR, section XIII) : 600 000 / 700 000 FCFA (individuel) et 750 000 / 850 000 FCFA (institutionnel), tarif anticipé jusqu'au 20 novembre 2026 inclus, clôture des inscriptions le 5 décembre 2026. Le brief prévoyait initialement de les retirer — décision à réarbitrer si la diffusion publique n'est pas souhaitée.\n2. Effectif de la cohorte non mentionné dans le TDR : aucune valeur publiée.\n3. Faculty : 10 experts nommés (section XII) sans affectation par module ; seules les fonctions et affiliations sont publiées, pas de biographies.\n4. Sponsors : le TDR prévoit une offre de sponsoring, mais aucun sponsor n'est confirmé. Aucune catégorie « Partenaires institutionnels » ou « Partenaires médias » publiée.\n5. Jour 3 (Kpalimé) : journée d'immersion touristique et relationnelle, sans contenu de formation — le TDR ne mentionne pas de restitution du cas fil rouge à Kpalimé (la restitution a lieu au dîner de gala du 18 décembre à Lomé).\n6. Horaires saisis en UTC (Togo = UTC+0), conformément au programme prévisionnel du TDR ; fin du Jour 3 fixée à 18h00, le TDR n'indiquant qu'une « fin de journée ».\n7. Point d'affichage hors contenu : EvenementSingle.jsx affiche evenement.date en ISO brut dans le récapitulatif de la modale et dans la liste « Restez informé » — préexistant, tous événements.",
+    "internalNotes": "PAYLOAD ÉTABLI À PARTIR DES TERMES DE RÉFÉRENCE OFFICIELS (21 pages) — le brief page_evenement du 10/2026 est supplanté.\n1. Tarifs non publiés (décision client) : les montants du TDR (section XIII) — 600 000 / 700 000 FCFA individuel, 750 000 / 850 000 FCFA institutionnel, tarif anticipé jusqu'au 20 novembre 2026 — ont été retirés des « Repères clés », des infos pratiques et de la FAQ. Ne pas les réintroduire sans accord. Clôture des inscriptions : 5 décembre 2026 publiée.\n2. Effectif de la cohorte non mentionné dans le TDR : aucune valeur publiée.\n3. Faculty : 10 experts nommés (section XII) sans affectation par module ; seules les fonctions et affiliations sont publiées, pas de biographies.\n4. Sponsors : le TDR prévoit une offre de sponsoring, mais aucun sponsor n'est confirmé. Aucune catégorie « Partenaires institutionnels » ou « Partenaires médias » publiée.\n5. Jour 3 (Kpalimé) : journée d'immersion touristique et relationnelle, sans contenu de formation — le TDR ne mentionne pas de restitution du cas fil rouge à Kpalimé (la restitution a lieu au dîner de gala du 18 décembre à Lomé).\n6. Horaires saisis en UTC (Togo = UTC+0), conformément au programme prévisionnel du TDR ; fin du Jour 3 fixée à 18h00, le TDR n'indiquant qu'une « fin de journée ».\n7. Point d'affichage hors contenu : EvenementSingle.jsx affiche evenement.date en ISO brut dans le récapitulatif de la modale et dans la liste « Restez informé » — préexistant, tous événements.",
     "publishedAt": "2026-11-13T12:00:00Z"
   }
 }
