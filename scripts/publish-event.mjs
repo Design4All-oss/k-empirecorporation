@@ -30,8 +30,10 @@ const doc = { _id: 'evenement-gouvernance-entites-extractives', ...payload.creat
 
 const existing = await client.getDocument(doc._id)
 
-// Couverture reutilisee du site (la generation d'image etait indisponible).
-if (!existing) {
+// Couverture reutilisee du site : ajoutee quand le document n'en a pas (creation manuelle
+// dans Studio, ou upload precedent echoue - le document avait alors coverImage.asset a null).
+const needsCover = !existing?.coverImage?.asset
+if (needsCover) {
   const asset = await client.assets.upload(
     'image',
     fs.readFileSync(new URL('../public/assets/images/services/hero.webp', import.meta.url)),
@@ -47,7 +49,7 @@ if (!existing) {
 if (existing) {
   // _type est immuable et coverImage (null dans le JSON) ne doit pas ecraser l'existant.
   const { _type, coverImage, ...fields } = doc
-  await client.patch(doc._id).set(fields).commit()
+  await client.patch(doc._id).set(needsCover ? { ...fields, coverImage: doc.coverImage } : fields).commit()
   console.log('Mis a jour :', doc._id)
 } else {
   await client.create(doc)

@@ -15,6 +15,8 @@ const BTN_PRIMARY =
   'inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-150 ease-out hover:bg-accent-dark active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2';
 const BTN_LIGHT_OUTLINE =
   'inline-flex items-center rounded-full border border-accent px-7 py-3.5 text-sm font-semibold text-accent transition-transform duration-150 ease-out hover:bg-accent hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2';
+// Visuel du bandeau CTA : la couverture Sanity peut manquer sur un evenement cree a la main
+const COVER_FALLBACK = '/assets/images/services/hero.webp';
 // CTA sur carte accent : navy pour rester lisible sur le doré
 const BTN_ON_ACCENT =
   'inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-150 ease-out hover:bg-primary-hover active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
@@ -675,18 +677,16 @@ const EvenementSingle = () => {
 
       {/* ═══ Candidature — carte accent en dégradé, image révélée à droite ═══ */}
       {(ctaFinal || ctas.length > 0) && (
-        <section id="candidature" className="scroll-mt-36 bg-bg-alt py-16 md:py-24">
+        <section id="candidature" className="scroll-mt-36 bg-white py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="relative overflow-hidden rounded-2xl bg-accent">
-              {evenement.image && (
-                <img
-                  src={evenement.image}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-y-0 right-0 h-full w-full object-cover md:w-3/5"
-                />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-r from-accent-light via-accent to-accent/40 md:to-transparent" />
+              <img
+                src={evenement.image || COVER_FALLBACK}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-y-0 right-0 h-full w-full object-cover md:w-3/5"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-light via-accent to-accent/90 md:to-transparent" />
               <div className="relative z-10 max-w-xl p-8 md:p-14">
                 <span className="mb-6 block h-1 w-12 bg-primary" />
                 <h2 className="font-display text-2xl font-semibold leading-[1.1] tracking-tight text-primary md:text-4xl lg:text-5xl">
