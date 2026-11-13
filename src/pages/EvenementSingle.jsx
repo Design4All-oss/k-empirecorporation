@@ -13,10 +13,13 @@ import { useToast } from '../context/ToastContext';
 // modale · rounded-xl = champs de formulaire (modale uniquement).
 const BTN_PRIMARY =
   'inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-150 ease-out hover:bg-accent-dark active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2';
-const BTN_HERO_SECONDARY =
-  'inline-flex items-center rounded-full border border-white/45 px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-150 ease-out hover:border-white hover:bg-white/10 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary';
 const BTN_LIGHT_OUTLINE =
   'inline-flex items-center rounded-full border border-accent px-7 py-3.5 text-sm font-semibold text-accent transition-transform duration-150 ease-out hover:bg-accent hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2';
+// CTA sur carte accent : navy pour rester lisible sur le doré
+const BTN_ON_ACCENT =
+  'inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-150 ease-out hover:bg-primary-hover active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
+const BTN_ON_ACCENT_OUTLINE =
+  'inline-flex items-center rounded-full border border-primary px-7 py-3.5 text-sm font-semibold text-primary transition-transform duration-150 ease-out hover:bg-primary hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
 
 // Section : conteneur géré en interne pour que des blocs puissent sortir en pleine largeur.
 // Rubriques numérotées : le numéro remplace l'eyebrow (pas de majuscules traquées au-dessus du titre).
@@ -46,9 +49,6 @@ const Section = ({ id, num, title, children }) => {
     </motion.section>
   );
 };
-
-// Bandeau pleine largeur (fond navy) — utilisé une seule fois : l'appel à l'action final
-const Bleed = ({ children }) => <div className="bg-primary">{children}</div>;
 
 // Grille de définitions : deux colonnes, sans filet par ligne
 const RowsTable = ({ rows }) => (
@@ -673,24 +673,33 @@ const EvenementSingle = () => {
         )}
       </main>
 
-      {/* ═══ Candidature — unique bandeau saturé de la page ═══ */}
+      {/* ═══ Candidature — carte accent en dégradé, image révélée à droite ═══ */}
       {(ctaFinal || ctas.length > 0) && (
-        <Bleed>
-          <section id="candidature" className="scroll-mt-36 text-white">
-            <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
-              <div className="max-w-3xl">
-                <span className="mb-6 block h-1 w-12 bg-accent" />
-                <h2 className="font-display text-2xl font-semibold leading-[1.1] tracking-tight md:text-4xl lg:text-5xl">
+        <section id="candidature" className="scroll-mt-36 bg-bg-alt py-16 md:py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-2xl bg-accent">
+              {evenement.image && (
+                <img
+                  src={evenement.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-y-0 right-0 h-full w-full object-cover md:w-3/5"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-light via-accent to-accent/40 md:to-transparent" />
+              <div className="relative z-10 max-w-xl p-8 md:p-14">
+                <span className="mb-6 block h-1 w-12 bg-primary" />
+                <h2 className="font-display text-2xl font-semibold leading-[1.1] tracking-tight text-primary md:text-4xl lg:text-5xl">
                   {ctaFinal?.titre || 'Prendre part à l’expérience'}
                 </h2>
                 {ctaFinal?.texte && (
-                  <p className="mt-5 max-w-[58ch] text-sm leading-relaxed text-white/70 md:text-base">
+                  <p className="mt-5 max-w-[52ch] text-sm leading-relaxed text-primary md:text-base">
                     {ctaFinal.texte}
                   </p>
                 )}
                 <div className="mt-8 flex flex-wrap gap-3">
                   {ctas.map((cta, i) => {
-                    const cls = i === 0 ? BTN_PRIMARY : BTN_HERO_SECONDARY;
+                    const cls = i === 0 ? BTN_ON_ACCENT : BTN_ON_ACCENT_OUTLINE;
                     return cta.url ? (
                       <a key={i} href={cta.url} className={cls}>
                         {cta.label}
@@ -709,8 +718,8 @@ const EvenementSingle = () => {
                 </div>
               </div>
             </div>
-          </section>
-        </Bleed>
+          </div>
+        </section>
       )}
 
       {/* Registration Modal */}
