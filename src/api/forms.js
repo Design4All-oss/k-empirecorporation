@@ -27,8 +27,8 @@ export function submitFormationInscription(data) {
   return submitForm('inscription-formation', data);
 }
 
-export function submitEvenementInscription(data) {
-  return submitForm('inscription-evenement', data);
+export function submitDossier(data) {
+  return submitForm('dossier-evenement', data);
 }
 
 export function submitDevis(data) {

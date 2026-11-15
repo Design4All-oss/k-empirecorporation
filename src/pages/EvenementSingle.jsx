@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Calendar, CheckCircle, CheckCircle2, X } from 'lucide-react';
+import { Calendar, CheckCircle2, X } from 'lucide-react';
 import SEO from '../components/ui/SEO';
 import { useEvenement, useEvenements } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
-import Button from '../components/ui/Button';
-import { submitEvenementInscription } from '../api/forms';
+import { submitDossier } from '../api/forms';
 import { useToast } from '../context/ToastContext';
 
 // Verrou de forme : rounded-full = interactifs · rounded-2xl = conteneurs, cartes, images,
@@ -22,6 +21,11 @@ const BTN_ON_ACCENT =
   'inline-flex items-center rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-white transition-transform duration-150 ease-out hover:bg-primary-hover active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
 const BTN_ON_ACCENT_OUTLINE =
   'inline-flex items-center rounded-full border border-primary px-7 py-3.5 text-sm font-semibold text-primary transition-transform duration-150 ease-out hover:bg-primary hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
+
+// Inscriptions : le client utilise un Tally dédié à cet événement.
+const SIGNUP_URL = 'https://bit.ly/KEC_GEEE';
+// shortcut: le dossier de présentation est encore chez Ivan, coller son URL ici dès réception.
+const DOSSIER_URL = '';
 
 // CARPEM est un sigle : le nom officiel l'accompagne, une seule fois.
 const CARPEM = 'Centre Africain de Recherche sur les Politiques Énergétiques et Minières';
@@ -55,6 +59,30 @@ const splitName = (entry) => {
 const Lines = ({ value, className = '' }) => (
   <span className={`whitespace-pre-line ${className}`}>{lines(value)}</span>
 );
+
+// CTA : URL Sanity si renseignée, sinon dossier → mini-formulaire, sinon inscription Tally.
+const Cta = ({ cta, className, onDossier }) => {
+  const label = cta.label || '';
+  if (cta.url) {
+    return (
+      <a href={cta.url} className={className}>
+        {label}
+      </a>
+    );
+  }
+  if (/dossier/i.test(label)) {
+    return (
+      <button type="button" onClick={onDossier} className={className}>
+        {label}
+      </button>
+    );
+  }
+  return (
+    <a href={SIGNUP_URL} target="_blank" rel="noopener noreferrer" className={className}>
+      {label}
+    </a>
+  );
+};
 
 // Section : conteneur géré en interne pour que des blocs puissent sortir en pleine largeur.
 const Section = ({ id, title, children }) => {
@@ -101,71 +129,29 @@ const EvenementSingle = () => {
     ? allEvenements.filter(e => e.slug !== slug).slice(0, 3)
     : [];
 
-  const [showModal, setShowModal] = useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    organisation: '',
-    fonction: '',
-    pays: '',
-    inscriptionType: '',
-    denomination: '',
-    rccm: '',
-    nif: '',
-    siegeSocial: '',
-    responsableNom: '',
-    acceptContact: false
-  });
+  const [dossierOpen, setDossierOpen] = useState(false);
+  const [dossierSent, setDossierSent] = useState(false);
+  const [dossier, setDossier] = useState({ email: '', fonction: '', entreprise: '' });
   const [submitting, setSubmitting] = useState(false);
   const toast = useToast();
 
-  const nextStep = () => setCurrentStep(currentStep + 1);
-  const prevStep = () => setCurrentStep(currentStep - 1);
-
-  const handleSubmit = async (e) => {
+  const handleDossier = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await submitEvenementInscription({
-        nom: formData.name,
-        email: formData.email,
-        telephone: formData.phone,
-        evenement_slug: slug,
-        evenement_id: evenement?.id?.toString() || '',
-        fonction: formData.fonction,
-        entreprise: formData.organisation,
-        type: formData.inscriptionType,
-        denomination: formData.denomination,
-        rccm: formData.rccm,
-        nif: formData.nif,
-        siegeSocial: formData.siegeSocial,
-        responsableNom: formData.responsableNom,
-      });
-      toast('Inscription envoyée ! Un conseiller vous contactera sous 24h.');
-      setShowModal(false);
-      setCurrentStep(0);
-      setFormData({ 
-        name: '', 
-        email: '', 
-        phone: '', 
-        organisation: '',
-        fonction: '',
-        pays: '',
-        inscriptionType: '',
-        denomination: '',
-        rccm: '',
-        nif: '',
-        siegeSocial: '',
-        responsableNom: '',
-        acceptContact: false
-      });
+      await submitDossier({ ...dossier, evenement_slug: slug });
+      setDossierSent(true);
     } catch (err) {
       toast(err.message, 'error');
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const closeDossier = () => {
+    setDossierOpen(false);
+    setDossierSent(false);
+    setDossier({ email: '', fonction: '', entreprise: '' });
   };
 
   const {
@@ -281,23 +267,14 @@ const EvenementSingle = () => {
 
           {ctas.length > 0 && (
             <div className="mt-8 flex flex-wrap gap-3">
-              {ctas.map((cta, i) => {
-                const cls = i === 0 ? BTN_PRIMARY : BTN_LIGHT_OUTLINE;
-                return cta.url ? (
-                  <a key={i} href={cta.url} className={cls}>
-                    {cta.label}
-                  </a>
-                ) : (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setShowModal(true)}
-                    className={cls}
-                  >
-                    {cta.label}
-                  </button>
-                );
-              })}
+              {ctas.map((cta, i) => (
+                <Cta
+                  key={i}
+                  cta={cta}
+                  className={i === 0 ? BTN_PRIMARY : BTN_LIGHT_OUTLINE}
+                  onDossier={() => setDossierOpen(true)}
+                />
+              ))}
             </div>
           )}
 
@@ -335,7 +312,9 @@ const EvenementSingle = () => {
             </a>
           ))}
           <a
-            href="#candidature"
+            href={SIGNUP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-auto shrink-0 rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
           >
             Candidater
@@ -451,13 +430,14 @@ const EvenementSingle = () => {
               })}
             </ul>
             {faculty.ctaLabel && (
-              <button
-                type="button"
-                onClick={() => setShowModal(true)}
+              <a
+                href={SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`${BTN_LIGHT_OUTLINE} mt-8`}
               >
                 {faculty.ctaLabel}
-              </button>
+              </a>
             )}
           </Section>
         )}
@@ -730,23 +710,14 @@ const EvenementSingle = () => {
                   </p>
                 )}
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {ctas.map((cta, i) => {
-                    const cls = i === 0 ? BTN_ON_ACCENT : BTN_ON_ACCENT_OUTLINE;
-                    return cta.url ? (
-                      <a key={i} href={cta.url} className={cls}>
-                        {cta.label}
-                      </a>
-                    ) : (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => setShowModal(true)}
-                        className={cls}
-                      >
-                        {cta.label}
-                      </button>
-                    );
-                  })}
+                  {ctas.map((cta, i) => (
+                    <Cta
+                      key={i}
+                      cta={cta}
+                      className={i === 0 ? BTN_ON_ACCENT : BTN_ON_ACCENT_OUTLINE}
+                      onDossier={() => setDossierOpen(true)}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -754,308 +725,97 @@ const EvenementSingle = () => {
         </section>
       )}
 
-      {/* Registration Modal */}
+      {/* Dossier de présentation — capture avant téléchargement */}
       <AnimatePresence>
-        {showModal && (
+        {dossierOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="absolute inset-0 bg-black/50"
-              onClick={() => { setShowModal(false); setCurrentStep(0); }}
+              onClick={closeDossier}
             />
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={reduce ? false : { opacity: 0, scale: 0.96, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative bg-white rounded-2xl shadow-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto"
+              exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 16 }}
+              className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-8 shadow-2xl"
             >
-              <button 
-                onClick={() => { setShowModal(false); setCurrentStep(0); }}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition-colors"
+              <button
+                onClick={closeDossier}
+                aria-label="Fermer"
+                className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-colors hover:bg-gray-200"
               >
                 <X size={20} />
               </button>
-              
-              <div className="p-8">
-                {/* Progress Bar */}
-                <div className="flex gap-2 mb-8">
-                  {[0, 1, 2].map((step) => (
-                    <div key={step} className="flex-1 h-1 rounded-full bg-gray-200">
-                      <div 
-                        className={`h-full rounded-full transition-[width] duration-300 ${step <= currentStep ? 'bg-accent' : ''}`}
-                        style={{ width: step <= currentStep ? '100%' : '0%' }}
-                      />
-                    </div>
-                  ))}
-                </div>
 
-                {/* Step 0: Welcome */}
-                {currentStep === 0 && (
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Calendar size={32} className="text-accent" />
-                    </div>
-                    <h2 className="text-2xl font-bold text-primary mb-3">Participez à cet événement</h2>
-                    <p className="text-text-muted mb-6">
-                      Rejoignez les professionnels et experts pour cette événement unique. 
-                      Votre inscription vous rapproche de l'excellence.
+              {dossierSent ? (
+                <div>
+                  <h2 className="font-display text-2xl font-semibold text-primary">Merci</h2>
+                  {DOSSIER_URL ? (
+                    <>
+                      <p className="mt-3 text-sm text-text-muted">
+                        Le dossier de présentation est prêt.
+                      </p>
+                      <a href={DOSSIER_URL} download className={`${BTN_PRIMARY} mt-6`}>
+                        Télécharger le dossier
+                      </a>
+                    </>
+                  ) : (
+                    <p className="mt-3 text-sm text-text-muted">
+                      Le dossier de présentation vous sera adressé par e-mail.
                     </p>
-                    <div className="bg-bg-alt p-4 rounded-2xl mb-6 text-left">
-                      <h3 className="font-semibold text-primary mb-2">Cet événement vous offre :</h3>
-                      <ul className="space-y-2 text-sm text-text-muted">
-                        <li className="flex items-start gap-2">
-                          <CheckCircle size={16} className="text-accent flex-shrink-0 mt-0.5" />
-                          Des connaissances pratiques et actionable
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle size={16} className="text-accent flex-shrink-0 mt-0.5" />
-                          Un networking avec des professionnels qualifiés
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <CheckCircle size={16} className="text-accent flex-shrink-0 mt-0.5" />
-                          Une attestation de participation
-                        </li>
-                      </ul>
-                    </div>
-                    <Button onClick={nextStep}>
-                      Réserver ma place
-                    </Button>
-                  </div>
-                )}
+                  )}
+                </div>
+              ) : (
+                <form onSubmit={handleDossier}>
+                  <h2 className="font-display text-2xl font-semibold text-primary">Demander le dossier</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-text-muted">
+                    Le dossier de présentation détaille le programme, la faculty et les modalités de participation.
+                  </p>
 
-                {/* Step 1: Informations */}
-                {currentStep === 1 && (
-                  <form onSubmit={handleSubmit}>
-                    <div className="text-center mb-6">
-                      <h2 className="text-xl font-bold text-primary">Vos informations</h2>
-                    </div>
-                    
-                    <div className="space-y-3 mb-6">
-                      <p className="text-sm font-semibold text-primary">Type d'inscription</p>
-                      <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-2xl cursor-pointer hover:bg-gray-50 transition-colors">
-                        <input 
-                          type="radio" 
-                          name="inscriptionType" 
-                          value="individuelle"
-                          checked={formData.inscriptionType === 'individuelle'}
-                          onChange={(e) => setFormData({...formData, inscriptionType: e.target.value})}
-                          className="w-5 h-5 text-accent accent-accent"
-                        />
-                        <span className="text-primary font-medium">Individuelle</span>
-                      </label>
-                      <label className="flex items-center gap-3 p-4 border border-gray-200 rounded-2xl cursor-pointer hover:bg-gray-50 transition-colors">
-                        <input 
-                          type="radio" 
-                          name="inscriptionType" 
-                          value="institutionnelle"
-                          checked={formData.inscriptionType === 'institutionnelle'}
-                          onChange={(e) => setFormData({...formData, inscriptionType: e.target.value})}
-                          className="w-5 h-5 text-accent accent-accent"
-                        />
-                        <span className="text-primary font-medium">Institutionnelle (Entreprise / Organisation)</span>
-                      </label>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">Nom & Prénom *</label>
-                        <input 
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="Votre nom complet"
-                        />
-                      </div>
-                      
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">Adresse e-mail professionnelle *</label>
-                        <input 
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="vous@entreprise.com"
-                        />
-                      </div>
+                  <label className="mt-6 block text-sm font-medium text-primary">
+                    Adresse e-mail *
+                    <input
+                      type="email"
+                      required
+                      value={dossier.email}
+                      onChange={(e) => setDossier({ ...dossier, email: e.target.value })}
+                      className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 font-normal text-text focus:border-accent focus:outline-none"
+                      placeholder="vous@organisation.com"
+                    />
+                  </label>
+                  <label className="mt-4 block text-sm font-medium text-primary">
+                    Fonction
+                    <input
+                      type="text"
+                      value={dossier.fonction}
+                      onChange={(e) => setDossier({ ...dossier, fonction: e.target.value })}
+                      className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 font-normal text-text focus:border-accent focus:outline-none"
+                      placeholder="Directeur, chargé de mission..."
+                    />
+                  </label>
+                  <label className="mt-4 block text-sm font-medium text-primary">
+                    Entreprise de provenance
+                    <input
+                      type="text"
+                      value={dossier.entreprise}
+                      onChange={(e) => setDossier({ ...dossier, entreprise: e.target.value })}
+                      className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 font-normal text-text focus:border-accent focus:outline-none"
+                      placeholder="Organisation, ministère, société"
+                    />
+                  </label>
 
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">Numéro WhatsApp / Téléphone *</label>
-                        <input 
-                          type="tel"
-                          required
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="+228 90 10 80 75"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">Organisation / Entreprise</label>
-                        <input 
-                          type="text"
-                          value={formData.organisation}
-                          onChange={(e) => setFormData({...formData, organisation: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="Nom de votre structure"
-                        />
-                      </div>
-
-                      {formData.inscriptionType === 'institutionnelle' && (
-                        <div className="border-t border-gray-100 pt-4 space-y-4">
-                          <p className="text-sm font-semibold text-primary">Informations de l'institution</p>
-                          <div>
-                            <label className="block text-sm font-medium text-primary mb-1">Dénomination *</label>
-                            <input 
-                              type="text"
-                              required
-                              value={formData.denomination}
-                              onChange={(e) => setFormData({...formData, denomination: e.target.value})}
-                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                              placeholder="Nom officiel de l'institution"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-primary mb-1">RCCM *</label>
-                            <input 
-                              type="text"
-                              required
-                              value={formData.rccm}
-                              onChange={(e) => setFormData({...formData, rccm: e.target.value})}
-                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                              placeholder="N° RCCM"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-primary mb-1">NIF *</label>
-                            <input 
-                              type="text"
-                              required
-                              value={formData.nif}
-                              onChange={(e) => setFormData({...formData, nif: e.target.value})}
-                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                              placeholder="N° NIF"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-primary mb-1">Siège social *</label>
-                            <input 
-                              type="text"
-                              required
-                              value={formData.siegeSocial}
-                              onChange={(e) => setFormData({...formData, siegeSocial: e.target.value})}
-                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                              placeholder="Adresse du siège social"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-primary mb-1">Nom du responsable de l'inscription *</label>
-                            <input 
-                              type="text"
-                              required
-                              value={formData.responsableNom}
-                              onChange={(e) => setFormData({...formData, responsableNom: e.target.value})}
-                              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                              placeholder="Nom du responsable"
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">Fonction / Profession</label>
-                        <input 
-                          type="text"
-                          value={formData.fonction}
-                          onChange={(e) => setFormData({...formData, fonction: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="Votre fonction"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">Pays *</label>
-                        <input 
-                          type="text"
-                          required
-                          value={formData.pays}
-                          onChange={(e) => setFormData({...formData, pays: e.target.value})}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl text-text focus:outline-none focus:border-accent"
-                          placeholder="Votre pays"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3 mt-6">
-                      <Button variant="outline" onClick={prevStep}>
-                        Retour
-                      </Button>
-                      <Button 
-                        onClick={nextStep}
-                        disabled={!formData.inscriptionType || !formData.name || !formData.email || !formData.phone || !formData.pays}
-                      >
-                        Suivant
-                      </Button>
-                    </div>
-                  </form>
-                )}
-
-                {/* Step 2: Confirmation */}
-                {currentStep === 2 && (
-                  <form onSubmit={handleSubmit}>
-                    <div className="text-center mb-6">
-                      <h2 className="text-xl font-bold text-primary">Finalisation</h2>
-                    </div>
-
-                    <div className="bg-accent/10 p-4 rounded-2xl mb-6">
-                      <p className="text-sm text-text-muted mb-2">
-                        <span className="font-semibold text-primary">“Un conseiller vous contactera sous 24h pour finaliser votre inscription.”</span>
-                      </p>
-                      <p className="text-sm text-text-muted">
-                        <span className="font-semibold text-primary">“Places limitées – Sélection basée sur la pertinence du profil”</span>
-                      </p>
-                    </div>
-
-                    <label className="flex items-start gap-3 mb-6 cursor-pointer">
-                      <input 
-                        type="checkbox"
-                        required
-                        checked={formData.acceptContact}
-                        onChange={(e) => setFormData({...formData, acceptContact: e.target.checked})}
-                        className="w-5 h-5 mt-0.5 text-accent accent-accent rounded"
-                      />
-                      <span className="text-sm text-text-muted">
-                        J'accepte d'être contacté dans le cadre de cette demande et j'ai lu les{' '}
-                        <a href="/cgf-k-empire" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">CGF</a>
-                      </span>
-                    </label>
-
-                    <div className="bg-bg-alt p-4 rounded-2xl mb-6">
-                      <h4 className="font-semibold text-primary text-sm mb-2">Récapitulatif</h4>
-                      <div className="space-y-1 text-sm text-text-muted">
-                        <p><span className="font-medium">Événement :</span> {evenement.title}</p>
-                        <p><span className="font-medium">Date :</span> {evenement.date}</p>
-                        <p><span className="font-medium">Lieu :</span> {evenement.location || 'Non défini'}</p>
-                        <p><span className="font-medium">Tarif :</span> {evenement.price ? 'Événement payant' : 'Événement gratuit'}</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <Button variant="outline" onClick={prevStep}>
-                        Retour
-                      </Button>
-                      <Button type="submit" disabled={submitting}>
-                        {submitting ? 'Envoi en cours...' : 'Confirmer mon inscription'}
-                      </Button>
-                    </div>
-                  </form>
-                )}
-              </div>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className={`${BTN_PRIMARY} mt-6 w-full justify-center disabled:opacity-60`}
+                  >
+                    {submitting ? 'Envoi...' : 'Recevoir le dossier'}
+                  </button>
+                </form>
+              )}
             </motion.div>
           </div>
         )}

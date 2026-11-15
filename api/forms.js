@@ -162,6 +162,11 @@ const ENDPOINTS = {
     label: 'Inscription événement',
     fields: ['nom', 'email', 'telephone', 'fonction', 'entreprise', 'evenement_slug', 'evenement_id', 'type', 'denomination', 'rccm', 'nif', 'siegeSocial', 'responsableNom'],
   },
+  'dossier-evenement': {
+    type: 'demandeDossier',
+    label: 'Demande de dossier événement',
+    fields: ['email', 'fonction', 'entreprise', 'evenement_slug'],
+  },
   devis: {
     type: 'soumissionDevis',
     label: 'Demande de devis',
@@ -246,6 +251,7 @@ function buildAdminEmail(type, fields) {
     newsletter: 'Nouvelle inscription newsletter',
     'inscription-formation': 'Nouvelle inscription formation',
     'inscription-evenement': 'Nouvelle inscription événement',
+    'dossier-evenement': 'Nouvelle demande de dossier événement',
     devis: 'Nouvelle demande de devis',
     rdv: 'Nouvelle demande de rendez-vous',
   };
@@ -316,6 +322,7 @@ function buildUserConfirmation(type, fields) {
     newsletter: 'Merci de votre inscription à notre newsletter ! Vous recevrez nos dernières actualités et conseils directement dans votre boîte mail.',
     'inscription-formation': 'Votre demande d\'inscription a bien été enregistrée. Un de nos conseillers vous contactera sous 24h pour finaliser votre inscription et vous communiquer les détails pratiques.',
     'inscription-evenement': 'Votre demande d\'inscription a bien été enregistrée. Un de nos conseillers vous contactera sous 24h pour confirmer votre participation.',
+    'dossier-evenement': 'Votre demande de dossier a bien été reçue. Le dossier de présentation de la formation vous sera adressé par e-mail.',
     devis: 'Votre demande de devis a bien été reçue. Notre équipe l\'analysera et vous enverra une proposition détaillée sous 48h.',
     rdv: 'Votre demande de rendez-vous a bien été reçue. Nous vous contacterons rapidement pour confirmer le créneau.',
   };
