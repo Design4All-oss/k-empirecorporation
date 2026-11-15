@@ -4,7 +4,7 @@
     "title": "Gouvernance des Entités Extractives et Énergétiques",
     "slug": { "_type": "slug", "current": "gouvernance-entites-extractives-energetiques" },
     "status": "publié",
-    "excerpt": "L'Executive Intensive Programme « Gouvernance des Entités Extractives et Énergétiques » est un programme exécutif de trois journées conçu et porté par K-EMPIRE CORPORATION, en partenariat avec la SCPA BIRBA-GUITANGA & ASSOCIÉS basé à Ouagadougou (Burkina Faso) et le Centre Africain de Recherches sur les Politiques Énergétiques et Minières (CARPEM) basé à Paris (France). Il s'adresse aux dirigeants, juristes, fiscalistes, responsables conformité, investisseurs et responsables publics intervenant dans les secteurs minier, pétrolier, gazier et énergétique en Afrique.",
+    "excerpt": "L'Executive Intensive Programme « Gouvernance des Entités Extractives et Énergétiques » est un programme exécutif de trois journées conçu et porté par K-EMPIRE CORPORATION, en partenariat avec la SCPA BIRBA-GUITANGA & ASSOCIÉS basé à Ouagadougou (Burkina Faso) et le Centre Africain de Recherche sur les Politiques Énergétiques et Minières (CARPEM) basé à Paris (France). Il s'adresse aux dirigeants, juristes, fiscalistes, responsables conformité, investisseurs et responsables publics intervenant dans les secteurs minier, pétrolier, gazier et énergétique en Afrique.",
     "coverImage": null,
     "type": "Executive Intensive Programme",
     "startDateTime": "2026-12-17T08:00:00Z",
@@ -25,7 +25,7 @@
       { "label": "Dates", "valeur": "17-18 décembre 2026 : formation · 19 décembre 2026 : immersion Executive" },
       { "label": "Lieux", "valeur": "Lomé (17-18 décembre) · Kpalimé (19 décembre), Togo" },
       { "label": "Format", "valeur": "Présentiel intensif : 2 jours de formation + 1 jour d'immersion" },
-      { "label": "Portage institutionnel", "valeur": "K-EMPIRE CORPORATION × SCPA BIRBA-GUITANGA & ASSOCIÉS × CARPEM" },
+      { "label": "Portage institutionnel", "valeur": "K-EMPIRE CORPORATION\nSCPA BIRBA-GUITANGA & ASSOCIÉS\nCentre Africain de Recherche sur les Politiques Énergétiques et Minières (CARPEM)" },
       { "label": "Gouvernance scientifique", "valeur": "Présidence du Comité scientifique : Pr AWOKI Kougnontèma · Direction scientifique : Dr ESSAGA Stéphane" },
       { "label": "Clôture des inscriptions", "valeur": "5 décembre 2026" }
     ],
@@ -56,7 +56,7 @@
         },
         {
           "titre": "Direction scientifique - Dr Stéphane ESSAGA",
-          "fonction": "Directeur exécutif du CARPEM",
+          "fonction": "Directeur exécutif du Centre Africain de Recherche sur les Politiques Énergétiques et Minières (CARPEM)",
           "texte": "Fort de son expérience dans l'administration fiscale, la négociation des contrats extractifs et l'élaboration des cadres fiscaux miniers et pétroliers, il veille à la cohérence des six modules, à la coordination pédagogique des intervenants et à la qualité scientifique des études de cas et des supports pédagogiques."
         }
       ]
@@ -64,7 +64,7 @@
     "faculty": {
       "intro": "La Faculté réunit des spécialistes du droit des affaires, de la fiscalité, des industries extractives et énergétiques, de la gouvernance et du règlement des différends, disposant d'expériences complémentaires en Afrique et à l'international.",
       "noms": [
-        "Dr Victor Stéphane ESSAGA - Fondateur et Directeur du CARPEM",
+        "Dr Victor Stéphane ESSAGA - Fondateur et Directeur du Centre Africain de Recherche sur les Politiques Énergétiques et Minières (CARPEM)",
         "Dr Achille NGWANZA - Associé-gérant de JUS AFRICA",
         "M. Léonard SANON - Membre permanent du Conseil de régulation de l'ARSE (Burkina Faso)",
         "Dr Me Samuel Ibrahim GUITANGA - Associé-Gérant de la SCPA BIRBA-GUITANGA & ASSOCIÉS",
@@ -165,7 +165,7 @@
       "items": [
         { "categorie": "Portage institutionnel", "titre": "K-EMPIRE CORPORATION", "texte": "Assure le portage institutionnel du programme, la coordination générale, l'ingénierie pédagogique et l'organisation de l'expérience Executive." },
         { "categorie": "Partenaire juridique", "titre": "SCPA BIRBA-GUITANGA & ASSOCIÉS", "texte": "Basé à Ouagadougou (Burkina Faso). Apporte son expertise juridique et son expérience du conseil stratégique : approche juridique des problématiques sectorielles, conception de cas pratiques et relations institutionnelles et partenariales." },
-        { "categorie": "Partenaire scientifique", "titre": "CARPEM", "texte": "Centre Africain de Recherche sur les Politiques Énergétiques et Minières, basé à Paris (France). Contribue à l'analyse des politiques énergétiques et minières, à la veille sectorielle et à la mise en perspective des enjeux stratégiques et réglementaires." }
+        { "categorie": "Partenaire scientifique", "titre": "Centre Africain de Recherche sur les Politiques Énergétiques et Minières (CARPEM)", "texte": "Basé à Paris (France). Contribue à l'analyse des politiques énergétiques et minières, à la veille sectorielle et à la mise en perspective des enjeux stratégiques et réglementaires." }
       ]
     },
     "infosPratiques": {

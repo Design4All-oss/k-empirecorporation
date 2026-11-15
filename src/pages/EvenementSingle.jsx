@@ -23,9 +23,41 @@ const BTN_ON_ACCENT =
 const BTN_ON_ACCENT_OUTLINE =
   'inline-flex items-center rounded-full border border-primary px-7 py-3.5 text-sm font-semibold text-primary transition-transform duration-150 ease-out hover:bg-primary hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2';
 
+// CARPEM est un sigle : le nom officiel l'accompagne, une seule fois.
+const CARPEM = 'Centre Africain de Recherche sur les Politiques Énergétiques et Minières';
+const sigle = (value = '') =>
+  String(value).replace(/CARPEM/g, (m, offset, s) =>
+    s[offset - 1] === '(' ? m : `${CARPEM} (CARPEM)`
+  );
+// Une information par ligne : les valeurs saisies séparent parfois les blocs par « · ».
+const lines = (value = '') => sigle(value).replace(/\s+·\s+/g, '\n');
+// Un tiret de liaison devient un deux-points, plus sobre.
+const colon = (value = '') => String(value).replace(/\s+[-–]\s+/g, ' : ');
+// Même règle, mais sur une seule ligne (titres).
+const commas = (value = '') => String(value).replace(/\s*·\s*/g, ', ');
+// Titres du programme : l'horaire était saisi dans le titre.
+const TIME_SLOT = /^(\d{2}h\d{2})\s*[-–]\s*(\d{2}h\d{2})\s*·\s*(.+)$/;
+const WORD_SLOT = /^(Matinée|Déjeuner|Après-midi|Fin de journée)\s+-\s+(.+)$/;
+const programRow = (item) => {
+  if (item.heure) return item;
+  const time = TIME_SLOT.exec(item.titre || '');
+  if (time) return { ...item, heure: `${time[1]} – ${time[2]}`, titre: colon(time[3]) };
+  const word = WORD_SLOT.exec(item.titre || '');
+  return word ? { ...item, heure: word[1], titre: colon(word[2]) } : item;
+};
+// Faculty : « Nom - Fonction » sur une seule ligne à l'origine.
+const splitName = (entry) => {
+  if (typeof entry === 'object') return entry;
+  const [nom, ...rest] = String(entry).split(/\s+-\s+/);
+  return { nom, fonction: rest.join(' : ') };
+};
+
+const Lines = ({ value, className = '' }) => (
+  <span className={`whitespace-pre-line ${className}`}>{lines(value)}</span>
+);
+
 // Section : conteneur géré en interne pour que des blocs puissent sortir en pleine largeur.
-// Rubriques numérotées : le numéro remplace l'eyebrow (pas de majuscules traquées au-dessus du titre).
-const Section = ({ id, num, title, children }) => {
+const Section = ({ id, title, children }) => {
   const reduce = useReducedMotion();
   return (
     <motion.section
@@ -34,15 +66,9 @@ const Section = ({ id, num, title, children }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="scroll-mt-36 border-t border-gray-100 py-14 md:py-24"
+      className="scroll-mt-36 py-14 md:py-24"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {num && (
-          <div className="mb-5 flex items-center gap-4">
-            <span className="font-display text-xs font-semibold text-accent">{num}</span>
-            <span className="h-px flex-1 bg-accent/30" />
-          </div>
-        )}
         <h2 className="mb-8 max-w-4xl font-display text-2xl font-semibold leading-[1.1] tracking-tight text-primary md:mb-12 md:text-4xl lg:text-5xl">
           {title}
         </h2>
@@ -58,7 +84,9 @@ const RowsTable = ({ rows }) => (
     {rows.map((row, i) => (
       <div key={i} className="border-t border-gray-100 pt-5">
         <dt className="text-xs font-semibold text-text-muted">{row.label}</dt>
-        <dd className="mt-2 font-display text-lg leading-snug text-primary md:text-xl">{row.valeur}</dd>
+        <dd className="mt-2 font-display text-lg leading-snug text-primary md:text-xl">
+          <Lines value={row.valeur} />
+        </dd>
       </div>
     ))}
   </dl>
@@ -239,9 +267,9 @@ const EvenementSingle = () => {
           </h1>
 
           {dateLine && (
-            <p className="mt-4 flex items-center gap-2 text-sm font-semibold text-accent md:text-base">
-              <Calendar size={16} className="shrink-0" />
-              <span>{dateLine}</span>
+            <p className="mt-4 flex items-start gap-2 text-sm font-semibold text-accent md:text-base">
+              <Calendar size={16} className="mt-0.5 shrink-0" />
+              <Lines value={dateLine} />
             </p>
           )}
 
@@ -278,7 +306,9 @@ const EvenementSingle = () => {
               {regard.map((row) => (
                 <div key={row.label}>
                   <dt className="text-xs font-semibold text-text-muted">{row.label}</dt>
-                  <dd className="mt-1 font-display text-base text-primary">{row.valeur}</dd>
+                  <dd className="mt-1 font-display text-base text-primary">
+                    <Lines value={row.valeur} />
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -325,7 +355,7 @@ const EvenementSingle = () => {
       <main>
         {/* ═══ 01 · Chiffres ═══ */}
         {stats && stats.items && stats.items.length > 0 && (
-          <Section id="chiffres" num="01" title="L’événement en chiffres">
+          <Section id="chiffres" title="L’événement en chiffres">
             <div className="grid grid-cols-2 border-t border-gray-100 md:grid-cols-4">
               {stats.items.map((s, i) => (
                 <div
@@ -335,7 +365,7 @@ const EvenementSingle = () => {
                   <p className="font-display text-4xl font-medium leading-none tracking-tight text-primary md:text-5xl">
                     {s.value}
                   </p>
-                  <p className="mt-3 max-w-[18ch] text-sm leading-snug text-text-muted">{s.label}</p>
+                  <p className="mt-3 max-w-[18ch] text-sm leading-snug text-text-muted">{colon(s.label)}</p>
                 </div>
               ))}
             </div>
@@ -344,7 +374,7 @@ const EvenementSingle = () => {
 
         {/* ═══ 02 · Pourquoi ce programme ? ═══ */}
         {pourquoi && pourquoi.items && pourquoi.items.length > 0 && (
-          <Section num="02" title="Pourquoi ce programme ?">
+          <Section title="Pourquoi ce programme ?">
             {pourquoi.intro && (
               <p className="mb-10 max-w-[50ch] font-display text-xl font-medium text-primary md:mb-14 md:text-2xl">
                 {pourquoi.intro}
@@ -353,10 +383,7 @@ const EvenementSingle = () => {
             <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
               {pourquoi.items.map((item, i) => (
                 <div key={i}>
-                  <span className="font-display text-xs font-semibold text-accent">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-2 font-display text-lg font-bold text-primary md:text-xl">
+                  <h3 className="font-display text-lg font-bold text-primary md:text-xl">
                     {item.titre}
                   </h3>
                   <p className="mt-3 max-w-[55ch] text-sm leading-relaxed text-text-muted">
@@ -370,22 +397,22 @@ const EvenementSingle = () => {
 
         {/* ═══ Gouvernance scientifique ═══ */}
         {gouvernance && gouvernance.items && gouvernance.items.length > 0 && (
-          <Section num="03" title="Gouvernance scientifique">
+          <Section title="Gouvernance scientifique">
             {gouvernance.intro && (
               <p className="mb-10 max-w-[65ch] text-text-muted md:mb-14">{gouvernance.intro}</p>
             )}
-            <div className="grid border-t border-gray-100 md:grid-cols-2 md:gap-0 md:divide-x md:divide-gray-100">
+            <div className="grid gap-10 md:grid-cols-2 md:gap-14">
               {gouvernance.items.map((item, i) => (
-                <div key={i} className={i === 0 ? 'md:pr-12' : 'md:pl-12'}>
-                  <p className="pt-8 md:pt-10">
-                    <span className="font-display text-lg font-bold text-primary md:text-xl">
-                      {item.titre}
+                <div key={i}>
+                  <p>
+                    <span className="block whitespace-pre-line font-display text-lg font-bold text-primary md:text-xl">
+                      {colon(item.titre)}
                     </span>
                     {item.fonction && (
-                      <span className="mt-1.5 block text-sm italic text-accent">{item.fonction}</span>
+                      <span className="mt-1.5 block text-sm italic text-accent">{sigle(item.fonction)}</span>
                     )}
                   </p>
-                  <p className="mt-4 max-w-[60ch] pb-8 text-sm leading-relaxed text-text-muted md:pb-10">
+                  <p className="mt-4 max-w-[60ch] text-sm leading-relaxed text-text-muted">
                     {item.texte}
                   </p>
                 </div>
@@ -396,7 +423,7 @@ const EvenementSingle = () => {
 
         {/* ═══ The Faculty ═══ */}
         {faculty && faculty.noms && faculty.noms.length > 0 && (
-          <Section id="faculty" num="04" title="The Faculty">
+          <Section id="faculty" title="The Faculty">
             {faculty.intro && (
               <p className="mb-4 max-w-[50ch] font-display text-xl font-medium text-primary md:text-2xl">
                 {faculty.intro}
@@ -405,21 +432,24 @@ const EvenementSingle = () => {
             {faculty.texte && (
               <p className="mb-10 max-w-[65ch] text-text-muted">{faculty.texte}</p>
             )}
-            <ol className="border-t border-gray-100">
-              {faculty.noms.map((nom, i) => (
-                <li
-                  key={i}
-                  className="group flex items-baseline gap-5 border-b border-gray-100 py-4 md:gap-8 md:py-5"
-                >
-                  <span className="w-6 shrink-0 font-display text-xs text-text-muted md:w-8">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="font-display text-base text-primary transition-colors group-hover:text-accent md:text-xl">
-                    {nom}
-                  </span>
-                </li>
-              ))}
-            </ol>
+            <ul className="border-t border-gray-100">
+              {faculty.noms.map((entry, i) => {
+                const { nom, fonction } = splitName(entry);
+                return (
+                  <li
+                    key={i}
+                    className="group border-b border-gray-100 py-4 md:py-5"
+                  >
+                    <span className="font-display text-base text-primary transition-colors group-hover:text-accent md:text-xl">
+                      {nom}
+                    </span>
+                    {fonction && (
+                      <span className="mt-1 block text-sm text-text-muted">{sigle(fonction)}</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
             {faculty.ctaLabel && (
               <button
                 type="button"
@@ -434,7 +464,7 @@ const EvenementSingle = () => {
 
         {/* ═══ Le programme — jour collant ═══ */}
         {parcours && parcours.jours && parcours.jours.length > 0 && (
-          <Section id="programme" num="05" title="Le programme">
+          <Section id="programme" title="Le programme">
             {parcours.intro && (
               <p className="mb-6 max-w-[50ch] font-display text-xl font-medium text-primary md:mb-8 md:text-2xl">
                 {parcours.intro}
@@ -464,24 +494,34 @@ const EvenementSingle = () => {
                     )}
 
                     {jour.items && jour.items.length > 0 && (
-                      <div className="divide-y divide-gray-100 border-y border-gray-100">
-                        {jour.items.map((item, j) => (
-                          <div key={j} className="py-6">
-                            <h4 className="font-display text-base font-bold text-primary md:text-lg">
-                              {item.titre}
-                            </h4>
-                            {item.texte && (
-                              <p className="mt-2 max-w-[65ch] text-sm leading-relaxed text-text-muted">
-                                {item.texte}
-                              </p>
-                            )}
-                          </div>
-                        ))}
+                      <div className="space-y-6">
+                        {jour.items.map((item, j) => {
+                          const row = programRow(item);
+                          return (
+                            <div key={j} className="flex gap-5 md:gap-8">
+                              {row.heure && (
+                                <span className="w-28 shrink-0 font-display text-xs font-semibold text-accent md:w-32 md:text-sm">
+                                  {row.heure}
+                                </span>
+                              )}
+                              <div>
+                                <h4 className="font-display text-base font-bold text-primary md:text-lg">
+                                  {row.titre}
+                                </h4>
+                                {row.texte && (
+                                  <p className="mt-2 max-w-[65ch] text-sm leading-relaxed text-text-muted">
+                                    {row.texte}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
 
                     {jour.points && jour.points.length > 0 && (
-                      <ul className="space-y-3 border-t border-gray-100 pt-6">
+                      <ul className="space-y-3 pt-6">
                         {jour.points.map((point, j) => (
                           <li key={j} className="flex gap-3 text-sm leading-relaxed text-text-muted">
                             <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
@@ -497,8 +537,8 @@ const EvenementSingle = () => {
 
                     {jour.closing && (
                       <div className="mt-6 bg-primary px-6 py-5 md:px-8 md:py-6">
-                        <p className="font-display text-sm font-bold uppercase tracking-[0.14em] text-accent">
-                          {jour.closing}
+                        <p className="whitespace-pre-line font-display text-sm font-bold uppercase tracking-[0.14em] text-accent">
+                          {lines(jour.closing)}
                         </p>
                       </div>
                     )}
@@ -511,26 +551,23 @@ const EvenementSingle = () => {
 
         {/* ═══ Pédagogie ═══ */}
         {pedagogie && pedagogie.items && pedagogie.items.length > 0 && (
-          <Section num="06" title="Une pédagogie orientée décision">
-            <div className="divide-y divide-gray-100 border-y border-gray-100">
+          <Section title="Une pédagogie orientée décision">
+            <ul className="space-y-5">
               {pedagogie.items.map((item, i) => (
-                <div key={i} className="flex items-baseline gap-5 py-6 md:gap-8">
-                  <span className="font-display text-xs font-semibold text-accent">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <p className="font-display text-base text-primary md:text-lg">{item}</p>
-                </div>
+                <li key={i} className="max-w-[75ch] font-display text-base leading-snug text-primary md:text-lg">
+                  {colon(item)}
+                </li>
               ))}
-            </div>
+            </ul>
           </Section>
         )}
 
         {/* ═══ Qui participe ? ═══ */}
         {participer.length > 0 && (
-          <Section num="07" title="Qui participe ?">
-            <div className="grid border-t border-gray-100 md:grid-cols-2 md:gap-x-12 lg:grid-cols-3">
+          <Section title="Qui participe ?">
+            <div className="grid gap-y-8 md:grid-cols-2 md:gap-x-12 lg:grid-cols-3">
               {participer.map((item, i) => (
-                <div key={i} className="border-b border-gray-100 pb-8 pt-8 md:border-b-0 md:pt-0">
+                <div key={i}>
                   <h3 className="font-display font-bold text-primary md:text-lg">{item.titre}</h3>
                   <p className="mt-3 max-w-[45ch] text-sm leading-relaxed text-text-muted">
                     {item.texte}
@@ -543,22 +580,17 @@ const EvenementSingle = () => {
 
         {/* ═══ L’expérience K-EMPIRE ═══ */}
         {experience && experience.items && experience.items.length > 0 && (
-          <Section num="08" title="L’expérience K-EMPIRE">
+          <Section title="L’expérience K-EMPIRE">
             {experience.intro && (
               <p className="mb-10 max-w-[50ch] font-display text-xl font-medium text-primary md:mb-14 md:text-2xl">
                 {experience.intro}
               </p>
             )}
-            <div className="grid border-b border-gray-100 sm:grid-cols-2 sm:gap-x-12">
+            <div className="grid gap-y-8 sm:grid-cols-2 sm:gap-x-12">
               {experience.items.map((item, i) => (
-                <div
-                  key={i}
-                  className={`border-t border-gray-100 py-6 sm:py-7 ${
-                    i % 2 === 0 ? 'sm:border-r sm:border-gray-100 sm:pr-8' : 'sm:pl-8'
-                  }`}
-                >
+                <div key={i}>
                   <h3 className="font-display text-sm font-semibold text-primary md:text-base">
-                    {item.titre}
+                    {colon(item.titre)}
                   </h3>
                   <p className="mt-2 max-w-[50ch] text-sm leading-relaxed text-text-muted">
                     {item.texte}
@@ -571,11 +603,11 @@ const EvenementSingle = () => {
 
         {/* ═══ Livrables & bénéfices ═══ */}
         {livrables && livrables.items && livrables.items.length > 0 && (
-          <Section num="09" title="Livrables & bénéfices">
+          <Section title="Livrables & bénéfices">
             {livrables.intro && (
               <p className="mb-8 max-w-[65ch] text-text-muted">{livrables.intro}</p>
             )}
-            <ul className="grid gap-y-4 border-t border-gray-100 pt-8 sm:grid-cols-2 sm:gap-x-12">
+            <ul className="grid gap-y-4 sm:grid-cols-2 sm:gap-x-12">
               {livrables.items.map((item, i) => (
                 <li key={i} className="flex gap-4">
                   <CheckCircle2 size={18} className="mt-0.5 flex-shrink-0 text-accent" />
@@ -588,7 +620,7 @@ const EvenementSingle = () => {
 
         {/* ═══ Partenaires & institutions ═══ */}
         {partenaires && partenaires.items && partenaires.items.length > 0 && (
-          <Section num="10" title="Partenaires & institutions">
+          <Section title="Partenaires & institutions">
             <div className="divide-y divide-gray-100 border-y border-gray-100">
               {partenaires.items.map((item, i) => (
                 <div key={i} className="py-8 md:grid md:grid-cols-[14rem_1fr] md:gap-10">
@@ -613,14 +645,14 @@ const EvenementSingle = () => {
 
         {/* ═══ Informations pratiques ═══ */}
         {infosPratiques && infosPratiques.rows && infosPratiques.rows.length > 0 && (
-          <Section id="infos" num="11" title="Informations pratiques">
+          <Section id="infos" title="Informations pratiques">
             <RowsTable rows={infosPratiques.rows} />
           </Section>
         )}
 
         {/* ═══ Foire aux questions ═══ */}
         {faq.length > 0 && (
-          <Section id="faq" num="12" title="Foire aux questions">
+          <Section id="faq" title="Foire aux questions">
             <div className="border-t border-gray-100">
               {faq.map((item, i) => (
                 <details key={i} className="group border-b border-gray-100">
@@ -690,7 +722,7 @@ const EvenementSingle = () => {
               <div className="relative z-10 max-w-xl p-8 md:p-14">
                 <span className="mb-6 block h-1 w-12 bg-primary" />
                 <h2 className="font-display text-2xl font-semibold leading-[1.1] tracking-tight text-primary md:text-4xl lg:text-5xl">
-                  {ctaFinal?.titre || 'Prendre part à l’expérience'}
+                  {commas(ctaFinal?.titre || 'Prendre part à l’expérience')}
                 </h2>
                 {ctaFinal?.texte && (
                   <p className="mt-5 max-w-[52ch] text-sm leading-relaxed text-primary md:text-base">
