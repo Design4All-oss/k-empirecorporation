@@ -258,8 +258,37 @@ export default defineType({
         defineField({
           name: 'noms',
           title: 'Liste des formateurs',
+          description: 'Liste simple, utilisée seulement quand « Intervenants par groupe » est vide.',
           type: 'array',
           of: [{ type: 'string' }],
+        }),
+        defineField({
+          name: 'groupes',
+          title: 'Intervenants par groupe',
+          description: "Intitulés de groupe et intervenants avec leur biographie exacte. Remplace la liste simple quand renseigné.",
+          type: 'array',
+          of: [
+            defineField({
+              type: 'object',
+              fields: [
+                defineField({ name: 'groupe', title: 'Intitulé du groupe', type: 'string' }),
+                defineField({
+                  name: 'intervenants',
+                  title: 'Intervenants',
+                  type: 'array',
+                  of: [
+                    defineField({
+                      type: 'object',
+                      fields: [
+                        defineField({ name: 'nom', title: 'Nom', type: 'string' }),
+                        defineField({ name: 'bio', title: 'Biographie', type: 'text', rows: 6 }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          ],
         }),
         defineField({ name: 'note', title: 'Note', type: 'text', rows: 3 }),
         defineField({ name: 'ctaLabel', title: 'Libellé du bouton', type: 'string' }),

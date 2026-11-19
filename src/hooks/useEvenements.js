@@ -25,7 +25,7 @@ const EVENEMENT_PROJECTION = `{
   stats { items[] { value, label }, note },
   pourquoi { intro, items[] { titre, texte } },
   gouvernance { intro, items[] { titre, fonction, texte }, note },
-  faculty { intro, texte, noms[], note, ctaLabel },
+  faculty { intro, texte, noms[], groupes[] { groupe, intervenants[] { nom, bio } }, note, ctaLabel },
   parcours {
     intro,
     note,

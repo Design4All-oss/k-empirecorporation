@@ -7,7 +7,6 @@ import { useEvenement, useEvenements } from '../hooks';
 import LoadingSpinner from '../components/ui/Loading';
 import { submitDossier } from '../api/forms';
 import { useToast } from '../context/ToastContext';
-import { FACULTE_GEEE } from '../constants/faculte-geee';
 
 // Verrou de forme : rounded-full = interactifs · rounded-2xl = conteneurs, cartes, images,
 // modale · rounded-xl = champs de formulaire (modale uniquement).
@@ -121,16 +120,16 @@ const RowsTable = ({ rows }) => (
   </dl>
 );
 
-// Bios du DOCX : aucun normaliseur (sigle/lines/colon) ne doit les transformer.
-const FacultyDocx = () => (
+// Bios Sanity : aucun normaliseur (sigle/lines/colon) ne doit les transformer.
+const FacultyGroupes = ({ groupes }) => (
   <div className="border-t border-gray-100">
-    {FACULTE_GEEE.map((groupe) => (
-      <div key={groupe.groupe}>
+    {groupes.map(({ groupe, intervenants }) => (
+      <div key={groupe}>
         <h3 className="mb-4 mt-8 font-display text-sm font-semibold uppercase tracking-wide text-accent">
-          {groupe.groupe}
+          {groupe}
         </h3>
         <ul>
-          {groupe.intervenants.map(({ nom, bio }) => (
+          {intervenants.map(({ nom, bio }) => (
             <li key={nom} className="border-b border-gray-100 py-4 md:py-5">
               <span className="font-display text-base text-primary md:text-xl">{nom}</span>
               <p className="mt-2 max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-text-muted">
@@ -146,7 +145,6 @@ const FacultyDocx = () => (
 
 const EvenementSingle = () => {
   const { slug } = useParams();
-  const isGeee = slug === 'gouvernance-entites-extractives-energetiques';
   const { data: evenement, isLoading, error } = useEvenement(slug);
   const { data: allEvenements } = useEvenements();
 
@@ -426,7 +424,7 @@ const EvenementSingle = () => {
         )}
 
         {/* ═══ The Faculty ═══ */}
-        {faculty && faculty.noms && faculty.noms.length > 0 && (
+        {faculty && ((faculty.groupes && faculty.groupes.length > 0) || (faculty.noms && faculty.noms.length > 0)) && (
           <Section id="faculty" title="The Faculty">
             {faculty.intro && (
               <p className="mb-4 max-w-[50ch] font-display text-xl font-medium text-primary md:text-2xl">
@@ -436,8 +434,8 @@ const EvenementSingle = () => {
             {faculty.texte && (
               <p className="mb-10 max-w-[65ch] text-text-muted">{faculty.texte}</p>
             )}
-            {isGeee ? (
-              <FacultyDocx />
+            {faculty.groupes && faculty.groupes.length > 0 ? (
+              <FacultyGroupes groupes={faculty.groupes} />
             ) : (
               <ul className="border-t border-gray-100">
                 {faculty.noms.map((entry, i) => {
