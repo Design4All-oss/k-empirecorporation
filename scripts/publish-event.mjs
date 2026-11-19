@@ -27,32 +27,57 @@ const client = createClient({
 
 const payload = JSON.parse(fs.readFileSync(new URL('./event-gouvernance-extractives.json', import.meta.url), 'utf8'))
 const doc = { _id: 'evenement-gouvernance-entites-extractives', ...payload.create }
+delete doc.coverImage // geree ci-dessous : le JSON (coverImage: null) ne doit jamais ecraser la couverture
 
 const existing = await client.getDocument(doc._id)
 
-// Couverture reutilisee du site : ajoutee quand le document n'en a pas (creation manuelle
-// dans Studio, ou upload precedent echoue - le document avait alors coverImage.asset a null).
-const needsCover = !existing?.coverImage?.asset
-if (needsCover) {
+// Couverture : on preserve un choix fait dans Studio, on reparer une reference invalide,
+// et on n'uploade la photo du site que s'il n'y a vraiment pas d'asset.
+let coverImage
+const existingAssetId = existing?.coverImage?.asset?._ref || existing?.coverImage?.asset?._id
+if (!existingAssetId) {
   const asset = await client.assets.upload(
     'image',
     fs.readFileSync(new URL('../public/assets/images/services/hero.webp', import.meta.url)),
     { filename: 'event-cover-extractives.webp' },
   )
-  doc.coverImage = {
+  coverImage = {
     _type: 'image',
-    asset: { _type: 'reference', _id: asset._id },
+    asset: { _type: 'reference', _ref: asset._id },
     alt: 'Programme intensif — gouvernance des entités extractives et énergétiques',
+  }
+} else if (!existing.coverImage.asset._ref) {
+  // Version precedente : asset._id au lieu de asset._ref. Reparer sans re-uploader.
+  coverImage = {
+    ...existing.coverImage,
+    asset: { _type: 'reference', _ref: existingAssetId },
   }
 }
 
+// Studio exige une _key unique sur chaque objet membre d'un tableau, sinon la liste est
+// illisible ("Missing keys"). Les tableaux de chaines n'en ont pas besoin.
+function withKeys(value) {
+  if (Array.isArray(value)) {
+    return value.map((item, i) =>
+      item && typeof item === 'object' && !Array.isArray(item)
+        ? { ...withKeys(item), _key: item._key || `k${i}` }
+        : withKeys(item),
+    )
+  }
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([key, v]) => [key, withKeys(v)]))
+  }
+  return value
+}
+
+const { _id, _type, ...fields } = withKeys(doc) // _id et _type sont immuables
+if (coverImage) fields.coverImage = coverImage
+
 if (existing) {
-  // _type est immuable et coverImage (null dans le JSON) ne doit pas ecraser l'existant.
-  const { _type, coverImage, ...fields } = doc
-  await client.patch(doc._id).set(needsCover ? { ...fields, coverImage: doc.coverImage } : fields).commit()
+  await client.patch(doc._id).set(fields).commit()
   console.log('Mis a jour :', doc._id)
 } else {
-  await client.create(doc)
+  await client.create({ _id, _type, ...fields })
   console.log('Publie :', doc._id)
 }
 console.log('Statut :', doc.status, '| slug :', doc.slug.current)
