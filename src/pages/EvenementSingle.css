@@ -654,8 +654,11 @@
   animation: ke-ticker-scroll 40s linear infinite;
 }
 
-.ke-ticker:hover .ke-ticker__track {
-  animation-play-state: paused;
+/* Pas de pause au survol sur tactile : le défilement doit rester actif sur mobile. */
+@media (hover: hover) and (pointer: fine) {
+  .ke-ticker:hover .ke-ticker__track {
+    animation-play-state: paused;
+  }
 }
 
 .ke-ticker__sep {
@@ -669,19 +672,6 @@
   to {
     /* La liste est doublée : -50 % et un demi-gap ramènent exactement au début. */
     transform: translateX(calc(-50% - 18px));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ke-ticker__track {
-    animation: none;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .ke-ticker [aria-hidden='true'] {
-    display: none;
   }
 }
 
